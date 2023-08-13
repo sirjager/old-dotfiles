@@ -1,0 +1,217 @@
+#!/bin/sh
+
+
+# Reload sxhkd
+ctrl + shift + Escape
+    pkill -usr1 -x sxhkd &
+
+
+# Shutdown system
+#super + alt + h
+#    systemctl poweroff &
+
+# Reboot system
+#super + alt + g
+#    systemctl reboot &
+
+# Show powermenu
+super + ctrl + p
+    ~/.config/rofi/powermenu.sh
+
+
+# Reload bspwm
+super + shift + r
+    bspc wm -r &
+
+# Quit / Logout bspwm
+super + alt + q
+    bspc quit &
+
+
+# sudo pacman -S i3lock
+super + shift + l
+  ~/.config/bspwm/scripts/i3lock-fancy/i3lock-fancy.sh &
+
+
+# Foucs Next Window
+alt + Tab
+    bspc node -f next.local.window &
+
+# super + close (w) or kill all (shit+w) window
+super + {_,shift + }w
+	bspc node -{c,k} &
+
+# super + close (w) or kill all (shit+w) window and move to last desktop
+#alt + {_,shift + }w
+#	bspc node -{c,k} && bspc desktop -f last &
+
+# Vertical View / Windows arranged vertically
+super + {_,shift + }KP_Multiply
+    bspc node @parent -R 90 &
+
+# Windows state to  Tile, Fullscreen, Floating
+super + shift +{Num_Lock, KP_Divide, KP_Subtract}
+    bspc node -t {fullscreen, tiled, floating} &
+
+# Send Window To other Workspaces 1-9,0(10)
+super + {_,shift + }{1-9,0}
+    bspc {desktop -f, node -d} '^{1-9,10}' &
+
+# Rotate Among Windows in current workspace
+super + shift + Tab
+    bspc node @/ -C {forward,backward} &
+
+# Controls the size of only the 2nd Window in current workspace
+# Numpad: 4(inc width), 6(dec width), 8(inc height), 5(dec height)
+super + shift  + {KP_8,KP_4,KP_5,KP_6}
+    bspc node -z {top 0 -30,left -30 0,top 0 30,left 30 0} &
+
+
+
+# Disable touchpad
+super + shift + braceleft
+    xinput --disable 'ELAN1200:00 04F3:30BA Touchpad' &
+
+# Enable touchpad
+super + shift + braceright
+    xinput --enable 'ELAN1200:00 04F3:30BA Touchpad' &
+
+# Increase brightness
+XF86MonBrightnessUp
+    light -A 5 && light -O &
+
+# Decrease brightness
+XF86MonBrightnessDown
+    light -U 5 && light -O &
+
+# Increase brightness
+super + KP_Add
+    light -A 5 && light -O &
+
+# Decrease brightness
+super + KP_Subtract
+    light -U 5 && light -O &
+
+
+
+# Mute mic
+XF86AudioMicMute
+    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Mute volume
+XF86AudioMute
+    pactl -- set-sink-mute 0 toggle &
+
+# Raise volume, Increase Volume
+XF86AudioRaiseVolume
+    pactl -- set-sink-volume 0 +1% &
+
+# Lower volume, Decrease volume
+XF86AudioLowerVolume
+    pactl -- set-sink-volume 0 -1% &
+
+# Raise volume, Increase Volume
+alt + KP_Add
+    pactl -- set-sink-volume 0 +1% &
+
+# Lower volume, Decrease volume
+alt + KP_Subtract
+    pactl -- set-sink-volume 0 -1% &
+
+
+# Copy Window class to clipboard
+super + shift + f
+    xprop | grep WM_CLASS | cut -d'"' -f2 | head -n1 | xclip -selection clipboard &
+
+
+# Toggle polybar
+super + shift + p
+    ~/.config/polybar/scripts/toggle.sh
+
+
+
+# Full Window Terminal
+super + Return
+  ~/.config/bspwm/scripts/float-window kitty &
+
+# Floating Terminal With Last Session
+alt + Return
+  ~/.config/bspwm/scripts/float-window alacritty -e tmux new -As0 &
+
+# Floating Terminal With New Session
+alt + shift + Return
+   ~/.config/bspwm/scripts/float-window alacritty -e tmux &
+
+# Floating System Terminal 
+super + shift + Return
+  ~/.config/bspwm/scripts/float-window xfce4-terminal &
+
+
+# Screenshot Region
+# -c (copy to clipboard), -d <no> (delay in sec),
+# -m mouse, -f (fullscreen), --no-border, -r (region). -w (window)
+# -s (save path or dir), -i (host ss on imgur)
+super + z
+   xfce4-screenshooter -r --no-border -d 1 -c -s /mnt/storage/downloads/$(date +"%Y-%m-%d-%H:%M:%S").png &
+
+# Screenshot Fullscreen
+super + x
+   xfce4-screenshooter -f -d 1 -s /mnt/storage/downloads/$(date +"%Y-%m-%d-%H:%M:%S").png &
+
+# Screenshot Interactive
+super + i
+   xfce4-screenshooter &
+
+
+
+# Generate 8 digit password
+super + p
+    tr -dc "a-zA-Z0-9_@#-" < /dev/urandom | head -c 8 | xclip -selection clipboard &
+
+
+
+# Screenshot
+Print
+  scrot "$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png"
+
+# Screenshot
+super + Print
+  ~/.config/bspwm/scripts/screenshot.sh
+
+
+# Change wallpaper: q(nordic) r(gruvbox)
+super + {q,r}
+   ~/.config/bspwm/scripts/wallpaper.sh -d /mnt/storage/wallpaper/{nordic,gruvbox} -c ~/.config/polybar/colors.ini
+
+
+
+# Show Keybindings
+super + F1
+  ~/.config/bspwm/scripts/keybindings_rofi.sh
+
+# Apps launcher, Drawer
+alt + @space
+    rofi -modi drun -show drun -line-padding 4 \
+                -columns 2 -padding 50 -hide-scrollbar -terminal xfce4-terminal \
+                -show-icons -drun-icon-theme "Qogir-dark" -font "Droid Sans Regular 10"
+
+
+# Brave browser
+super + b
+    brave &
+
+# Chrome browser
+super + c
+    google-chrome-stable &
+
+# File Explorer
+super + f
+    thunar &
+
+# Visual studio code
+super + v
+    code &
+
+# Emacs
+super + e
+  emacsclient -c &

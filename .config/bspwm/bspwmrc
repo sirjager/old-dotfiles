@@ -1,0 +1,100 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+#bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d ⼀ ⼆ 三 四 五 六 七 ⼋ ⼏ ⼗
+
+# Start Emacs server
+# emacs --daemon &
+
+# Default xset r rate 300 50
+# xset r rate <milliseconds_before_repeating> <repetitions_per_second>
+xset r rate 250 50
+
+# sudo pacman -S xorg-xsetroot xorg-xinput # for cursor, touchpad
+xsetroot -cursor_name left_ptr &
+
+export TERMINAL=alacritty
+
+# bspwm configs
+bspc config automatic_scheme alternate &
+bspc config initial_polarity second_child &
+bspc config focus_follows_pointer false &
+
+bspc config window_gap          5 &  # 5
+bspc config top_padding         20 r & # 35 20* 45 for polybar
+bspc config bottom_padding      0 &  # 6
+bspc config right_padding       0 &  # 5
+bspc config left_padding        0 &  # 5
+
+bspc config border_width        2 &
+bspc config split_ratio         0.55 &    # 0.66 recommended  0.45 &
+bspc config click_to_focus      true &
+bspc config borderless_monocle  true &
+bspc config gapless_monocle     true &
+
+
+# window apps
+bspc rule -a alacritty state=floating focus=on border=off &
+bspc rule -a Yad state=floating &
+bspc rule -a Kupfer.py focus=on &
+bspc rule -a Screenkey manage=off &
+bspc rule -a scrcpy state=floating &
+bspc rule -a ulauncher state=floating &
+bspc rule -a "gnome-calculator" border=off state=floating &
+bspc rule -a polkit-gnome-authentication-agent-1 border=off state=floating &
+bspc rule -a polkit-kde-authentication-agent-1 border=off state=floating &
+bspc rule -a "Timeshift-gtk" border=off state=floating &
+bspc rule -a "gnome-calculator" border=off state=floating &
+bspc rule -a "telegram-desktop" state=floating &
+bspc rule -a "TelegramDesktop" border=off state=floating &
+bspc rule -a "xdm-app" border=off state=floating &
+bspc rule -a "Xdm-app" border=off state=floating &
+bspc rule -a "lutris" border=off state=floating &
+bspc rule -a "fcitx-config-gtk3" border=off state=floating &
+bspc rule -a "kdeconnect-indicator" border=off state=floating &
+bspc rule -a "FLTK" border=off state=floating & # weylus, share desktop, use browser as touchpad
+bspc rule -a "gufw.py" border=off state=floating &  
+bspc rule -a "protonvpn" border=off state=floating &  
+bspc rule -a "emacs" border=off state=fullscreen focus=on &  
+bspc rule -a "emacsclient" border=off state=fullscreen focus=on &  
+
+#
+# Autostart
+#
+fcitx -d  # Japanse Keyboard
+
+# Bar
+~/.config/polybar/launch.sh &
+
+# Notifications
+/usr/bin/dunst &
+
+# picom --experimental-backends &
+# picom &
+
+# Polkit (Authentication Agent)
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Network Applet
+nm-applet --indicator &
+
+# kde indicator
+kdeconnect-indicator &
+
+# brightess change permission
+# add ths to last line /etc/sudoers 
+# jager ALL=NOPASSWD:/usr/bin/chmod
+sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &
+
+
+# Low battery notifier
+~/.config/bspwm/scripts/low_bat_notifier.sh &
+
+
+# Wallpaper
+~/.config/bspwm/scripts/wallpaper.sh \
+  -f /mnt/storage/wallpaper/DeviantArt/venom-moonlight.jpg \
+  -c ~/.config/polybar/colors.ini &
+

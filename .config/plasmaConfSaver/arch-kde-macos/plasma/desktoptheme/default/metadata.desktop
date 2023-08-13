@@ -1,0 +1,28 @@
+[Desktop Entry]
+Name=McMojave
+Comment=A MacOS Mojave like theme for Plasma 5
+
+X-KDE-PluginInfo-Author=vince liuice
+X-KDE-PluginInfo-Category=Plasma Theme
+X-KDE-PluginInfo-Email=vinceliuice@hotmail.com
+X-KDE-PluginInfo-EnabledByDefault=true
+X-KDE-PluginInfo-License=GLP V3.0
+X-KDE-PluginInfo-Name=default
+X-KDE-PluginInfo-Version=5.78.0
+X-KDE-PluginInfo-Website=https://plasma.kde.org
+X-Plasma-API=5.0
+
+[Wallpaper]
+defaultWallpaperTheme=McMojave
+defaultFileSuffix=.jpg
+defaultWidth=1920
+defaultHeight=1080
+
+[ContrastEffect]
+enabled=false
+contrast=0.2
+intensity=1.4
+saturation=10
+
+[AdaptiveTransparency]
+enabled = true
