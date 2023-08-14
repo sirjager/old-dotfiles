@@ -44,7 +44,7 @@ immutability=1
 plugin=org.kde.plasma.betterinlineclock
 
 [Containments][2][Applets][27][Configuration]
-PreloadWeight=85
+PreloadWeight=90
 
 [Containments][2][Applets][27][Configuration][Appearance]
 customSpacing=4.461538461538462
@@ -72,7 +72,7 @@ immutability=1
 plugin=org.kde.milou
 
 [Containments][2][Applets][52][Configuration]
-PreloadWeight=75
+PreloadWeight=80
 
 [Containments][2][Applets][59]
 immutability=1
@@ -111,12 +111,50 @@ systemFavorites=lock-screen\\,logout\\,save-session\\,switch-user
 immutability=1
 plugin=org.kde.plasma.showdesktop
 
+[Containments][2][Applets][66]
+immutability=1
+plugin=org.kde.plasma.systemmonitor.memory
+
+[Containments][2][Applets][66][Configuration]
+CurrentPreset=org.kde.plasma.systemmonitor
+
+[Containments][2][Applets][66][Configuration][Appearance]
+chartFace=org.kde.ksysguard.piechart
+title=Memory Usage
+
+[Containments][2][Applets][66][Configuration][SensorColors]
+memory/physical/used=49,91,239
+
+[Containments][2][Applets][66][Configuration][Sensors]
+highPrioritySensorIds=["memory/physical/used"]
+lowPrioritySensorIds=["memory/physical/total"]
+totalSensors=["memory/physical/usedPercent"]
+
+[Containments][2][Applets][67]
+immutability=1
+plugin=org.kde.plasma.systemmonitor.cpu
+
+[Containments][2][Applets][67][Configuration]
+CurrentPreset=org.kde.plasma.systemmonitor
+
+[Containments][2][Applets][67][Configuration][Appearance]
+chartFace=org.kde.ksysguard.piechart
+title=Total CPU Use
+
+[Containments][2][Applets][67][Configuration][SensorColors]
+cpu/all/usage=49,91,239
+
+[Containments][2][Applets][67][Configuration][Sensors]
+highPrioritySensorIds=["cpu/all/usage"]
+lowPrioritySensorIds=["cpu/all/cpuCount","cpu/all/coreCount"]
+totalSensors=["cpu/all/usage"]
+
 [Containments][2][ConfigDialog]
 DialogHeight=84
 DialogWidth=1920
 
 [Containments][2][General]
-AppletOrder=63;29;59;52;31;27;64
+AppletOrder=63;29;67;66;59;52;31;27;64
 
 [Containments][32]
 activityId=
@@ -138,7 +176,7 @@ immutability=1
 plugin=org.kde.plasma.clipboard
 
 [Containments][32][Applets][34][Configuration]
-PreloadWeight=70
+PreloadWeight=75
 
 [Containments][32][Applets][35]
 immutability=1
@@ -194,7 +232,7 @@ immutability=1
 plugin=org.kde.plasma.battery
 
 [Containments][32][Applets][48][Configuration]
-PreloadWeight=85
+PreloadWeight=95
 
 [Containments][32][Applets][49]
 immutability=1

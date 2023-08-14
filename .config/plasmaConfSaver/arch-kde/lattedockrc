@@ -1,3 +1,7 @@
+[KPropertiesDialog]
+1920x1080 screen: Height=409
+1920x1080 screen: Width=382
+
 [LatteSettingsDialog]
 downloadWindowSize=980,600
 windowSize=1100,750

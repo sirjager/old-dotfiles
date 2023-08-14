@@ -141,7 +141,11 @@ History Items[$e]=file:$HOME
 
 [General]
 AccentColor=0,0,0,0
+BrowserApplication=librewolf.desktop
 ColorSchemeHash=888f558ddb41ce5656c7b32ba0fcc1916eca895f
+TerminalApplication=alacritty
+TerminalService=Alacritty.desktop
+UseSystemBell=true
 XftHintStyle=hintslight
 XftSubPixel=rgb
 fixed=San Francisco Display,10,-1,5,50,0,0,0,0,0
