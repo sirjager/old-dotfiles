@@ -135,9 +135,13 @@ ForegroundNormal=222,222,222
 ForegroundPositive=39,174,96
 ForegroundVisited=120,120,120
 
+[DirSelect Dialog]
+DirSelectDialog Size=824,566
+History Items[$e]=file:$HOME
+
 [General]
 AccentColor=0,0,0,0
-ColorSchemeHash=01662607e36cd33eacc7d7d7189f69c26b9a2cc8
+ColorSchemeHash=888f558ddb41ce5656c7b32ba0fcc1916eca895f
 XftHintStyle=hintslight
 XftSubPixel=rgb
 fixed=San Francisco Display,10,-1,5,50,0,0,0,0,0
@@ -154,6 +158,26 @@ LookAndFeelPackage=com.github.vinceliuice.McMojave
 ShowDeleteCommand=false
 SingleClick=false
 widgetStyle=kvantum-dark
+
+[KFileDialog Settings]
+Allow Expansion=false
+Automatically select filename extension=true
+Breadcrumb Navigation=true
+Decoration position=2
+LocationCombo Completionmode=5
+PathCombo Completionmode=5
+Show Bookmarks=false
+Show Full Path=false
+Show Inline Previews=true
+Show Preview=false
+Show Speedbar=true
+Show hidden files=false
+Sort by=Name
+Sort directories first=true
+Sort hidden files last=false
+Sort reversed=false
+Speedbar Width=133
+View Style=DetailTree
 
 [PreviewSettings]
 MaximumRemoteSize=0

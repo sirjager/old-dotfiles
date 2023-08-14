@@ -7,11 +7,11 @@ Number=1
 Rows=1
 
 [Effect-blur]
-BlurStrength=10
-NoiseStrength=1
+BlurStrength=9
+NoiseStrength=2
 
 [Effect-magiclamp]
-AnimationDuration=400
+AnimationDuration=300
 
 [Effect-windowview]
 BorderActivateAll=9

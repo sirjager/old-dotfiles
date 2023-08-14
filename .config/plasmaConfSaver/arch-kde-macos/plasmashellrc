@@ -1,11 +1,18 @@
+[KFileDialog Settings]
+Recent Files[$e]=file:///mnt/storage/wallpaper/macos/16.jpg,file:///mnt/storage/wallpaper/nature/ersan-design-goCQMZIxLTs-unsplash.jpg,file:///mnt/storage/wallpaper/nature/end_of_the_day_by_bisbiswas_ddigyeq.jpg,file:///mnt/storage/wallpaper/nature/Dragoon_X_(5).jpg,file:///mnt/storage/wallpaper/nature/Dragoon_X_(4).jpg,file:///mnt/storage/wallpaper/nature/Dragoon_X_(3).jpg,file:///mnt/storage/wallpaper/nature/Dragoon_X_(2).jpg,file:///mnt/storage/wallpaper/nature/Dragoon_X_(1).jpg,file:///mnt/storage/wallpaper/nature/daniel.jpg,file:///mnt/storage/wallpaper/nature/daniel-leone-v7daTKlZzaw-unsplash.jpg,file:///mnt/storage/wallpaper/nature/cherry-red.jpg,file:///mnt/storage/wallpaper/nature/caleb-steele-5t1lUr0NmHI-unsplash.jpg,file:///mnt/storage/wallpaper/nature/bridge.jpg,file:///mnt/storage/wallpaper/nature/beast_2-wallpaper-1920x1080.jpg,file:///mnt/storage/wallpaper/nature/alexis-antoine-kXMe4hugFA4-unsplash.jpg,file:///mnt/storage/wallpaper/nature/1.jpg,file:///mnt/storage/wallpaper/macos/15.jpg,file:///mnt/storage/wallpaper/macos/12.jpg,file:///mnt/storage/wallpaper/macos/11.jpg,file:///mnt/storage/wallpaper/macos/10.jpg,file:///mnt/storage/wallpaper/macos/9.jpg,file:///mnt/storage/wallpaper/macos/8.jpg,file:///mnt/storage/wallpaper/macos/7.png,file:///mnt/storage/wallpaper/macos/6.jpg,file:///mnt/storage/wallpaper/macos/5.jpg,file:///mnt/storage/wallpaper/macos/4.jpeg,file:///mnt/storage/wallpaper/macos/3.jpeg,file:///mnt/storage/wallpaper/macos/2.png,file:///mnt/storage/wallpaper/macos/1.jpg
+Recent URLs[$e]=file:///mnt/storage/wallpaper/nature/
+detailViewIconSize=16
+
 [PlasmaTransientsConfig]
 PreloadWeight=0
 
 [PlasmaViews][Panel 2]
+alignment=132
+floating=1
 panelOpacity=0
 
 [PlasmaViews][Panel 2][Defaults]
-thickness=30
+thickness=32
 
 [PlasmaViews][Panel 23][Defaults]
 maxLength=1536

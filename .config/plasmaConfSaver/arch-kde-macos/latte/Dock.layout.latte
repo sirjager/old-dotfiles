@@ -32,7 +32,7 @@ PreloadWeight=0
 
 [Containments][1][Applets][2][Configuration][General]
 isInLatteDock=true
-launchers59=applications:firefox.desktop,applications:org.kde.dolphin.desktop
+launchers59=applications:org.kde.dolphin.desktop,applications:librewolf.desktop,applications:spotify-adblock.desktop,applications:org.manjaro.pamac.manager.desktop,applications:timeshift-gtk.desktop,applications:onlyoffice-desktopeditors.desktop,file:///usr/share/applications/discord.desktop,applications:org.kde.kate.desktop
 
 [Containments][1][Applets][3]
 immutability=1
@@ -48,6 +48,45 @@ DialogWidth=720
 [Containments][1][Applets][3][Configuration][General]
 showSecondHand=true
 
+[Containments][1][Applets][4]
+activityId=
+formfactor=0
+immutability=1
+lastScreen=-1
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=
+
+[Containments][1][Applets][4][Configuration]
+PreloadWeight=100
+activityId=
+formfactor=0
+immutability=1
+lastScreen=-1
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=
+
+[Containments][1][Applets][4][Configuration][ConfigDialog]
+DialogHeight=667
+DialogWidth=680
+
+[Containments][1][Applets][4][Configuration][General]
+filterMimeTypes=\\0
+filterPattern=.bashrc
+iconSize=2
+positions={"1920x1080":[]}
+url=file:///home/jager
+viewMode=1
+
+[Containments][1][Applets][7]
+immutability=1
+plugin=org.kde.plasma.icon
+
+[Containments][1][Applets][7][Configuration]
+localPath=/home/jager/.local/share/plasma_icons/trash:⁄ (1).desktop
+url=trash:/
+
 [Containments][1][ConfigDialog]
 DialogHeight=600
 DialogWidth=586
@@ -58,22 +97,33 @@ PreloadWeight=0
 [Containments][1][General]
 advanced=false
 alignmentUpgraded=true
-appletOrder=2;3
+appletOrder=2;3;4;7
+backgroundRadius=20
 configurationSticker=true
-panelSize=10
+durationTime=x1
+iconSize=50
+panelShadows=false
+panelSize=100
+panelTransparency=30
+plasmaBackgroundForPopups=true
 shadowOpacity=60
 shadowSize=45
 shadows=All
 shadowsUpgraded=true
 showGlow=false
 tasksUpgraded=true
+thickMargin=15
 titleTooltips=false
-zoomLevel=17
+zoomLevel=6
 
 [Containments][1][Indicator]
 customType=
 enabled=true
 type=org.kde.latte.default
+
+[Containments][1][Indicator][org.kde.latte.default][General]
+activeStyle=Dot
+minimizedTaskColoredDifferently=true
 
 [LayoutSettings]
 activities={0}
@@ -90,3 +140,6 @@ preferredForShortcutsTouched=false
 schemeFile=/usr/share/color-schemes/KvMojave.colors
 showInMenu=true
 version=2
+
+[ScreenMapping]
+screenMapping=
