@@ -13,11 +13,11 @@ NoiseStrength=2
 [Effect-magiclamp]
 AnimationDuration=300
 
-[Effect-windowview]
-BorderActivateAll=9
-
 [ModifierOnlyShortcuts]
 Meta=org.kde.plasmashell,/PlasmaShell,org.kde.PlasmaShell,activateLauncherMenu
+
+[MouseBindings]
+CommandAllKey=Alt
 
 [Plugins]
 blurEnabled=true

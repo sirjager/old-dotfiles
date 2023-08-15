@@ -1,0 +1,17 @@
+[Desktop Entry]
+Comment[en_US]=
+Comment=
+Exec=/usr/bin/xset r rate 250 '50\n'
+GenericName[en_US]=
+GenericName=
+Icon=
+MimeType=
+Name[en_US]=xset
+Name=xset
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=

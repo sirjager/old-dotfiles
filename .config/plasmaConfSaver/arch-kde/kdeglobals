@@ -136,12 +136,12 @@ ForegroundPositive=39,174,96
 ForegroundVisited=120,120,120
 
 [DirSelect Dialog]
-DirSelectDialog Size=824,566
-History Items[$e]=file:$HOME
+DirSelectDialog Size=968,557
+History Items[$e]=file:///opt/xdman/chrome-extension,file:///mnt/storage/downloads,file:///mnt/storage/downloads/temp,file:$HOME
 
 [General]
 AccentColor=0,0,0,0
-BrowserApplication=librewolf.desktop
+BrowserApplication=vivaldi-stable.desktop
 ColorSchemeHash=888f558ddb41ce5656c7b32ba0fcc1916eca895f
 TerminalApplication=alacritty
 TerminalService=Alacritty.desktop

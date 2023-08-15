@@ -3,6 +3,9 @@ Recent Files[$e]=file:///mnt/storage/wallpaper/macos/16.jpg,file:///mnt/storage/
 Recent URLs[$e]=file:///mnt/storage/wallpaper/nature/
 detailViewIconSize=16
 
+[PlasmaTransientsConfig]
+PreloadWeight=34
+
 [PlasmaViews][Panel 2]
 alignment=132
 floating=1
