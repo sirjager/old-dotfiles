@@ -71,7 +71,7 @@ fcitx -d  # Japanse Keyboard
 # Notifications
 /usr/bin/dunst &
 
-# picom --experimental-backends &
+picom --experimental-backends &
 # picom &
 
 # Polkit (Authentication Agent)
@@ -95,6 +95,6 @@ sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &
 
 # Wallpaper
 ~/.config/bspwm/scripts/wallpaper.sh \
-  -f /mnt/storage/wallpaper/DeviantArt/venom-moonlight.jpg \
+  -f /mnt/storage/wallpaper/nature/venom-moonlight.jpg \
   -c ~/.config/polybar/colors.ini &
 
