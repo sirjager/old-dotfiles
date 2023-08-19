@@ -202,7 +202,7 @@ super + b
 
 # Chrome browser
 super + c
-    google-chrome-stable &
+    vivaldi-stable &
 
 # File Explorer
 super + f
@@ -210,7 +210,7 @@ super + f
 
 # Visual studio code
 super + v
-    code &
+    code --password-store="gnome" &
 
 # Emacs
 super + e
