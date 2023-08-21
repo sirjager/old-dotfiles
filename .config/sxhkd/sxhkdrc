@@ -210,7 +210,7 @@ super + f
 
 # Visual studio code
 super + v
-    code --password-store="gnome" &
+    code  &
 
 # Emacs
 super + e

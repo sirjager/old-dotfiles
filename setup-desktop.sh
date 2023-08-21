@@ -233,6 +233,18 @@ setup_dotfiles_repo() {
     source ~/.bashrc
 }
 
+install_virt_manager(){
+     echo
+    _log cyan "Installing and setting up KVM Virt-Manager"
+    echo " "
+    yay --needed -S \
+      qemu virt-manager virt-viewer bridge-utils libguestfs 
+    sudo systemctl enable --now libvirtd.service
+    sudo usermod -a -G libvirt $(whoami)
+    sudo systemctl restart libvirtd.service
+    sudo virsh net-start default
+}
+
 while true; do
     echo " "
     # Prompt user for function choice
@@ -247,6 +259,7 @@ while true; do
     _clr yellow " 8.  Setup Dotfiles"
     _clr yellow " 9.  Install ZSH"
     _clr yellow "10.  Install Bspwm"
+    _clr yellow "11.  Install Virt-Manager"
     echo " "
     _clr purple "0. Quit or Ctrl+C"
     read -p "Option number: " choice
@@ -281,6 +294,9 @@ while true; do
         ;;
     10)
         install_bspwm
+        ;;
+    11)
+        install_virt_manager
         ;;
     0)
         break
