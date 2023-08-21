@@ -228,8 +228,8 @@ setup_dotfiles_repo() {
         return 1
     fi
 
-    echo -e "\n\n[[ ! -f ~/shell.cfg ]] || source ~/shell.cfg;\n\n" >>~/.bashrc
-    echo -e "\n\n[[ ! -f ~/shell.cfg ]] || source ~/shell.cfg;\n\n" >>~/.zshrc
+    echo -e "\n\n[[ ! -f ~/.config/shell.cfg ]] || source ~/.config/shell.cfg;\n\n" >>~/.bashrc
+    echo -e "\n\n[[ ! -f ~/.config/shell.cfg ]] || source ~/.config/shell.cfg;\n\n" >>~/.zshrc
     source ~/.bashrc
 }
 
