@@ -60,7 +60,6 @@ bspc rule -a "protonvpn" border=off state=floating &
 bspc rule -a "emacs" border=off state=fullscreen focus=on &  
 bspc rule -a "emacsclient" border=off state=fullscreen focus=on &  
 
-#
 # Autostart
 #
 fcitx -d  # Japanse Keyboard
@@ -95,6 +94,6 @@ sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &
 
 # Wallpaper
 ~/.config/bspwm/scripts/wallpaper.sh \
-  -f /mnt/storage/wallpaper/nature/venom-moonlight.jpg \
+  -f /mnt/storage/wallpaper/wallheaven/49.jpg \
   -c ~/.config/polybar/colors.ini &
 

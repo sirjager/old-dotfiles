@@ -206,7 +206,7 @@ super + c
 
 # File Explorer
 super + f
-    thunar &
+  nautilus --new-window &
 
 # Visual studio code
 super + v
