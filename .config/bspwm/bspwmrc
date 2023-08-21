@@ -94,6 +94,6 @@ sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &
 
 # Wallpaper
 ~/.config/bspwm/scripts/wallpaper.sh \
-  -f /mnt/storage/wallpaper/wallheaven/49.jpg \
+  -f /mnt/storage/wallpaper/nature/venom-moonlight.jpg \
   -c ~/.config/polybar/colors.ini &
 

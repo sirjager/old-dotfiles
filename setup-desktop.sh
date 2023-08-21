@@ -161,13 +161,13 @@ setup_tmux() {
     fi
 
     _log purple "Setting up Tmuxifier..."
-    rm -rf ~/.tmuxifier
-    git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
+    rm -rf ~/.local/share/tmuxifier
+    git clone https://github.com/jimeh/tmuxifier.git ~/.local/share/tmuxifier
 
     # Tmux Plugin Manager
     _log purple "Setting up TPM (Tmux Plugin Manager)"
-    rm -rf ~/.tmux/plugins/tpm
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    rm -rf ~/.local/share/tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
 
     _log green "Tmux successfully installed and configured"
 }
