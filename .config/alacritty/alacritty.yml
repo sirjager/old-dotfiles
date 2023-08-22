@@ -40,7 +40,7 @@ selection:
   save_to_clipboard: false
 
 shell:
-  program: /usr/bin/zsh
+  program: /usr/bin/bash
 
 bell:
   animation: EaseOutExpo

@@ -15,20 +15,18 @@ xset r rate 250 50
 # sudo pacman -S xorg-xsetroot xorg-xinput # for cursor, touchpad
 xsetroot -cursor_name left_ptr &
 
-export TERMINAL=alacritty
-
 # bspwm configs
 bspc config automatic_scheme alternate &
 bspc config initial_polarity second_child &
 bspc config focus_follows_pointer false &
 
-bspc config window_gap          5 &  # 5
+bspc config window_gap          0 &  # 5
 bspc config top_padding         20 r & # 35 20* 45 for polybar
 bspc config bottom_padding      0 &  # 6
 bspc config right_padding       0 &  # 5
 bspc config left_padding        0 &  # 5
 
-bspc config border_width        2 &
+bspc config border_width        1 &
 bspc config split_ratio         0.55 &    # 0.66 recommended  0.45 &
 bspc config click_to_focus      true &
 bspc config borderless_monocle  true &
@@ -61,39 +59,25 @@ bspc rule -a "emacs" border=off state=fullscreen focus=on &
 bspc rule -a "emacsclient" border=off state=fullscreen focus=on &  
 
 # Autostart
-#
 fcitx -d  # Japanse Keyboard
 
-# Bar
 ~/.config/polybar/launch.sh &
 
-# Notifications
 /usr/bin/dunst &
 
 picom --experimental-backends &
-# picom &
 
-# Polkit (Authentication Agent)
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-# Network Applet
 nm-applet --indicator &
-
-# kde indicator
 kdeconnect-indicator &
 
-# brightess change permission
-# add ths to last line /etc/sudoers 
-# jager ALL=NOPASSWD:/usr/bin/chmod
+# append this to /etc/sudoers: jager ALL=NOPASSWD:/usr/bin/chmod
 sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &
 
+~/.local/scripts/lowbattery &
 
-# Low battery notifier
-~/.config/bspwm/scripts/low_bat_notifier.sh &
-
-
-# Wallpaper
-~/.config/bspwm/scripts/wallpaper.sh \
-  -f /mnt/storage/wallpaper/nature/venom-moonlight.jpg \
+~/.local/scripts/changewall \
+  -f /mnt/storage/wallpaper/nature/venom-moonlight.* \
   -c ~/.config/polybar/colors.ini &
 

@@ -4,7 +4,7 @@ COLOR_FILE="$HOME/.cache/wal/colors"
 
 applyWallpaper() {
   # Set the wallpaper using feh
-  feh --bg-fill "$1" &
+  feh --no-fehbg --scale-down --bg-fill "$1" &
   # swaybg -i "$1" &
 }
 

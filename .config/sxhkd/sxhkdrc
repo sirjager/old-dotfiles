@@ -1,23 +1,8 @@
 #!/bin/sh
 
-
 # Reload sxhkd
 ctrl + shift + Escape
     pkill -usr1 -x sxhkd &
-
-
-# Shutdown system
-#super + alt + h
-#    systemctl poweroff &
-
-# Reboot system
-#super + alt + g
-#    systemctl reboot &
-
-# Show powermenu
-super + ctrl + p
-    ~/.config/rofi/powermenu.sh
-
 
 # Reload bspwm
 super + shift + r
@@ -27,11 +12,13 @@ super + shift + r
 super + alt + q
     bspc quit &
 
+# Show powermenu
+super + ctrl + p
+    ~/.local/scripts/powermenu.sh &
 
 # sudo pacman -S i3lock
 super + shift + l
-  ~/.config/bspwm/scripts/i3lock-fancy/i3lock-fancy.sh &
-
+  ~/.local/scripts/i3lock/i3lock-fancy.sh &
 
 # Foucs Next Window
 alt + Tab
@@ -67,7 +54,6 @@ super + shift  + {KP_8,KP_4,KP_5,KP_6}
     bspc node -z {top 0 -30,left -30 0,top 0 30,left 30 0} &
 
 
-
 # Disable touchpad
 super + shift + braceleft
     xinput --disable 'ELAN1200:00 04F3:30BA Touchpad' &
@@ -91,7 +77,6 @@ super + KP_Add
 # Decrease brightness
 super + KP_Subtract
     light -U 5 && light -O &
-
 
 
 # Mute mic
@@ -126,53 +111,37 @@ super + shift + f
 
 # Toggle polybar
 super + shift + p
-    ~/.config/polybar/scripts/toggle.sh
-
+  ~/.local/scripts/toggle-polybar &
 
 
 # Full Window Terminal
 super + Return
-  ~/.config/bspwm/scripts/float-window kitty &
+  ~/.local/scripts/floatwindow kitty &
 
 # Floating Terminal With Last Session
 alt + Return
-  ~/.config/bspwm/scripts/float-window alacritty -e tmux new -As0 &
+  ~/.local/scripts/floatwindow alacritty -e tmux new -As main &
 
 # Floating Terminal With New Session
 alt + shift + Return
-   ~/.config/bspwm/scripts/float-window alacritty -e tmux &
+   ~/.local/scripts/floatwindow alacritty -e tmux &
 
 # Floating System Terminal 
 super + shift + Return
-  ~/.config/bspwm/scripts/float-window xfce4-terminal &
-
-
-# Screenshot Region
-# -c (copy to clipboard), -d <no> (delay in sec),
-# -m mouse, -f (fullscreen), --no-border, -r (region). -w (window)
-# -s (save path or dir), -i (host ss on imgur)
-super + z
-   xfce4-screenshooter -r --no-border -d 1 -c -s /mnt/storage/downloads/$(date +"%Y-%m-%d-%H:%M:%S").png &
-
-# Screenshot Fullscreen
-super + x
-   xfce4-screenshooter -f -d 1 -s /mnt/storage/downloads/$(date +"%Y-%m-%d-%H:%M:%S").png &
-
-# Screenshot Interactive
-super + i
-   xfce4-screenshooter &
-
+  xfce4-terminal &
 
 
 # Generate 8 digit password
 super + p
     tr -dc "a-zA-Z0-9_@#-" < /dev/urandom | head -c 8 | xclip -selection clipboard &
 
-
+# Screenshot Interactive
+super + i
+  ~/.local/scripts/screenshot "$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png"
 
 # Screenshot
 Print
-  scrot "$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png"
+  ~/.local/scripts/screenshot "$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png"
 
 # Screenshot
 super + Print
@@ -184,17 +153,11 @@ super + {q,r}
    ~/.config/bspwm/scripts/wallpaper.sh -d /mnt/storage/wallpaper/{nordic,gruvbox} -c ~/.config/polybar/colors.ini
 
 
-
-# Show Keybindings
-super + F1
-  ~/.config/bspwm/scripts/keybindings_rofi.sh
-
 # Apps launcher, Drawer
 alt + @space
     rofi -modi drun -show drun -line-padding 4 \
                 -columns 2 -padding 50 -hide-scrollbar -terminal xfce4-terminal \
                 -show-icons -drun-icon-theme "Qogir-dark" -font "Droid Sans Regular 10"
-
 
 # Brave browser
 super + b
@@ -206,7 +169,7 @@ super + c
 
 # File Explorer
 super + f
-  nautilus --new-window &
+  nemo
 
 # Visual studio code
 super + v
