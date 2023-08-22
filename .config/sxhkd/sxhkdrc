@@ -14,7 +14,7 @@ super + alt + q
 
 # Show powermenu
 super + ctrl + p
-    ~/.local/scripts/powermenu.sh &
+    ~/.local/scripts/powermenu/powermenu.sh &
 
 # sudo pacman -S i3lock
 super + shift + l
