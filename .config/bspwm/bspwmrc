@@ -6,7 +6,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 bspc monitor -d ⼀ ⼆ 三 四 五 六 七 ⼋ ⼏ ⼗
 
 # Start Emacs server
-# emacs --daemon &
+emacs --daemon &
 
 # Default xset r rate 300 50
 # xset r rate <milliseconds_before_repeating> <repetitions_per_second>
@@ -57,6 +57,7 @@ bspc rule -a "gufw.py" border=off state=floating &
 bspc rule -a "protonvpn" border=off state=floating &  
 bspc rule -a "emacs" border=off state=fullscreen focus=on &  
 bspc rule -a "emacsclient" border=off state=fullscreen focus=on &  
+bspc rule -a "rog-control-center" border=off state=floating focus=on &  
 
 # Autostart
 fcitx -d  # Japanse Keyboard
@@ -67,10 +68,12 @@ fcitx -d  # Japanse Keyboard
 
 picom --experimental-backends &
 
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+/usr/lib/polkit-kde-authentication-agent-1 &
 
 nm-applet --indicator &
 kdeconnect-indicator &
+rog-control-center &
 
 # append this to /etc/sudoers: jager ALL=NOPASSWD:/usr/bin/chmod
 sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &

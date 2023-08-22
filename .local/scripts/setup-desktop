@@ -175,7 +175,7 @@ setup_tmux() {
 install_bspwm() {
     echo
     _log blue "Installing Bspwm and required dependcies\n"
-    yay --needed --noconfirm -S \
+    yay -S \
         bspwm-rounded-corners polybar sxhkd rofi-lbonn-wayland-git \
         alacritty kitty feh mpv dunst polkit-gnome playerctl pamixer \
         xorg-xprop xclip xsel xorg-xkill xdotool xorg-xsetroot xorg-xwininfo xorg-xrandr mpc mpd \
@@ -234,7 +234,7 @@ setup_dotfiles_repo() {
 }
 
 install_virt_manager(){
-     echo
+    echo
     _log cyan "Installing and setting up KVM Virt-Manager"
     echo " "
     yay --needed -S \
@@ -243,6 +243,21 @@ install_virt_manager(){
     sudo usermod -a -G libvirt $(whoami)
     sudo systemctl restart libvirtd.service
     sudo virsh net-start default
+}
+
+install_pkgs_for_wm(){
+  echo
+  _log cyan "Installing packages for tiling window managers"
+  echo " "
+  yay --needed --noconfirm -S \
+    acpi arandr archlinux-xdg-menu \
+    bspwm-rounded-corners polybar sxhkd rofi-lbonn-wayland-git \
+    dex dunst feh file-roller gtk-engine-murrine \
+    gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb \
+    htop i3lock jq sddm lxappearance-gtk3 mpv network-manager-applet \
+    polkit-gnome scrot sysstat nemo xbindkeys xclip xdg-user-dirs-gtk \
+    xed xfce4-terminal xorg-xbacklight xorg-xdpyinfo xorg-xsetroot
+
 }
 
 while true; do

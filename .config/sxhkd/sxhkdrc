@@ -165,7 +165,7 @@ super + b
 
 # Chrome browser
 super + c
-    vivaldi-stable &
+    google-chrome-stable &
 
 # File Explorer
 super + f
