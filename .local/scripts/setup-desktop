@@ -252,7 +252,7 @@ install_user_pkgs(){
     _log blue "Installing user packages"
     yay --noconfirm --needed -S \
       brave-bin emacs neovim tmux alacritty kitty \
-      nemo visual-studio-code-bin gnome-polkit \
+      nemo visual-studio-code-bin \
       ungoogled-chromium-bin qutebrowser ranger feh \
       mpv 
     
