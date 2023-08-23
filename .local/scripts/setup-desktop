@@ -164,8 +164,8 @@ install_and_setup_sddm() {
     _log yellow "Downloading sddm theme sugar-candy"
     rm -rf ~/Downloads/sugar-candy
     git clone https://github.com/Kangie/sddm-sugar-candy ~/Downloads/sugar-candy
-    _log yellow "Applying sddm theme configs\n"
-    echo 'Background="/mnt/storage/wallpaper/sddm.png"' >> ~Downloads/sugar-candy/theme.conf
+    _log yellow "Applying sddm theme configs"
+    echo 'Background="/mnt/storage/wallpaper/sddm.png"' >> ~/Downloads/sugar-candy/theme.conf
     echo 'PartialBlur="false"' >> ~/Downloads/sugar-candy/theme.conf
     cp -f /usr/lib/sddm/sddm.conf.d/default.conf ~/Downloads/sugar-candy/sddm.conf
     echo -e '\n[Theme]\nCurrent=sugar-candy' >>~/Downloads/sugar-candy/sddm.conf
@@ -246,6 +246,30 @@ setup_dotfiles_repo() {
     source ~/.bashrc
 }
 
+
+install_user_pkgs(){
+    echo 
+    _log blue "Installing user packages"
+    yay --noconfirm --needed -S \
+      brave-bin emacs neovim tmux alacritty kitty \
+      nemo visual-studio-code-bin gnome-polkit \
+      ungoogled-chromium-bin qutebrowser ranger feh \
+      mpv 
+    
+    echo 
+    _log blue "Cloning Doom Emacs"
+    git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+    _log yellow "Run command to setup : doom sync"
+}
+
+install_rog_control_center(){
+   echo
+   _log blue "Installing Rog Control center"
+   yay --needed --noconfirm -S asusctl supergfxctl rog-control-center
+   _log yellow "Enabling service"
+   sudo systemctl enable --now supergfxd
+}
+
 while true; do
     echo " "
     # Prompt user for function choice
@@ -261,6 +285,8 @@ while true; do
     _clr yellow " 9.  Install Bspwm"
     _clr yellow "10.  Install Virt-Manager"
     _clr yellow "11.  Setup Grub Menu Windows Menu entry"
+    _clr yellow "12.  Install User packages"
+    _clr yellow "13.  Install Rog Control Center"
     echo " "
     _clr purple "0. Quit or Ctrl+C"
     read -p "Option number: " choice
@@ -298,6 +324,12 @@ while true; do
         ;;
     11)
         discover_other_os_on_grub
+        ;;
+    12)
+        install_user_pkgs
+        ;;
+    13)
+        install_rog_control_center
         ;;
     0)
         break
