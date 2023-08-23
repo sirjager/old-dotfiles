@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 _clr() {
     case "$1" in
@@ -31,6 +31,7 @@ _clr() {
         ;;
     esac
 }
+
 
 _log() {
     if [ "$1" != "" ]; then
@@ -66,26 +67,7 @@ install_yay() {
         _log red "Failed to install yay" exit
 }
 
-install_core_pkgs() {
-    echo
-    _log blue "Installing core packages\n"
 
-    yay --needed --noconfirm -S base-devel libconfig pkgconfig &&
-        _log green "Installed:\nbase-devel libconfig pkgconfig \n" ||
-        _log red "Failed to install\nbase-devel libconfig pkgconfig \n"
-    yay --needed --noconfirm -S \
-        wget curl htop git xclip xorg-xinput xorg-xsetroot xsel &&
-        _log green "Installed:\nwget curl htop git xclip xorg-xinput xorg-xsetroot xsel \n" ||
-        _log red "Failed to install\nwget curl htop git xclip xorg-xinput xorg-xsetroot xsel \n"
-    yay --needed --noconfirm -S \
-        mpv exa light network-manager-applet zsh &&
-        _log green "Installed:\nmpv exa light network-manager-applet zsh \n" ||
-        _log red "Failed to install\nmpv exa light network-manager-applet zsh \n"
-    yay --needed --noconfirm -S \
-        alacritty kitty emacs neovim tmux lazygit fzf &&
-        _log green "Installed:\nalacritty kitty emacs neovim tmux lazygit fzf  \n" ||
-        _log red "Failed to install\nalacritty kitty emacs neovim tmux lazygit fzf \n"
-}
 
 mount_ntfs_storage() {
     echo
@@ -103,6 +85,63 @@ mount_ntfs_storage() {
         _log red "Error: Unable to retrieve the UUID for the '$TARGET_NTFS_STORAGE_NAME' partition.\n"
     fi
 }
+
+install_core_pkgs(){
+  echo 
+  _log blue "Installing packages for window manager\n"
+  yay --needed --noconfirm -S base-devel \
+    arandr archlinux-xdg-menu network-manager-applet \
+    htop wget curl git gtk3 gtk4 libconfig pkgconfig \
+    gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb \
+    xorg-server xorg-xinit xorg-xsetroot xorg-xbacklight \
+    xorg-xinput xorg-xprop xorg-xkill xorg-xwininfo xorg-xrandr \
+    xfce4-terminal xclip xsel xdotool playerctl pamixer polkit-gnome \
+    dunst feh light fzf neovim tmux gufw gtk-engine-murrine \
+    xdg-user-dirs-gtk xed mousepad emacs i3lock
+  _log green "Successfully installed required packages for window managers\n"
+  echo 
+
+  _log yellow "Enabling firewall...\n"
+  sudo systemctl enable --now ufw
+  echo 
+}
+
+setup_tmux() {
+    echo " "
+    _log cyan "Installing Tmux"
+    echo " "
+    yay --needed --noconfirm -S tmux
+    if [ $? -eq 0 ]; then
+        _log green "Successfully installed tmux"
+    else
+        _log red "Failed to install tmux"
+        return 1
+    fi
+
+    _log purple "Setting up Tmuxifier..."
+    rm -rf ~/.local/share/tmuxifier
+    git clone https://github.com/jimeh/tmuxifier.git ~/.local/share/tmuxifier
+
+    # Tmux Plugin Manager
+    _log purple "Setting up TPM (Tmux Plugin Manager)\n"
+    rm -rf ~/.local/share/tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
+
+    _log green "Tmux successfully installed and configured\n"
+}
+
+
+setup_firewall() {
+    echo
+    _log yellow "Removing other firewalls\n"
+    yay --noconfirm -Rns firewalld
+    _log blue "Installing Graphical Firewall (gufw)\n"
+    yay --noconfirm --needed -S gufw
+    _log yellow "Enabling Firewall\n"
+    sudo systemctl enable --now ufw
+    _log green "Firewall is now active\n"
+}
+
 
 install_and_setup_sddm() {
     echo
@@ -126,8 +165,8 @@ install_and_setup_sddm() {
     rm -rf ~/Downloads/sugar-candy
     git clone https://github.com/Kangie/sddm-sugar-candy ~/Downloads/sugar-candy
     _log yellow "Applying sddm theme configs\n"
-    echo 'Background="/mnt/storage/wallpaper/sddm.png"' >>~Downloads/sugar-candy/theme.conf
-    echo 'PartialBlur="false"' >>~/Downloads/sugar-candy/theme.conf
+    echo 'Background="/mnt/storage/wallpaper/sddm.png"' >> ~Downloads/sugar-candy/theme.conf
+    echo 'PartialBlur="false"' >> ~/Downloads/sugar-candy/theme.conf
     cp -f /usr/lib/sddm/sddm.conf.d/default.conf ~/Downloads/sugar-candy/sddm.conf
     echo -e '\n[Theme]\nCurrent=sugar-candy' >>~/Downloads/sugar-candy/sddm.conf
     echo -e '\n[General]\nNumlock=on' >>~/Downloads/sugar-candy/sddm.conf
@@ -137,73 +176,37 @@ install_and_setup_sddm() {
     _log green "Successfully installed and configured SDDM Lock screen manager\n"
 }
 
-install_firewall() {
+
+install_virt_manager(){
     echo
-    _log yellow "Removing other firewalls\n"
-    yay --noconfirm -Rns firewalld
-    _log blue "Installing Graphical Firewall (gufw)\n"
-    yay --noconfirm --needed -S gufw
-    _log yellow "Enabling Firewall\n"
-    sudo systemctl enable --now ufw
-    _log green "Firewall is now active\n"
+    _log cyan "Installing and setting up KVM Virt-Manager"
+    echo " "
+    yay --needed --noconfirm -S \
+      qemu virt-manager virt-viewer bridge-utils libguestfs 
+    sudo mv /etc/libvirt/libvirtd.conf /etc/libvirt/libvirtd.conf.bak
+    echo -e 'unix_sock_group = "libvirt"' > ~/libvirtd.conf
+    echo -e 'unix_sock_ro_perms = "0770"' >> ~/libvirtd.conf 
+    sudo mv ~/libvirtd.conf /etc/libvirt/libvirt.conf 
+    sudo systemctl enable --now libvirtd.service
+    sudo usermod -a -G libvirt $(whoami)
+    sudo systemctl restart libvirtd.service
+    sudo virsh net-start default
+    echo 
+    _log green "Virt-Manager installation complete\n"
 }
 
-setup_tmux() {
-    echo " "
-    _log cyan "Installing Tmux"
-    echo " "
-    yay --needed --noconfirm -S tmux
-    if [ $? -eq 0 ]; then
-        _log green "Successfully installed tmux"
-    else
-        _log red "Failed to install tmux"
-        return 1
-    fi
 
-    _log purple "Setting up Tmuxifier..."
-    rm -rf ~/.local/share/tmuxifier
-    git clone https://github.com/jimeh/tmuxifier.git ~/.local/share/tmuxifier
-
-    # Tmux Plugin Manager
-    _log purple "Setting up TPM (Tmux Plugin Manager)"
-    rm -rf ~/.local/share/tmux/plugins/tpm
-    git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
-
-    _log green "Tmux successfully installed and configured"
+install_bspwm (){
+  echo 
+  install_core_pkgs
+  echo 
+  _log blue "Installing BSPWM ..."
+  yay --needed --noconfirm -S \
+    bspwm polybar sxhkd picom rofi alacritty kitty xfce4-terminal
+  _log green "Bspwm Installed"
 }
 
-install_bspwm() {
-    echo
-    _log blue "Installing Bspwm and required dependcies\n"
-    yay -S \
-        bspwm-rounded-corners polybar sxhkd rofi-lbonn-wayland-git \
-        alacritty kitty feh mpv dunst polkit-gnome playerctl pamixer \
-        xorg-xprop xclip xsel xorg-xkill xdotool xorg-xsetroot xorg-xwininfo xorg-xrandr mpc mpd \
-        sddm qt5-graphicaleffects qt5-quickcontrols2 qt5-svg i3lock \
-        exa thunar light network-manager-applet gtk3 gtk4 libconfig pkgconfig
 
-    # Installing picom
-    rm -rf ~/Downloads/picom
-    git clone https://github.com/jonaburg/picom ~/Downloads/picom
-    cd ~/Downloads/picom
-    meson --buildtype=release . build
-    ninja -C build
-    sudo ninja -C build install
-}
-
-setup_zsh() {
-    echo " "
-    _log cyan "Installing zsh\n"
-    echo " "
-    yay --needed --noconfirm -S zsh
-    if [ $? -eq 0 ]; then
-        _log green "Successfully installed zsh\n"
-    else
-        _log red "Failed to install zsh\n"
-        return 1
-    fi
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-}
 
 setup_dotfiles_repo() {
     GITHUB_BARE_REPO="git@github.com:sirjager/dotfiles.git"
@@ -229,35 +232,7 @@ setup_dotfiles_repo() {
     fi
 
     echo -e "\n\n[[ ! -f ~/.config/shell.cfg ]] || source ~/.config/shell.cfg;\n\n" >>~/.bashrc
-    echo -e "\n\n[[ ! -f ~/.config/shell.cfg ]] || source ~/.config/shell.cfg;\n\n" >>~/.zshrc
     source ~/.bashrc
-}
-
-install_virt_manager(){
-    echo
-    _log cyan "Installing and setting up KVM Virt-Manager"
-    echo " "
-    yay --needed -S \
-      qemu virt-manager virt-viewer bridge-utils libguestfs 
-    sudo systemctl enable --now libvirtd.service
-    sudo usermod -a -G libvirt $(whoami)
-    sudo systemctl restart libvirtd.service
-    sudo virsh net-start default
-}
-
-install_pkgs_for_wm(){
-  echo
-  _log cyan "Installing packages for tiling window managers"
-  echo " "
-  yay --needed --noconfirm -S \
-    acpi arandr archlinux-xdg-menu \
-    bspwm-rounded-corners polybar sxhkd rofi-lbonn-wayland-git \
-    dex dunst feh file-roller gtk-engine-murrine \
-    gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb \
-    htop i3lock jq sddm lxappearance-gtk3 mpv network-manager-applet \
-    polkit-gnome scrot sysstat nemo xbindkeys xclip xdg-user-dirs-gtk \
-    xed xfce4-terminal xorg-xbacklight xorg-xdpyinfo xorg-xsetroot
-
 }
 
 while true; do
@@ -272,9 +247,8 @@ while true; do
     _clr yellow " 6.  Setup Firewall"
     _clr yellow " 7.  Setup Tmux"
     _clr yellow " 8.  Setup Dotfiles"
-    _clr yellow " 9.  Install ZSH"
-    _clr yellow "10.  Install Bspwm"
-    _clr yellow "11.  Install Virt-Manager"
+    _clr yellow " 9.  Install Bspwm"
+    _clr yellow "10.  Install Virt-Manager"
     echo " "
     _clr purple "0. Quit or Ctrl+C"
     read -p "Option number: " choice
@@ -296,7 +270,7 @@ while true; do
         install_and_setup_sddm
         ;;
     6)
-        install_firewall
+      setup_firewall
         ;;
     7)
         setup_tmux
@@ -305,12 +279,9 @@ while true; do
         setup_dotfiles_repo
         ;;
     9)
-        setup_zsh
-        ;;
-    10)
         install_bspwm
         ;;
-    11)
+    10)
         install_virt_manager
         ;;
     0)
