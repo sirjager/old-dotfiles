@@ -45,7 +45,10 @@ shell:
 bell:
   animation: EaseOutExpo
   color: "0xffffff"
-  duration: 0
+  duration: 1
 
 env:
   TERM: xterm-256color
+
+
+
