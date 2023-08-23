@@ -111,7 +111,7 @@ local plugins = {
 	"akinsho/toggleterm.nvim",
 
 	-- wakatime
-	"wakatime/vim-wakatime",
+	--[[ "wakatime/vim-wakatime", ]]
 }
 
 local opts = {}

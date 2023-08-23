@@ -89,7 +89,7 @@ mount_ntfs_storage() {
 install_core_pkgs(){
   echo 
   _log blue "Installing packages for window manager\n"
-  yay --needed --noconfirm -S base-devel \
+  yay --needed --noconfirm -S base-devel os-prober \
     arandr archlinux-xdg-menu network-manager-applet \
     htop wget curl git gtk3 gtk4 libconfig pkgconfig \
     gvfs gvfs-afc gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb \
@@ -206,6 +206,17 @@ install_bspwm (){
   _log green "Bspwm Installed"
 }
 
+discover_other_os_on_grub(){
+  echo 
+  _log blue "Setting up Grub Menu..."
+  yay --needed --noconfirm -S os-prober
+  sudo cat /etc/default/grub > ~/grub
+  sudo echo -e "GRUB_DISABLE_OS_PROBER=false" >> ~/grub
+  sudo mv /etc/default/grub /etc/default/grub.bak
+  sudo mv ~/grub /etc/default/grub
+  sudo os-prober
+  sudo grub-mkconfig -o /boot/grub/grub.cfg
+}
 
 
 setup_dotfiles_repo() {
@@ -249,6 +260,7 @@ while true; do
     _clr yellow " 8.  Setup Dotfiles"
     _clr yellow " 9.  Install Bspwm"
     _clr yellow "10.  Install Virt-Manager"
+    _clr yellow "11.  Setup Grub Menu Windows Menu entry"
     echo " "
     _clr purple "0. Quit or Ctrl+C"
     read -p "Option number: " choice
@@ -283,6 +295,9 @@ while true; do
         ;;
     10)
         install_virt_manager
+        ;;
+    11)
+        discover_other_os_on_grub
         ;;
     0)
         break
