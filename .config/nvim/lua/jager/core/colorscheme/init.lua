@@ -6,7 +6,7 @@ require("jager.core.colorscheme.onedark")
 require("jager.core.colorscheme.catppuccin")
 
 -- CHANGE YOUR THEME HERE
-local selected_theme = "onedark"
+local selected_theme = "catppuccin"
 
 local ok, _ = pcall(vim.cmd, "colorscheme ", selected_theme)
 if not ok then

@@ -1,4 +1,4 @@
-#!/bin/sh
+# shellcheck disable=all
 
 # Reload sxhkd
 ctrl + shift + Escape
@@ -14,11 +14,11 @@ super + alt + q
 
 # Show powermenu
 super + ctrl + p
-    ~/.local/scripts/powermenu/powermenu.sh &
+    ~/.config/rofi/powermenu/type-4/powermenu.sh
 
 # sudo pacman -S i3lock
 super + shift + l
-  ~/.local/scripts/i3lock/i3lock-fancy.sh &
+  ~/.local/bin/i3lock/i3lock-fancy.sh &
 
 # Foucs Next Window
 alt + Tab
@@ -105,43 +105,41 @@ alt + KP_Subtract
 
 
 # Copy Window class to clipboard
-super + shift + f
+super + shift + i
     xprop | grep WM_CLASS | cut -d'"' -f2 | head -n1 | xclip -selection clipboard &
 
 
 # Toggle polybar
-super + shift + p
-  ~/.local/scripts/toggle-polybar &
-
+super + shift + f
+    ~/.config/polybar/scripts/toggle.sh &
 
 # Full Window Terminal
 super + Return
-  ~/.local/scripts/floatwindow kitty &
+  ~/.local/bin/float-window kitty &
 
 # Floating Terminal With Last Session
 alt + Return
-  ~/.local/scripts/floatwindow alacritty -e tmux new -As0 &
+  ~/.local/bin/float-window alacritty -e tmux new -As0 &
 
 # Floating Terminal With New Session
 alt + shift + Return
-   ~/.local/scripts/floatwindow alacritty -e tmux &
+   ~/.local/bin/float-window alacritty -e tmux &
 
 # Floating System Terminal 
 super + shift + Return
   xfce4-terminal &
 
-
 # Generate 8 digit password
-super + p
+super + u
     tr -dc "a-zA-Z0-9_@#-" < /dev/urandom | head -c 8 | xclip -selection clipboard &
 
 # Screenshot Interactive
 super + i
-  ~/.local/scripts/screenshot "$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png"
+  ~/.local/bin/screenshot "$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png"
 
 # Screenshot
 Print
-  ~/.local/scripts/screenshot "$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png"
+  ~/.local/bin/screenshot "$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png"
 
 # Screenshot
 super + Print
@@ -150,23 +148,28 @@ super + Print
 
 # Change wallpaper: q(nordic) r(gruvbox)
 super + r
-   ~/.config/bspwm/scripts/wallpaper.sh -d /mnt/storage/wallpaper/nordic -c ~/.config/polybar/colors.ini
+   ~/.local/bin/wallpaper -d /mnt/storage/wallpaper/nordic -c ~/.config/polybar/colors.ini &
 
+# Rofi applauncher: medium center 
+alt + d
+    rofi -show drun -theme ~/.config/rofi/launchers/type-1/style-10.rasi
 
-# Apps launcher, Drawer
+# Rofi applauncher: dmenu style
 alt + @space
-    rofi -modi drun -show drun -line-padding 4 \
-                -columns 2 -padding 50 -hide-scrollbar -terminal xfce4-terminal \
-                -show-icons -drun-icon-theme "Qogir-dark" -font "Droid Sans Regular 10"
+    rofi -show drun -theme ~/.config/rofi/launchers/type-7/style-5.rasi
 
 # Brave browser
 super + {b, c}
   {brave, chromium} &
 
 # Visual studio code
-super + {c, v}
-  {code, emacsclient -c}  &
+super + {v, e}
+  {code --password-store="gnome", emacsclient -c}  &
+
 
 # File Explorer
 super + f
   nemo
+
+super + {_,shift + } {q}
+    {~/.local/bin/bookmark --copy --notify, ~/.local/bin/bookmark --use }

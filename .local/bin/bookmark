@@ -1,0 +1,71 @@
+#!/bin/sh
+
+filepath="$HOME/.local/share/jager/bookmarks"
+highlighted_text="$(xclip -o)"
+
+notify="true"
+delay="20"
+typing="true"
+copy="true"
+use_message="Select bookmark: "
+
+is_link () {
+    # Regular expression to match URLs
+    url_pattern='https?://[^[:space:]]+'
+    if echo "$1" | grep -qE "$url_pattern"; then
+        return 0 
+    else
+        return 1 
+    fi
+}
+
+add_new_bookmark () {
+    if [ "$highlighted_text" = "" ]; then 
+        return 0
+    fi
+
+    if ! is_link "$highlighted_text"; then
+        notify-send -u critical "Only valid urls are allowed" "$highlighted_text"
+        return 1
+    fi
+
+    if grep -q "^$highlighted_text$" "$filepath"; then
+        if [ "$notify" = "true" ];then
+            notify-send -u critical "Bookmark already exists !" "$highlighted_text"
+        fi
+    else
+        echo "$highlighted_text" >> "$filepath"
+        if [ "$notify" = "true" ];then
+            notify-send "Bookmark added !" "$highlighted_text"
+        fi
+    fi
+}
+
+use_bookmark(){
+    selected_text="$(cat "$filepath" | rofi -dmenu -p "$use_message" -theme ~/.config/rofi/launchers/type-1/style-10.rasi)"
+    if [ "$selected_text" = "" ]; then
+        return 0
+    fi
+
+    if [ "$notify" = "true" ];then
+            notify-send "Bookmark selected" "$selected_text"
+    fi
+    
+    if [ "$copy" = "true" ];then
+            echo "$selected_text" | xclip -selection clipboard
+    fi
+    
+    if [ "$typing" = "true" ];then
+        xdotool type --clearmodifiers --delay $delay "$selected_text"
+    fi
+}
+
+case "$1" in 
+    --use)
+        use_bookmark
+        ;;
+    *)
+        add_new_bookmark
+        ;;
+esac
+

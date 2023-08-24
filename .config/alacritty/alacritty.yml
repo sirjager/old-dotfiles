@@ -34,13 +34,13 @@ font:
 draw_bold_text_with_bright_colors: true
 
 import:
-  - ~/.config/alacritty/catppuccin-moca.yml
+  - ~/.config/alacritty/catppuccin-frappe.yml
 
 selection:
   save_to_clipboard: true
 
 shell:
-  program: /usr/bin/bash
+  program: /bin/bash
 
 bell:
   animation: EaseOutExpo

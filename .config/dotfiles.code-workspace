@@ -1,0 +1,23 @@
+{
+  "folders": [
+	{
+		"path": "../.local/bin"
+	},
+	{
+		"path": "bspwm"
+	},
+	{
+		"path": "sxhkd"
+	},
+	{
+		"path": "polybar"
+	},
+	{
+		"path": "rofi"
+	},
+	{
+		"path": "../.local/share/jager"
+	}
+],
+  "settings": {}
+}
