@@ -216,7 +216,7 @@ discover_other_os_on_grub(){
 
 
 setup_dotfiles_repo() {
-    GITHUB_BARE_REPO="git@github.com:sirjager/dotfiles.git"
+    GITHUB_BARE_REPO="https://github.com/sirjager/dotfiles"
     echo
     _log cyan "Setting up dotfiles bare repository"
     echo " "
@@ -225,10 +225,8 @@ setup_dotfiles_repo() {
     _log purple "Cloning github repository $GITHUB_BARE_REPO ...\n"
     git clone --bare $GITHUB_BARE_REPO ~/.dotfiles
 
-    alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-    alias dots-hide-untracked='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no'
-
-    dots checkout
+    /usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout
+    /usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
 
     if [ $? -eq 0 ]; then
         _log green "Successfully configured dotfiles\n"

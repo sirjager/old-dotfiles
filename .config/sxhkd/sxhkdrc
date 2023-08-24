@@ -120,7 +120,7 @@ super + Return
 
 # Floating Terminal With Last Session
 alt + Return
-  ~/.local/scripts/floatwindow alacritty -e tmux new -As main &
+  ~/.local/scripts/floatwindow alacritty -e tmux new -As0 &
 
 # Floating Terminal With New Session
 alt + shift + Return
@@ -149,8 +149,8 @@ super + Print
 
 
 # Change wallpaper: q(nordic) r(gruvbox)
-super + {q,r}
-   ~/.config/bspwm/scripts/wallpaper.sh -d /mnt/storage/wallpaper/{nordic,gruvbox} -c ~/.config/polybar/colors.ini
+super + r
+   ~/.config/bspwm/scripts/wallpaper.sh -d /mnt/storage/wallpaper/nordic -c ~/.config/polybar/colors.ini
 
 
 # Apps launcher, Drawer
@@ -160,21 +160,13 @@ alt + @space
                 -show-icons -drun-icon-theme "Qogir-dark" -font "Droid Sans Regular 10"
 
 # Brave browser
-super + b
-    brave &
+super + {b, c}
+  {brave, chromium} &
 
-# Chrome browser
-super + c
-    google-chrome-stable &
+# Visual studio code
+super + {c, v}
+  {code, emacsclient -c}  &
 
 # File Explorer
 super + f
   nemo
-
-# Visual studio code
-super + v
-    code  &
-
-# Emacs
-super + e
-  emacsclient -c &
