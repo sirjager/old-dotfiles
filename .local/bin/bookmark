@@ -14,7 +14,8 @@ use_message="Select bookmark: "
 
 is_link () {
     # Regular expression to match URLs
-    url_pattern='https?://[^[:space:]]+'
+    # url_pattern='^(http|https)://([a-zA-Z0-9_-]+\.)+[a-zA-Z]{2,6}(/\S*)?$'
+    url_pattern='^(https?://)?([a-zA-Z0-9_-]+\.)+[a-zA-Z]{2,6}(/\S*)?$'
     if echo "$1" | grep -qE "$url_pattern"; then
         return 0 
     else
@@ -24,7 +25,7 @@ is_link () {
 
 add_new_bookmark () {
     if [ "$highlighted_text" = "" ]; then 
-        return 0
+        return 1
     fi
 
     if ! is_link "$highlighted_text"; then
