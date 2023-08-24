@@ -1,4 +1,8 @@
 #!/bin/bash
+
+## Author : Ankur Kumar (SirJager)
+## Github : @SirJager
+
 # Toggles polybar and resizes bspwm padding.
 
 LOCK_FILE="$HOME/.cache/bar.lck"

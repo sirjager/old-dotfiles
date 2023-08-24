@@ -1,5 +1,8 @@
 #!/bin/env bash
 
+## Author : Ankur Kumar (SirJager)
+## Github : @SirJager
+
 # Options for powermenu
 lock="   Lock"
 logout="󰗼   Logout"

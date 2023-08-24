@@ -1,5 +1,8 @@
 #!/bin/sh
 
+## Author : Ankur Kumar (SirJager)
+## Github : @SirJager
+
 filepath="$HOME/.local/share/jager/bookmarks"
 highlighted_text="$(xclip -o)"
 

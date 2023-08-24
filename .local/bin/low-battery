@@ -1,5 +1,8 @@
 #!/bin/bash
 
+## Author : Ankur Kumar (SirJager)
+## Github : @SirJager
+
 ### VARIABLES
 
 POLL_INTERVAL=120    # seconds at which to check battery level

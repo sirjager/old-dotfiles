@@ -1,5 +1,8 @@
 #!/bin/sh
 
+## Author : Ankur Kumar (SirJager)
+## Github : @SirJager
+
 _clr() {
     case "$1" in
     "red")

@@ -1,9 +1,11 @@
 #!/bin/bash
 
+## Author : Ankur Kumar (SirJager)
+## Github : @SirJager
+
 COLOR_FILE="$HOME/.cache/wal/colors"
 
 applyWallpaper() {
-  # Set the wallpaper using feh
   feh --no-fehbg --scale-down --bg-fill "$1" &
   # swaybg -i "$1" &
 }
