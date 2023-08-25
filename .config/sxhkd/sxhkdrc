@@ -118,22 +118,18 @@ super + Return
   ~/.local/bin/float-window kitty &
 
 # Floating Terminal With Last Session
-alt + Return
-  ~/.local/bin/float-window alacritty -e tmux new -As0 &
-
-# Floating Terminal With New Session
-alt + shift + Return
-   ~/.local/bin/float-window alacritty -e tmux &
+alt + {_,shift + } Return
+  ~/.local/bin/float-window {alacritty -e "tmux attach", alacritty -e "tmux new"} &
 
 # Floating System Terminal 
 super + shift + Return
   xfce4-terminal &
 
-
-# Utils: uuid, password (8digit)
-super + u; {u,p}
+# yay --needed --noconfirm -S xclip xsel rofi-emoji rofi-calc 
+# Utils: uuid, password (8digit), emoji, calculator
+super + u; {u,p,e,c}
    echo -n | xclip -selection clipboard && \
-   {uuidgen | tr -d '\n' , tr -dc "a-zA-Z0-9_@#-" < /dev/urandom | head -c 8 } | xclip -selection clipboard &
+   {uuidgen | tr -d '\n' | xclip -selection clipboard &, tr -dc "a-zA-Z0-9_@#-" < /dev/urandom | head -c 8  | xclip -selection clipboard &, rofi -show emoji -theme ~/.config/rofi/launchers/type-5/style-4.rasi, rofi -show calc -no-show-match -no-sort -theme ~/.config/rofi/launchers/type-7/style-7.rasi}
 
 # Screenshot Interactive
 super + i

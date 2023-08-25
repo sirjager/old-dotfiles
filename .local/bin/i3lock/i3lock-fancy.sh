@@ -105,7 +105,7 @@ color=$(convert "$image" -gravity center -crop 100x100+0+0 +repage -colorspace h
 
 if [[ $color -gt $value ]]; then #white background image and black text
     bw="black"
-    icon="$HOME/.local/scripts/i3lock/circlelockdark.png"
+    icon="$HOME/.local/bin/i3lock/circlelockdark.png"
     param=("--insidecolor=0000001c" "--ringcolor=0000003e" \
         "--linecolor=00000000" "--keyhlcolor=ffffff80" "--ringvercolor=ffffff00" \
         "--separatorcolor=22222260" "--insidevercolor=ffffff1c" \
@@ -114,7 +114,7 @@ if [[ $color -gt $value ]]; then #white background image and black text
         "--datecolor=ffffff00" "--layoutcolor=ffffff00")
 else #black
     bw="white"
-    icon="$HOME/.local/scripts/i3lock/circlelock.png"
+    icon="$HOME/.local/bin/i3lock/circlelock.png"
     param=("--insidecolor=ffffff1c" "--ringcolor=ffffff3e" \
         "--linecolor=ffffff00" "--keyhlcolor=00000080" "--ringvercolor=00000000" \
         "--separatorcolor=22222260" "--insidevercolor=0000001c" \

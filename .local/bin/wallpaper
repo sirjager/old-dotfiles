@@ -6,45 +6,45 @@
 COLOR_FILE="$HOME/.cache/wal/colors"
 
 applyWallpaper() {
-  feh --no-fehbg --scale-down --bg-fill "$1" &
+  feh --no-fehbg --bg-fill "$1" &
   # swaybg -i "$1" &
 }
 
 dumpColors() {
   # Generate colors using pywal
-  # -t (skip tty)  -s(skip terminals)
-  wal -i "$1" -q -t -s
+  # -t (skip tty)  -s(skip terminals) -n(skip setting wallpaper)
+  wal -i "$1" -q -t -s -n
 
-  echo "[color]" > $2
-  echo "#" >> $2
-  echo "# INDICATING COLOR" >> $2
-  echo 'transparent = #00ffffff' >> $2
-  echo 'disabled = #9E9E9E' >> $2
-  echo 'danger = #ff0000' >> $2
-  echo 'warning = #ffa500' >> $2
-  echo 'success = #00ff00' >> $2
-  echo "#" >> $2
-  echo "# MATERIAL COLORS " >> $2
-  echo "#" >> $2
-  echo 'info = #00BCD4' >> $2
-  echo 'red = #F44336' >> $2
-  echo 'pink = #E91E63' >> $2
-  echo 'green = #4CAF50' >> $2
-  echo 'blue = #2196F3' >> $2
-  echo 'orange = #FF9800' >> $2
-  echo 'yellow = #FFEB3B' >> $2
-  echo 'teal = #009688' >> $2
-  echo 'cyan = #00BCD4' >> $2
-  echo 'gray = #9E9E9E' >> $2
-  echo 'brown = #795548' >> $2
-  echo 'black = #000000' >> $2
-  echo 'white = #FFFFFF' >> $2
-  echo "#" >> $2
-  echo "# SHADES FROM PYWAL" >> $2
+  echo "[color]" >"$2"
+  echo "#" >>"$2"
+  echo "# INDICATING COLOR" >>"$2"
+  echo 'transparent = #00ffffff' >>"$2"
+  echo 'disabled = #9E9E9E' >>"$2"
+  echo 'danger = #ff0000' >>"$2"
+  echo 'warning = #ffa500' >>"$2"
+  echo 'success = #00ff00' >>"$2"
+  echo "#" >>"$2"
+  echo "# MATERIAL COLORS " >>"$2"
+  echo "#" >>"$2"
+  echo 'info = #00BCD4' >>"$2"
+  echo 'red = #F44336' >>"$2"
+  echo 'pink = #E91E63' >>"$2"
+  echo 'green = #4CAF50' >>"$2"
+  echo 'blue = #2196F3' >>"$2"
+  echo 'orange = #FF9800' >>"$2"
+  echo 'yellow = #FFEB3B' >>"$2"
+  echo 'teal = #009688' >>"$2"
+  echo 'cyan = #00BCD4' >>"$2"
+  echo 'gray = #9E9E9E' >>"$2"
+  echo 'brown = #795548' >>"$2"
+  echo 'black = #000000' >>"$2"
+  echo 'white = #FFFFFF' >>"$2"
+  echo "#" >>"$2"
+  echo "# SHADES FROM PYWAL" >>"$2"
   number=0
   for i in $(cat $COLOR_FILE); do
-      echo "shade$number = $i" >> $2
-      number=$((number+1))
+    echo "shade$number = $i" >>"$2"
+    number=$((number + 1))
   done
 
   source "$COLOR_FILE.sh"
@@ -83,7 +83,7 @@ elif [ "$1" = "-d" ]; then
     image=$(ls "$2" | shuf -n 1)
     # Check if the image file exists
     if [ -f "$2/$image" ]; then
-      ~/.config/bspwm/scripts/wallpaper.sh -f "$2/$image"
+      ~/.local/bin/wallpaper -f "$2/$image"
       # Check if the -c flag is present
       if [ "$3" = "-c" ]; then
         # Check if the argument after the -c flag is a file

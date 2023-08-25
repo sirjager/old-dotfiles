@@ -4,7 +4,6 @@
 ## Github : @SirJager
 
 filepath="$HOME/.local/share/jager/bookmarks"
-highlighted_text="$(xclip -o)"
 
 notify="true"
 delay="20"
@@ -12,64 +11,89 @@ typing="true"
 copy="true"
 use_message="Select bookmark: "
 
-is_link () {
+is_link() {
     # Regular expression to match URLs
     # url_pattern='^(http|https)://([a-zA-Z0-9_-]+\.)+[a-zA-Z]{2,6}(/\S*)?$'
     url_pattern='^(https?://)?([a-zA-Z0-9_-]+\.)+[a-zA-Z]{2,6}(/\S*)?$'
     if echo "$1" | grep -qE "$url_pattern"; then
-        return 0 
+        return 0
     else
-        return 1 
+        return 1
     fi
 }
 
-add_new_bookmark () {
-    if [ "$highlighted_text" = "" ]; then 
+export_from_chrome() {
+    # Check if input arguments are provided
+    if [ $# -ne 2 ]; then
+        notify-send -t 3000 -u critical "Failed to export bookamarks" "Usage: $0 --export input output"
+        exit 1
+    fi
+
+    input_file="$1"
+    output_file="$2"
+
+    # Check if the input file exists
+    if [ ! -f "$input_file" ]; then
+        notify-send -t 3000 -u critical "Unable to export links" "'$input_file' file does not exists"
+        exit 1
+    fi
+
+    # Use awk to extract links from the exported bookmarks HTML file
+    awk -F 'HREF="' '/HREF=/{print $2;}' "$input_file" | awk -F '"' '{print $1;}' >>"$output_file"
+
+    notify-send -t 3000 "Bookmarks exported" "saved in '$output_file'"
+}
+
+add_new_bookmark() {
+    highlighted_text="$(xclip -o)"
+    if [ "$highlighted_text" = "" ]; then
         return 1
     fi
 
     if ! is_link "$highlighted_text"; then
-        notify-send -u critical "Only valid urls are allowed" "$highlighted_text"
+        notify-send -t 3000 -u critical "Only valid urls are allowed" "$highlighted_text"
         return 1
     fi
 
     if grep -q "^$highlighted_text$" "$filepath"; then
-        if [ "$notify" = "true" ];then
-            notify-send -u critical "Bookmark already exists !" "$highlighted_text"
+        if [ "$notify" = "true" ]; then
+            notify-send -t 3000 -u critical "Bookmark already exists !" "$highlighted_text"
         fi
     else
-        echo "$highlighted_text" >> "$filepath"
-        if [ "$notify" = "true" ];then
-            notify-send "Bookmark added !" "$highlighted_text"
+        echo "$highlighted_text" >>"$filepath"
+        if [ "$notify" = "true" ]; then
+            notify-send -t 3000 "Bookmark added !" "$highlighted_text"
         fi
     fi
 }
 
-use_bookmark(){
+use_bookmark() {
     selected_text="$(cat "$filepath" | rofi -dmenu -p "$use_message" -theme ~/.config/rofi/launchers/type-1/style-10.rasi)"
     if [ "$selected_text" = "" ]; then
         return 0
     fi
 
     # if [ "$notify" = "true" ];then
-    #         notify-send "Bookmark selected" "$selected_text"
+    #         notify-send -t 3000 "Bookmark selected" "$selected_text"
     # fi
-    
-    if [ "$copy" = "true" ];then
-            echo "$selected_text" | xclip -selection clipboard
+
+    if [ "$copy" = "true" ]; then
+        echo "$selected_text" | xclip -selection clipboard
     fi
-    
-    if [ "$typing" = "true" ];then
+
+    if [ "$typing" = "true" ]; then
         xdotool type --clearmodifiers --delay $delay "$selected_text"
     fi
 }
 
-case "$1" in 
-    --use)
-        use_bookmark
-        ;;
-    *)
-        add_new_bookmark
-        ;;
+case "$1" in
+--use)
+    use_bookmark
+    ;;
+--export-chrome)
+    export_from_chrome "$2" "$3"
+    ;;
+*)
+    add_new_bookmark
+    ;;
 esac
-

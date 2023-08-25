@@ -80,6 +80,6 @@ sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &
 # rog-control-center &
 
 ~/.local/bin/wallpaper \
-  -f /mnt/storage/wallpaper/nature/venom-moonlight.* \
+  -f /mnt/storage/wallpaper/nature/mountains.* \
   -c ~/.config/polybar/colors.ini &
 
