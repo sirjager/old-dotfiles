@@ -1,15 +1,21 @@
-#!/bin/sh
+#!/bin/bash
 
 ## Author : Ankur Kumar (SirJager)
 ## Github : @SirJager
 
 filepath="$HOME/.local/share/jager/bookmarks"
 
+rofi_theme="$HOME/.config/rofi/themes/dmenu.rasi"
+
 notify="true"
 delay="20"
 typing="true"
 copy="true"
-use_message="Select bookmark: "
+
+prompt_dmneu="Bookmark Manager"
+prompt_add="Add Bookmark"
+prompt_select="Select Bookmark"
+prompt_remove="Remove Bookmark"
 
 is_link() {
     # Regular expression to match URLs
@@ -28,10 +34,8 @@ export_from_chrome() {
         notify-send -t 3000 -u critical "Failed to export bookamarks" "Usage: $0 --export input output"
         exit 1
     fi
-
     input_file="$1"
     output_file="$2"
-
     # Check if the input file exists
     if [ ! -f "$input_file" ]; then
         notify-send -t 3000 -u critical "Unable to export links" "'$input_file' file does not exists"
@@ -44,34 +48,56 @@ export_from_chrome() {
     notify-send -t 3000 "Bookmarks exported" "saved in '$output_file'"
 }
 
-add_new_bookmark() {
-    highlighted_text="$(xclip -o)"
-    if [ "$highlighted_text" = "" ]; then
+link_exits(){
+    if grep -q "^$1$" "$filepath"; then
+        return 0 # exits
+    else
+        return 1 # Not exists
+    fi
+}
+
+save_bookmark() {
+    [ "$1" = "" ] && return 1
+    if ! is_link "$1"; then
+        notify-send -t 3000 -u critical "Only valid urls are allowed" "$1"
         return 1
     fi
 
-    if ! is_link "$highlighted_text"; then
-        notify-send -t 3000 -u critical "Only valid urls are allowed" "$highlighted_text"
-        return 1
-    fi
-
-    if grep -q "^$highlighted_text$" "$filepath"; then
+    if link_exits "$1"; then
         if [ "$notify" = "true" ]; then
-            notify-send -t 3000 -u critical "Bookmark already exists !" "$highlighted_text"
+            notify-send -t 3000 -u critical "Bookmark already exists !" "$1"
         fi
     else
-        echo "$highlighted_text" >>"$filepath"
+        echo "$1" >>"$filepath"
         if [ "$notify" = "true" ]; then
-            notify-send -t 3000 "Bookmark added !" "$highlighted_text"
+            notify-send -t 3000 "Bookmark added !" "$1"
         fi
     fi
 }
 
-use_bookmark() {
-    selected_text="$(cat "$filepath" | rofi -dmenu -p "$use_message" -theme ~/.config/rofi/launchers/type-1/style-10.rasi)"
-    if [ "$selected_text" = "" ]; then
-        return 0
+delete_bookmark(){
+    [ "$1" = "" ] && return 1
+    if ! link_exits; then 
+        awk -v link="$1" '$0 != link' "$filepath" > "$filepath.tmp" && mv "$filepath.tmp" "$filepath"
+        if [ "$notify" = "true" ]; then
+            notify-send -t 3000 "Bookmark deleted" "$1"
+        fi
+    else
+        if [ "$notify" = "true" ]; then
+            notify-send -t 3000 -u critical "Bookmark does not exists !" "$1"
+        fi
     fi
+}
+
+add_new_bookmark() {
+    highlighted_text="$(xclip -o)"
+    [ "$highlighted_text" = "" ] && return 1
+    save_bookmark "$highlighted_text"
+}
+
+use_bookmark() {
+    selected_text="$(cat "$filepath" | rofi -dmenu -p "$prompt_select" -theme "$rofi_theme")"
+    [ "$selected_text" = "" ] && return 1
 
     # if [ "$notify" = "true" ];then
     #         notify-send -t 3000 "Bookmark selected" "$selected_text"
@@ -86,9 +112,40 @@ use_bookmark() {
     fi
 }
 
+remove_bookmark(){
+    link_to_delete="$(cat "$filepath" | rofi -dmenu -p "$prompt_remove" -theme "$rofi_theme")"
+    delete_bookmark "$link_to_delete"
+}
+
+show_as_dmenu() {
+    # Options
+    select_="select bookmark"
+    add="add bookmark"
+    remove="remove bookmark"
+    showall="open bookmark file"
+    selected=$(echo -e "$select_\n$add\n$remove\n$showall" | rofi -dmenu -p "$prompt_dmneu" -theme "$rofi_theme") 
+    if [ "$selected" = "$select_" ]; then
+        use_bookmark
+    elif [ "$selected" = "$add" ]; then
+        new_link=$(rofi -dmenu -p "$prompt_add" -theme "$rofi_theme")
+        save_bookmark "$new_link"
+    elif [ "$selected" = "$remove" ]; then
+        link_to_delete="$(cat "$filepath" | rofi -dmenu -p "$prompt_remove" -theme "$rofi_theme")"
+        delete_bookmark "$link_to_delete"
+    elif [ "$selected" = "$showall" ]; then
+        ~/.local/bin/float-window alacritty -e "nvim $filepath"
+    fi
+}
+
 case "$1" in
---use)
+--select)
     use_bookmark
+    ;;
+--remove)
+    remove_bookmark
+    ;;
+--dmenu)
+    show_as_dmenu
     ;;
 --export-chrome)
     export_from_chrome "$2" "$3"

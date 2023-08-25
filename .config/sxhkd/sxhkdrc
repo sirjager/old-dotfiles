@@ -127,9 +127,10 @@ super + shift + Return
 
 # yay --needed --noconfirm -S xclip xsel rofi-emoji rofi-calc 
 # Utils: uuid, password (8digit), emoji, calculator
-super + u; {u,p,e,c}
-   echo -n | xclip -selection clipboard && \
-   {uuidgen | tr -d '\n' | xclip -selection clipboard &, tr -dc "a-zA-Z0-9_@#-" < /dev/urandom | head -c 8  | xclip -selection clipboard &, rofi -show emoji -theme ~/.config/rofi/launchers/type-5/style-4.rasi, rofi -show calc -no-show-match -no-sort -theme ~/.config/rofi/launchers/type-7/style-7.rasi}
+#  rofi -show emoji -theme ~/.config/rofi/launchers/type-5/style-4.rasi, rofi -show calc -no-show-match -no-sort -theme ~/.config/rofi/launchers/type-7/style-7.rasi
+super + u; {u,l,KP_8,KP_6,KP_3}
+   ~/.local/bin/utils-generate { --dmenu, --lorem, --pass-8, --pass-16, --pass-32 } &
+
 
 # Screenshot Interactive
 super + i
@@ -152,7 +153,7 @@ super + r; {n,o,a,w,g,d,t,j}
 
 # Rofi applauncher: medium center 
 alt + d
-    rofi -show drun -theme ~/.config/rofi/launchers/type-1/style-10.rasi
+    rofi -show drun -theme ~/.config/rofi/themes/dmenu.rasi
 
 # Rofi applauncher: dmenu style
 alt + @space
@@ -171,5 +172,6 @@ super + e; {e, v}
 super + f
   nemo
 
-super + {_,shift + } {q}
-    {~/.local/bin/bookmark --copy --notify, ~/.local/bin/bookmark --use }
+# Bookmark manager
+super + q; {a,s,r,d}
+    ~/.local/bin/bookmark {--copy --notify, --select, --remove, --dmenu } &
