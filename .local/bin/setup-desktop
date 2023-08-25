@@ -108,7 +108,8 @@ install_core_pkgs(){
     xorg-xinput xorg-xprop xorg-xkill xorg-xwininfo xorg-xrandr \
     xfce4-terminal xclip xsel xdotool playerctl pamixer polkit-gnome \
     dunst feh light fzf ripgrep fd marked shellcheck emacs neovim tmux gufw gtk-engine-murrine \
-    xdg-user-dirs-gtk xed i3lock exa imagemagick scrot gnome-keyring python-pywal
+    xdg-user-dirs-gtk xed i3lock exa imagemagick scrot gnome-keyring python-pywal \
+    rofi-emoji rofi-calc
   _log green "Successfully installed required packages for window managers\n"
   echo 
 }

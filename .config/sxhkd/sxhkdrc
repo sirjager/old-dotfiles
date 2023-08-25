@@ -122,9 +122,8 @@ alt + {_,shift + } Return
   ~/.local/bin/float-window {alacritty -e "tmux attach", alacritty -e "tmux new"} &
 
 
-# yay --needed --noconfirm -S xclip xsel rofi-emoji rofi-calc 
-# Utils: uuid, password (8digit), emoji, calculator
-#  rofi -show emoji -theme ~/.config/rofi/launchers/type-5/style-4.rasi, rofi -show calc -no-show-match -no-sort -theme ~/.config/rofi/launchers/type-7/style-7.rasi
+# Generate randoms
+# Tip to remember: u(utils) + u(dmenu) | l(lorem) | kp8(8 chat pass) ....
 super + u; {u,l,KP_8,KP_6,KP_3}
    ~/.local/bin/utils-generate { --dmenu, --lorem, --pass-8, --pass-16, --pass-32 } &
 
