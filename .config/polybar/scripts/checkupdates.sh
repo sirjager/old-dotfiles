@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 updates=$(checkupdates)
 
@@ -10,5 +10,7 @@ else
   count=$(wc -l "/tmp/bspwm-eos-polybar-updates" | awk '{print $1}')
 fi
 
-echo "%{T1}%{T-} %{T2}$count%{T-}"
+icon=""
+
+echo "%{T1}$icon%{T-} %{T2}$count%{T-}"
 

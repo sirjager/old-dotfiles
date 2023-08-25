@@ -51,9 +51,9 @@ use_bookmark(){
         return 0
     fi
 
-    if [ "$notify" = "true" ];then
-            notify-send "Bookmark selected" "$selected_text"
-    fi
+    # if [ "$notify" = "true" ];then
+    #         notify-send "Bookmark selected" "$selected_text"
+    # fi
     
     if [ "$copy" = "true" ];then
             echo "$selected_text" | xclip -selection clipboard

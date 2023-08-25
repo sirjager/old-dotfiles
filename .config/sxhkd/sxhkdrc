@@ -113,7 +113,7 @@ super + shift + i
 super + shift + f
     ~/.config/polybar/scripts/toggle.sh &
 
-# Full Window Terminal
+# Dmenu
 super + Return
   ~/.local/bin/float-window kitty &
 
@@ -129,9 +129,11 @@ alt + shift + Return
 super + shift + Return
   xfce4-terminal &
 
-# Generate 8 digit password
-super + u
-    tr -dc "a-zA-Z0-9_@#-" < /dev/urandom | head -c 8 | xclip -selection clipboard &
+
+# Utils: uuid, password (8digit)
+super + u; {u,p}
+   echo -n | xclip -selection clipboard && \
+   {uuidgen | tr -d '\n' , tr -dc "a-zA-Z0-9_@#-" < /dev/urandom | head -c 8 } | xclip -selection clipboard &
 
 # Screenshot Interactive
 super + i
@@ -146,9 +148,11 @@ super + Print
   ~/.config/bspwm/scripts/screenshot.sh
 
 
-# Change wallpaper: q(nordic) r(gruvbox)
-super + r
-   ~/.local/bin/wallpaper -d /mnt/storage/wallpaper/nordic -c ~/.config/polybar/colors.ini &
+# Wallpaper
+super + r; {n,o,a,w,g,d,t,j}
+   ~/.local/bin/wallpaper -d \
+   /mnt/storage/wallpaper/{nature,nordic,anime,wallheaven,gruvbox,DeviantArt,art,japah} \
+   -c ~/.config/polybar/colors.ini &
 
 # Rofi applauncher: medium center 
 alt + d
@@ -158,13 +162,13 @@ alt + d
 alt + @space
     rofi -show drun -theme ~/.config/rofi/launchers/type-7/style-5.rasi
 
-# Brave browser
-super + {b, c}
-  {brave, chromium} &
+# Open browsers
+super + b; {b, c, f, q}
+  {brave, chromium, firefox, qutebrowser} &
 
-# Visual studio code
-super + {v, e}
-  {code --password-store="gnome", emacsclient -c}  &
+# Open editors
+super + e; {e, v}
+  {emacsclient -c, code --password-store="gnome"}  &
 
 
 # File Explorer
