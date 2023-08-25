@@ -117,14 +117,23 @@ remove_bookmark(){
     delete_bookmark "$link_to_delete"
 }
 
+visit_bookmark(){
+    selected_text="$(cat "$filepath" | rofi -dmenu -p "$prompt_select" -theme "$rofi_theme")"
+    [ "$selected_text" = "" ] && return 1
+    xdg-open "$selected_text"
+}
+
 show_as_dmenu() {
     # Options
     select_="select bookmark"
     add="add bookmark"
     remove="remove bookmark"
+    visit="visit bookmark"
     showall="open bookmark file"
-    selected=$(echo -e "$select_\n$add\n$remove\n$showall" | rofi -dmenu -p "$prompt_dmneu" -theme "$rofi_theme") 
-    if [ "$selected" = "$select_" ]; then
+    selected=$(echo -e "$visit\n$select_\n$add\n$remove\n$showall" | rofi -dmenu -p "$prompt_dmneu" -theme "$rofi_theme") 
+    if [ "$selected" = "$visit" ]; then
+        visit_bookmark
+    elif [ "$selected" = "$select_" ]; then
         use_bookmark
     elif [ "$selected" = "$add" ]; then
         new_link=$(rofi -dmenu -p "$prompt_add" -theme "$rofi_theme")
@@ -143,6 +152,9 @@ case "$1" in
     ;;
 --remove)
     remove_bookmark
+    ;;
+--visit)
+    visit_bookmark
     ;;
 --dmenu)
     show_as_dmenu

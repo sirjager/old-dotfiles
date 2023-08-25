@@ -113,17 +113,14 @@ super + shift + i
 super + shift + f
     ~/.config/polybar/scripts/toggle.sh &
 
-# Dmenu
-super + Return
-  ~/.local/bin/float-window kitty &
+# Alternative terminals
+super + {_,shift + } Return
+  { kitty, xfce4-terminal } &
 
 # Floating Terminal With Last Session
 alt + {_,shift + } Return
   ~/.local/bin/float-window {alacritty -e "tmux attach", alacritty -e "tmux new"} &
 
-# Floating System Terminal 
-super + shift + Return
-  xfce4-terminal &
 
 # yay --needed --noconfirm -S xclip xsel rofi-emoji rofi-calc 
 # Utils: uuid, password (8digit), emoji, calculator
@@ -148,7 +145,7 @@ super + Print
 # Wallpaper
 super + r; {n,o,a,w,g,d,t,j}
    ~/.local/bin/wallpaper -d \
-   /mnt/storage/wallpaper/{nature,nordic,anime,wallheaven,gruvbox,DeviantArt,art,japah} \
+   /mnt/storage/wallpaper/{nature,nordic,anime,wallheaven,gruvbox,DeviantArt,art,japan} \
    -c ~/.config/polybar/colors.ini &
 
 # Rofi applauncher: medium center 
@@ -159,7 +156,8 @@ alt + d
 alt + @space
     rofi -show drun -theme ~/.config/rofi/launchers/type-7/style-5.rasi
 
-# Open browsers
+# Open Browsers
+# Tip to remember: b(browsers) + b(brave) | c(chromium) | f(firefox) | q(qutebrowser)
 super + b; {b, c, f, q}
   {brave, chromium, firefox, qutebrowser} &
 
@@ -168,10 +166,12 @@ super + e; {e, v}
   {emacsclient -c, code --password-store="gnome"}  &
 
 
-# File Explorer
-super + f
-  nemo
+# Files, Calculator, Emoji
+# Tips to remember: o(open) + f(files) | e(emoji) | c(calculator)
+super + o; {f,e,c}
+  {nemo, rofi -show emoji -theme ~/.config/rofi/launchers/type-5/style-4.rasi, rofi -show calc -no-show-match -no-sort -theme ~/.config/rofi/launchers/type-7/style-7.rasi}
 
 # Bookmark manager
-super + q; {a,s,r,d}
-    ~/.local/bin/bookmark {--copy --notify, --select, --remove, --dmenu } &
+# Tips to remember: q: quick-link + a(add) | s(select) | d(dmenu) | r(remove) | v(visit)
+super + q; {a,s,r,d,v}
+    ~/.local/bin/bookmark {--copy --notify, --select, --remove, --dmenu, --visit } &
