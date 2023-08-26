@@ -173,4 +173,7 @@ super + o; {f,e,c}
 # Bookmark manager
 # Tips to remember: q: quick-link + a(add) | s(select) | d(dmenu) | r(remove) | v(visit)
 super + q; {a,s,r,d,v}
-    ~/.local/bin/bookmark {--copy --notify, --select, --remove, --dmenu, --visit } &
+    ~/.local/bin/bookmark { --insert --copy --notify, --select --copy --type, --remove --notify, --dmenu --notify --copy --type, --select --copy --visit } &
+
+super + shift + KP_Delete
+  code --password-store="gnome" ~/.local/jager/dotfiles.code-workspace
