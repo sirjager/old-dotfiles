@@ -12,19 +12,19 @@ super + shift + r
 super + alt + q
     bspc quit &
 
-# Show powermenu
+# Powermenu
 super + ctrl + p
     ~/.config/rofi/powermenu/type-4/powermenu.sh
 
-# sudo pacman -S i3lock
+# Lockscreen
 super + shift + l
   ~/.local/bin/i3lock/i3lock-fancy.sh &
 
-# Foucs Next Window
+# Focus Next Window
 alt + Tab
     bspc node -f next.local.window &
 
-# super + close (w) or kill all (shit+w) window
+# Close Active Window, Close All Window in current Desktop
 super + {_,shift + }w
 	bspc node -{c,k} &
 
@@ -48,8 +48,8 @@ super + {_,shift + }{1-9,0}
 super + shift + Tab
     bspc node @/ -C {forward,backward} &
 
-# Controls the size of only the 2nd Window in current workspace
 # Numpad: 4(inc width), 6(dec width), 8(inc height), 5(dec height)
+# Controls the size of only the 2nd Window in current workspace
 super + shift  + {KP_8,KP_4,KP_5,KP_6}
     bspc node -z {top 0 -30,left -30 0,top 0 30,left 30 0} &
 
@@ -104,33 +104,29 @@ alt + KP_Subtract
     pactl -- set-sink-volume 0 -1% &
 
 
-# Copy Window class to clipboard
+# Copy Window Class To Clipboard
 super + shift + i
     xprop | grep WM_CLASS | cut -d'"' -f2 | head -n1 | xclip -selection clipboard &
 
 
-# Toggle polybar
+# Toggle Polybar: Show or Hide Polybar
 super + shift + f
-    ~/.config/polybar/scripts/toggle.sh &
+    ~/.local/bin/toggle-polybar &
 
-# Alternative terminals
+# Alacritty Terminal, XFCE4 Terminal
 super + {_,shift + } Return
-  { kitty, xfce4-terminal } &
+  { alacritty , xfce4-terminal } &
 
-# Floating Terminal With Last Session
+# Alacritty terminal with last tmux session
 alt + {_,shift + } Return
   ~/.local/bin/float-window {alacritty -e "tmux attach", alacritty -e "tmux new"} &
 
 
-# Generate randoms
 # Tip to remember: u(utils) + u(dmenu) | l(lorem) | kp8(8 chat pass) ....
+# Generate random text, password of 8, 16, 32 chars
 super + u; {u,l,KP_8,KP_6,KP_3}
    ~/.local/bin/utils-generate { --dmenu, --lorem, --pass-8, --pass-16, --pass-32 } &
 
-
-# Screenshot Interactive
-super + i
-  ~/.local/bin/screenshot "$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png"
 
 # Screenshot
 Print
@@ -141,39 +137,53 @@ super + Print
   ~/.config/bspwm/scripts/screenshot.sh
 
 
-# Wallpaper
-super + r; {n,o,a,w,g,d,t,j}
+# Change Wallpaper: nature, nordic, anime, wallheaver, gruvbox, deviantart, art, japan
+super + r; {r,n,o,a,w,g,d,t,j}
    ~/.local/bin/wallpaper -d \
-   /mnt/storage/wallpaper/{nature,nordic,anime,wallheaven,gruvbox,DeviantArt,art,japan} \
+   /mnt/storage/wallpaper/{,nature,nordic,anime,wallheaven,gruvbox,DeviantArt,art,japan} \
    -c ~/.config/polybar/colors.ini &
 
-# Rofi applauncher: medium center 
+# Minimal Applauncher Dmneu style
 alt + d
     rofi -show drun -theme ~/.config/rofi/themes/dmenu.rasi
 
-# Rofi applauncher: dmenu style
+# Applauncher
 alt + @space
     rofi -show drun -theme ~/.config/rofi/launchers/type-7/style-5.rasi
 
-# Open Browsers
 # Tip to remember: b(browsers) + b(brave) | c(chromium) | f(firefox) | q(qutebrowser)
-super + b; {b, c, f, q}
-  {brave, chromium, firefox, qutebrowser} &
+# Brave Chromium GoogleChrome Firefox QuteBroser
+super + b; {b, c, g, f, q}
+  {brave, chromium, google-chrome-stable, firefox, qutebrowser} &
 
-# Open editors
+# Doom Emacs, VSCode
 super + e; {e, v}
   {emacsclient -c, code --password-store="gnome"}  &
 
 
-# Files, Calculator, Emoji
 # Tips to remember: o(open) + f(files) | e(emoji) | c(calculator)
-super + o; {f,e,c}
-  {nemo, rofi -show emoji -theme ~/.config/rofi/launchers/type-5/style-4.rasi, rofi -show calc -no-show-match -no-sort -theme ~/.config/rofi/launchers/type-7/style-7.rasi}
+# Files, Calculator, Emoji
+super + i; {e,c}
+  {rofi -show emoji -theme ~/.config/rofi/launchers/type-5/style-4.rasi, rofi -show calc -no-show-match -no-sort -theme ~/.config/rofi/launchers/type-7/style-7.rasi}
 
-# Bookmark manager
-# Tips to remember: q: quick-link + a(add) | s(select) | d(dmenu) | r(remove) | v(visit)
-super + q; {a,s,r,d,v}
-    ~/.local/bin/bookmark { --insert --copy --notify, --select --copy --type, --remove --notify, --dmenu --notify --copy --type, --select --copy --visit } &
 
+# Edit Dotfiles
 super + shift + KP_Delete
   code --password-store="gnome" ~/.local/jager/dotfiles.code-workspace
+
+# File manager
+super + f 
+  nemo
+
+# Tips to remember: super+q: quick-link + a(add) | s(select) | d(dmenu) | r(remove) | v(visit)
+# Bookmark Manager  
+super + q; {a,s,r,d,q}
+    ~/.local/bin/bookmark { --insert --copy --notify, --select --copy --type, --remove --notify, --dmenu --notify --copy --type, --select --copy --visit } &
+
+# Tips to remember: super+h: history + s(select and copy) | t(type) | h(visit in browser) 
+# Browse History From Multiple Browsesr in Rofi Dmenu style
+super + h; {s,t,h}
+    ~/.local/bin/brohistory --bro="brave firefox chromium chrome" --bro-limit=1000 --dmenu { --copy --prompt="copy link", --type --prompt="select link", --copy --visit --visit-in=brave --prompt="open in $BROWSER"}
+
+super + k
+  ~/.local/bin/keybinds &

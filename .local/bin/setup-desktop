@@ -38,11 +38,10 @@ _clr() {
 _log() {
     if [ "$1" != "" ]; then
         if [ "$2" != "" ]; then
-            _clr yellow "$(date)"
             _clr "$1" "$2"
             echo
         else
-            echo "$(date): $1"
+            echo "$1"
         fi
     fi
 
@@ -101,7 +100,7 @@ install_core_pkgs(){
     xfce4-terminal xclip xsel xdotool playerctl pamixer polkit-gnome \
     dunst feh light fzf ripgrep fd marked shellcheck emacs neovim tmux gufw gtk-engine-murrine \
     xdg-user-dirs-gtk xed i3lock exa imagemagick scrot gnome-keyring python-pywal \
-    rofi-emoji rofi-calc
+    rofi-emoji rofi-calc youtube-dl-git 
   _log green "Successfully installed required packages for window managers"
 }
 
@@ -229,11 +228,11 @@ discover_other_os_on_grub(){
 setup_dotfiles_repo() {
     GITHUB_BARE_REPO="https://github.com/sirjager/dotfiles"
     _log cyan "Setting up dotfiles bare repository"
-    rm -rf ~/.dotfiles
+    [ -d ~/.local/share/dotfiles ] && rm -rf ~/.local/share/dotfiles
     _log purple "Cloning github repository $GITHUB_BARE_REPO ..."
-    git clone --bare $GITHUB_BARE_REPO ~/.dotfiles
-    /usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" checkout
-    /usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" config --local status.showUntrackedFiles no
+    git clone --bare $GITHUB_BARE_REPO ~/.local/share/dotfiles
+    /usr/bin/git --git-dir="$HOME/.local/share/dotfiles" --work-tree="$HOME" checkout
+    /usr/bin/git --git-dir="$HOME/.local/share/dotfiles" --work-tree="$HOME" config --local status.showUntrackedFiles no
     if [ $? -eq 0 ]; then
         _log green "Successfully configured dotfiles\n"
     else
@@ -265,6 +264,57 @@ install_rog_control_center(){
    sudo systemctl enable --now supergfxd
 }
 
+
+
+create_smb_conf() {
+    echo "[global]"
+    echo "    server role = standalone server"
+    echo "    workgroup = WORKGROUP"
+    echo "    map to guest = never"
+    echo "    usershare allow guests = no"
+    echo "    hosts allow = 192.168.0.0/16"
+    echo "    hosts deny = 0.0.0.0/0"
+    echo ""
+    echo "[Storage]"
+    echo "    comment = Storage"
+    echo "    path = /mnt/storage"
+    echo "    read only = no"
+    echo "    writeable = yes"
+    echo "    guest ok = no"
+    echo "    valid users = jager"
+    echo "    force user = jager"
+    echo "    force group = jager"
+    echo "    create mask = 0755"
+    echo "    directory mask = 0755"
+    echo "    browseable = yes"
+}
+
+enable_samba_shares(){
+  _log blue "Enabling samba shares"
+  yay --needed --noconfirm -S samba
+  sudo groupadd -r sambashare
+  sudo usermod -aG sambashare "$(whoami)"
+  echo
+  _log red "Create a smaba password for user '$(whoami)'"
+  sudo smbpasswd -a "$(whoami)"
+  [ -e ~/smb.conf ] && rm -f ~/smb.conf
+  create_smb_conf > ~/smb.conf
+  [ ! -d /etc/samba ] && sudo mkdir /etc/samba
+  [ -e /etc/samba/smb.conf.old ] && sudo rm -f /etc/samba/smb.conf.old
+  [ -e /etc/samba/smb.conf ] && sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.old
+  sudo cp -f ~/smb.conf /etc/samba/smb.conf
+  _log green "Configuration has been written to smb.conf"
+  _log yellow "1. Click on + add rule"
+  _log yellow "2. Select preconfigured profile: search Samba"
+  _log yellow "3. Allow Samba ports"
+  _log yellow "4. Close the firewall"
+  sudo gufw
+  sudo systemctl enable --now smb
+  sudo systemctl restart smb
+   [ -e ~/smb.conf ] && rm -f ~/smb.conf
+  _log green "Samba share configured..."
+}
+
 while true; do
     echo
     echo
@@ -285,6 +335,7 @@ while true; do
     _clr yellow "13.  Install Rog Control Center"
     _clr yellow "14.  Uninstall Virt-Manager"
     _clr yellow "15.  Install AMD Graphics Driver"
+    _clr yellow "16.  Enable Samba Share"
     echo " "
     _clr purple "0. Quit or Ctrl+C"
     echo "Option number"
@@ -334,6 +385,9 @@ while true; do
         ;;
     15)
         install_amd_graphics
+        ;;
+    16)
+        enable_samba_shares
         ;;
     0)
         break
