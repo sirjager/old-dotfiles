@@ -1,5 +1,9 @@
 # ~/.bash_profile
 
+xset r rate 250 50
+
+export MYSTORAGE="/mnt/storage"
+export MYGITHUB="github.com/sirjager"
 
 # Cleanup
 export XDG_CONFIG_HOME="$HOME/.config"
