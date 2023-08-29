@@ -187,3 +187,6 @@ super + h; {s,t,h}
 
 super + k
   ~/.local/bin/keybinds &
+
+super + p; {p,a,r,g}
+  ~/.local/bin/bropass --notify { --select --copy, --add --copy, --remove --copy, --generate --copy }
