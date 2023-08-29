@@ -265,6 +265,37 @@ install_rog_control_center(){
 }
 
 
+install_docker(){
+    _log blue "Installing Docker"
+    yay --needed --noconfirm -S docker docker-compose 
+    sudo usermod -aG docker "$(whoami)"
+    sudo systemctl enable --now docker
+    sudo systemctl restart docker
+    _log green "Docker has been installed successfully."
+}
+
+run_portainer(){
+    _log blue "Running portainer."
+    if ! [ -x "$(command -v docker)" ]; then
+        _log red "Docker not installed"
+        install_docker
+        install_portainer
+        return 0
+    fi
+    # Start Portainer container
+    docker run -d \
+    -p 9444:8000 -p 9443:9443 \
+    --name portainer \
+    --restart=always \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v portainer_data:/data portainer/portainer-ce:latest
+    if [ $? -eq 0 ]; then
+        _log green "Portainer is running on port: 9443"
+    else
+        _log red "Failed to run portainer"
+        return 1
+    fi
+}
 
 create_smb_conf() {
     echo "[global]"
@@ -336,6 +367,8 @@ while true; do
     _clr yellow "14.  Uninstall Virt-Manager"
     _clr yellow "15.  Install AMD Graphics Driver"
     _clr yellow "16.  Enable Samba Share"
+    _clr yellow "17.  Install Docker"
+    _clr yellow "18.  Run Portainer"
     echo " "
     _clr purple "0. Quit or Ctrl+C"
     echo "Option number"
@@ -388,6 +421,12 @@ while true; do
         ;;
     16)
         enable_samba_shares
+        ;;
+    17)
+        install_docker
+        ;;
+    18)
+        run_portainer
         ;;
     0)
         break
