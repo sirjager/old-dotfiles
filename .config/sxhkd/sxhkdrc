@@ -183,7 +183,7 @@ super + q; {a,s,r,d,q}
 # Tips to remember: super+h: history + s(select and copy) | t(type) | h(visit in browser) 
 # Browse History From Multiple Browsesr in Rofi Dmenu style
 super + h; {s,t,h}
-    ~/.local/bin/brohistory --bro="brave firefox chromium chrome" --bro-limit=1000 --dmenu { --copy --prompt="copy link", --type --prompt="select link", --copy --visit --visit-in=brave --prompt="open in $BROWSER"}
+    ~/.local/bin/brohistory --bookmark --bro="brave firefox chromium chrome" --bro-limit=1000 --dmenu { --copy --prompt="copy link", --type --prompt="select link", --copy --visit --visit-in=brave --prompt="open in $BROWSER"}
 
 super + k
   ~/.local/bin/keybinds &

@@ -9,6 +9,7 @@ FILEPATH="$DIRECTORY/bookmarks"
 ROFI_THEME="$HOME/.config/rofi/themes/dmenu.rasi"
 
 EDITOR="alacritty -e nvim"
+BROWSER="brave"
 
 NOTIFY=""
 COPY=""
@@ -279,14 +280,14 @@ rofi_select_bookmark() {
     done
     
     [ "$COPY" = "true" ] && echo "$selected_bookmark" | xclip -selection clipboard
-    [ "$TYPE" = "true" ] && xdotool type --clearmodifiers --delay 20 "$selected_bookmark"
-    [ "$VISIT" = "true" ] && xdg-open "$selected_bookmark" &
+    [ "$TYPE" = "true" ] && xdotool type --clearmodifiers --delay 20 "  $selected_bookmark"
+    # [ "$VISIT" = "true" ] && xdg-open "$selected_bookmark" &
+    [ "$VISIT" = "true" ] && "$BROWSER" "$selected_bookmark" &
 }
 
 # Usage: insert_bookmark --notify --copy  
 insert_bookmark(){
     [ "$1" = "" ] && return 1
-
     new_link="$1"
     shift
 
