@@ -35,6 +35,7 @@ local plugins = {
 
 	-- colorschemes
 	"navarasu/onedark.nvim",
+	"morhetz/gruvbox",
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 	{ "AlphaTechnolog/pywal.nvim", as = "pywal" },
 

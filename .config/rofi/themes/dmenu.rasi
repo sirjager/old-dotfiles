@@ -6,11 +6,11 @@
  *
  **/
  
-@import "~/.cache/wal/colors-rofi-dark.rasi"
+// @import "~/.cache/wal/colors-rofi-dark.rasi"
 
 * {
     background-color:      transparent;
-    text-color:            rgba ( 255, 255, 255, 80% );
+    text-color:            white ;
     font:                  "JetBrainsMono Nerd Font 14px";
 }
  

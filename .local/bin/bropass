@@ -30,6 +30,7 @@ ADD=""  # Add new username and password to bitwarden
 REMOVE="" # Remove/Delete saved creds from bitwarden
 GENERATE="" # Generate new password and copy to clipboard
 
+rbw unlock
 
 notify(){
     level="$3"

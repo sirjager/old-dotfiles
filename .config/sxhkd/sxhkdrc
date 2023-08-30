@@ -16,9 +16,9 @@ super + alt + q
 super + ctrl + p
     ~/.config/rofi/powermenu/type-4/powermenu.sh
 
-# Lockscreen
+# Lockscreen: Locks bitwarden and Locks screen
 super + shift + l
-  ~/.local/bin/i3lock/i3lock-fancy.sh &
+  rbw lock && ~/.local/bin/i3lock/i3lock-fancy.sh &
 
 # Focus Next Window
 alt + Tab
@@ -173,7 +173,7 @@ super + shift + KP_Delete
 
 # File manager
 super + f 
-  nemo
+  ~/.local/bin/float-window nemo &
 
 # Tips to remember: super+q: quick-link + a(add) | s(select) | d(dmenu) | r(remove) | v(visit)
 # Bookmark Manager  
