@@ -71,7 +71,7 @@ sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &
 ~/.config/polybar/launch.sh &
 
 # fcitx -d & # Japanse Keyboard
-# kdeconnect-indicator &
+kdeconnect-indicator &
 rog-control-center &
 
 rbw unlock & # Unlocks bitwarden
