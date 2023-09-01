@@ -51,3 +51,4 @@
 
 (package! evil-tutor)
 (package! imenu-list)
+(package! org-auto-tangle)

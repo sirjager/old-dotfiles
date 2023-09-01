@@ -39,6 +39,7 @@ bspc rule -a gufw.py border=off state=floating &
 bspc rule -a emacs border=off state=fullscreen focus=on &
 bspc rule -a emacsclient border=off state=fullscreen focus=on &
 bspc rule -a rog-control-center border=off state=floating focus=on &
+bspc rule -a xdm-app border=off state=floating focus=on &
 
 picom --experimental-backends &
 

@@ -83,6 +83,8 @@ bspc rule -a gufw.py border=off state=floating &
 bspc rule -a emacs border=off state=fullscreen focus=on &
 bspc rule -a emacsclient border=off state=fullscreen focus=on &
 bspc rule -a rog-control-center border=off state=floating focus=on &
+bspc rule -a xdm-app border=off state=floating focus=on &
+
 #+end_src
 
 #+RESULTS:
@@ -93,7 +95,10 @@ picom --experimental-backends &
 #+end_src
 
 * Brightness Controll Access
+In order light to change brightness, we need to add following line to bottom of the /etc/sudoers
 jager ALL=NOPASSWD:/usr/bin/chmod
+It will allow us to execute chmod command without sudo password. Then we can gives write permission to brightness file.
+So when we change brightness using light, it will be able to write brightness into /sys/class/backlight/amdgpu_bl0/brightness
 #+begin_src shell
 sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &
 #+end_src
@@ -144,5 +149,5 @@ sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &
 
 * Desktop Wallpaper
 #+begin_src shell
-~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="$MYSTORAGE/wallpaper/gruvbox/wolf.jpg" &
+~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/gruvbox/wolf.jpg" &
 #+end_src

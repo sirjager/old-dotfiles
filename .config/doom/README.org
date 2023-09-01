@@ -1,21 +1,20 @@
-
 #+TITLE: Doom Emacs Configurations
 #+AUTHOR: Ankur Kumar (sirjager)
 #+PROPERTY: header-args :tangle ~/.config/doom/config.el :mkdirp yes
+#+AUTO_TANGLE: t
 
 * TABLE OF CONTENT :toc:
 - [[#email-and-fullname][Email And FullName]]
 - [[#fonts-configurations][Fonts Configurations]]
 - [[#theme-configurations][Theme Configurations]]
 - [[#line-numbers][Line Numbers]]
-- [[#org-mode-settings][Org Mode Settings]]
+- [[#org-mode][Org Mode]]
 
 * Email And FullName
 Some functionality uses this to identify you, e.g. GPG configuration, email clients, file templates and snippets. It is optional.
-
 #+begin_src emacs-lisp
 ;; (setq user-full-name "John Doe"
-;;       user-mail-address "john@doe.com")
+      ;; user-mail-address "john@doe.com")
 #+end_src
 
 * Fonts Configurations
@@ -36,18 +35,24 @@ Some functionality uses this to identify you, e.g. GPG configuration, email clie
 #+end_src
 
 * Theme Configurations
-
+Some good themes: doom-one, doom-gruvbox, doom-nord, doom-palenight, doom-Iosvkem, doom-dracula
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-gruvbox)
 #+end_src
+
+#+RESULTS:
+: doom-gruvbox
 
 * Line Numbers
 #+begin_src emacs-lisp
 (setq display-line-numbers-type t)
 #+end_src
 
-* Org Mode Settings
-
+* Org Mode
 #+begin_src emacs-lisp
 (setq org-directory "~/org/")
+(use-package! org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode)
+  :config (setq org-auto-tangle-default t))
 #+end_src

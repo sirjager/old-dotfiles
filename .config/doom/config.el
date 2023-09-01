@@ -1,5 +1,5 @@
 ;; (setq user-full-name "John Doe"
-;;       user-mail-address "john@doe.com")
+      ;; user-mail-address "john@doe.com")
 
 (setq
  doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16)
@@ -14,8 +14,12 @@
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
 
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-gruvbox)
 
 (setq display-line-numbers-type t)
 
 (setq org-directory "~/org/")
+(use-package! org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode)
+  :config (setq org-auto-tangle-default t))
