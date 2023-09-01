@@ -20,7 +20,7 @@ super + ctrl + p
 super + shift + l
   rbw lock && ~/.local/bin/i3lock/i3lock-fancy.sh &
 
-# Focus Next Window
+# Focus next window, Select next window
 alt + Tab
     bspc node -f next.local.window &
 
@@ -66,7 +66,7 @@ super + shift + braceright
 XF86MonBrightnessUp
     light -A 5 && light -O &
 
-# Decrease brightness
+# Decrease brightness, Lower brightness
 XF86MonBrightnessDown
     light -U 5 && light -O &
 
@@ -74,12 +74,12 @@ XF86MonBrightnessDown
 super + KP_Add
     light -A 5 && light -O &
 
-# Decrease brightness
+# Decrease brightness, Lower brightness
 super + KP_Subtract
     light -U 5 && light -O &
 
 
-# Mute mic
+# Mute mic, Toggle Mute Mic
 XF86AudioMicMute
     pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
@@ -113,7 +113,7 @@ super + shift + i
 super + shift + f
     ~/.local/bin/toggle-polybar &
 
-# Alacritty Terminal, XFCE4 Terminal
+# Terminals Alacritty, Xfce4 
 super + {_,shift + } Return
   { alacritty , xfce4-terminal } &
 
@@ -125,7 +125,7 @@ alt + {_,shift + } Return
 # Tip to remember: u(utils) + u(dmenu) | l(lorem) | kp8(8 chat pass) ....
 # Generate random text, password of 8, 16, 32 chars
 super + u; {u,l,KP_8,KP_6,KP_3}
-   ~/.local/bin/utils-generate { --dmenu, --lorem, --pass-8, --pass-16, --pass-32 } &
+   ~/.local/bin/utils-generate {--dmenu,--lorem, --pass-8, --pass-16, --pass-32 } &
 
 
 # Screenshot
@@ -136,33 +136,25 @@ Print
 super + Print
   ~/.config/bspwm/scripts/screenshot.sh
 
+# Change Wallpaper: (r)andom, n(o)rdic, (m)acos, (n)ature, (a)nime, (w)allheaven, (g)ruvbox, (d)eviantArt, ar(t), (j)apan 
+super + r; {r,o,m,n,a,w,g,d,t,j}
+    ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall=/mnt/storage/wallpaper/{'',nordic,macos,nature,anime,wallheaven,gruvbox,DeviantArt,art,japan} &
 
-# Change Wallpaper: nature, nordic, anime, wallheaver, gruvbox, deviantart, art, japan
-super + r; {r,n,o,a,w,g,d,t,j}
-   ~/.local/bin/wallpaper -d \
-   /mnt/storage/wallpaper/{,nature,nordic,anime,wallheaven,gruvbox,DeviantArt,art,japan} \
-   -c ~/.config/polybar/colors.ini &
-
-# Minimal Applauncher Dmneu style
-alt + d
+# Applications Launcher, Start Applicaiton
+alt + @space
     rofi -show drun -theme ~/.config/rofi/themes/dmenu.rasi
 
-# Applauncher
-alt + @space
-    rofi -show drun -theme ~/.config/rofi/launchers/type-7/style-5.rasi
-
-# Tip to remember: b(browsers) + b(brave) | c(chromium) | f(firefox) | q(qutebrowser)
-# Brave Chromium GoogleChrome Firefox QuteBroser
+# Browsers: Brave, Chromium, GoogleChrome, Firefox, QuteBrowser: (b)rave (c)hromium (g)ooglechrome (f)irefox (q)utebrowser
 super + b; {b, c, g, f, q}
   {brave, chromium, google-chrome-stable, firefox, qutebrowser} &
 
-# Doom Emacs, VSCode
-super + e; {e, v}
-  {emacsclient -c, code --password-store="gnome"}  &
+
+# Emacsclient, Doom, VSCode: super+e; (e)macsclient (d)oom (v)scode
+super + e; {e,d,v}
+  {emacsclient -c,emacs,code --password-store="gnome"}  &
 
 
-# Tips to remember: o(open) + f(files) | e(emoji) | c(calculator)
-# Files, Calculator, Emoji
+# Emoji, Calculator: e(emoji) c(calc)
 super + i; {e,c}
   {rofi -show emoji -theme ~/.config/rofi/launchers/type-5/style-4.rasi, rofi -show calc -no-show-match -no-sort -theme ~/.config/rofi/launchers/type-7/style-7.rasi}
 
@@ -171,9 +163,9 @@ super + i; {e,c}
 super + shift + KP_Delete
   code --password-store="gnome" ~/.local/jager/dotfiles.code-workspace
 
-# File manager
+# File manager: Nemo
 super + f 
-  ~/.local/bin/float-window nemo &
+  nemo &
 
 # Tips to remember: super+q: quick-link + a(add) | s(select) | d(dmenu) | r(remove) | v(visit)
 # Bookmark Manager  
@@ -185,8 +177,10 @@ super + q; {a,s,r,d,q}
 super + h; {s,t,h}
     ~/.local/bin/brohistory --bookmark --bro="brave firefox chromium chrome" --bro-limit=1000 --dmenu { --copy --prompt="copy link", --type --prompt="select link", --copy --visit --visit-in=brave --prompt="open in $BROWSER"}
 
+# Keyboard Shortcuts | Sxhkd Keybindings
 super + k
   ~/.local/bin/keybinds &
 
+# Password manager: super + p; p(select), a(add), r(remove), g(generate)
 super + p; {p,a,r,g}
   ~/.local/bin/bropass --notify { --select --copy, --add --copy, --remove --copy, --generate --copy }

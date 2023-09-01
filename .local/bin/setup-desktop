@@ -200,7 +200,7 @@ install_bspwm (){
   install_core_pkgs
   _log blue "Installing BSPWM ..."
   yay --needed --noconfirm -S \
-    bspwm polybar sxhkd picom rofi alacritty kitty xfce4-terminal
+    bspwm polybar sxhkd rofi alacritty xfce4-terminal
   _log green "Bspwm Installed"
   _log blue "Installing Jonaburg's Picom fork"
   rm -rf ~/Downloads/picom
@@ -240,7 +240,7 @@ setup_dotfiles_repo() {
         _log purple "NOTE: if any of the files already exists, try deleting them first and try again"
         return 1
     fi
-    printf "\n\n[[ ! -f ~/.config/shell.cfg ]] || . ~/.config/shell.cfg;\n\n" >>~/.bashrc
+    printf "\n\n[ ! -f ~/.config/shell.cfg ] || . ~/.config/shell.cfg;\n\n" >>~/.bashrc
     . ~/.bashrc
 }
 
@@ -248,9 +248,9 @@ setup_dotfiles_repo() {
 install_user_pkgs(){
     _log blue "Installing user packages"
     yay --noconfirm --needed -S \
-      brave-bin emacs neovim tmux alacritty kitty \
+      brave-bin emacs neovim tmux alacritty \
       nemo visual-studio-code-bin \
-      ungoogled-chromium-bin qutebrowser ranger feh \
+      ungoogled-chromium-bin qutebrowser feh \
       mpv 
     _log blue "Cloning Doom Emacs"
     git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs

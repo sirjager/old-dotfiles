@@ -1,4 +1,6 @@
-;; Font configs
+;; (setq user-full-name "John Doe"
+;;       user-mail-address "john@doe.com")
+
 (setq
  doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16)
  doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 16)
@@ -12,11 +14,8 @@
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
 
-;; Doom emacs theme
 (setq doom-theme 'doom-one)
 
-;; Line numbers
 (setq display-line-numbers-type t)
 
-;; Org mode settings
 (setq org-directory "~/org/")

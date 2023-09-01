@@ -6,7 +6,7 @@
  *
  **/
  
-// @import "~/.cache/wal/colors-rofi-dark.rasi"
+@import "~/.cache/wal/colors-rofi-dark.rasi"
 
 * {
     background-color:      transparent;

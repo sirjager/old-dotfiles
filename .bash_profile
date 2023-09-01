@@ -1,10 +1,5 @@
 # ~/.bash_profile
 
-xset r rate 250 50
-
-export MYSTORAGE="/mnt/storage"
-export MYGITHUB="github.com/sirjager"
-
 # Cleanup
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -33,8 +28,6 @@ export KODI_DATA="$XDG_DATA_HOME/kodi"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
 
-
-
 export EDITOR="nvim" 
 export ALTERNATE_EDITOR="vim"
 export TERMINAL=alacritty
@@ -51,4 +44,4 @@ export CHROME_EXECUTABLE='/usr/bin/chromium'	# Crome executable path
 # export DRI_PRIME=1 	# For graphic card
 
 
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+[ -f ~/.bashrc ] && . ~/.bashrc

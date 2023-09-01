@@ -1,108 +1,162 @@
-#!/bin/bash
-
+#!/bin/sh
 ## Author : Ankur Kumar (SirJager)
 ## Github : @SirJager
 
-COLOR_FILE="$HOME/.cache/wal/colors"
+MYWALLPAPERS="/mnt/storage/wallpaper"
+PYWAL_COLORS="$HOME/.cache/wal/colors"
+DUNST_RC_CONFIG="$HOME/.config/dunst/dunstrc"
+POLYBAR_COLORS="$HOME/.config/polybar/colors.ini"
 
-applyWallpaper() {
-  feh --no-fehbg --bg-fill "$1" &
-  # swaybg -i "$1" &
+BSPWM="" # "true" to enable setting colors to bspwm 
+DUNST="" # "true" to enable dumping colors to dunstrc
+POLYBAR="" # "true" to enable dumping colors to polybar
+NOTIFY="" # "true" to enable notifitions confirmation, messages and errors
+
+# Wallpaper default set to wallpaper dir
+WALLPAPER="$MYWALLPAPERS" # Path to wallpaper (image.* to ignore extension) or wallpaper directory
+
+notify(){
+    level="$3"
+    [ "$level" = "" ] && level="normal"
+    [ "$NOTIFY" = "true" ] && notify-send -u "$level" -t 3000 "$1" "$2"
 }
 
-dumpColors() {
-  # Generate colors using pywal
-  # -t (skip tty)  -s(skip terminals) -n(skip setting wallpaper)
-  wal -i "$1" -q -t -s -n
+while [ $# -gt 0 ]; do
+    case "$1" in 
+        -notify)
+            NOTIFY="true"
+            shift
+            ;;
+        -wall=*)
+            WALLPAPER="${1#*=}"
+            shift
+            ;;
+        -polybar)
+            POLYBAR="true"
+            shift
+            ;;
+        -dunst)
+            DUNST="true"
+            shift
+            ;;
+        -bspwm)
+            BSPWM="true"
+            shift
+            ;;
+        *)
+            shift
+            ;;
+    esac
+done
 
-  echo "[color]" >"$2"
-  echo "#" >>"$2"
-  echo "# INDICATING COLOR" >>"$2"
-  echo 'transparent = #00ffffff' >>"$2"
-  echo 'disabled = #9E9E9E' >>"$2"
-  echo 'danger = #ff0000' >>"$2"
-  echo 'warning = #ffa500' >>"$2"
-  echo 'success = #00ff00' >>"$2"
-  echo "#" >>"$2"
-  echo "# MATERIAL COLORS " >>"$2"
-  echo "#" >>"$2"
-  echo 'info = #00BCD4' >>"$2"
-  echo 'red = #F44336' >>"$2"
-  echo 'pink = #E91E63' >>"$2"
-  echo 'green = #4CAF50' >>"$2"
-  echo 'blue = #2196F3' >>"$2"
-  echo 'orange = #FF9800' >>"$2"
-  echo 'yellow = #FFEB3B' >>"$2"
-  echo 'teal = #009688' >>"$2"
-  echo 'cyan = #00BCD4' >>"$2"
-  echo 'gray = #9E9E9E' >>"$2"
-  echo 'brown = #795548' >>"$2"
-  echo 'black = #000000' >>"$2"
-  echo 'white = #FFFFFF' >>"$2"
-  echo "#" >>"$2"
-  echo "# SHADES FROM PYWAL" >>"$2"
-  number=0
-  for i in $(cat $COLOR_FILE); do
-    echo "shade$number = $i" >>"$2"
-    number=$((number + 1))
-  done
 
-  source "$COLOR_FILE.sh"
-  #bspc config normal_border_color "$color8"
-  #bspc config focused_border_color "$color5"
-  bspc config normal_border_color "#000000"
-  # bspc config normal_border_color "#6B728E"
-  bspc config focused_border_color "$color6"
-
+generate_pywal_colors(){
+    [ ! -f "$1" ] && notify "Could not generate pywal colors" "$1 is not a valid image" critical && exit 1
+    # Generate colors using pywal -t (skip tty)  -s(skip terminals) -n(skip setting wallpaper)
+    wal -i "$1" -q -t -s -n
 }
 
-# Check if the -f flag is present
-if [ "$1" = "-f" ]; then
-  # Check if the argument after the -f flag is a file
-  if [ -f "$2" ]; then
-    applyWallpaper "$2"
-    # Check if the -c flag is present
-    if [ "$3" = "-c" ]; then
-      # Check if the argument after the -c flag is a file
-      if [ -f "$4" ]; then
-        dumpColors "$2" "$4"
-      else
-        # If the argument is not a file, print an error message
-        echo "Error: $4 is not a file"
-      fi
+set_desktop_wallpaper(){
+    [ -z "$1" ] && return 1
+    feh --no-fehbg --bg-fill "$1" &
+    # swaybg -i "$1" &
+}
+
+set_polybar_colors(){
+    killall -q polybar
+    echo "[color]" >"$POLYBAR_COLORS"
+    echo "#" >>"$POLYBAR_COLORS"
+    echo "# Indicating Colors" >>"$POLYBAR_COLORS"
+    echo 'transparent = #00ffffff' >>"$POLYBAR_COLORS"
+    echo 'disabled = #9E9E9E' >>"$POLYBAR_COLORS"
+    echo 'danger = #ff0000' >>"$POLYBAR_COLORS"
+    echo 'warning = #ffa500' >>"$POLYBAR_COLORS"
+    echo 'success = #00ff00' >>"$POLYBAR_COLORS"
+    echo "#" >>"$POLYBAR_COLORS"
+    echo "# Material Colors " >>"$POLYBAR_COLORS"
+    echo "#" >>"$POLYBAR_COLORS"
+    echo 'info = #00BCD4' >>"$POLYBAR_COLORS"
+    echo 'red = #F44336' >>"$POLYBAR_COLORS"
+    echo 'pink = #E91E63' >>"$POLYBAR_COLORS"
+    echo 'green = #4CAF50' >>"$POLYBAR_COLORS"
+    echo 'blue = #2196F3' >>"$POLYBAR_COLORS"
+    echo 'orange = #FF9800' >>"$POLYBAR_COLORS"
+    echo 'yellow = #FFEB3B' >>"$POLYBAR_COLORS"
+    echo 'teal = #009688' >>"$POLYBAR_COLORS"
+    echo 'cyan = #00BCD4' >>"$POLYBAR_COLORS"
+    echo 'gray = #9E9E9E' >>"$POLYBAR_COLORS"
+    echo 'brown = #795548' >>"$POLYBAR_COLORS"
+    echo 'black = #000000' >>"$POLYBAR_COLORS"
+    echo 'white = #FFFFFF' >>"$POLYBAR_COLORS"
+    echo "#" >>"$POLYBAR_COLORS"
+    echo "# Shades From Pywal" >>"$POLYBAR_COLORS"
+
+    number=0
+    while IFS= read -r i; do
+        echo "shade$number = $i" >> "$POLYBAR_COLORS"
+        number=$((number + 1))
+    done < "$PYWAL_COLORS"
+    polybar top -c ~/.config/polybar/config.ini &
+}
+
+set_dunst_colors(){
+    . "$PYWAL_COLORS.sh"
+    echo "[global]" > "$DUNST_RC_CONFIG"
+    echo "frame_color = \"$color5\"" >> "$DUNST_RC_CONFIG"
+    echo "separator_color = \"$color5\"" >> "$DUNST_RC_CONFIG"
+    echo " " >> "$DUNST_RC_CONFIG"
+    echo "[urgency_low]" >> "$DUNST_RC_CONFIG"
+    echo "background = \"#282828\" " >> "$DUNST_RC_CONFIG"
+    echo "foreground = \"$color5\" " >> "$DUNST_RC_CONFIG"
+    echo " " >> "$DUNST_RC_CONFIG"
+    echo "[urgency_normal]" >> "$DUNST_RC_CONFIG"
+    echo "background = \"#282828\" " >> "$DUNST_RC_CONFIG"
+    echo "foreground = \"$color5\" " >> "$DUNST_RC_CONFIG"
+    echo " " >> "$DUNST_RC_CONFIG"
+    echo "[urgency_critical]" >> "$DUNST_RC_CONFIG"
+    echo "background = \"#282828\" " >> "$DUNST_RC_CONFIG"
+    echo "foreground = \"#E5515B\" " >> "$DUNST_RC_CONFIG"
+}
+
+set_bspwm_colors(){
+    . "$PYWAL_COLORS.sh"
+    bspc config normal_border_color "#000000"
+    bspc config focused_border_color "$color6"
+}
+
+set_wallpaper(){
+    [ -z "$1" ] && return 1
+    
+    generate_pywal_colors "$1"
+    
+    set_desktop_wallpaper "$1"
+    notify "Wallpaper applied" "$1"
+    
+    if [ "$POLYBAR" = "true" ]; then 
+        set_polybar_colors
+        notify "Updated polybar colors" "wallpaper: $1\npolybar: $POLYBAR_COLORS"
     fi
-  else
-    # If the argument is not a file, print an error message
-    echo "Error: $2 is not a file"
-  fi
-# Check if the -d flag is present
-elif [ "$1" = "-d" ]; then
-  # Check if the argument after the -d flag is a directory
-  if [ -d "$2" ]; then
-    # Get a random image file from the directory
-    image=$(ls "$2" | shuf -n 1)
-    # Check if the image file exists
-    if [ -f "$2/$image" ]; then
-      ~/.local/bin/wallpaper -f "$2/$image"
-      # Check if the -c flag is present
-      if [ "$3" = "-c" ]; then
-        # Check if the argument after the -c flag is a file
-        if [ -f "$4" ]; then
-          dumpColors "$2/$image" "$4"
-        else
-          # If the argument is not a file, print an error message
-          echo "Error: $4 is not a file"
-        fi
-      fi
-    else
-      # If the image file does not exist, print an error message
-      echo "Error: No image files found in directory $2"
+    
+    if [ "$BSPWM" = "true" ]; then 
+        set_bspwm_colors
+    fi  
+
+    if [ "$DUNST" = "true" ]; then 
+        set_dunst_colors
     fi
-  else
-    # If the argument is not a directory, print an error message
-    echo "Error: $2 is not a directory"
-  fi
-else
-  # If neither the -f or -d flag is present, print an error message
-  echo "Error: missing flag. Use -f for image files or -d for directories."
+}
+
+set_random_wallpaper(){
+    [ -z "$1" ] && return 1
+    random="$(find "$1" -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.gif" -o -name "*.webp" -o -name "*.avif" \) -print | shuf -n 1)"
+    [ ! -f "$random" ] && notify "Wallpaper could not be set" "$random is not a valid image file" critical && return 1 
+    set_wallpaper "$random"
+}
+
+if [ -f "$WALLPAPER" ]; then 
+    set_wallpaper "$WALLPAPER"
+    exit 0
+elif [ -d "$WALLPAPER" ]; then 
+    set_random_wallpaper "$WALLPAPER"
+    exit 0
 fi
