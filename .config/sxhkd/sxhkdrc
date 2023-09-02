@@ -68,7 +68,7 @@ super + shift + braceleft
     xinput --disable 'ELAN1200:00 04F3:30BA Touchpad' &
 
 # Enable touchpad
-super + shift + braceleft
+super + shift + braceright
     xinput --enable 'ELAN1200:00 04F3:30BA Touchpad' &
 
 # Increase brightness
