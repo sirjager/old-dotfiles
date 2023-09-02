@@ -1,6 +1,7 @@
 #+TITLE: BSPWM Configurations
 #+AUTHOR: Ankur Kumar
 #+PROPERTY: header-args :tangle ~/.config/bspwm/bspwmrc :mkdirp yes
+#+AUTO_TANGLE: t
 
 
 * TABLE OF CONTENT :toc:
@@ -8,9 +9,9 @@
 - [[#monitor-desktop-names][Monitor Desktop Names]]
 - [[#increasing-keypress-speed-and-repeat-rate][Increasing Keypress Speed And Repeat Rate]]
 - [[#default-cursor][Default Cursor]]
-- [[#windows-gap-border-padding-settings][Windows Gap, Border, Padding settings]]
-- [[#applications-window-states-focus-border-settings][Application's Window States, Focus, Border Settings]]
-- [[#window-compositor][Window Compositor]]
+- [[#windows-gap-border-padding][Windows Gap, Border, Padding]]
+- [[#applications-window-states-focus-border][Application's Window States, Focus, Border]]
+- [[#window-compositor][WINDOW COMPOSITOR]]
 - [[#brightness-controll-access][Brightness Controll Access]]
 - [[#authentication-agent][Authentication Agent]]
 - [[#status-bar][Status Bar]]
@@ -24,30 +25,30 @@
 - [[#desktop-wallpaper][Desktop Wallpaper]]
 
 * Simple X Hotkey Daemon
-#+begin_src shell
+#+BEGIN_SRC sh
 #!/bin/sh
 pgrep -x sxhkd > /dev/null || sxhkd &
-#+end_src
+#+END_SRC
 
 * Monitor Desktop Names
-#+begin_src shell
+#+BEGIN_SRC sh
 bspc monitor -d ⼀ ⼆ 三 四 五 六 七 ⼋ ⼏ ⼗
-#+end_src
+#+END_SRC
 
 * Increasing Keypress Speed And Repeat Rate
 Default xset r rate 300 50
 xset r rate <milliseconds_before_repeating> <repetitions_per_second>
-#+begin_src shell
+#+BEGIN_SRC sh
 xset r rate 250 50
-#+end_src
+#+END_SRC
 
 * Default Cursor
-#+begin_src shell
-xsetroot -cursor_name left_ptr &
-#+end_src
+#+BEGIN_SRC sh
+xsetroot -cursor_name left_ptr
+#+END_SRC
 
-* Windows Gap, Border, Padding settings
-#+begin_src shell
+* Windows Gap, Border, Padding
+#+BEGIN_SRC sh
 bspc config automatic_scheme alternate &
 bspc config initial_polarity second_child &
 bspc config focus_follows_pointer false &
@@ -63,13 +64,12 @@ bspc config split_ratio         0.55 &
 bspc config click_to_focus      true &
 bspc config borderless_monocle  true &
 bspc config gapless_monocle     true &
-#+end_src
+#+END_SRC
 
-* Application's Window States, Focus, Border Settings
-#+begin_src shell
+* Application's Window States, Focus, Border
+#+BEGIN_SRC sh
 bspc rule -a alacritty state=floating focus=on border=off &
 bspc rule -a Yad state=floating &
-bspc rule -a Kupfer.py focus=on &
 bspc rule -a scrcpy state=floating &
 bspc rule -a polkit-gnome-authentication-agent-1 border=off state=floating &
 bspc rule -a polkit-kde-authentication-agent-1 border=off state=floating &
@@ -79,75 +79,75 @@ bspc rule -a lutris border=off state=floating &
 bspc rule -a fcitx-config-gtk3 border=off state=floating &
 bspc rule -a kdeconnect-indicator border=off state=floating &
 bspc rule -a FLTK border=off state=floating & # weylus
-bspc rule -a gufw.py border=off state=floating &
-bspc rule -a emacs border=off state=fullscreen focus=on &
-bspc rule -a emacsclient border=off state=fullscreen focus=on &
 bspc rule -a rog-control-center border=off state=floating focus=on &
 bspc rule -a xdm-app border=off state=floating focus=on &
+bspc rule -a emacs desktop='^3' state=fullscreen border=off focus=on &
+bspc rule -a emacsclient desktop='^3' state=fullscreen border=off focus=on &
 
-#+end_src
+#+END_SRC
 
-#+RESULTS:
-
-* Window Compositor
-#+begin_src shell
+* WINDOW COMPOSITOR
+#+BEGIN_SRC sh
 picom --experimental-backends &
-#+end_src
+#+END_SRC
 
 * Brightness Controll Access
 In order light to change brightness, we need to add following line to bottom of the /etc/sudoers
 jager ALL=NOPASSWD:/usr/bin/chmod
 It will allow us to execute chmod command without sudo password. Then we can gives write permission to brightness file.
 So when we change brightness using light, it will be able to write brightness into /sys/class/backlight/amdgpu_bl0/brightness
-#+begin_src shell
+#+BEGIN_SRC sh
 sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &
-#+end_src
+#+END_SRC
 
 * Authentication Agent
-#+begin_src shell
+#+BEGIN_SRC sh
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-#+end_src
+#+END_SRC
 
 * Status Bar
-#+begin_src shell
+#+BEGIN_SRC sh
 ~/.config/polybar/launch.sh &
-#+end_src
+#+END_SRC
 
 * Network Manager Applet
-# Network Manager Applet: nm-applet
-# /usr/bin/nm-applet --indicator & # Using Rofi Wifi Menu
+#+BEGIN_SRC sh
+# /usr/bin/nm-applet --indicator &
+#+END_SRC
 
 * Notification Daemon
-#+begin_src shell
+#+BEGIN_SRC sh
 /usr/bin/dunst &
-#+end_src
+#+END_SRC
+
+#+RESULTS:
 
 * Emacs Daemon
-#+begin_src shell
+#+BEGIN_SRC sh
 /usr/bin/emacs --daemon &
-#+end_src
+#+END_SRC
 
 * Low Battery Notifier
-#+begin_src shell
+#+BEGIN_SRC sh
 ~/.local/bin/low-battery &
-#+end_src
+#+END_SRC
 
 * Multi Language Keyboard
-#+begin_src shell
+#+BEGIN_SRC sh
 # fcitx -d &
-#+end_src
+#+END_SRC
 
 * KDE Connect
-#+begin_src shell
+#+BEGIN_SRC sh
 # kdeconnect-indicator &
-#+end_src
+#+END_SRC
 
 * ASUS Rog Control Center
-#+begin_src shell
+#+BEGIN_SRC sh
 # rog-control-center &
-#+end_src
+#+END_SRC
 
 * Desktop Wallpaper
-#+begin_src shell
+#+BEGIN_SRC sh
 ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/gruvbox/wolf.jpg" &
-#+end_src
+#+END_SRC

@@ -5,7 +5,7 @@ bspc monitor -d ⼀ ⼆ 三 四 五 六 七 ⼋ ⼏ ⼗
 
 xset r rate 250 50
 
-xsetroot -cursor_name left_ptr &
+xsetroot -cursor_name left_ptr
 
 bspc config automatic_scheme alternate &
 bspc config initial_polarity second_child &
@@ -25,7 +25,6 @@ bspc config gapless_monocle     true &
 
 bspc rule -a alacritty state=floating focus=on border=off &
 bspc rule -a Yad state=floating &
-bspc rule -a Kupfer.py focus=on &
 bspc rule -a scrcpy state=floating &
 bspc rule -a polkit-gnome-authentication-agent-1 border=off state=floating &
 bspc rule -a polkit-kde-authentication-agent-1 border=off state=floating &
@@ -35,11 +34,10 @@ bspc rule -a lutris border=off state=floating &
 bspc rule -a fcitx-config-gtk3 border=off state=floating &
 bspc rule -a kdeconnect-indicator border=off state=floating &
 bspc rule -a FLTK border=off state=floating & # weylus
-bspc rule -a gufw.py border=off state=floating &
-bspc rule -a emacs border=off state=fullscreen focus=on &
-bspc rule -a emacsclient border=off state=fullscreen focus=on &
 bspc rule -a rog-control-center border=off state=floating focus=on &
 bspc rule -a xdm-app border=off state=floating focus=on &
+bspc rule -a emacs desktop='^3' state=fullscreen border=off focus=on &
+bspc rule -a emacsclient desktop='^3' state=fullscreen border=off focus=on &
 
 picom --experimental-backends &
 
@@ -48,6 +46,8 @@ sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 ~/.config/polybar/launch.sh &
+
+# /usr/bin/nm-applet --indicator &
 
 /usr/bin/dunst &
 

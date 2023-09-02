@@ -4,21 +4,30 @@
 #+AUTO_TANGLE: t
 
 * TABLE OF CONTENT :toc:
-- [[#email-and-fullname][Email And FullName]]
-- [[#fonts-configurations][Fonts Configurations]]
-- [[#theme-configurations][Theme Configurations]]
-- [[#line-numbers][Line Numbers]]
-- [[#org-mode][Org Mode]]
+- [[#email-and-full-name][EMAIL AND FULL NAME]]
+- [[#fonts-configurations][FONTS CONFIGURATIONS]]
+- [[#theme-configuratins][THEME CONFIGURATINS]]
+- [[#ui-interface-and-elements][UI INTERFACE AND ELEMENTS]]
+- [[#org-mode][ORG MODE]]
+- [[#org-auto-tangle][ORG AUTO TANGLE]]
+- [[#beakon][BEAKON]]
+- [[#make-scripts-executable][MAKE SCRIPTS EXECUTABLE]]
+- [[#neotree][NEOTREE]]
+- [[#minimap][MINIMAP]]
+- [[#rainbow-mode][RAINBOW MODE]]
+- [[#mouse-support][MOUSE SUPPORT]]
+- [[#splits][SPLITS]]
+- [[#installed-packages][INSTALLED PACKAGES]]
 
-* Email And FullName
+* EMAIL AND FULL NAME
 Some functionality uses this to identify you, e.g. GPG configuration, email clients, file templates and snippets. It is optional.
 #+begin_src emacs-lisp
-;; (setq user-full-name "John Doe"
+(setq user-full-name "Ankur Kumar")
       ;; user-mail-address "john@doe.com")
 #+end_src
 
-* Fonts Configurations
 
+* FONTS CONFIGURATIONS
 #+begin_src emacs-lisp
 (setq
  doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16)
@@ -34,25 +43,103 @@ Some functionality uses this to identify you, e.g. GPG configuration, email clie
   '(font-lock-keyword-face :slant italic))
 #+end_src
 
-* Theme Configurations
+
+* THEME CONFIGURATINS
 Some good themes: doom-one, doom-gruvbox, doom-nord, doom-palenight, doom-Iosvkem, doom-dracula
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-dracula)
 #+end_src
 
-#+RESULTS:
-: doom-gruvbox
 
-* Line Numbers
+* UI INTERFACE AND ELEMENTS
 #+begin_src emacs-lisp
 (setq display-line-numbers-type t)
 #+end_src
 
-* Org Mode
+
+* ORG MODE
 #+begin_src emacs-lisp
 (setq org-directory "~/org/")
+#+end_src
+
+
+* ORG AUTO TANGLE
+org-auto-tangle allows you to add the option #+auto_tangle: t in your Org file so that it automatically tangles when you save the document.  I have made adding this to your file even easier by creating a function ‘dt/insert-auto-tangle-tag’ and setting it to a keybinding ‘SPC i a’.
+#+begin_src emacs-lisp
 (use-package! org-auto-tangle
   :defer t
   :hook (org-mode . org-auto-tangle-mode)
   :config (setq org-auto-tangle-default t))
+#+end_src
+
+
+* BEAKON
+#+begin_src emacs-lisp
+;; (beacon-mode 1)
+#+end_src
+
+
+* MAKE SCRIPTS EXECUTABLE
+#+begin_src emacs-lisp
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+#+end_src
+
+#+RESULTS:
+| centaur-tabs-on-saving-buffer | doom-modeline-update-vcs-text | doom-modeline-update-vcs-icon | doom-modeline-update-buffer-file-name | executable-make-buffer-file-executable-if-script-p | +evil-display-vimlike-save-message-h | doom-auto-revert-buffers-h | doom-guess-mode-h |
+
+
+* NEOTREE
+#+begin_src emacs-lisp
+(after! neotree
+  (setq neo-smart-open t
+        neo-window-fixed-size nil))
+
+(after! doom-themes
+  (setq doom-neotree-enable-variable-pitch t))
+
+(map! :leader
+      :desc "Toggle neotree file viewer" "e" #'neotree-toggle)
+#+end_src
+
+
+* MINIMAP
+#+begin_src emacs-lisp
+(setq minimap-window-location 'right)
+(map! :leader
+      (:prefix ("t" . "toggle")
+       :desc "Toggle minimap-mode" "m" #'minimap-mode))
+#+end_src
+
+
+* RAINBOW MODE
+Rainbox mode displays the actual color for any hex value color.  It’s such a nice feature that I wanted it turned on all the time, regardless of what mode I am in.  The following creates a global minor mode for rainbow-mode and enables it (exception: org-agenda-mode since rainbow-mode destroys all highlighting in org-agenda).
+#+begin_src emacs-lisp
+(define-globalized-minor-mode global-rainbow-mode rainbow-mode
+  (lambda ()
+    (when (not (memq major-mode
+                (list 'org-agenda-mode)))
+     (rainbow-mode 1))))
+(global-rainbow-mode 1 )
+#+end_src
+
+
+* MOUSE SUPPORT
+Adding mouse support in the terminal version of Emacs.
+#+begin_src emacs-lisp
+(xterm-mouse-mode 1)
+#+end_src
+
+
+* SPLITS
+#+begin_src emacs-lisp
+(map! :leader
+      :desc "Clone indirect buffer other window" "b c" #'clone-indirect-buffer-other-window)
+#+end_src
+
+
+* INSTALLED PACKAGES
+#+begin_src emacs-lisp :tangle ~/.config/doom/packages.el :mkdirp yes
+(package! imenu-list)
+(package! rainbow-mode)
+(package! org-auto-tangle)
 #+end_src

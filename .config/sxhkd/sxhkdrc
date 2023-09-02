@@ -1,24 +1,26 @@
-# shellcheck disable=all
-
 # Reload sxhkd
 ctrl + shift + Escape
     pkill -usr1 -x sxhkd &
 
 # Reload bspwm
 super + shift + r
-    bspc wm -r &
+    bspc wm -r & ~/.config/polybar/launch.sh &
 
-# Quit / Logout bspwm
+# Logout, quit bspwm
 super + alt + q
     bspc quit &
 
-# Powermenu
+# Power menu
 super + ctrl + p
-    ~/.config/rofi/powermenu/type-4/powermenu.sh
+    ~/.config/rofi/powermenu/type-4/powermenu.sh &
 
 # Lockscreen: Locks bitwarden and Locks screen
 super + shift + l
   rbw lock && ~/.local/bin/i3lock/i3lock-fancy.sh &
+
+# Keyboard Shortcuts, Sxhkd Keybindings
+super + k
+  ~/.local/bin/keybinds &
 
 # Focus next window, Select next window
 alt + Tab
@@ -26,25 +28,33 @@ alt + Tab
 
 # Close Active Window, Close All Window in current Desktop
 super + {_,shift + }w
-	bspc node -{c,k} &
+    bspc node -{c,k} &
 
 # super + close (w) or kill all (shit+w) window and move to last desktop
 #alt + {_,shift + }w
-#	bspc node -{c,k} && bspc desktop -f last &
+#   bspc node -{c,k} && bspc desktop -f last &
 
 # Vertical View / Windows arranged vertically
 super + {_,shift + }KP_Multiply
     bspc node @parent -R 90 &
 
-# Windows state to  Tile, Fullscreen, Floating
-super + shift +{Num_Lock, KP_Divide, KP_Subtract}
-    bspc node -t {fullscreen, tiled, floating} &
+# Window state fullscreen
+super + shift + Num_Lock
+    bspc node -t fullscreen &
 
-# Send Window To other Workspaces 1-9,0(10)
-super + {_,shift + }{1-9,0}
-    bspc {desktop -f, node -d} '^{1-9,10}' &
+# Window state fullscreen
+super + shift + KP_Divide
+    bspc node -t tiled &
 
-# Rotate Among Windows in current workspace
+# Window state fullscreen
+super + shift + KP_Subtract
+    bspc node -t floating &
+
+# change workspace, send window to workspace 1-9
+super + {_,shift} {1-9}
+    bspc {desktop -f, node -d} '^{1-9}' &
+
+# Windo swap position among other windows in same workspace
 super + shift + Tab
     bspc node @/ -C {forward,backward} &
 
@@ -53,31 +63,29 @@ super + shift + Tab
 super + shift  + {KP_8,KP_4,KP_5,KP_6}
     bspc node -z {top 0 -30,left -30 0,top 0 30,left 30 0} &
 
-
 # Disable touchpad
 super + shift + braceleft
     xinput --disable 'ELAN1200:00 04F3:30BA Touchpad' &
 
 # Enable touchpad
-super + shift + braceright
+super + shift + braceleft
     xinput --enable 'ELAN1200:00 04F3:30BA Touchpad' &
 
 # Increase brightness
 XF86MonBrightnessUp
     light -A 5 && light -O &
 
-# Decrease brightness, Lower brightness
-XF86MonBrightnessDown
-    light -U 5 && light -O &
-
 # Increase brightness
 super + KP_Add
     light -A 5 && light -O &
 
 # Decrease brightness, Lower brightness
-super + KP_Subtract
+XF86MonBrightnessDown
     light -U 5 && light -O &
 
+# Decrease brightness, Lower brightness
+super + KP_Subtract
+    light -U 5 && light -O &
 
 # Mute mic, Toggle Mute Mic
 XF86AudioMicMute
@@ -91,96 +99,157 @@ XF86AudioMute
 XF86AudioRaiseVolume
     pactl -- set-sink-volume 0 +1% &
 
-# Lower volume, Decrease volume
-XF86AudioLowerVolume
-    pactl -- set-sink-volume 0 -1% &
-
 # Raise volume, Increase Volume
 alt + KP_Add
     pactl -- set-sink-volume 0 +1% &
 
 # Lower volume, Decrease volume
-alt + KP_Subtract
+XF86AudioLowerVolume
     pactl -- set-sink-volume 0 -1% &
 
+# Lower volume, Decrease volume
+alt + KP_Subtract
+    pactl -- set-sink-volume 0 -1% &
 
 # Copy Window Class To Clipboard
 super + shift + i
     xprop | grep WM_CLASS | cut -d'"' -f2 | head -n1 | xclip -selection clipboard &
 
-
 # Toggle Polybar: Show or Hide Polybar
 super + shift + f
     ~/.local/bin/toggle-polybar &
 
-# Terminals Alacritty, Xfce4 
-super + {_,shift + } Return
-  { alacritty , xfce4-terminal } &
+# Alacritty
+super + Return
+  alacritty &
+
+# Xfce4 Terminal
+super + shift + Return
+  xfce4-terminal &
 
 # Alacritty terminal with last tmux session
 alt + {_,shift + } Return
   ~/.local/bin/float-window {alacritty -e "tmux attach", alacritty -e "tmux new"} &
 
-
-# Tip to remember: u(utils) + u(dmenu) | l(lorem) | kp8(8 chat pass) ....
-# Generate random text, password of 8, 16, 32 chars
-super + u; {u,l,KP_8,KP_6,KP_3}
-   ~/.local/bin/utils-generate {--dmenu,--lorem, --pass-8, --pass-16, --pass-32 } &
-
-
-# Screenshot
-Print
-  ~/.local/bin/screenshot "$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png"
-
 # Screenshot
 super + Print
   ~/.config/bspwm/scripts/screenshot.sh
 
-# Change Wallpaper: (r)andom, n(o)rdic, (m)acos, (n)ature, (a)nime, (w)allheaven, (g)ruvbox, (d)eviantArt, ar(t), (j)apan 
-super + r; {r,o,m,n,a,w,g,d,t,j}
-    ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall=/mnt/storage/wallpaper/{'',nordic,macos,nature,anime,wallheaven,gruvbox,DeviantArt,art,japan} &
+# Wallpaper random
+super + r; r
+    ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper" &
+
+# Wallpaper nordic
+super + r; o
+    ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/nordic" &
+
+# Wallpaper macos
+super + r; m
+    ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/macos" &
+
+# Wallpaper nature
+super + r; n
+    ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/nature" &
+
+# Wallpaper anime
+super + r; a
+    ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/anime" &
+
+# Wallpaper wallheaven
+super + r; w
+    ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/wallheaven" &
+
+# Wallpaper gruvbox
+super + r; g
+    ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/gruvbox" &
+
+# Wallpaper Deviant Arts
+super + r; d
+    ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/DeviantArt" &
+
+super + r; j
+    ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/japan" &
 
 # Applications Launcher, Start Applicaiton
 alt + @space
-    rofi -show drun -theme ~/.config/rofi/themes/dmenu.rasi
+    rofi -show drun -theme ~/.config/rofi/themes/dmenu.rasi &
 
-# Browsers: Brave, Chromium, GoogleChrome, Firefox, QuteBrowser: (b)rave (c)hromium (g)ooglechrome (f)irefox (q)utebrowser
-super + b; {b, c, g, f, q}
-  {brave, chromium, google-chrome-stable, firefox, qutebrowser} &
+# Brave browser
+super + a; b
+    brave &
 
+# Chromium browser
+super + a; c
+    chromium &
 
-# Emacsclient, Doom, VSCode: super+e; (e)macsclient (d)oom (v)scode
-super + e; {e,d,v}
-  {emacsclient -c,emacs,code --password-store="gnome"}  &
+# Firefox browser
+super + a; f
+    firefox &
 
+# Qute browser
+super + a; q
+    qutebrowser &
 
-# Emoji, Calculator: e(emoji) c(calc)
-super + i; {e,c}
-  {rofi -show emoji -theme ~/.config/rofi/launchers/type-5/style-4.rasi, rofi -show calc -no-show-match -no-sort -theme ~/.config/rofi/launchers/type-7/style-7.rasi}
+# Doom Emacs
+super + a; e
+    emacsclient -c -a 'emacs' &
 
+# Vscode
+super + a; v
+    code --password-store="gnome"
 
-# Edit Dotfiles
-super + shift + KP_Delete
-  code --password-store="gnome" ~/.local/jager/dotfiles.code-workspace
+# Nemo file manager
+super + a; n
+    nemo &
 
-# File manager: Nemo
-super + f 
-  nemo &
+# Show bookmark manager
+super + q; b; m
+    ~/.local/bin/bookmark --dmenu --type --copy --notify &
 
-# Tips to remember: super+q: quick-link + a(add) | s(select) | d(dmenu) | r(remove) | v(visit)
-# Bookmark Manager  
-super + q; {a,s,r,d,q}
-    ~/.local/bin/bookmark { --insert --copy --notify, --select --copy --type, --remove --notify, --dmenu --notify --copy --type, --select --copy --visit } &
+# Copy bookmark
+super + q; b; c
+    ~/.local/bin/bookmark --select --copy --notify &
 
-# Tips to remember: super+h: history + s(select and copy) | t(type) | h(visit in browser) 
-# Browse History From Multiple Browsesr in Rofi Dmenu style
-super + h; {s,t,h}
-    ~/.local/bin/brohistory --bookmark --bro="brave firefox chromium chrome" --bro-limit=1000 --dmenu { --copy --prompt="copy link", --type --prompt="select link", --copy --visit --visit-in=brave --prompt="open in $BROWSER"}
+# Add Bookmark
+super + q; b; a
+    ~/.local/bin/bookmark --insert --copy --notify &
 
-# Keyboard Shortcuts | Sxhkd Keybindings
-super + k
-  ~/.local/bin/keybinds &
+# Remove bookmark
+super + q; b; r
+    ~/.local/bin/bookmark --remove --copy --notify &
 
-# Password manager: super + p; p(select), a(add), r(remove), g(generate)
-super + p; {p,a,r,g}
-  ~/.local/bin/bropass --notify { --select --copy, --add --copy, --remove --copy, --generate --copy }
+# Type Bookmark
+super + q; b; t
+    ~/.local/bin/bookmark --select --type --copy &
+
+# Visit history in browser
+super + q; h; h
+    ~/.local/bin/brohistory --bro="brave" --bro-limit=2000 --dmenu --prompt="visit link in $BROWSER" --copy --visit --visit-in=brave &
+
+# Type history link
+super + q; h; t
+    ~/.local/bin/brohistory --bro="brave" --bro-limit=2000 --dmenu --prompt="select link" --copy --type &
+
+# Emoji selector
+super + q; e
+    rofi -show emoji -theme ~/.config/rofi/launchers/type-5/style-4.rasi &
+
+# Smart calculator
+super + q; c
+    rofi -show calc -no-show-match -no-sort -theme ~/.config/rofi/launchers/type-7/style-7.rasi &
+
+# Copy password to clipboard
+super + q; p; p
+    ~/.local/bin/bropass --notify --select --copy &
+
+# Add new password
+super + q; p; a
+    ~/.local/bin/bropass --notify --add --copy &
+
+# Remove password
+super + q; p; r
+    ~/.local/bin/bropass --notify --remove --copy &
+
+# Generate new password
+super + q; p; g
+    ~/.local/bin/bropass --notify --generate --copy &
