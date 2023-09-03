@@ -5,63 +5,63 @@
 
 
 * TABLE OF CONTENT :toc:
-- [[#ctrlshiftesc-reload-sxhkd][CTRL+SHIFT+ESC RELOAD SXHKD]]
-- [[#supershitr-reload-bspwm][SUPER+SHIT+R RELOAD BSPWM]]
-- [[#superaltq-quit-bspwm][SUPER+ALT+Q QUIT BSPWM]]
-- [[#superctrlp-powermenu][SUPER+CTRL+P POWERMENU]]
-- [[#supershiftl-lockscreen][SUPER+SHIFT+L LOCKSCREEN]]
-- [[#superk-sxhkd-keybindings--keyboard-shortcuts][SUPER+K SXHKD KEYBINDINGS / KEYBOARD SHORTCUTS]]
-- [[#alttab-window-focus-next][ALT+TAB WINDOW FOCUS NEXT]]
-- [[#superw-window-close-active][SUPER+W WINDOW CLOSE ACTIVE]]
+- [[#reload-sxhkd][RELOAD SXHKD]]
+- [[#reload-bspwm][RELOAD BSPWM]]
+- [[#quit-bspwm][QUIT BSPWM]]
+- [[#powermenu][POWERMENU]]
+- [[#lockscreen][LOCKSCREEN]]
+- [[#sxhkd-keybindings][SXHKD KEYBINDINGS]]
+- [[#window-focus-next][WINDOW FOCUS NEXT]]
+- [[#window-close-active][WINDOW CLOSE ACTIVE]]
 - [[#window-close-active-and-move-to-previous-desktop][WINDOW CLOSE ACTIVE AND MOVE TO PREVIOUS DESKTOP]]
-- [[#supershiftkp_multiply-window-view-vertical][SUPER+SHIFT+KP_MULTIPLY WINDOW VIEW VERTICAL]]
-- [[#supershiftnumlock-window-state-fullscreen][SUPER+SHIFT+NUMLOCK WINDOW STATE FULLSCREEN]]
-- [[#supershiftdivide-window-state-tiled][SUPER+SHIFT+DIVIDE WINDOW STATE TILED]]
-- [[#supershiftsubtract-window-state-floating][SUPER+SHIFT+SUBTRACT WINDOW STATE FLOATING]]
-- [[#super1-9-change-workspace--send-window-to-workspace-1-9][SUPER+1-9 CHANGE WORKSPACE | SEND WINDOW TO WORKSPACE 1-9]]
-- [[#suprshifttab-window-swap-position-with-others][SUPR+SHIFT+TAB WINDOW SWAP POSITION WITH OTHERS]]
-- [[#supershiftkp8456-window-size-increasedecrease][SUPER+SHIFT+KP{8,4,5,6} WINDOW SIZE INCREASE/DECREASE]]
-- [[#supershift-touchpad-disable][SUPER+SHIFT+[ TOUCHPAD DISABLE]]
-- [[#supershift-touchpad-enable][SUPER+SHIFT+] TOUCHPAD ENABLE]]
-- [[#super---brightness-increase][SUPER + + BRIGHTNESS INCREASE]]
-- [[#super----brightness-decrease][SUPER + - BRIGHTNESS DECREASE]]
-- [[#fnf4-mic-mute--toggle][FN+F4 MIC MUTE / TOGGLE]]
-- [[#fnf1-volume-mute--toggle][FN+F1 VOLUME MUTE / TOGGLE]]
-- [[#alt---volume-increase][ALT + + VOLUME INCREASE]]
-- [[#alt----volume-decrease][ALT + - VOLUME DECREASE]]
-- [[#supershifti-copy-window-class-name-to-clipboard][SUPER+SHIFT+I COPY WINDOW CLASS NAME TO CLIPBOARD]]
-- [[#supershiftf-hide-polybar--toggle-polybar][SUPER+SHIFT+F HIDE POLYBAR / TOGGLE POLYBAR]]
-- [[#superreturn-launch-alacritty-terminal][SUPER+RETURN LAUNCH ALACRITTY TERMINAL]]
-- [[#supershiftreturn-launch-xfce4-terminal][SUPER+SHIFT+RETURN LAUNCH XFCE4 TERMINAL]]
-- [[#altreturn-launch-alacritty-with-tmux-session][ALT+RETURN LAUNCH ALACRITTY WITH TMUX SESSION]]
-- [[#superprint-screenshot][SUPER+PRINT SCREENSHOT]]
-- [[#superr-wallpaper-change][SUPER+R; WALLPAPER CHANGE]]
-  - [[#superrr-random-walls][SUPER+R;R RANDOM WALLS]]
-  - [[#superro-nordic-walls][SUPER+R;O NORDIC WALLS]]
-  - [[#superrm-macos-walls][SUPER+R;M MACOS WALLS]]
-  - [[#superrn-nature-walls][SUPER+R;N NATURE WALLS]]
-  - [[#superra-anime-walls][SUPER+R;A ANIME WALLS]]
-  - [[#superrw-wallheaven-walls][SUPER+R;W WALLHEAVEN WALLS]]
-  - [[#superrg-gruvbox-walls][SUPER+R;G GRUVBOX WALLS]]
-  - [[#superrd-deviant-arts-walls][SUPER+R;D DEVIANT ARTS WALLS]]
-  - [[#superrj-japan-walls][SUPER+R;J JAPAN WALLS]]
-- [[#altspace-application-launcher][ALT+SPACE APPLICATION LAUNCHER]]
-- [[#supera-launch-application][SUPER+A; LAUNCH APPLICATION]]
-  - [[#superab-brave][SUPER+A;B BRAVE]]
-  - [[#superac-chromium][SUPER+A;C CHROMIUM]]
-  - [[#superaf-firefox][SUPER+A;F FIREFOX]]
-  - [[#superaq-qutebrowser][SUPER+A;Q QUTEBROWSER]]
-  - [[#superae-doom-emacs][SUPER+A;E DOOM EMACS]]
-  - [[#superav-vscode][SUPER+A;V VSCODE]]
-  - [[#superan-nemo-file-manager][SUPER+A;N NEMO FILE MANAGER]]
-- [[#superq-quick-tools][SUPER+Q; QUICK TOOLS]]
-  - [[#superqb-bookmark-manager][SUPER+Q;B; BOOKMARK MANAGER]]
-  - [[#superqh-history-manager][SUPER+Q;H HISTORY MANAGER]]
-  - [[#superqe-emoji-selector][SUPER+Q;E EMOJI SELECTOR]]
-  - [[#superqc-smart-calculator][SUPER+Q;C SMART CALCULATOR]]
-  - [[#superqp-password-manager][SUPER+Q;P PASSWORD MANAGER]]
+- [[#window-view-vertical][WINDOW VIEW VERTICAL]]
+- [[#window-state-fullscreen][WINDOW STATE FULLSCREEN]]
+- [[#window-state-tiled][WINDOW STATE TILED]]
+- [[#window-state-floating][WINDOW STATE FLOATING]]
+- [[#change-workspace--send-window-to-workspace-1-9][CHANGE WORKSPACE | SEND WINDOW TO WORKSPACE 1-9]]
+- [[#window-swap-position-with-others][WINDOW SWAP POSITION WITH OTHERS]]
+- [[#window-size-increasedecrease][WINDOW SIZE INCREASE/DECREASE]]
+- [[#touchpad-disable][TOUCHPAD DISABLE]]
+- [[#touchpad-enable][TOUCHPAD ENABLE]]
+- [[#brightness-increase][BRIGHTNESS INCREASE]]
+- [[#brightness-decrease][BRIGHTNESS DECREASE]]
+- [[#mic-mute--toggle][MIC MUTE / TOGGLE]]
+- [[#volume-mute--toggle][VOLUME MUTE / TOGGLE]]
+- [[#volume-increase][VOLUME INCREASE]]
+- [[#volume-decrease][VOLUME DECREASE]]
+- [[#copy-window-class-name-to-clipboard][COPY WINDOW CLASS NAME TO CLIPBOARD]]
+- [[#hide-polybar--toggle-polybar][HIDE POLYBAR / TOGGLE POLYBAR]]
+- [[#launch-alacritty-terminal][LAUNCH ALACRITTY TERMINAL]]
+- [[#launch-xfce4-terminal][LAUNCH XFCE4 TERMINAL]]
+- [[#launch-alacritty-with-tmux-session][LAUNCH ALACRITTY WITH TMUX SESSION]]
+- [[#screenshot][SCREENSHOT]]
+- [[#wallpaper-change][WALLPAPER CHANGE]]
+  - [[#random-walls][RANDOM WALLS]]
+  - [[#nordic-walls][NORDIC WALLS]]
+  - [[#macos-walls][MACOS WALLS]]
+  - [[#nature-walls][NATURE WALLS]]
+  - [[#anime-walls][ANIME WALLS]]
+  - [[#wallheaven-walls][WALLHEAVEN WALLS]]
+  - [[#gruvbox-walls][GRUVBOX WALLS]]
+  - [[#deviant-arts-walls][DEVIANT ARTS WALLS]]
+  - [[#japan-walls][JAPAN WALLS]]
+- [[#application-launcher][APPLICATION LAUNCHER]]
+- [[#launch-application][LAUNCH APPLICATION]]
+  - [[#brave][BRAVE]]
+  - [[#chromium][CHROMIUM]]
+  - [[#firefox][FIREFOX]]
+  - [[#qutebrowser][QUTEBROWSER]]
+  - [[#emacs][EMACS]]
+  - [[#vscode][VSCODE]]
+  - [[#nemo-file-manager][NEMO FILE MANAGER]]
+- [[#quick-tools][QUICK TOOLS]]
+  - [[#bookmark-manager][BOOKMARK MANAGER]]
+  - [[#history-manager][HISTORY MANAGER]]
+  - [[#emoji-selector][EMOJI SELECTOR]]
+  - [[#smart-calculator][SMART CALCULATOR]]
+  - [[#password-manager][PASSWORD MANAGER]]
 
-* CTRL+SHIFT+ESC RELOAD SXHKD
+* RELOAD SXHKD
 #+begin_src sh
 # Reload sxhkd
 ctrl + shift + Escape
@@ -69,7 +69,7 @@ ctrl + shift + Escape
 #+end_src
 
 
-* SUPER+SHIT+R RELOAD BSPWM
+* RELOAD BSPWM
 #+begin_src sh
 # Reload bspwm
 super + shift + r
@@ -77,7 +77,7 @@ super + shift + r
 #+end_src
 
 
-* SUPER+ALT+Q QUIT BSPWM
+* QUIT BSPWM
 #+begin_src sh
 # Logout, quit bspwm
 super + alt + q
@@ -85,7 +85,7 @@ super + alt + q
 #+end_src
 
 
-* SUPER+CTRL+P POWERMENU
+* POWERMENU
 #+begin_src sh
 # Power menu
 super + ctrl + p
@@ -93,7 +93,7 @@ super + ctrl + p
 #+end_src
 
 
-* SUPER+SHIFT+L LOCKSCREEN
+* LOCKSCREEN
 #+begin_src sh
 # Lockscreen: Locks bitwarden and Locks screen
 super + shift + l
@@ -101,7 +101,7 @@ super + shift + l
 #+end_src
 
 
-* SUPER+K SXHKD KEYBINDINGS / KEYBOARD SHORTCUTS
+* SXHKD KEYBINDINGS
 #+begin_src sh
 # Keyboard Shortcuts, Sxhkd Keybindings
 super + k
@@ -109,7 +109,7 @@ super + k
 #+end_src
 
 
-* ALT+TAB WINDOW FOCUS NEXT
+* WINDOW FOCUS NEXT
 #+begin_src sh
 # Focus next window, Select next window
 alt + Tab
@@ -117,7 +117,7 @@ alt + Tab
 #+end_src
 
 
-* SUPER+W WINDOW CLOSE ACTIVE
+* WINDOW CLOSE ACTIVE
 #+begin_src sh
 # Close Active Window, Close All Window in current Desktop
 super + {_,shift + }w
@@ -133,7 +133,7 @@ super + {_,shift + }w
 #+end_src
 
 
-* SUPER+SHIFT+KP_MULTIPLY WINDOW VIEW VERTICAL
+* WINDOW VIEW VERTICAL
 #+begin_src sh
 # Vertical View / Windows arranged vertically
 super + {_,shift + }KP_Multiply
@@ -141,7 +141,7 @@ super + {_,shift + }KP_Multiply
 #+end_src
 
 
-* SUPER+SHIFT+NUMLOCK WINDOW STATE FULLSCREEN
+* WINDOW STATE FULLSCREEN
 #+begin_src sh
 # Window state fullscreen
 super + shift + Num_Lock
@@ -149,7 +149,7 @@ super + shift + Num_Lock
 #+end_src
 
 
-* SUPER+SHIFT+DIVIDE WINDOW STATE TILED
+* WINDOW STATE TILED
 #+begin_src sh
 # Window state fullscreen
 super + shift + KP_Divide
@@ -157,7 +157,7 @@ super + shift + KP_Divide
 #+end_src
 
 
-* SUPER+SHIFT+SUBTRACT WINDOW STATE FLOATING
+* WINDOW STATE FLOATING
 #+begin_src sh
 # Window state fullscreen
 super + shift + KP_Subtract
@@ -165,7 +165,7 @@ super + shift + KP_Subtract
 #+end_src
 
 
-* SUPER+1-9 CHANGE WORKSPACE | SEND WINDOW TO WORKSPACE 1-9
+* CHANGE WORKSPACE | SEND WINDOW TO WORKSPACE 1-9
 #+begin_src sh
 # change workspace, send window to workspace 1-9
 super + {_,shift} {1-9}
@@ -173,7 +173,7 @@ super + {_,shift} {1-9}
 #+end_src
 
 
-* SUPR+SHIFT+TAB WINDOW SWAP POSITION WITH OTHERS
+* WINDOW SWAP POSITION WITH OTHERS
 #+begin_src sh
 # Windo swap position among other windows in same workspace
 super + shift + Tab
@@ -181,7 +181,7 @@ super + shift + Tab
 #+end_src
 
 
-* SUPER+SHIFT+KP{8,4,5,6} WINDOW SIZE INCREASE/DECREASE
+* WINDOW SIZE INCREASE/DECREASE
 #+begin_src sh
 # Numpad: 4(inc width), 6(dec width), 8(inc height), 5(dec height)
 # Controls the size of only the 2nd Window in current workspace
@@ -190,7 +190,7 @@ super + shift  + {KP_8,KP_4,KP_5,KP_6}
 #+end_src
 
 
-* SUPER+SHIFT+[ TOUCHPAD DISABLE
+* TOUCHPAD DISABLE
 #+begin_src sh
 # Disable touchpad
 super + shift + braceleft
@@ -198,7 +198,7 @@ super + shift + braceleft
 #+end_src
 
 
-* SUPER+SHIFT+] TOUCHPAD ENABLE
+* TOUCHPAD ENABLE
 #+begin_src sh
 # Enable touchpad
 super + shift + braceright
@@ -206,7 +206,7 @@ super + shift + braceright
 #+end_src
 
 
-* SUPER + + BRIGHTNESS INCREASE
+* BRIGHTNESS INCREASE
 #+begin_src sh
 # Increase brightness
 XF86MonBrightnessUp
@@ -218,7 +218,7 @@ super + KP_Add
 #+end_src
 
 
-* SUPER + - BRIGHTNESS DECREASE
+* BRIGHTNESS DECREASE
 #+begin_src sh
 # Decrease brightness, Lower brightness
 XF86MonBrightnessDown
@@ -230,7 +230,7 @@ super + KP_Subtract
 #+end_src
 
 
-* FN+F4 MIC MUTE / TOGGLE
+* MIC MUTE / TOGGLE
 #+begin_src sh
 # Mute mic, Toggle Mute Mic
 XF86AudioMicMute
@@ -238,7 +238,7 @@ XF86AudioMicMute
 #+end_src
 
 
-* FN+F1 VOLUME MUTE / TOGGLE
+* VOLUME MUTE / TOGGLE
 #+begin_src sh
 # Mute volume
 XF86AudioMute
@@ -246,7 +246,7 @@ XF86AudioMute
 #+end_src
 
 
-* ALT + + VOLUME INCREASE
+* VOLUME INCREASE
 #+begin_src sh
 # Raise volume, Increase Volume
 XF86AudioRaiseVolume
@@ -258,7 +258,7 @@ alt + KP_Add
 #+end_src
 
 
-* ALT + - VOLUME DECREASE
+* VOLUME DECREASE
 #+begin_src sh
 # Lower volume, Decrease volume
 XF86AudioLowerVolume
@@ -270,7 +270,7 @@ alt + KP_Subtract
 #+end_src
 
 
-* SUPER+SHIFT+I COPY WINDOW CLASS NAME TO CLIPBOARD
+* COPY WINDOW CLASS NAME TO CLIPBOARD
 #+begin_src sh
 # Copy Window Class To Clipboard
 super + shift + i
@@ -278,7 +278,7 @@ super + shift + i
 #+end_src
 
 
-* SUPER+SHIFT+F HIDE POLYBAR / TOGGLE POLYBAR
+* HIDE POLYBAR / TOGGLE POLYBAR
 #+begin_src sh
 # Toggle Polybar: Show or Hide Polybar
 super + shift + f
@@ -286,7 +286,7 @@ super + shift + f
 #+end_src
 
 
-* SUPER+RETURN LAUNCH ALACRITTY TERMINAL
+* LAUNCH ALACRITTY TERMINAL
 #+begin_src sh
 # Alacritty
 super + Return
@@ -294,7 +294,7 @@ super + Return
 #+end_src
 
 
-* SUPER+SHIFT+RETURN LAUNCH XFCE4 TERMINAL
+* LAUNCH XFCE4 TERMINAL
 #+begin_src sh
 # Xfce4 Terminal
 super + shift + Return
@@ -302,7 +302,7 @@ super + shift + Return
 #+end_src
 
 
-* ALT+RETURN LAUNCH ALACRITTY WITH TMUX SESSION
+* LAUNCH ALACRITTY WITH TMUX SESSION
 #+begin_src sh
 # Alacritty terminal with last tmux session
 alt + {_,shift + } Return
@@ -310,7 +310,7 @@ alt + {_,shift + } Return
 #+end_src
 
 
-* SUPER+PRINT SCREENSHOT
+* SCREENSHOT
 #+begin_src sh
 # Screenshot
 super + Print
@@ -318,71 +318,71 @@ super + Print
 #+end_src
 
 
-* SUPER+R; WALLPAPER CHANGE
-** SUPER+R;R RANDOM WALLS
+* WALLPAPER CHANGE
+** RANDOM WALLS
 #+begin_src sh
 # Wallpaper random
 super + r; r
     ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper" &
 #+end_src
 
-** SUPER+R;O NORDIC WALLS
+** NORDIC WALLS
 #+begin_src sh
 # Wallpaper nordic
 super + r; o
     ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/nordic" &
 #+end_src
 
-** SUPER+R;M MACOS WALLS
+** MACOS WALLS
 #+begin_src sh
 # Wallpaper macos
 super + r; m
     ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/macos" &
 #+end_src
 
-** SUPER+R;N NATURE WALLS
+** NATURE WALLS
 #+begin_src sh
 # Wallpaper nature
 super + r; n
     ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/nature" &
 #+end_src
 
-** SUPER+R;A ANIME WALLS
+** ANIME WALLS
 #+begin_src sh
 # Wallpaper anime
 super + r; a
     ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/anime" &
 #+end_src
 
-** SUPER+R;W WALLHEAVEN WALLS
+** WALLHEAVEN WALLS
 #+begin_src sh
 # Wallpaper wallheaven
 super + r; w
     ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/wallheaven" &
 #+end_src
 
-** SUPER+R;G GRUVBOX WALLS
+** GRUVBOX WALLS
 #+begin_src sh
 # Wallpaper gruvbox
 super + r; g
     ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/gruvbox" &
 #+end_src
 
-** SUPER+R;D DEVIANT ARTS WALLS
+** DEVIANT ARTS WALLS
 #+begin_src sh
 # Wallpaper Deviant Arts
 super + r; d
     ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/DeviantArt" &
 #+end_src
 
-** SUPER+R;J JAPAN WALLS
+** JAPAN WALLS
 #+begin_src sh
 super + r; j
     ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/japan" &
 #+end_src
 
 
-* ALT+SPACE APPLICATION LAUNCHER
+* APPLICATION LAUNCHER
 #+begin_src sh
 # Applications Launcher, Start Applicaiton
 alt + @space
@@ -390,50 +390,50 @@ alt + @space
 #+end_src
 
 
-* SUPER+A; LAUNCH APPLICATION
-** SUPER+A;B BRAVE
+* LAUNCH APPLICATION
+** BRAVE
 #+begin_src sh
 # Brave browser
 super + a; b
     brave &
 #+end_src
 
-** SUPER+A;C CHROMIUM
+** CHROMIUM
 #+begin_src sh
 # Chromium browser
 super + a; c
     chromium &
 #+end_src
 
-** SUPER+A;F FIREFOX
+** FIREFOX
 #+begin_src sh
 # Firefox browser
 super + a; f
     firefox &
 #+end_src
 
-** SUPER+A;Q QUTEBROWSER
+** QUTEBROWSER
 #+begin_src sh
 # Qute browser
 super + a; q
     qutebrowser &
 #+end_src
 
-** SUPER+A;E DOOM EMACS
+** EMACS
 #+begin_src sh
 # Doom Emacs
 super + a; e
     emacsclient -c -a 'emacs' &
 #+end_src
 
-** SUPER+A;V VSCODE
+** VSCODE
 #+begin_src sh
 # Vscode
 super + a; v
     code --password-store="gnome"
 #+end_src
 
-** SUPER+A;N NEMO FILE MANAGER
+** NEMO FILE MANAGER
 #+begin_src sh
 # Nemo file manager
 super + a; n
@@ -441,95 +441,95 @@ super + a; n
 #+end_src
 
 
-* SUPER+Q; QUICK TOOLS
-** SUPER+Q;B; BOOKMARK MANAGER
-*** SUPER+Q;B;M SHOW BOOKMARK MANAGER
+* QUICK TOOLS
+** BOOKMARK MANAGER
+*** SHOW BOOKMARK MANAGER
 #+begin_src sh
 # Show bookmark manager
 super + q; b; m
     ~/.local/bin/bookmark --dmenu --type --copy --notify &
 #+end_src
 
-*** SUPER+Q;B;C COPY BOOKMARK
+*** COPY BOOKMARK
 #+begin_src sh
 # Copy bookmark
 super + q; b; c
     ~/.local/bin/bookmark --select --copy --notify &
 #+end_src
 
-*** SUPER+Q;B;A ADD BOOKMARK
+*** ADD BOOKMARK
 #+begin_src sh
 # Add Bookmark
 super + q; b; a
     ~/.local/bin/bookmark --insert --copy --notify &
 #+end_src
 
-*** SUPER+Q;B;R REMOVE BOOKMARK
+*** REMOVE BOOKMARK
 #+begin_src sh
 # Remove bookmark
 super + q; b; r
     ~/.local/bin/bookmark --remove --copy --notify &
 #+end_src
 
-*** SUPER+Q;B;T TYPE BOOKMARK
+*** TYPE BOOKMARK
 #+begin_src sh
 # Type Bookmark
 super + q; b; t
     ~/.local/bin/bookmark --select --type --copy &
 #+end_src
 
-** SUPER+Q;H HISTORY MANAGER
-*** SUPER+Q;H;H VISIT HISTORY
+** HISTORY MANAGER
+*** VISIT HISTORY
 #+begin_src sh
 # Visit history in browser
 super + q; h; h
     ~/.local/bin/brohistory --bro="brave" --bro-limit=2000 --dmenu --prompt="visit link in $BROWSER" --copy --visit --visit-in=brave &
 #+end_src
 
-*** SUPER+Q;H;T TYPE HISTORY
+*** TYPE HISTORY
 #+begin_src sh
 # Type history link
 super + q; h; t
     ~/.local/bin/brohistory --bro="brave" --bro-limit=2000 --dmenu --prompt="select link" --copy --type &
 #+end_src
 
-** SUPER+Q;E EMOJI SELECTOR
+** EMOJI SELECTOR
 #+begin_src sh
 # Emoji selector
 super + q; e
     rofi -show emoji -theme ~/.config/rofi/launchers/type-5/style-4.rasi &
 #+end_src
 
-** SUPER+Q;C SMART CALCULATOR
+** SMART CALCULATOR
 #+begin_src sh
 # Smart calculator
 super + q; c
     rofi -show calc -no-show-match -no-sort -theme ~/.config/rofi/launchers/type-7/style-7.rasi &
 #+end_src
 
-** SUPER+Q;P PASSWORD MANAGER
-*** SUPER+Q;P;P COPY PASSWORD
+** PASSWORD MANAGER
+*** COPY PASSWORD
 #+begin_src sh
 # Copy password to clipboard
 super + q; p; p
     ~/.local/bin/bropass --notify --select --copy &
 #+end_src
 
-*** SUPER+Q;P;A ADD NEW PASSWORD
+*** ADD NEW PASSWORD
 #+begin_src sa
 # Add new password
 super + q; p; a
     ~/.local/bin/bropass --notify --add --copy &
 #+end_src
 
-*** SUPER+Q;P;R REMOVE PASSWORD
+*** REMOVE PASSWORD
 #+begin_src sh
 # Remove password
 super + q; p; r
     ~/.local/bin/bropass --notify --remove --copy &
 #+end_src
 
-*** SUPER+Q;P;G GENERATE NEW PASSWORD
+*** GENERATE NEW PASSWORD
 #+begin_src sh
 # Generate new password
 super + q; p; g

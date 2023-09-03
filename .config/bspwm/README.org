@@ -32,7 +32,8 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 
 * Monitor Desktop Names
 #+BEGIN_SRC sh
-bspc monitor -d ⼀ ⼆ 三 四 五 六 七 ⼋ ⼏ ⼗
+# bspc monitor -d ⼀ ⼆ 三 四 五 六 七 ⼋ ⼏ ⼗
+bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 #+END_SRC
 
 * Increasing Keypress Speed And Repeat Rate
@@ -59,7 +60,7 @@ bspc config bottom_padding      20 &
 bspc config left_padding        20 &
 bspc config right_padding       20 &
 bspc config border_width        2 &
-bspc config split_ratio         0.55 &
+bspc config split_ratio         0.65 &
 
 bspc config click_to_focus      true &
 bspc config borderless_monocle  true &
