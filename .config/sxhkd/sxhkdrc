@@ -192,11 +192,15 @@ super + d; q
 
 # Doom Emacs
 super + d; e
-    emacsclient -c -a 'emacs' &
+    /usr/bin/emacs &
+
+# Doom Emacs
+super + d; o
+    obsidian &
 
 # Vscode
 super + d; v
-    code --password-store="gnome"
+    code --password-store="gnome" &
 
 # Nemo file manager
 super + d; n
@@ -206,9 +210,9 @@ super + d; n
 super + q; b; m
     ~/.local/bin/bookmark --dmenu --type --copy --notify &
 
-# Copy bookmark
-super + q; b; c
-    ~/.local/bin/bookmark --select --copy --notify &
+# Visit and copy bookmark
+super + q; b; b
+    ~/.local/bin/bookmark --select --visit --copy --notify &
 
 # Add Bookmark
 super + q; b; a
@@ -253,3 +257,26 @@ super + q; p; r
 # Generate new password
 super + q; p; g
     ~/.local/bin/bropass --notify --generate --copy &
+
+# Set window private
+super + ctrl + z
+    bspc node -g private
+
+super + e; e
+    emacsclient -c -a 'emacs' &
+# super + e; a
+    # emacsclient -c -a 'emacs' --eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/\")'
+super + e; b
+    emacsclient -c -a 'emacs' --eval '(ibuffer)' &
+super + e; d
+    emacsclient -c -a 'emacs' --eval '(dired nil)' &
+super + e; i
+    emacsclient -c -a 'emacs' --eval '(erc)' &
+super + e; n
+    emacsclient -c -a 'emacs' --eval '(elfeed)' &
+super + e; s
+    emacsclient -c -a 'emacs' --eval '(eshell)' &
+super + e; v
+    emacsclient -c -a 'emacs' --eval '(+vterm/here nil)' &
+super + e; w
+    emacsclient -c -a 'emacs' --eval '(doom/window-maximize-buffer(eww "distro.tube"))' &

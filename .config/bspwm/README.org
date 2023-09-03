@@ -69,6 +69,7 @@ bspc config gapless_monocle     true &
 
 * Application's Window States, Focus, Border
 #+BEGIN_SRC sh
+bspc rule -a mpv state=fullscreen focus=on border=off &
 bspc rule -a alacritty state=floating focus=on border=off &
 bspc rule -a Yad state=floating &
 bspc rule -a scrcpy state=floating &

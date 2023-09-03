@@ -1,5 +1,4 @@
 (setq user-full-name "Ankur Kumar")
-;; (setq user-email-address "Ankur Kumar")
 
 (setq
  doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16)
@@ -17,6 +16,9 @@
 (setq doom-theme 'doom-dracula)
 
 (setq display-line-numbers-type t)
+(setq display-line-numbers 'relative)
+(after! doom-theme
+  (setq use-dialog-box nil))
 
 (setq org-directory "~/org/")
 
@@ -55,3 +57,18 @@
 
 (map! :leader
       :desc "Clone indirect buffer other window" "b c" #'clone-indirect-buffer-other-window)
+
+(setq imenu-list-focus-after-activation t)
+
+;; (map! :leader
+;;       (:prefix ("s" . "Search" )
+;;        :desc "Menu to jump to places in buffer" "i" #'counsel-imenu))
+
+(map! :leader
+      (:prefix ("t" . "Toggle" )
+       :desc "Toggle imenu shown in sidebar" "i" #'imenu-list-smart-toggle))
+
+(map! :leader
+      :desc "Avy: Jump to line" "j l" #'avy-goto-line )
+(map! :leader
+      :desc "Avy: Jump to char" "j w" #'evil-avy-goto-char-2 )
