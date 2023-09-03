@@ -175,31 +175,31 @@ alt + @space
     rofi -show drun -theme ~/.config/rofi/themes/dmenu.rasi &
 
 # Brave browser
-super + a; b
+super + d; b
     brave &
 
 # Chromium browser
-super + a; c
+super + d; c
     chromium &
 
 # Firefox browser
-super + a; f
+super + d; f
     firefox &
 
 # Qute browser
-super + a; q
+super + d; q
     qutebrowser &
 
 # Doom Emacs
-super + a; e
+super + d; e
     emacsclient -c -a 'emacs' &
 
 # Vscode
-super + a; v
+super + d; v
     code --password-store="gnome"
 
 # Nemo file manager
-super + a; n
+super + d; n
     nemo &
 
 # Show bookmark manager

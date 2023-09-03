@@ -394,49 +394,49 @@ alt + @space
 ** BRAVE
 #+begin_src sh
 # Brave browser
-super + a; b
+super + d; b
     brave &
 #+end_src
 
 ** CHROMIUM
 #+begin_src sh
 # Chromium browser
-super + a; c
+super + d; c
     chromium &
 #+end_src
 
 ** FIREFOX
 #+begin_src sh
 # Firefox browser
-super + a; f
+super + d; f
     firefox &
 #+end_src
 
 ** QUTEBROWSER
 #+begin_src sh
 # Qute browser
-super + a; q
+super + d; q
     qutebrowser &
 #+end_src
 
 ** EMACS
 #+begin_src sh
 # Doom Emacs
-super + a; e
+super + d; e
     emacsclient -c -a 'emacs' &
 #+end_src
 
 ** VSCODE
 #+begin_src sh
 # Vscode
-super + a; v
+super + d; v
     code --password-store="gnome"
 #+end_src
 
 ** NEMO FILE MANAGER
 #+begin_src sh
 # Nemo file manager
-super + a; n
+super + d; n
     nemo &
 #+end_src
 

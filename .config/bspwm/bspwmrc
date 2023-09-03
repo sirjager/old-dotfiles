@@ -62,4 +62,4 @@ sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &
 
 # rog-control-center &
 
-~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/gruvbox/wolf.jpg" &
+~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/nordic/111.png" &
