@@ -102,16 +102,16 @@ set_polybar_colors(){
 set_dunst_colors(){
     . "$PYWAL_COLORS.sh"
     echo "[global]" > "$DUNST_RC_CONFIG"
-    echo "frame_color = \"$color5\"" >> "$DUNST_RC_CONFIG"
-    echo "separator_color = \"$color5\"" >> "$DUNST_RC_CONFIG"
+    echo "frame_color = \"$color15\"" >> "$DUNST_RC_CONFIG"
+    echo "separator_color = \"$color10\"" >> "$DUNST_RC_CONFIG"
     echo " " >> "$DUNST_RC_CONFIG"
     echo "[urgency_low]" >> "$DUNST_RC_CONFIG"
     echo "background = \"#282828\" " >> "$DUNST_RC_CONFIG"
-    echo "foreground = \"$color5\" " >> "$DUNST_RC_CONFIG"
+    echo "foreground = \"$color15\" " >> "$DUNST_RC_CONFIG"
     echo " " >> "$DUNST_RC_CONFIG"
     echo "[urgency_normal]" >> "$DUNST_RC_CONFIG"
     echo "background = \"#282828\" " >> "$DUNST_RC_CONFIG"
-    echo "foreground = \"$color5\" " >> "$DUNST_RC_CONFIG"
+    echo "foreground = \"$color15\" " >> "$DUNST_RC_CONFIG"
     echo " " >> "$DUNST_RC_CONFIG"
     echo "[urgency_critical]" >> "$DUNST_RC_CONFIG"
     echo "background = \"#282828\" " >> "$DUNST_RC_CONFIG"
@@ -121,7 +121,7 @@ set_dunst_colors(){
 set_bspwm_colors(){
     . "$PYWAL_COLORS.sh"
     bspc config normal_border_color "#000000"
-    bspc config focused_border_color "$color6"
+    bspc config focused_border_color "$color15"
 }
 
 set_wallpaper(){

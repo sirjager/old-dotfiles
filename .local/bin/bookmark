@@ -273,6 +273,10 @@ rofi_select_bookmark() {
                 TYPE="false"
                 shift 
                 ;;
+            --visit-in=*)
+               BROWSER="${1#*=}"
+                shift
+               ;;
              *)
                 shift
                 ;;
@@ -498,8 +502,8 @@ show_usage(){
 
 case "$1" in 
     --select)
-        # can be passed: --copy --notify --visit --type
-        rofi_select_bookmark "$2" "$3" "$4" "$5"
+        # can be passed: --copy --notify --visit --type --visit-in=browsername
+        rofi_select_bookmark "$2" "$3" "$4" "$5" "$6"
         ;;
     --insert)
         # can be passed: --copy --notify
@@ -541,7 +545,7 @@ case "$1" in
         # can be passed: --notify 
         restore_repo "$2"
         ;;
-    *)
+     *)
         show_usage
         exit 1
         ;;

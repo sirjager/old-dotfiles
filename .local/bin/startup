@@ -1,0 +1,4 @@
+#!/bin/sh
+
+chmod +x ~/.config/bspwm/bspwmrc
+chmod +x ~/.config/sxhkd/sxhkdrc

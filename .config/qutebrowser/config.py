@@ -374,7 +374,7 @@ c.fonts.prompts = 'default_size sans-serif'
 
 # Font used in the statusbar.
 # Type: Font
-c.fonts.statusbar = '11pt "Source Code Pro"'
+c.fonts.statusbar = '11pt "JetBrainsMono Nerd Font"'
 
 # Setting dark mode
 config.set("colors.webpage.darkmode.enabled", True)
@@ -382,7 +382,12 @@ config.set("colors.webpage.darkmode.enabled", True)
 # config.set('content.user_stylesheets', "~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-all-sites.css")
 
 # Bindings to use my own bookmark system using rofi 
-config.bind('b', 'spawn --userscript ~/.local/bin/bookmark --select --copy --visit')
+config.bind('b', 'spawn --userscript ~/.local/bin/bookmark --select --copy --visit --visit-in=qutebrowser &')
+
+# Don't show statusbar and tabs on startup
+config.set("tabs.show", "never")
+config.set("statusbar.show", "never")
+
 
 # Bindings for normal mode
 config.bind('M', 'hint links spawn mpv {hint-url} --ytdl-format="bestvideo[height<=?1080]+bestaudio/best"')

@@ -1,5 +1,5 @@
 (setq user-full-name "Ankur Kumar")
-      ;; user-mail-address "john@doe.com")
+;; (setq user-email-address "Ankur Kumar")
 
 (setq
  doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16)
