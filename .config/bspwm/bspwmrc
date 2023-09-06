@@ -25,7 +25,7 @@ bspc config borderless_monocle  true &
 bspc config gapless_monocle     true &
 
 bspc rule -a mpv state=fullscreen focus=on border=off &
-bspc rule -a alacritty state=floating focus=on border=off &
+
 bspc rule -a Yad state=floating &
 bspc rule -a scrcpy state=floating &
 bspc rule -a polkit-gnome-authentication-agent-1 border=off state=floating &
@@ -38,10 +38,10 @@ bspc rule -a kdeconnect-indicator border=off state=floating &
 bspc rule -a FLTK border=off state=floating & # weylus
 bspc rule -a rog-control-center border=off state=floating focus=on &
 bspc rule -a xdm-app border=off state=floating focus=on &
-bspc rule -a "emacs" desktop='^3' follow=true state=fullscreen border=off focus=on &
-bspc rule -a "emacsclient" desktop='^3' follow=true state=fullscreen border=off focus=on &
+bspc rule -a emacs desktop='^3' state=fullscreen border=off focus=on &
+bspc rule -a emacsclient desktop='^3' state=fullscreen border=off focus=on &
 
-picom --experimental-backends &
+# picom --experimental-backends &
 
 sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &
 

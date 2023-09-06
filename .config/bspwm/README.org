@@ -70,7 +70,7 @@ bspc config gapless_monocle     true &
 * Application's Window States, Focus, Border
 #+BEGIN_SRC sh
 bspc rule -a mpv state=fullscreen focus=on border=off &
-bspc rule -a alacritty state=floating focus=on border=off &
+
 bspc rule -a Yad state=floating &
 bspc rule -a scrcpy state=floating &
 bspc rule -a polkit-gnome-authentication-agent-1 border=off state=floating &
@@ -90,7 +90,7 @@ bspc rule -a emacsclient desktop='^3' state=fullscreen border=off focus=on &
 
 * WINDOW COMPOSITOR
 #+BEGIN_SRC sh
-picom --experimental-backends &
+# picom --experimental-backends &
 #+END_SRC
 
 * Brightness Controll Access

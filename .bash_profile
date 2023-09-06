@@ -1,6 +1,5 @@
 # ~/.bash_profile
 
-[ -f ~/.local/bin/startup ] && ~/.local/bin/startup
 
 # Cleanup
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -45,5 +44,16 @@ export GIT_DISCOVERY_ACROSS_FILESYSTEM=1 	# github
 export CHROME_EXECUTABLE='/usr/bin/chromium'	# Crome executable path
 # export DRI_PRIME=1 	# For graphic card
 
+# Go programming language
+export GO111MODULE="on"
+export GOPRIVATE="github.com/sirjager/*"
+export GOMODCACHE="/mnt/storage/programs/go/mod"
+export GOROOT="/mnt/storage/programs/go/sdk"
+export GOPATH="/mnt/storage/workspace/goenv"
+export GOBIN="/mnt/storage/workspace/goenv/bin"
+export GOCACHE="/mnt/storage/workspace/goenv/cache"
+export PNPM_HOME="/mnt/storage/programs/pnpm"
+
+[ -f ~/.local/bin/startup ] && ~/.local/bin/startup
 
 [ -f ~/.bashrc ] && . ~/.bashrc

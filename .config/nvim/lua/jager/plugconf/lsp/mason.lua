@@ -49,6 +49,8 @@ local linters_formatters = {
 	"bufls",
 	"stylua",
 	"markdownlint",
+	"eslint-lsp",
+	"typescript-languange-server",
 }
 
 mason_null_ls.setup({

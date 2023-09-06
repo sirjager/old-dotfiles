@@ -72,3 +72,21 @@
       :desc "Avy: Jump to line" "j l" #'avy-goto-line )
 (map! :leader
       :desc "Avy: Jump to char" "j w" #'evil-avy-goto-char-2 )
+
+(use-package! typescript-mode
+  :mode ("\\.tsx\\'" . typescript-tsx-tree-sitter-mode)
+  :config
+  (setq typescript-indent-level 2)
+
+  (define-derived-mode typescript-tsx-tree-sitter-mode typescript-mode "TypeScript TSX"
+    (setq-local indent-line-function 'rjsx-indent-line))
+
+  (add-hook! 'typescript-tsx-tree-sitter-mode-local-vars-hook
+             #'+javascript-init-lsp-or-tide-maybe-h
+             #'rjsx-minor-mode)
+  (map! :map typescript-tsx-tree-sitter-mode-map
+        "<" 'rjsx-electric-lt
+        ">" 'rjsx-electric-gt))
+
+(after! tree-sitter
+  (add-to-list 'tree-sitter-major-mode-language-alist '(typescript-tsx-tree-sitter-mode . tsx)))

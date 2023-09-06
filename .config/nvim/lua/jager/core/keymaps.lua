@@ -120,7 +120,7 @@ local keymaps = {
 for mode, mappings in pairs(keymaps) do
 	for key, mapping in pairs(mappings) do
 		local cmd = mapping[1]
-		local desc = mapping[2]
+		--[[ local desc = mapping[2] ]]
 		local options = mapping.opts or {}
 		vim.api.nvim_set_keymap(mode, key, cmd, options)
 	end

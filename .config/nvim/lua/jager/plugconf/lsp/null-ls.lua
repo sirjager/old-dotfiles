@@ -19,7 +19,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.golines,
 		null_ls.builtins.formatting.stylua, -- lua formatter
 		null_ls.builtins.diagnostics.buf, -- proto
-    null_ls.builtins.formatting.buf,
+		null_ls.builtins.formatting.buf,
 	},
 
 	-- configure format on save
@@ -31,6 +31,10 @@ null_ls.setup({
 				buffer = bufnr,
 				callback = function()
 					vim.lsp.buf.format({ bufnr = bufnr })
+					local lintok, lint = pcall(require, "lint")
+					if lintok then
+						lint.try_lint()
+					end
 				end,
 			})
 		end
