@@ -41,7 +41,7 @@ bspc rule -a xdm-app border=off state=floating focus=on &
 bspc rule -a emacs desktop='^3' state=fullscreen border=off focus=on &
 bspc rule -a emacsclient desktop='^3' state=fullscreen border=off focus=on &
 
-# picom --experimental-backends &
+picom --experimental-backends &
 
 sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &
 

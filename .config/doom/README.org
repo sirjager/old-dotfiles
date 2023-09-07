@@ -1,47 +1,22 @@
 #+TITLE: Doom Emacs Configurations
-#+AUTHOR: Ankur Kumar (sirjager)
+#+AUTHOR: Ankur Kumar
 #+PROPERTY: header-args :tangle ~/.config/doom/config.el :mkdirp yes
 #+AUTO_TANGLE: t
 
 * TABLE OF CONTENT :toc:
-- [[#installed-packages][INSTALLED PACKAGES]]
-- [[#email-and-full-name][EMAIL AND FULL NAME]]
-- [[#fonts-configurations][FONTS CONFIGURATIONS]]
-- [[#theme-configuratins][THEME CONFIGURATINS]]
-- [[#ui-interface-and-elements][UI INTERFACE AND ELEMENTS]]
+- [[#appearance][APPEARANCE]]
+  - [[#font-configurations][FONT CONFIGURATIONS]]
+  - [[#theme--ui-customizations][THEME / UI CUSTOMIZATIONS]]
+- [[#buffer-clone-independently][BUFFER CLONE INDEPENDENTLY]]
+- [[#file-viewer-drawer][FILE VIEWER DRAWER]]
 - [[#org-mode][ORG MODE]]
-- [[#org-auto-tangle][ORG AUTO TANGLE]]
-- [[#beakon][BEAKON]]
-- [[#make-scripts-executable][MAKE SCRIPTS EXECUTABLE]]
-- [[#neotree][NEOTREE]]
-- [[#minimap][MINIMAP]]
-- [[#rainbow-mode][RAINBOW MODE]]
-- [[#mouse-support][MOUSE SUPPORT]]
-- [[#splits][SPLITS]]
-- [[#imenu-list][IMENU LIST]]
-- [[#avy-navigate-with-key-words][AVY NAVIGATE WITH KEY WORDS]]
-- [[#setting-up-treesitter][SETTING UP TREESITTER]]
+  - [[#org-auto-tangle][ORG AUTO TANGLE]]
+  - [[#org-appearance-customizations][ORG APPEARANCE CUSTOMIZATIONS]]
 
-* INSTALLED PACKAGES
-#+begin_src emacs-lisp :tangle ~/.config/doom/packages.el :mkdirp yes
-(package! imenu-list)
-(package! rainbow-mode)
-(package! org-auto-tangle)
-(package! avy)
-(package! tree-sitter
-  :ignore (null (bound-and-true-p module-file-suffix)))
-(package! tree-sitter-langs
-  :ignore (null (bound-and-true-p module-file-suffix)))
-#+end_src
-
-* EMAIL AND FULL NAME
-Some functionality uses this to identify you, e.g. GPG configuration, email clients, file templates and snippets. It is optional.
+* APPEARANCE
+** FONT CONFIGURATIONS
 #+begin_src emacs-lisp
-(setq user-full-name "Ankur Kumar")
-#+end_src
 
-* FONTS CONFIGURATIONS
-#+begin_src emacs-lisp
 (setq
  doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16)
  doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 16)
@@ -54,53 +29,39 @@ Some functionality uses this to identify you, e.g. GPG configuration, email clie
 (custom-set-faces!
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
+
 #+end_src
 
-* THEME CONFIGURATINS
-Some good themes: doom-one, doom-gruvbox, doom-nord, doom-palenight, doom-Iosvkem, doom-dracula
+** THEME / UI CUSTOMIZATIONS
 #+begin_src emacs-lisp
+
 (setq doom-theme 'doom-dracula)
+
+;; (setq display-line-numbers-type 'relative)
+
+(xterm-mouse-mode 1)
+
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+;; (add-hook 'window-setup-hook #'toggle-frame-maximized)
+(add-hook 'window-setup-hook #'toggle-frame-fullscreen)
+
+(after! org
+  (setq org-fontify-quote-and-verse-blocks nil
+        org-fontify-whole-heading-line nil
+        org-hide-leading-stars nil
+        org-startup-indented nil))
+
 #+end_src
 
-* UI INTERFACE AND ELEMENTS
+* BUFFER CLONE INDEPENDENTLY
 #+begin_src emacs-lisp
-(setq display-line-numbers-type t)
-(setq display-line-numbers 'relative)
-(after! doom-theme
-  (setq use-dialog-box nil))
-
+(map! :leader
+      :desc "Clone buffer independently" "b c" #'clone-indirect-buffer-other-window)
 #+end_src
 
-* ORG MODE
+* FILE VIEWER DRAWER
 #+begin_src emacs-lisp
-(setq org-directory "~/org/")
-#+end_src
 
-* ORG AUTO TANGLE
-org-auto-tangle allows you to add the option #+auto_tangle: t in your Org file so that it automatically tangles when you save the document.  I have made adding this to your file even easier by creating a function ‘dt/insert-auto-tangle-tag’ and setting it to a keybinding ‘SPC i a’.
-#+begin_src emacs-lisp
-(use-package! org-auto-tangle
-  :defer t
-  :hook (org-mode . org-auto-tangle-mode)
-  :config (setq org-auto-tangle-default t))
-#+end_src
-
-* BEAKON
-#+begin_src emacs-lisp
-;; (beacon-mode 1)
-#+end_src
-
-* MAKE SCRIPTS EXECUTABLE
-#+begin_src emacs-lisp
-(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-#+end_src
-
-#+RESULTS:
-| centaur-tabs-on-saving-buffer | doom-modeline-update-vcs-text | doom-modeline-update-vcs-icon | doom-modeline-update-buffer-file-name | executable-make-buffer-file-executable-if-script-p | +evil-display-vimlike-save-message-h | doom-auto-revert-buffers-h | doom-guess-mode-h |
-
-  )
-* NEOTREE
-#+begin_src emacs-lisp
 (after! neotree
   (setq neo-smart-open t
         neo-window-fixed-size nil))
@@ -109,79 +70,37 @@ org-auto-tangle allows you to add the option #+auto_tangle: t in your Org file s
   (setq doom-neotree-enable-variable-pitch t))
 
 (map! :leader
-      :desc "Toggle neotree file viewer" "e" #'neotree-toggle)
+      :desc "Toggle neotree file viewer" "e" #'treemacs)
+
 #+end_src
 
-* MINIMAP
+* ORG MODE
+** ORG AUTO TANGLE
 #+begin_src emacs-lisp
-(setq minimap-window-location 'right)
-(map! :leader
-      (:prefix ("t" . "toggle")
-       :desc "Toggle minimap-mode" "m" #'minimap-mode))
+
+(use-package! org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode)
+  :config (setq org-auto-tangle-default t))
+
 #+end_src
 
-* RAINBOW MODE
-Rainbox mode displays the actual color for any hex value color.  It’s such a nice feature that I wanted it turned on all the time, regardless of what mode I am in.  The following creates a global minor mode for rainbow-mode and enables it (exception: org-agenda-mode since rainbow-mode destroys all highlighting in org-agenda).
+** ORG APPEARANCE CUSTOMIZATIONS
 #+begin_src emacs-lisp
-(define-globalized-minor-mode global-rainbow-mode rainbow-mode
-  (lambda ()
-    (when (not (memq major-mode
-                (list 'org-agenda-mode)))
-     (rainbow-mode 1))))
-(global-rainbow-mode 1 )
-#+end_src
 
-* MOUSE SUPPORT
-Adding mouse support in the terminal version of Emacs.
-#+begin_src emacs-lisp
-(xterm-mouse-mode 1)
-#+end_src
+(setq org-startup-folded t)
+(setq org-startup-indented t)
+(setq org-pretty-entities t)
+(setq org-hide-emphasis-markers t)
+(setq org-startup-with-inline-images t)
+(setq org-image-actual-width '(300))
 
-* SPLITS
-#+begin_src emacs-lisp
-(map! :leader
-      :desc "Clone indirect buffer other window" "b c" #'clone-indirect-buffer-other-window)
-#+end_src
+;; Nice bullets
+(use-package org-superstar
+      :config
+      (setq org-superstar-special-todo-items t)
+      (add-hook 'org-mode-hook (lambda ()
+                                 (org-superstar-mode 1))))
+(setq org-superstar-headline-bullets-list '("◉" "○" "◈" "◇" "▣" "▢" ))
 
-* IMENU LIST
-#+begin_src emacs-lisp
-(setq imenu-list-focus-after-activation t)
-
-;; (map! :leader
-;;       (:prefix ("s" . "Search" )
-;;        :desc "Menu to jump to places in buffer" "i" #'counsel-imenu))
-
-(map! :leader
-      (:prefix ("t" . "Toggle" )
-       :desc "Toggle imenu shown in sidebar" "i" #'imenu-list-smart-toggle))
-#+end_src
-
-* AVY NAVIGATE WITH KEY WORDS
-#+begin_src emacs-lisp
-(map! :leader
-      :desc "Avy: Jump to line" "j l" #'avy-goto-line )
-(map! :leader
-      :desc "Avy: Jump to char" "j w" #'evil-avy-goto-char-2 )
-#+end_src
-
-
-* SETTING UP TREESITTER
-#+begin_src emacs-lisp
-(use-package! typescript-mode
-  :mode ("\\.tsx\\'" . typescript-tsx-tree-sitter-mode)
-  :config
-  (setq typescript-indent-level 2)
-
-  (define-derived-mode typescript-tsx-tree-sitter-mode typescript-mode "TypeScript TSX"
-    (setq-local indent-line-function 'rjsx-indent-line))
-
-  (add-hook! 'typescript-tsx-tree-sitter-mode-local-vars-hook
-             #'+javascript-init-lsp-or-tide-maybe-h
-             #'rjsx-minor-mode)
-  (map! :map typescript-tsx-tree-sitter-mode-map
-        "<" 'rjsx-electric-lt
-        ">" 'rjsx-electric-gt))
-
-(after! tree-sitter
-  (add-to-list 'tree-sitter-major-mode-language-alist '(typescript-tsx-tree-sitter-mode . tsx)))
 #+end_src

@@ -90,7 +90,7 @@ bspc rule -a emacsclient desktop='^3' state=fullscreen border=off focus=on &
 
 * WINDOW COMPOSITOR
 #+BEGIN_SRC sh
-# picom --experimental-backends &
+picom --experimental-backends &
 #+END_SRC
 
 * Brightness Controll Access

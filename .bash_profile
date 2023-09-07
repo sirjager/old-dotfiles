@@ -1,6 +1,5 @@
 # ~/.bash_profile
 
-
 # Cleanup
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -53,7 +52,5 @@ export GOPATH="/mnt/storage/workspace/goenv"
 export GOBIN="/mnt/storage/workspace/goenv/bin"
 export GOCACHE="/mnt/storage/workspace/goenv/cache"
 export PNPM_HOME="/mnt/storage/programs/pnpm"
-
-[ -f ~/.local/bin/startup ] && ~/.local/bin/startup
 
 [ -f ~/.bashrc ] && . ~/.bashrc
