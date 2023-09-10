@@ -97,9 +97,9 @@ picom --experimental-backends &
 In order light to change brightness, we need to add following line to bottom of the /etc/sudoers
 jager ALL=NOPASSWD:/usr/bin/chmod
 It will allow us to execute chmod command without sudo password. Then we can gives write permission to brightness file.
-So when we change brightness using light, it will be able to write brightness into /sys/class/backlight/amdgpu_bl0/brightness
+So when we change brightness using light, it will be able to write brightness into /sys/class/backlight/amdgpu_bl2/brightness
 #+BEGIN_SRC sh
-sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &
+sudo chmod a+rw /sys/class/backlight/amdgpu_bl2/brightness &
 #+END_SRC
 
 * Authentication Agent

@@ -43,7 +43,7 @@ bspc rule -a emacsclient desktop='^3' state=fullscreen border=off focus=on &
 
 picom --experimental-backends &
 
-sudo chmod a+rw /sys/class/backlight/amdgpu_bl0/brightness &
+sudo chmod a+rw /sys/class/backlight/amdgpu_bl2/brightness &
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
