@@ -20,6 +20,11 @@ lvim.plugins = {
   -- colorizer
 	"norcalli/nvim-colorizer.lua",
 
+  -- database client
+  "tpope/vim-dadbod",
+  "kristijanhusak/vim-dadbod-ui",
+  "kristijanhusak/vim-dadbod-completion",
+
   -- github
 	"kdheepak/lazygit.nvim",
 
