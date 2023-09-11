@@ -258,6 +258,10 @@ super + q; p; r
 super + q; p; g
     ~/.local/bin/bropass --notify --generate --copy &
 
+# Generate new password
+super + q; p; s
+    ~/.local/bin/bropass --sync --notify &
+
 # Set window private
 super + ctrl + z
     bspc node -g private

@@ -10,7 +10,7 @@ export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
 export HISTFILE="$HOME/.local/state/shell_history"
 # export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export USERXSESSION="$XDG_CACHE_HOME/X11/xsession"
-export USERxSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
+export USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
 export ALTUSERXSESSION="$XDG_CACHE_HOME/X11/Xsession"
 export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
@@ -28,7 +28,7 @@ export KODI_DATA="$XDG_DATA_HOME/kodi"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
 
-export EDITOR="nvim" 
+export EDITOR="lvim" 
 export ALTERNATE_EDITOR="nvim"
 export TERMINAL=alacritty
 export BROWSER=brave #

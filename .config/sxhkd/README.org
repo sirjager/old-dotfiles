@@ -547,6 +547,15 @@ super + q; p; g
     ~/.local/bin/bropass --notify --generate --copy &
 #+end_src
 
+*** SYNC WITH PASSWORD MANAGER
+#+begin_src sh
+# Generate new password
+super + q; p; s
+    ~/.local/bin/bropass --sync --notify &
+#+end_src
+
+
+
 
 * WINDOW FLAGS MARK LOCKED STICKY PRIVATE
 **   PRIVATE

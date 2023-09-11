@@ -29,6 +29,7 @@ SELECT="" # Get password and copy to clipboard | or type
 ADD=""  # Add new username and password to bitwarden
 REMOVE="" # Remove/Delete saved creds from bitwarden
 GENERATE="" # Generate new password and copy to clipboard
+SYNCNOW="" # To sync with bitwaren
 
 rbw unlock
 
@@ -77,11 +78,26 @@ while [ $# -gt 0 ]; do
             REMOVE="true"
             shift
             ;;
+        --sync)
+            SYNCNOW="true"
+            shift
+            ;;
         *)
             shift
             ;;
     esac
 done
+
+
+sync_now(){
+  if [ "$SYNCNOW" = "true" ]; then
+    rbw sync
+    notify "Password Manager Synced"
+  fi
+}
+
+
+sync_now
 
 if [ "$GENERATE" = "true" ]; then 
     if [ -z "$LENGTH" ]; then
