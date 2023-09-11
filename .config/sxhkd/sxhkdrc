@@ -207,8 +207,8 @@ super + d; n
     nemo &
 
 # Show bookmark manager
-super + q; b; m
-    ~/.local/bin/bookmark --dmenu --type --copy --notify &
+# super + q; b; m
+    # ~/.local/bin/bookmark-manager --dmenu --type --copy --notify &
 
 # Visit and copy bookmark
 super + q; b; b
@@ -228,11 +228,11 @@ super + q; b; t
 
 # Visit history in browser
 super + q; h; h
-    ~/.local/bin/brohistory --bro="brave" --bro-limit=2000 --dmenu --prompt="visit link in $BROWSER" --copy --visit --visit-in=brave &
+    ~/.local/bin/brohistory --bro="brave" --bro-limit=999999999 --dmenu --prompt="visit link in $BROWSER" --copy --visit --visit-in=brave &
 
 # Type history link
 super + q; h; t
-    ~/.local/bin/brohistory --bro="brave" --bro-limit=2000 --dmenu --prompt="select link" --copy --type &
+    ~/.local/bin/brohistory --bro="brave" --bro-limit=999999999 --dmenu --prompt="select link" --copy --type &
 
 # Emoji selector
 super + q; e

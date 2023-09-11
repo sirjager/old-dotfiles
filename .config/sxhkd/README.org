@@ -457,8 +457,8 @@ super + d; n
 *** SHOW BOOKMARK MANAGER
 #+begin_src sh
 # Show bookmark manager
-super + q; b; m
-    ~/.local/bin/bookmark --dmenu --type --copy --notify &
+# super + q; b; m
+    # ~/.local/bin/bookmark-manager --dmenu --type --copy --notify &
 #+end_src
 
 *** VISIT AND COPY BOOKMARK
@@ -494,14 +494,14 @@ super + q; b; t
 #+begin_src sh
 # Visit history in browser
 super + q; h; h
-    ~/.local/bin/brohistory --bro="brave" --bro-limit=2000 --dmenu --prompt="visit link in $BROWSER" --copy --visit --visit-in=brave &
+    ~/.local/bin/brohistory --bro="brave" --bro-limit=999999999 --dmenu --prompt="visit link in $BROWSER" --copy --visit --visit-in=brave &
 #+end_src
 
 *** TYPE HISTORY
 #+begin_src sh
 # Type history link
 super + q; h; t
-    ~/.local/bin/brohistory --bro="brave" --bro-limit=2000 --dmenu --prompt="select link" --copy --type &
+    ~/.local/bin/brohistory --bro="brave" --bro-limit=999999999 --dmenu --prompt="select link" --copy --type &
 #+end_src
 
 ** EMOJI SELECTOR

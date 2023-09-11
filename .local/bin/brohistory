@@ -34,10 +34,10 @@ FIREFOX_HISTORY="false"
 CHROME_HISTORY="false"
 CHROMIUM_HISTORY="false"
 
-BRAVE_HISTORY_LIMIT=2000
-FIREFOX_HISTORY_LIMIT=2000
-CHROME_HISTORY_LIMIT=2000
-CHROMIUM_HISTORY_LIMIT=2000
+BRAVE_HISTORY_LIMIT=5000
+FIREFOX_HISTORY_LIMIT=5000
+CHROME_HISTORY_LIMIT=5000
+CHROMIUM_HISTORY_LIMIT=5000
 
 BRAVE_HISTORY_FILE="$HOME/.config/BraveSoftware/Brave-Browser/Default/History"
 BRAVE_HISTORY_EXPORT="$BROHISTORY_DIR/exported-brave.brohistory"
@@ -65,11 +65,6 @@ query_database(){
     sqlite3 "$database" "$query"
 }
  
-clone_database(){
-    browser="$1"; database="$2";
-    [ -e "$BROHISTORY_DIR/$browser.history" ] && rm -f "$BROHISTORY_DIR/$browser.history"
-    cp -f "$database" "$BROHISTORY_DIR/$browser.history"
-}
 
 clean_up(){
     [ -e "$BROHISTORY_DIR/brave.history" ] && rm -f "$BROHISTORY_DIR/brave.history"
@@ -81,7 +76,13 @@ clean_up(){
     [ -e "$BROHISTORY_DIR/exported-firefox.brohistory" ] && rm -f "$BROHISTORY_DIR/exported-firefox.brohistory"
     [ -e "$BROHISTORY_DIR/exported-chromium.brohistory" ] && rm -f "$BROHISTORY_DIR/exported-chromium.brohistory"
 }
- 
+
+clone_database(){
+    browser="$1"; database="$2";
+    [ -e "$BROHISTORY_DIR/$browser.history" ] && rm -f "$BROHISTORY_DIR/$browser.history"
+    cp -f "$database" "$BROHISTORY_DIR/$browser.history"
+}
+
 append_browser_history() {
     input_file="$1"
     cat "$input_file" >> "$BROHISTORY_FILE"
@@ -310,7 +311,7 @@ if [ "$CHROMIUM_HISTORY" = "true" ]; then
 fi
 
 # Cleaing up exported browsers history from each browser
-clean_up
+# clean_up
 
 # Adding numbers to each line
 awk '{print "🕛 his:", $0}' "$BROHISTORY_FILE" > "$BROHISTORY_FILE.tmp" && mv "$BROHISTORY_FILE.tmp" "$BROHISTORY_FILE"
