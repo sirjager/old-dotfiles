@@ -465,7 +465,7 @@ super + d; n
 #+begin_src sh
 # Visit and copy bookmark
 super + q; b; b
-    ~/.local/bin/bookmark --select --visit --copy --notify &
+    ~/.local/bin/bookmark --select --brave --google --visit --copy --notify &
 #+end_src
 
 *** ADD BOOKMARK
@@ -486,7 +486,7 @@ super + q; b; r
 #+begin_src sh
 # Type Bookmark
 super + q; b; t
-    ~/.local/bin/bookmark --select --type --copy &
+    ~/.local/bin/bookmark --select --brave --google --type --copy &
 #+end_src
 
 ** HISTORY MANAGER

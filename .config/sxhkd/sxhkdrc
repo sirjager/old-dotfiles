@@ -212,7 +212,7 @@ super + d; n
 
 # Visit and copy bookmark
 super + q; b; b
-    ~/.local/bin/bookmark --select --visit --copy --notify &
+    ~/.local/bin/bookmark --select --brave --google --visit --copy --notify &
 
 # Add Bookmark
 super + q; b; a
@@ -224,7 +224,7 @@ super + q; b; r
 
 # Type Bookmark
 super + q; b; t
-    ~/.local/bin/bookmark --select --type --copy &
+    ~/.local/bin/bookmark --select --brave --google --type --copy &
 
 # Visit history in browser
 super + q; h; h
