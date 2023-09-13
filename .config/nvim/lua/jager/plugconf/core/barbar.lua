@@ -1,7 +1,5 @@
-local packagename = "barbar"
-local ok, pkg = pcall(require, packagename)
+local ok, pkg = pcall(require, "barbar")
 if not ok then
-	vim.notify({ packagename .. " is not installed", "warn" })
 	return
 end
 

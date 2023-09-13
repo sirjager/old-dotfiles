@@ -1,7 +1,5 @@
-local pkgname = "lint"
-local ok, lint = pcall(require, pkgname)
+local ok, lint = pcall(require, "lint")
 if not ok then
-	vim.notify({ pkgname .. " is not installed", "warn" })
 	return
 end
 

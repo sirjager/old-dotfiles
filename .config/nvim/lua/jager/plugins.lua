@@ -18,7 +18,13 @@ local plugins = {
 	"rcarriga/nvim-notify",
 
 	-- tools/utils
-	"folke/which-key.nvim",
+	{
+		"folke/which-key.nvim",
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+		end,
+	},
 
 	-- windows navigation works well with tmux
 	{ "christoomey/vim-tmux-navigator", lazy = false },
@@ -36,6 +42,7 @@ local plugins = {
 	-- colorschemes
 	"navarasu/onedark.nvim",
 	"morhetz/gruvbox",
+	"Mofiqul/dracula.nvim",
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 	{ "AlphaTechnolog/pywal.nvim", as = "pywal" },
 
@@ -60,6 +67,10 @@ local plugins = {
 	"onsails/lspkind-nvim", -- vscode like icons for autocompletion popup menu
 	"rafamadriz/friendly-snippets",
 
+	-- code debuging: sudo pacman -Syu lldb
+	"mfussenegger/nvim-dap",
+	"rcarriga/nvim-dap-ui",
+
 	-- lsp
 	"folke/trouble.nvim",
 	"williamboman/mason.nvim",
@@ -67,6 +78,7 @@ local plugins = {
 	"williamboman/mason-lspconfig.nvim",
 	"jose-elias-alvarez/null-ls.nvim",
 	"jayp0521/mason-null-ls.nvim",
+
 	-- inhanced ui and improved lsp experience
 	{
 		"glepnir/lspsaga.nvim",
@@ -77,11 +89,23 @@ local plugins = {
 	-- language specific
 	"jose-elias-alvarez/typescript.nvim", -- for advance typescript features
 
+	-- rust
+	"simrat39/rust-tools.nvim",
+	{
+		"saecki/crates.nvim",
+		ft = { "rust", "toml" },
+		config = function(_, opts)
+			local crates = require("crates")
+			crates.setup(opts)
+			crates.show()
+		end,
+	},
+
 	-- go auto structs and more
 	{
 		"olexsmir/gopher.nvim",
 		ft = "go",
-		config = function(_, opts)
+		config = function()
 			require("gopher").setup()
 		end,
 		build = function()
@@ -146,7 +170,7 @@ notify.setup({
 	minimum_width = 50,
 	render = "compact", -- default, minimal, simple, compact
 	stages = "fade_in_slide_out", -- fade_in_slide_out, fade, slide, static
-	timeout = 5000,
+	timeout = 2500,
 	top_down = true,
 })
 

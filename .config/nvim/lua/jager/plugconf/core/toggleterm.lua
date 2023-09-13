@@ -1,11 +1,9 @@
-local pkgname = "toggleterm"
-local ok, toggleterm = pcall(require, pkgname)
+local ok, pkg = pcall(require, "toggleterm")
 if not ok then
-	vim.notify({ pkgname .. " is not installed", "warn" })
 	return
 end
 
-toggleterm.setup({
+pkg.setup({
 	size = 20,
 	open_mapping = [[<c-\>]],
 	hide_numbers = true,

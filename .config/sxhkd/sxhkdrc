@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Reload sxhkd
 ctrl + shift + Escape
     pkill -usr1 -x sxhkd &
@@ -119,17 +121,14 @@ super + shift + i
 super + shift + f
     ~/.local/bin/toggle-polybar &
 
-# Alacritty
-super + Return
-  alacritty &
 
-# Xfce4 Terminal
-super + shift + Return
-  xfce4-terminal &
+# Terminal: Alacritty, Xfce4
+super + {_,shift + } Return
+  { alacritty, xfce4-terminal } &
 
-# Alacritty terminal with last tmux session
+# Primary Terminal with last tmux session
 alt + {_,shift + } Return
-  ~/.local/bin/float-window {alacritty -e "tmux attach", alacritty -e "tmux new"} &
+  kitty sh -c { "tmux attach", "tmux new" } &
 
 # Screenshot
 super + Print
@@ -250,15 +249,23 @@ super + q; p; p
 super + q; p; a
     ~/.local/bin/bropass --notify --add --copy &
 
+# Add new password words only / phrase only
+super + q; p; w
+    ~/.local/bin/bropass --notify --add --copy --phrase &
+
 # Remove password
 super + q; p; r
     ~/.local/bin/bropass --notify --remove --copy &
+
+# Generate new password phrase only
+super + q; p; h
+    ~/.local/bin/bropass --notify --generate --phrase --copy &
 
 # Generate new password
 super + q; p; g
     ~/.local/bin/bropass --notify --generate --copy &
 
-# Generate new password
+# Sync with bitwarden 
 super + q; p; s
     ~/.local/bin/bropass --sync --notify &
 

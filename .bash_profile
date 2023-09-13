@@ -1,6 +1,5 @@
 # ~/.bash_profile
 
-# Cleanup
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
@@ -27,21 +26,24 @@ export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export KODI_DATA="$XDG_DATA_HOME/kodi"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml" # default ~/.config/starship.toml
 
-export EDITOR="lvim" 
-export ALTERNATE_EDITOR="nvim"
-export TERMINAL=alacritty
-export BROWSER=brave #
-export LSCOLORS=0xGxBxDxCxEgEdxbxgxcxd	# terminal colors releated
-export PG_COLOR=always	# postgres
+export EDITOR="nvim" 
+export ALTERNATE_EDITOR="lvim"
+export TERMINAL="kitty"
+export BROWSER="brave"
+export LSCOLORS="0xGxBxDxCxEgEdxbxgxcxd	" # terminal colors releated
+export PG_COLOR="always" # postgres
 export _JAVA_AWT_WM_NONREPARENTING=1 # For Java Applications
-export XMODIFIERS='@im=fcitx'	# multilang keyboard
-export GTK_IM_MODULE='fcitx'	# multilang keyboard
-export SDL_IM_MODULE='fcitx'	# multilang keyboard
-export QT_IM_MODULE='fcitx'		# multilang keyboard
-export GIT_DISCOVERY_ACROSS_FILESYSTEM=1 	# github
-export CHROME_EXECUTABLE='/usr/bin/chromium'	# Crome executable path
-# export DRI_PRIME=1 	# For graphic card
+export XMODIFIERS='@im=fcitx' # multilang keyboard
+export GTK_IM_MODULE='fcitx' # multilang keyboard
+export SDL_IM_MODULE='fcitx' # multilang keyboard
+export QT_IM_MODULE='fcitx' # multilang keyboard
+export GIT_DISCOVERY_ACROSS_FILESYSTEM=1  # github
+export CHROME_EXECUTABLE='/usr/bin/chromium' # Crome executable path
+# export DRI_PRIME=1 # For graphic card
 
 # Go programming language
 export GO111MODULE="on"
@@ -54,3 +56,7 @@ export GOCACHE="/mnt/storage/workspace/goenv/cache"
 export PNPM_HOME="/mnt/storage/programs/pnpm"
 
 [ -f ~/.bashrc ] && . ~/.bashrc
+
+[ -f "$CARGO_HOME/env" ] && . "$CARGO_HOME/env"
+
+

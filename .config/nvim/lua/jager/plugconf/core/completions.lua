@@ -1,30 +1,15 @@
-local pkgname = "cmp"
-local ok, cmp = pcall(require, pkgname)
-if not ok then
-	vim.notify({
-		pkgname .. " is not installed",
-		"warn",
-	})
+local ok1, cmp = pcall(require, "cmp")
+if not ok1 then
 	return
 end
 
-pkgname = "luasnip"
-local ok, luasnip = pcall(require, pkgname)
-if not ok then
-	vim.notify({
-		pkgname .. " is not installed",
-		"warn",
-	})
+local ok2, luasnip = pcall(require, "luasnip")
+if not ok2 then
 	return
 end
 
-pkgname = "lspkind"
-local ok, lspkind = pcall(require, pkgname)
-if not ok then
-	vim.notify({
-		pkgname .. " is not installed",
-		"warn",
-	})
+local ok3, lspkind = pcall(require, "lspkind")
+if not ok3 then
 	return
 end
 
@@ -49,7 +34,7 @@ cmp.setup({
 		["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
-		["<C-Space>"] = cmp.mapping(cmp.mapping.complete()), -- autocomple suggestion popupmenu toggle
+		["<A-q>"] = cmp.mapping(cmp.mapping.complete()), -- autocomple suggestion popupmenu toggle
 		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
 		["<C-e>"] = cmp.mapping({
@@ -59,9 +44,6 @@ cmp.setup({
 
 		-- Accept currently selected item. If none selected, `select` first item.
 		-- Set `select` to `false` to only confirm explicitly selected items.
-		["<CR>"] = cmp.mapping.confirm({
-			select = true,
-		}),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
@@ -109,6 +91,7 @@ cmp.setup({
 		{ name = "luasnip" }, -- snippets
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "path" }, -- file system paths
+		{ name = "crates" }, -- rust package manager
 	}),
 
 	confirm_opts = {

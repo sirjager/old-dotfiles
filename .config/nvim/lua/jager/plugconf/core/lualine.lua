@@ -1,11 +1,5 @@
-local packagename = "lualine"
-
-local ok, lualine = pcall(require, packagename)
+local ok, lualine = pcall(require, "lualine")
 if not ok then
-	vim.notify({
-		packagename .. " is not installed",
-		"warn",
-	})
 	return
 end
 

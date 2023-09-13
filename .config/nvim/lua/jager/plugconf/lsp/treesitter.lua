@@ -1,33 +1,28 @@
-local packagename = "nvim-treesitter.configs"
-local ok, treesitter = pcall(require, packagename)
+local ok, pkg = pcall(require, "nvim-treesitter.configs")
 if not ok then
-	vim.notify({ packagename .. " is not installed" }, "warn")
 	return
 end
 
-treesitter.setup({
-	-- A list of parser names, or "all"
+pkg.setup({
 	ensure_installed = {
 		"bash",
-		"css",
-		"dockerfile",
-		"gitignore",
 		"go",
-		"gomod",
 		"html",
 		"json",
 		"lua",
 		"markdown",
 		"markdown_inline",
-		"proto",
 		"python",
-		"sql",
+		"rust",
+		"vim",
 		"yaml",
 	},
 
 	-- Install parsers syncronously (only applicable to `ensure_installed`)
-	sync_install = true,
-	auto_install = false,
+	sync_install = false,
+	auto_install = true,
+
+	indent = { enable = true },
 
 	highlights = {
 		enable = true,
@@ -36,7 +31,7 @@ treesitter.setup({
 
 	refactor = {
 		highlight_current_scope = {
-			enable = false,
+			enable = true,
 		},
 
 		highlight_definitions = {
@@ -46,7 +41,6 @@ treesitter.setup({
 
 		smart_rename = {
 			enable = true,
-			-- Assign keymaps to false to disable them, e.g. `smart_rename = false`.
 			keymaps = {
 				smart_rename = "grr",
 			},
@@ -83,11 +77,8 @@ treesitter.setup({
 
 	rainbow = {
 		enable = true,
-		-- list of languages you want to disable the plugin for
 		disable = { "cpp" },
-		-- Which query to use for finding delimiters
 		query = "rainbow-parens",
-		-- Highlight the entire buffer all at once
 		strategy = require("ts-rainbow").strategy.global,
 	},
 })

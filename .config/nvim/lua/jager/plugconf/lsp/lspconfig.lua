@@ -1,51 +1,19 @@
-local pkgname = "lspconfig"
-local ok, lspconfig = pcall(require, pkgname)
+local ok, lspconfig = pcall(require, "lspconfig")
 if not ok then
-	vim.notify({
-		pkgname .. " is not installed",
-		"warn",
-	})
 	return
 end
 
-pkgname = "cmp_nvim_lsp"
-local ok, cmp_nvim_lsp = pcall(require, pkgname)
-if not ok then
-	vim.notify({
-		pkgname .. " is not installed",
-		"warn",
-	})
-	return
-end
-
-pkgname = "typescript"
-local ok, typescript = pcall(require, pkgname)
-if not ok then
-	vim.notify({
-		pkgname .. " is not installed",
-		"warn",
-	})
+local ok2, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not ok2 then
 	return
 end
 
 -- enable keybinds for available lsp servers
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-	-- Mappings.
-	local opts = { noremap = true, silent = true, buffer = bufnr }
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
-	vim.keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
-	vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
-	vim.keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
-	vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
-	vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
-	vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
-	vim.keymap.set("n", "<leader>D", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
-	vim.keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
-	vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
-	vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
-	vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
-	vim.keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
+	-- example mappings. (my mappings are key in keymaps.lua)
+	--[[ local opts = { noremap = true, silent = true, buffer = bufnr } ]]
+	--[[ vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor ]]
 end
 
 -- enable autocompletion capabilities
@@ -115,7 +83,6 @@ lspconfig.lua_ls.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 	settings = {
-		-- custom settings for lua
 		Lua = {
 			-- make the language server recognize "vim" global
 			diagnostics = {
@@ -138,6 +105,54 @@ lspconfig.tsserver.setup({
 	init_options = {
 		perferences = {
 			disableSuggestions = true,
+		},
+	},
+})
+
+local ok3, rust_tools = pcall(require, "rust-tools")
+if not ok3 then
+	return
+end
+
+lspconfig.rust_analyzer.setup({
+	capabilities = capabilities,
+	on_attach = function(_, bufnr)
+		vim.keymap.set("n", "<leader>lh", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+		vim.keymap.set("n", "<leader>la", rust_tools.code_action_group.code_action_group, { buffer = bufnr })
+	end,
+	filetypes = { "rust" },
+	root_dir = util.root_pattern("Cargo.toml"),
+	settings = {
+		["rust-analyzer"] = {
+			cargo = {
+				allFeatures = true,
+			},
+		},
+	},
+})
+
+local mason_registry = require("mason-registry")
+local lldb = mason_registry.get_package("codelldb")
+local lldb_ext_path = lldb:get_install_path() .. "/extension/"
+local lldbpath = lldb_ext_path .. "adapter/codelldb"
+local liblldb_path = lldb_ext_path .. "lldb/lib/liblldb.dylib"
+
+rust_tools.setup({
+	dap = {
+		adapter = require("rust-tools.dap").get_codelldb_adapter(lldbpath, liblldb_path),
+	},
+
+	server = {
+		capabilities = capabilities,
+		on_attach = function(_, bufnr)
+			vim.keymap.set("n", "<leader>lh", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+			vim.keymap.set("n", "<leader>la", rust_tools.code_action_group.code_action_group, { buffer = bufnr })
+		end,
+	},
+
+	tools = {
+		hover_actions = {
+			auto_focus = true,
 		},
 	},
 })

@@ -1,7 +1,5 @@
-local pkg1 = "nvim-autopairs"
-local ok, autopairs = pcall(require, pkg1)
-if not ok then
-	vim.notify({ pkg1 .. " is not installed" }, "warn")
+local ok1, autopairs = pcall(require, "nvim-autopairs")
+if not ok1 then
 	return
 end
 
@@ -26,10 +24,8 @@ autopairs.setup({
 	},
 })
 
-local pkg2 = "cmp"
-local ok, cmp = pcall(require, pkg2)
-if not ok then
-	vim.notify({ pkg2 .. " is not installed" }, "warn")
+local ok2, cmp = pcall(require, "cmp")
+if not ok2 then
 	return
 end
 

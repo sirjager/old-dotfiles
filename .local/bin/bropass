@@ -29,7 +29,8 @@ SELECT="" # Get password and copy to clipboard | or type
 ADD=""  # Add new username and password to bitwarden
 REMOVE="" # Remove/Delete saved creds from bitwarden
 GENERATE="" # Generate new password and copy to clipboard
-SYNCNOW="" # To sync with bitwaren
+SYNCNOW="" # To sync with bitwarden
+PHRASE="" # Generate password only using words
 
 rbw unlock
 
@@ -153,8 +154,14 @@ if [ "$ADD" = "true" ]; then
     PROMPT_ADD_CONFIRM="Is this correct? Entry: $ENTRY_NAME | Username: $USERNAME | Length: $LENGTH"
     CONFIRM_ADD=$(printf "yes\nno" | rofi -dmenu -p "$PROMPT_ADD_CONFIRM" -theme "$ROFI_THEME")
     [ "$CONFIRM_ADD" != "yes" ] && exit 0
-    rbw generate "$LENGTH" "$ENTRY_NAME" "$USERNAME" 
+    if [ "$PHRASE" = "true" ]; then 
+      rbw generate "$LENGTH" "$ENTRY_NAME" "$USERNAME" --diceware
+    else 
+      rbw generate "$LENGTH" "$ENTRY_NAME" "$USERNAME"
+    fi
+
     PASSWORD="$(rbw get "$ENTRY_NAME")"
+
     if [ $? -eq 0 ]; then
         notify "✅ Add new credentials for $ENTRY_NAME" "Copied to clioboard"
         PASSWORD="$(rbw get "$ENTRY_NAME")"

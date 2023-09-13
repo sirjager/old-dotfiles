@@ -1,10 +1,5 @@
-local pkgname = "indent_blankline"
-local ok, pkg = pcall(require, pkgname)
+local ok, pkg = pcall(require, "indent_blankline")
 if not ok then
-	vim.notify({
-		pkgname .. " is not installed",
-		"warn",
-	})
 	return
 end
 

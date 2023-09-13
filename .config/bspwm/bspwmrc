@@ -1,8 +1,8 @@
 #!/bin/sh
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-# bspc monitor -d ⼀ ⼆ 三 四 五 六 七 ⼋ ⼏ ⼗
-bspc monitor -d 1 2 3 4 5 6 7 8 9 0
+bspc monitor -d ⼀ ⼆ 三 四 五 六 七 ⼋ ⼏ ⼗
+# bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 
 xset r rate 250 50
 
@@ -27,6 +27,8 @@ bspc config gapless_monocle     true &
 bspc rule -a mpv state=fullscreen focus=on border=off &
 
 bspc rule -a Yad state=floating &
+bspc rule -a kitty state=floating focus=on &
+bspc rule -a Alacritty state=floating focus=on &
 bspc rule -a scrcpy state=floating &
 bspc rule -a polkit-gnome-authentication-agent-1 border=off state=floating &
 bspc rule -a polkit-kde-authentication-agent-1 border=off state=floating &
@@ -41,6 +43,9 @@ bspc rule -a xdm-app border=off state=floating focus=on &
 bspc rule -a emacs desktop='^3' state=fullscreen border=off focus=on &
 bspc rule -a emacsclient desktop='^3' state=fullscreen border=off focus=on &
 
+
+
+
 picom --experimental-backends &
 
 sudo chmod a+rw /sys/class/backlight/amdgpu_bl2/brightness &
@@ -51,11 +56,11 @@ sudo chmod a+rw /sys/class/backlight/amdgpu_bl2/brightness &
 
 # /usr/bin/nm-applet --indicator &
 
-/usr/bin/dunst &
-
-/usr/bin/emacs --daemon &
+[ -f /usr/bin/dunst ] && /usr/bin/dunst &
+[ -f /usr/bin/emacs ] && /usr/bin/emacs --daemon &
 
 ~/.local/bin/low-battery &
+
 
 # fcitx -d &
 

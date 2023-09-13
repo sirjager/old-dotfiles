@@ -11,6 +11,7 @@ BSPWM="" # "true" to enable setting colors to bspwm
 DUNST="" # "true" to enable dumping colors to dunstrc
 POLYBAR="" # "true" to enable dumping colors to polybar
 NOTIFY="" # "true" to enable notifitions confirmation, messages and errors
+ECHO="true" # echos wallpaper
 
 # Wallpaper default set to wallpaper dir
 WALLPAPER="$MYWALLPAPERS" # Path to wallpaper (image.* to ignore extension) or wallpaper directory
@@ -23,6 +24,10 @@ notify(){
 
 while [ $# -gt 0 ]; do
     case "$1" in 
+        -echo)
+          ECHO="true"
+          shift
+          ;;
         -notify)
             NOTIFY="true"
             shift
@@ -160,3 +165,5 @@ elif [ -d "$WALLPAPER" ]; then
     set_random_wallpaper "$WALLPAPER"
     exit 0
 fi
+
+exit 0

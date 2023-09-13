@@ -1,10 +1,5 @@
-local packagename = "neoscroll"
-local ok, pkg = pcall(require, packagename)
+local ok, pkg = pcall(require, "neoscroll")
 if not ok then
-	vim.notify({
-		packagename .. " is not installed",
-		"warn",
-	})
 	return
 end
 

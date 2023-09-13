@@ -1,22 +1,12 @@
-local pkgname = "nvim-tree"
-local ok, pkg = pcall(require, pkgname)
+local name = "nvim-tree"
+local ok, pkg = pcall(require, name)
 if not ok then
-	vim.notify({
-		packagename .. " is not installed",
-		"warn",
-	})
 	return
 end
 
--- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
--- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
-
--- local opts  = { noremap = true, silent = true }
--- vim.keymap.set('n', '<c-n>', ':NvimTreeFindFileToggle<CR>', opts)
 
 pkg.setup({
 	sort_by = "case_sensitive",
@@ -25,16 +15,12 @@ pkg.setup({
 		width = 35,
 		side = "left",
 		signcolumn = "yes",
-
 		number = true,
 		cursorline = true,
 		relativenumber = true,
-
 		debounce_delay = 15,
-		hide_root_folder = false,
 		centralize_selection = true,
 		preserve_window_proportions = true,
-
 		float = {
 			enable = false,
 			quit_on_focus_loss = true,
@@ -48,11 +34,10 @@ pkg.setup({
 			},
 		},
 	},
-
 	renderer = {
 		add_trailing = false,
 		highlight_git = true,
-		group_empty = false, -- shows in one line is single child
+		group_empty = false,
 		indent_width = 2,
 		indent_markers = {
 			enable = true,

@@ -42,7 +42,7 @@ PROMPT="visit in $BROWSER"
 ENABLE_STANDALONE="true" # standalone, browser independent
 ENABLE_BRAVE="true"
 ENABLE_GOOGLE="true"
-ENABLE_CHROMIUM="false"
+ENABLE_CHROMIUM="true"
 ENABLE_FIREFOX="false" # not yet implemented
 
 

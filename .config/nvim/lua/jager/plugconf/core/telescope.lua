@@ -1,19 +1,43 @@
-local packagename = "telescope"
-local ok, telescope = pcall(require, packagename)
+local ok, pkg = pcall(require, "telescope")
 if not ok then
-	vim.notify({
-		packagename .. " is not installed",
-		"warn",
-	})
 	return
 end
 
 local actions = require("telescope.actions")
 
-telescope.load_extension("media_files")
+pkg.load_extension("media_files")
 
-telescope.setup({
-	defaults = {},
+pkg.setup({
+	defaults = {
+		vimgrep_arguments = {
+			"rg",
+			"-L",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+		},
+	},
+
+	file_sorter = require("telescope.sorters").get_fuzzy_file,
+	file_ignore_patterns = { "node_modules", ".git" },
+	generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+
+	path_display = { "truncate" },
+	winblend = 0,
+	border = {},
+
+	borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+	color_devicons = true,
+
+	set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+	file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+	grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+	qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+	buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+
 	pickers = {
 		oldfiles = {
 			prompt_title = "Recent files",
@@ -74,6 +98,7 @@ telescope.setup({
 		},
 
 		n = {
+			["q"] = actions.close,
 			["<esc>"] = actions.close,
 			["<CR>"] = actions.select_default,
 			["<C-x>"] = actions.select_horizontal,
@@ -106,10 +131,15 @@ telescope.setup({
 		},
 	},
 
+	extensions_list = { "themes", "terms", "fzf" },
 	extensions = {
+		fzf = {
+			fuzzy = true,
+			override_generic_sorter = true,
+			override_file_sorter = true,
+			case_mode = "smart_case",
+		},
 		media_files = {
-			-- filetypes whitelist
-			-- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
 			filetypes = {
 				"png",
 				"webp",

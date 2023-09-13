@@ -1,11 +1,9 @@
-local packagename = "Comment"
-local ok, comment = pcall(require, packagename)
+local ok, pkg = pcall(require, "Comment")
 if not ok then
-	vim.notify({ packagename .. " is not installed" }, "warn")
 	return
 end
 
-comment.setup({
+pkg.setup({
 	pre_hook = function(ctx)
 		local U = require("Comment.utils")
 

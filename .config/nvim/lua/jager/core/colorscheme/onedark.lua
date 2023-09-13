@@ -1,11 +1,6 @@
 -- Use a protected call so we don't error out on first use
-local pkgname = "onedark"
-local ok, pkg = pcall(require, pkgname)
+local ok, pkg = pcall(require, "onedark")
 if not ok then
-	vim.notify({
-		pkgname .. " is not installed",
-		"warn",
-	})
 	return
 end
 

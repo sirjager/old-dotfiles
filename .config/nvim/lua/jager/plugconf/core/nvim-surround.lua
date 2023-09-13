@@ -1,10 +1,5 @@
-local pkgname = "nvim-surround"
-local ok, pkg = pcall(require, pkgname)
+local ok, pkg = pcall(require, "nvim-surround")
 if not ok then
-	vim.notify({
-		packagename .. " is not installed",
-		"warn",
-	})
 	return
 end
 
