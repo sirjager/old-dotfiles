@@ -34,7 +34,7 @@ cmp.setup({
 		["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
-		["<A-q>"] = cmp.mapping(cmp.mapping.complete()), -- autocomple suggestion popupmenu toggle
+		["<C-Space>"] = cmp.mapping(cmp.mapping.complete()), -- autocomple suggestion popupmenu toggle
 		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
 		["<C-e>"] = cmp.mapping({

@@ -67,5 +67,4 @@ sudo chmod a+rw /sys/class/backlight/amdgpu_bl2/brightness &
 
 # rog-control-center &
 
-~/.local/bin/wallpaper \
-  -bspwm -wall="/mnt/storage/wallpaper/nordic/84.png" &
+~/.local/bin/wallpaper -wall="/mnt/storage/wallpaper/nordic/58.png" &
