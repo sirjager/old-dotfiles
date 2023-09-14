@@ -3,4 +3,7 @@ if not ok then
 	return
 end
 
-pkg.setup({ "*" })
+pkg.setup({
+	"*", -- Highlight all files, but customize some others.
+	"!vim", -- Exclude vim from highlighting.
+})

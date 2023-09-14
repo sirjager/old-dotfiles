@@ -17,6 +17,12 @@ local plugins = {
 	"nvim-lua/plenary.nvim",
 	"rcarriga/nvim-notify",
 
+	--[[ { ]]
+	--[[ 	"glepnir/dashboard-nvim", ]]
+	--[[ 	event = "VimEnter", ]]
+	--[[ 	dependencies = { "nvim-tree/nvim-web-devicons" }, ]]
+	--[[ }, ]]
+
 	-- tools/utils
 	{
 		"folke/which-key.nvim",
@@ -37,6 +43,7 @@ local plugins = {
 	"nvim-tree/nvim-tree.lua",
 	"akinsho/bufferline.nvim",
 	"nvim-lualine/lualine.nvim",
+	"windwp/windline.nvim",
 	"nvim-tree/nvim-web-devicons",
 
 	-- colorschemes
@@ -133,7 +140,7 @@ local plugins = {
 		"olexsmir/gopher.nvim",
 		ft = "go",
 		config = function()
-			require("gopher").setup()
+			require("gopher").setup({})
 		end,
 		build = function()
 			vim.cmd([[silent! GoInstallDeps]])
@@ -177,8 +184,7 @@ require("lazy").setup(plugins, opts)
 vim.opt.termguicolors = true
 
 -- Notification
-local packagename = "notify"
-local ok, notify = pcall(require, packagename)
+local ok, notify = pcall(require, "notify")
 if not ok then
 	return
 end

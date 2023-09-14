@@ -1,7 +1,6 @@
 -- :help options
 
 local options = {
-
 	ai = true, -- auto indent
 	autoread = true,
 	background = "dark",

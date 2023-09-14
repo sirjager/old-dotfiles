@@ -7,7 +7,6 @@ end
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local format = null_ls.builtins.formatting
-local diagnostics = null_ls.builtins.diagnostics
 
 -- configure null_ls
 null_ls.setup({
