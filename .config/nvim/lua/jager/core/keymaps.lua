@@ -81,10 +81,6 @@ local keymaps = {
 		-- keep last copied in clipboard
 		["p"] = { '"_dp', "paste last copied" },
 
-		-- faster escape to normal mode with: jk/kj
-		["jk"] = { "<ESC>", "escape visual mode" },
-		["kj"] = { "<ESC>", "escape visual mode" },
-
 		-- move selection left, right, top, bottom
 		["H"] = { "<gv", "indent left" },
 		["L"] = { ">gv", "indent right" },

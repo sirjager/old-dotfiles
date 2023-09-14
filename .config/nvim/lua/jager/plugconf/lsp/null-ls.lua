@@ -7,6 +7,7 @@ end
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local format = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
 
 -- configure null_ls
 null_ls.setup({
@@ -14,12 +15,19 @@ null_ls.setup({
 	sources = {
 		--  to disable file types use
 		--  "formatting.prettier.with({disabled_filetypes = {}})" (see null-ls docs)
+
+		-- lua
+		format.stylua,
+
+		-- go
 		format.gofumpt,
-		format.goimports_reviser,
 		format.golines,
-		format.stylua, -- lua formatter
-		--[[ diagnostics.buf, -- proto ]]
-		--[[ format.buf, ]]
+		format.goimports_reviser,
+
+		-- python
+		format.black,
+		--[[ diagnostics.myy, ]]
+		--[[ diagnostics.ruff, ]]
 	},
 
 	-- configure format on save
@@ -31,6 +39,7 @@ null_ls.setup({
 				buffer = bufnr,
 				callback = function()
 					vim.lsp.buf.format({ bufnr = bufnr })
+
 					local lintok, lint = pcall(require, "lint")
 					if lintok then
 						lint.try_lint()

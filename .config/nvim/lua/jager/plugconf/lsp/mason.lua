@@ -13,10 +13,29 @@ if not ok3 then
 	return
 end
 
+local ok4, neodev = pcall(require, "neodev")
+if not ok4 then
+	return
+end
+
+-- needs to come before mason
+neodev.setup({})
+
 mason.setup({
 	PATH = "prepend",
 	max_concurrent_installers = 10,
 	ui = {
+		border = "rounded", -- none | single | double | rounded | solid | shadow
+		-- Width of the window. Accepts:
+		-- - Integer greater than 1 for fixed width.
+		-- - Float in the range of 0-1 for a percentage of screen width.
+		width = 0.8,
+
+		-- Height of the window. Accepts:
+		-- - Integer greater than 1 for fixed height.
+		-- - Float in the range of 0-1 for a percentage of screen height.
+		height = 0.9,
+
 		icons = {
 			package_pending = " ",
 			package_installed = "󰄳 ",
@@ -38,25 +57,35 @@ mason.setup({
 mason_lspconfig.setup({
 	automatic_installation = true,
 	ensure_installed = {
-		"gopls",
-		"lua_ls",
-		"html",
-		"marksman",
+		"bashls", -- sh
+		"emmet_ls",
+		"gopls", -- go
+		"html", -- html
+		"jsonls", -- json
+		"lua_ls", -- lua
+		"marksman", -- md
+		"tsserver", -- ts
+		"pyright", -- py
+		"yamlls", -- yml
 	},
 })
 
 mason_null_ls.setup({
 	automatic_installation = true,
 	ensure_installed = {
+		"black", -- py
 		"codelldb", -- rust, c,cpp debugger
-		"eslint-lsp",
-		"gofumpt",
-		"goimports_reviser",
-		"golines",
-		"lua-language-server",
-		"markdownlint",
-		"rust-analyzer",
-		"stylua",
-		"typescript-languange-server",
+		"debugpy", -- py
+		"eslint-lsp", -- ts js
+		"gofumpt", -- go
+		"mypy", -- py
+		"ruff", -- py
+		"goimports_reviser", -- go
+		"golines", -- go
+		"lua-language-server", -- lua
+		"markdownlint", -- md
+		"rust-analyzer", -- rust
+		"stylua", -- lua
+		"typescript-languange-server", -- ts
 	},
 })

@@ -41,9 +41,9 @@ pkg.setup({
 	integrations = {
 		cmp = true,
 		gitsigns = true,
-		nvimtree = true,
+		nvimtree = false,
 		treesitter = true,
-		notify = false,
+		notify = true,
 		mini = false,
 		-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 	},

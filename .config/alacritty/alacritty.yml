@@ -34,7 +34,7 @@ font:
 draw_bold_text_with_bright_colors: true
 
 import:
-  - ~/.config/alacritty/themes/catppuccin-mocha.yml
+  - ~/.config/alacritty/themes/tokyonight_moon.yml
 
 selection:
   save_to_clipboard: true

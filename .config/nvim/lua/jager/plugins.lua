@@ -45,6 +45,12 @@ local plugins = {
 	"Mofiqul/dracula.nvim",
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 	{ "AlphaTechnolog/pywal.nvim", as = "pywal" },
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
 
 	-- github
 	"lewis6991/gitsigns.nvim",
@@ -69,7 +75,24 @@ local plugins = {
 
 	-- code debuging: sudo pacman -Syu lldb
 	"mfussenegger/nvim-dap",
-	"rcarriga/nvim-dap-ui",
+	{
+		"rcarriga/nvim-dap-ui",
+		dependencies = {
+			"mfussenegger/nvim-dap",
+		},
+	},
+	{
+		"mfussenegger/nvim-dap-python",
+		ft = "python",
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"rcarriga/nvim-dap-ui",
+		},
+		config = function(_, _)
+			local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+			require("dap-python").setup(path)
+		end,
+	},
 
 	-- lsp
 	"folke/trouble.nvim",
@@ -84,6 +107,10 @@ local plugins = {
 		"glepnir/lspsaga.nvim",
 		branch = "main",
 		after = "nvim-treesitter",
+	},
+	{
+		"folke/neodev.nvim",
+		lazy = true,
 	},
 
 	-- language specific

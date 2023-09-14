@@ -99,6 +99,31 @@ lspconfig.lua_ls.setup({
 	},
 })
 
+lspconfig.emmet_ls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  filetype = { "html", "typescript", "ts","tsx" },
+})
+
 lspconfig.tsserver.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
@@ -107,6 +132,12 @@ lspconfig.tsserver.setup({
 			disableSuggestions = true,
 		},
 	},
+})
+
+lspconfig.pyright.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	filetype = { "python" },
 })
 
 local ok3, rust_tools = pcall(require, "rust-tools")
