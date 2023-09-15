@@ -146,6 +146,8 @@ local plugins = {
 	{
 		"saecki/crates.nvim",
 		ft = { "rust", "toml" },
+		event = { "BufRead Cargo.toml" },
+		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function(_, opts)
 			local crates = require("crates")
 			crates.setup(opts)
@@ -172,13 +174,23 @@ local plugins = {
 	"lukas-reineke/indent-blankline.nvim",
 	"HiPhish/nvim-ts-rainbow2",
 
-	-- completions
+	-- ######################################################
+	-- Completions
+	-- ######################################################
 	"hrsh7th/nvim-cmp",
-	"hrsh7th/cmp-path",
-	"hrsh7th/cmp-buffer",
-	"hrsh7th/cmp-cmdline",
-	"hrsh7th/cmp-nvim-lsp",
+	"hrsh7th/cmp-path", -- filesystem paths completions
+	"hrsh7th/cmp-buffer", -- completions from opened buffers
+	"hrsh7th/cmp-cmdline", -- completions in commandline mode
+	"hrsh7th/cmp-nvim-lsp", -- completions from lsp
 	"saadparwaiz1/cmp_luasnip",
+	"andersevenrud/cmp-tmux", -- completions of tmux sessions
+	"hrsh7th/cmp-emoji", -- emoji completions
+	"hrsh7th/cmp-calc", -- inline calc completions
+	{
+		"tzachar/cmp-tabnine", -- tabnine completions
+		build = "./install.sh",
+		dependencies = "hrsh7th/nvim-cmp",
+	},
 
 	-- linter
 	"mfussenegger/nvim-lint",

@@ -68,6 +68,6 @@ sudo chmod a+rw /sys/class/backlight/amdgpu_bl2/brightness &
 
 # kdeconnect-indicator &
 
-# rog-control-center &
+rog-control-center &
 
 ~/.local/bin/wallpaper -wall="/mnt/storage/wallpaper/nordic/58.png" &
