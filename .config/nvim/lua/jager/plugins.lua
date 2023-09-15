@@ -17,12 +17,6 @@ local plugins = {
 	"nvim-lua/plenary.nvim",
 	"rcarriga/nvim-notify",
 
-	--[[ { ]]
-	--[[ 	"glepnir/dashboard-nvim", ]]
-	--[[ 	event = "VimEnter", ]]
-	--[[ 	dependencies = { "nvim-tree/nvim-web-devicons" }, ]]
-	--[[ }, ]]
-
 	-- tools/utils
 	{
 		"folke/which-key.nvim",
@@ -35,6 +29,14 @@ local plugins = {
 	-- windows navigation works well with tmux
 	{ "christoomey/vim-tmux-navigator", lazy = false },
 	{ "szw/vim-maximizer", lazy = false }, -- maximizes and restores current window
+
+	{
+		"goolord/alpha-nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("alpha").setup(require("alpha.themes.startify").config)
+		end,
+	},
 
 	-- ui
 	"romgrk/barbar.nvim",
@@ -63,8 +65,11 @@ local plugins = {
 	"lewis6991/gitsigns.nvim",
 	"kdheepak/lazygit.nvim",
 
+	"ThePrimeagen/harpoon",
+
 	-- telescope
 	"nvim-telescope/telescope.nvim",
+	"nvim-telescope/telescope-project.nvim",
 	"nvim-telescope/telescope-media-files.nvim",
 
 	-- words surround, autopairs
@@ -124,7 +129,20 @@ local plugins = {
 	"jose-elias-alvarez/typescript.nvim", -- for advance typescript features
 
 	-- rust
-	"simrat39/rust-tools.nvim",
+	{
+		"simrat39/rust-tools.nvim",
+		ft = "rust",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+		},
+	},
+	{
+		"rust-lang/rust.vim",
+		ft = "rust",
+		init = function()
+			vim.g.rustfmt_autosave = 1
+		end,
+	},
 	{
 		"saecki/crates.nvim",
 		ft = { "rust", "toml" },

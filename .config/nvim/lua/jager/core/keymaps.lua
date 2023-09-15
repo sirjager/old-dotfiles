@@ -32,6 +32,11 @@ local keymaps = {
 		["<C-Left>"] = { ":vertical resize -2<CR>", "decrease window width" },
 		["<C-Right>"] = { ":vertical resize +2<CR>", "increase window width" },
 
+		["<S-h>"] = { ":vertical resize -2<CR>", "decrease window width" },
+		["<S-l>"] = { ":vertical resize +2<CR>", "increase window width" },
+		["<S-j>"] = { ":resize -2<CR>", "decrease window height" },
+		["<S-k>"] = { ":resize +2<CR>", "increase window height" },
+
 		-- tabs by barbar plugin
 		["<A-p>"] = { "<Cmd>BufferPin<CR>", "pin buffer" },
 		["<A-i>"] = { "<Cmd>BufferPick<CR>", "smart buffer picker" },
@@ -121,6 +126,7 @@ local which_keymaps = {
 	s = {
 		name = "search",
 		r = { ":Telescope resume <CR>", "resume search" },
+		p = { ":Telescope project <CR>", "open project" },
 		f = { ":Telescope find_files <CR>", "find files" },
 		o = { ":Telescope oldfiles <CR>", "recent files" },
 		w = { ":Telescope current_buffer_fuzzy_find <CR>", "find word" },
@@ -132,22 +138,13 @@ local which_keymaps = {
 	},
 
 	d = {
-		name = "debugging",
-		b = { "<cmd> DapToggleBreakpoint <CR>", "toggle breakpoint" },
-		c = { "<cmd> DapContinue <CR>", "debug continue" },
-		t = { "<cmd> DapTerminate <CR>", "debug terminate" },
-		l = { "<cmd> DapShowLog <CR>", "debug show log" },
-		i = { "<cmd> DapStepInto <CR>", "debug step into" },
-		j = { "<cmd> DapStepOver <CR>", "debug step over" },
-		o = { "<cmd> DapStepOut <CR>", "debug step out" },
-		u = {
-			function()
-				local widgets = require("dap.ui.widgets")
-				local sidebar = widgets.sidebar(widgets.scopes)
-				sidebar.open()
-			end,
-			"open debug sidebar",
-		},
+		name = "diagnostic",
+		j = { ":Lspsaga diagnostic_jump_next <CR>", "next diagnostic" },
+		k = { ":Lspsaga diagnostic_jump_prev <CR>", "prev diagnostic" },
+		b = { ":Lspsaga show_buf_diagnostics <CR>", "buf diagnostics" },
+		w = { ":Lspsaga show_workspace_diagnostics <CR>", "workspace diagnostics" },
+		l = { ":Lspsaga show_line_diagnostics <CR>", "line diagnostics" },
+		c = { ":Lspsaga show_cursor_diagnostics <CR>", "cursor diagnostics" },
 	},
 
 	l = {
@@ -175,13 +172,22 @@ local which_keymaps = {
 		},
 
 		d = {
-			name = "diagnostic",
-			j = { ":Lspsaga diagnostic_jump_next <CR>", "next diagnostic" },
-			k = { ":Lspsaga diagnostic_jump_prev <CR>", "prev diagnostic" },
-			b = { ":Lspsaga show_buf_diagnostics <CR>", "buf diagnostics" },
-			w = { ":Lspsaga show_workspace_diagnostics <CR>", "workspace diagnostics" },
-			l = { ":Lspsaga show_line_diagnostics <CR>", "line diagnostics" },
-			c = { ":Lspsaga show_cursor_diagnostics <CR>", "cursor diagnostics" },
+			name = "debugging",
+			b = { "<cmd> DapToggleBreakpoint <CR>", "toggle breakpoint" },
+			c = { "<cmd> DapContinue <CR>", "debug continue" },
+			t = { "<cmd> DapTerminate <CR>", "debug terminate" },
+			l = { "<cmd> DapShowLog <CR>", "debug show log" },
+			i = { "<cmd> DapStepInto <CR>", "debug step into" },
+			j = { "<cmd> DapStepOver <CR>", "debug step over" },
+			o = { "<cmd> DapStepOut <CR>", "debug step out" },
+			u = {
+				function()
+					local widgets = require("dap.ui.widgets")
+					local sidebar = widgets.sidebar(widgets.scopes)
+					sidebar.open()
+				end,
+				"open debug sidebar",
+			},
 		},
 	},
 }

@@ -56,8 +56,18 @@ local options = {
 }
 
 for k, v in pairs(options) do
-	vim.opt[k] = v
+	local status, _ = pcall(function()
+		vim.opt[k] = v
+	end)
+	if not status then
+		goto continue
+	end
+	::continue::
 end
+
+--[[ for k, v in pairs(options) do ]]
+--[[ 	vim.opt[k] = v ]]
+--[[ end ]]
 
 vim.opt.shortmess:append("c")
 vim.opt.path:append({ "**" }) -- find files, search down into subfolders

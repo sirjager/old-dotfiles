@@ -70,7 +70,8 @@ cmp.setup({
 	}),
 
 	formatting = {
-		-- fields = { "menu", "kind", "abbr" }, -- rearrange positions if needed
+		expandable_indicator = true,
+		fields = { "menu", "kind", "abbr" }, -- rearrange positions if needed
 		-- configure lspkind for vs-code like icons
 		format = lspkind.cmp_format({
 			mode = "symbol_text", -- show only symbol annotations -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
@@ -79,7 +80,7 @@ cmp.setup({
 
 			-- The function below will be called before any actual modifications from lspkind
 			-- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-			before = function(entry, vim_item)
+			before = function(_, vim_item)
 				return vim_item
 			end,
 		}),
@@ -100,7 +101,10 @@ cmp.setup({
 	},
 
 	window = {
-		documentation = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered({
+			border = "single",
+			winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
+		}),
 	},
 
 	experimental = {

@@ -3,9 +3,11 @@ if not ok then
 	return
 end
 
-local actions = require("telescope.actions")
-
+pkg.load_extension("project")
 pkg.load_extension("media_files")
+
+local actions = require("telescope.actions")
+local project_actions = require("telescope._extensions.project.actions")
 
 pkg.setup({
 	defaults = {
@@ -22,7 +24,7 @@ pkg.setup({
 	},
 
 	file_sorter = require("telescope.sorters").get_fuzzy_file,
-	file_ignore_patterns = { "node_modules", ".git" },
+	file_ignore_patterns = { "^./.git/", "^node_modules/", "^vendor/", "^.venv/" },
 	generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
 
 	path_display = { "truncate" },
@@ -67,33 +69,6 @@ pkg.setup({
 	},
 	mappings = {
 		i = {
-			["<C-n>"] = actions.cycle_history_next,
-			["<C-p>"] = actions.cycle_history_prev,
-
-			["<C-j>"] = actions.move_selection_next,
-			["<C-k>"] = actions.move_selection_previous,
-
-			["<C-c>"] = actions.git_checkout,
-
-			["<Down>"] = actions.move_selection_next,
-			["<Up>"] = actions.move_selection_previous,
-
-			["<CR>"] = actions.select_default,
-			["<C-x>"] = actions.select_horizontal,
-			["<C-v>"] = actions.select_vertical,
-			["<C-t>"] = actions.select_tab,
-
-			["<C-u>"] = actions.preview_scrolling_up,
-			["<C-d>"] = actions.preview_scrolling_down,
-
-			["<PageUp>"] = actions.results_scrolling_up,
-			["<PageDown>"] = actions.results_scrolling_down,
-
-			["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-			["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-			["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-			["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-			["<C-l>"] = actions.complete_tag,
 			["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
 		},
 
@@ -101,38 +76,34 @@ pkg.setup({
 			["q"] = actions.close,
 			["<esc>"] = actions.close,
 			["<CR>"] = actions.select_default,
-			["<C-x>"] = actions.select_horizontal,
-			["<C-v>"] = actions.select_vertical,
-			["<C-t>"] = actions.select_tab,
-
-			["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-			["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-			["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-			["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-
-			["j"] = actions.move_selection_next,
-			["k"] = actions.move_selection_previous,
-			["H"] = actions.move_to_top,
-			["M"] = actions.move_to_middle,
-			["L"] = actions.move_to_bottom,
-
-			["<Down>"] = actions.move_selection_next,
-			["<Up>"] = actions.move_selection_previous,
-			["gg"] = actions.move_to_top,
-			["G"] = actions.move_to_bottom,
-
-			["<C-u>"] = actions.preview_scrolling_up,
-			["<C-d>"] = actions.preview_scrolling_down,
-
-			["<PageUp>"] = actions.results_scrolling_up,
-			["<PageDown>"] = actions.results_scrolling_down,
-
 			["?"] = actions.which_key,
 		},
 	},
 
-	extensions_list = { "themes", "terms", "fzf" },
+	extensions_list = { "themes", "media_files", "projects", "terms", "fzf" },
+
 	extensions = {
+		projects = {
+			base_dirs = {
+				{ "~/.config/nvim", max_depth = 4 },
+				"~/.config/polybar",
+				"~/.config/bspwm",
+				"~/.config/sxhkd",
+			},
+			display_type = "full",
+			hidden_files = true, -- default: false
+			theme = "dropdown",
+			order_by = "asc",
+			search_by = "title",
+			sync_with_nvim_tree = true, -- default false
+			-- default for on_project_selected = find project files
+			on_project_selected = function(prompt_bufnr)
+				-- Do anything you want in here. For example:
+				project_actions.change_working_directory(prompt_bufnr, false)
+				require("harpoon.ui").nav_file(1)
+			end,
+		},
+
 		fzf = {
 			fuzzy = true,
 			override_generic_sorter = true,

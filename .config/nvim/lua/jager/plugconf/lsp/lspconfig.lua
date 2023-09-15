@@ -103,25 +103,7 @@ lspconfig.emmet_ls.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  filetype = { "html", "typescript", "ts","tsx" },
+	filetype = { "html", "typescript", "ts", "tsx" },
 })
 
 lspconfig.tsserver.setup({
@@ -140,42 +122,37 @@ lspconfig.pyright.setup({
 	filetype = { "python" },
 })
 
+-- -- In order to use debugging for rust, this needs to be disabled to prevent
+-- -- conflicts with debugging plugin
+--[[ lspconfig.rust_analyzer.setup({ ]]
+--[[ 	capabilities = capabilities, ]]
+--[[ 	on_attach = function(_, bufnr) ]]
+--[[ 		vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc") ]]
+--[[ 		vim.keymap.set("n", "<leader>lh", rust_tools.hover_actions.hover_actions, { buffer = bufnr }) ]]
+--[[ 		vim.keymap.set("n", "<leader>la", rust_tools.code_action_group.code_action_group, { buffer = bufnr }) ]]
+--[[ 	end, ]]
+--[[ 	filetypes = { "rust" }, ]]
+--[[ 	root_dir = util.root_pattern("Cargo.toml"), ]]
+--[[ 	settings = { ]]
+--[[ 		["rust-analyzer"] = { ]]
+--[[ 			cargo = { ]]
+--[[ 				allFeatures = true, ]]
+--[[ 			}, ]]
+--[[ 		}, ]]
+--[[ 	}, ]]
+--[[ }) ]]
+
 local ok3, rust_tools = pcall(require, "rust-tools")
 if not ok3 then
 	return
 end
 
-lspconfig.rust_analyzer.setup({
-	capabilities = capabilities,
-	on_attach = function(_, bufnr)
-		vim.keymap.set("n", "<leader>lh", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
-		vim.keymap.set("n", "<leader>la", rust_tools.code_action_group.code_action_group, { buffer = bufnr })
-	end,
-	filetypes = { "rust" },
-	root_dir = util.root_pattern("Cargo.toml"),
-	settings = {
-		["rust-analyzer"] = {
-			cargo = {
-				allFeatures = true,
-			},
-		},
-	},
-})
-
-local mason_registry = require("mason-registry")
-local lldb = mason_registry.get_package("codelldb")
-local lldb_ext_path = lldb:get_install_path() .. "/extension/"
-local lldbpath = lldb_ext_path .. "adapter/codelldb"
-local liblldb_path = lldb_ext_path .. "lldb/lib/liblldb.dylib"
-
 rust_tools.setup({
-	dap = {
-		adapter = require("rust-tools.dap").get_codelldb_adapter(lldbpath, liblldb_path),
-	},
-
 	server = {
 		capabilities = capabilities,
 		on_attach = function(_, bufnr)
+			vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+			vim.keymap.set("n", "<leader>ldd", ":RustDebuggables <CR>", { buffer = bufnr })
 			vim.keymap.set("n", "<leader>lh", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
 			vim.keymap.set("n", "<leader>la", rust_tools.code_action_group.code_action_group, { buffer = bufnr })
 		end,
