@@ -20,10 +20,6 @@ super + ctrl + p
 super + shift + l
   rbw lock && ~/.local/bin/i3lock/i3lock-fancy.sh &
 
-# Keyboard Shortcuts, Sxhkd Keybindings
-super + k
-  ~/.local/bin/keybinds &
-
 # Focus next window, Select next window
 alt + Tab
     bspc node -f next.local.window &
@@ -273,11 +269,12 @@ super + q; p; s
 super + ctrl + z
     bspc node -g private
 
-super + e; e
-    emacsclient -c -a 'emacs' &
-super + e; b
-    emacsclient -c -a 'emacs' --eval '(ibuffer)' &
-super + e; d
-    emacsclient -c -a 'emacs' --eval '(dired nil)' &
-super + e; v
-    emacsclient -c -a 'emacs' --eval '(+vterm/here nil)' &
+
+# Keyboard Shortcuts, Sxhkd Keybindings
+super + e; k
+  ~/.local/bin/keybinds &
+
+# Lazygit for dotfiles
+super + e; g
+  kitty sh -c "/usr/bin/lazygit --git-dir=$HOME/.local/share/dotfiles --work-tree=$HOME" &
+
