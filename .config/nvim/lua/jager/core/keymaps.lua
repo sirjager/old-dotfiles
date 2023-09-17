@@ -125,12 +125,12 @@ local which_keymaps = {
 
 	s = {
 		name = "search",
-		r = { ":Telescope resume <CR>", "resume search" },
-		p = { ":Telescope project <CR>", "open project" },
-		f = { ":Telescope find_files <CR>", "find files" },
+		s = { ":Telescope find_files <CR>", "find files" }, -- most used
+		w = { ":Telescope live_grep <CR>", "live grep" },
 		o = { ":Telescope oldfiles <CR>", "recent files" },
-		w = { ":Telescope current_buffer_fuzzy_find <CR>", "find word" },
-		W = { ":Telescope live_grep <CR>", "live grep" },
+		p = { ":Telescope project <CR>", "open project" },
+		r = { ":Telescope resume <CR>", "resume search" },
+		W = { ":Telescope current_buffer_fuzzy_find <CR>", "find word" },
 		h = { ":Telescope help_tags <CR>", "help tags" },
 		c = { ":Telescope colorschemes <CR>", "color schemes" },
 		a = { ":Telescope autocommands <CR>", "auto commands" },
@@ -139,27 +139,27 @@ local which_keymaps = {
 
 	d = {
 		name = "diagnostic",
-		j = { ":Lspsaga diagnostic_jump_next <CR>", "next diagnostic" },
-		k = { ":Lspsaga diagnostic_jump_prev <CR>", "prev diagnostic" },
-		b = { ":Lspsaga show_buf_diagnostics <CR>", "buf diagnostics" },
+		d = { ":Lspsaga show_buf_diagnostics <CR>", "buf diagnostics" }, -- most used
 		w = { ":Lspsaga show_workspace_diagnostics <CR>", "workspace diagnostics" },
 		l = { ":Lspsaga show_line_diagnostics <CR>", "line diagnostics" },
+		j = { ":Lspsaga diagnostic_jump_next <CR>", "next diagnostic" },
+		k = { ":Lspsaga diagnostic_jump_prev <CR>", "prev diagnostic" },
 		c = { ":Lspsaga show_cursor_diagnostics <CR>", "cursor diagnostics" },
 	},
 
 	l = {
 		name = "lsp",
 		i = { ":LspInfo<CR>", "lsp info" },
+		h = { ":Lspsaga hover_doc <CR>", "hover doc" }, -- most used 1
+		a = { ":CodeActionMenu<CR>", "code action" }, -- most used 2
 		o = { ":Lspsaga outline <CR>", "outline" },
 		r = { ":Lspsaga rename <CR>", "rename" },
 		R = { ":Lspsaga project_replace <CR>", "project replace" },
-		a = { ":Lspsaga code_action <CR>", "code action" },
-		h = { ":Lspsaga hover_doc <CR>", "hover doc" },
 
 		l = {
 			name = "def,impl,decl,types",
+			d = { ":Lspsaga peek_definition <CR>", "peek definitions" }, -- most used
 			i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "implementation" },
-			d = { ":Lspsaga peek_definition <CR>", "peek definitions" },
 			D = { ":Lspsaga goto_definition <CR>", "goto definitions" },
 			t = { ":Lspsaga peek_type_definition <CR>", "peek type definitions" },
 			T = { ":Lspsaga goto_type_definition <CR>", "goto type definitions" },

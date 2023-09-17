@@ -153,8 +153,9 @@ rust_tools.setup({
 		on_attach = function(_, bufnr)
 			vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 			vim.keymap.set("n", "<leader>ldd", ":RustDebuggables <CR>", { buffer = bufnr })
-			vim.keymap.set("n", "<leader>lh", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
-			vim.keymap.set("n", "<leader>la", rust_tools.code_action_group.code_action_group, { buffer = bufnr })
+			--[[ vim.keymap.set("n", "<leader>lh", rust_tools.hover_actions.hover_actions, { buffer = bufnr }) ]]
+			--[[ vim.keymap.set("n", "<leader>la", ":CodeActionMenu<CR>", { buffer = bufnr }) ]]
+			--[[ vim.keymap.set("n", "<leader>la", rust_tools.code_action_group.code_action_group, { buffer = bufnr }) ]]
 		end,
 	},
 

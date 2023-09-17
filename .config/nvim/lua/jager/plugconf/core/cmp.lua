@@ -156,19 +156,19 @@ cmp.setup({
 	},
 
 	sorting = {
-		comparators = {
-			compare.exact,
-			compare.kind,
-			compare.score,
-			compare.length,
-			--[[ function(entry1, entry2) ]]
-			--[[ 	local kind1 = lsp_kind_order[entry1:get_kind()] ]]
-			--[[ 	local kind2 = lsp_kind_order[entry2:get_kind()] ]]
-			--[[ 	if kind1 < kind2 then ]]
-			--[[ 		return true ]]
-			--[[ 	end ]]
-			--[[ end, ]]
-		},
+		--[[ comparators = { ]]
+		--[[ 	compare.exact, ]]
+		--[[ 	compare.kind, ]]
+		--[[ 	compare.score, ]]
+		--[[ 	compare.length, ]]
+		--[[ 	function(entry1, entry2) ]]
+		--[[ 		local kind1 = lsp_kind_order[entry1:get_kind()] ]]
+		--[[ 		local kind2 = lsp_kind_order[entry2:get_kind()] ]]
+		--[[ 		if kind1 < kind2 then ]]
+		--[[ 			return true ]]
+		--[[ 		end ]]
+		--[[ 	end, ]]
+		--[[ }, ]]
 	},
 
 	-- sources for autocompletion, priorties from top to bottom order
@@ -180,35 +180,33 @@ cmp.setup({
 			---@diagnostic disable-next-line: unused-local
 			entry_filter = function(entry, context)
 				local kind = entry:get_kind()
-
-				-- with treesitter
-				local node = ts_utils.get_node_at_cursor():type()
-
-				if node == "arguments" then
-					if kind == 6 then
-						return true
-					else
-						return false
-					end
-				end
-
-				--[[ -- -- without treesitter ]]
-				--[[ local line = context.cursor_line ]]
-				--[[ local col = context.cursor.col ]]
-				--[[ local char_before_cursor = string.sub(line, col - 1, col - 1) ]]
-				--[[ if char_before_cursor == "." then ]]
-				--[[ 	if kind == 2 or kind == 5 then ]]
-				--[[ 		return true ]]
-				--[[ 	else ]]
-				--[[ 		return false ]]
-				--[[ 	end ]]
-				--[[ elseif string.match(line, "^%s*%w*$") then ]]
-				--[[ 	if kind == 2 or kind == 5 then ]]
+				--[[ -- with treesitter ]]
+				--[[ local node = ts_utils.get_node_at_cursor():type() ]]
+				--[[ if node == "arguments" then ]]
+				--[[ 	if kind == 6 then ]]
 				--[[ 		return true ]]
 				--[[ 	else ]]
 				--[[ 		return false ]]
 				--[[ 	end ]]
 				--[[ end ]]
+
+				-- -- without treesitter
+				local line = context.cursor_line
+				local col = context.cursor.col
+				local char_before_cursor = string.sub(line, col - 1, col - 1)
+				if char_before_cursor == "." then
+					if kind == 2 or kind == 5 then
+						return true
+					else
+						return false
+					end
+				elseif string.match(line, "^%s*%w*$") then
+					if kind == 2 or kind == 5 then
+						return true
+					else
+						return false
+					end
+				end
 
 				return true
 			end,

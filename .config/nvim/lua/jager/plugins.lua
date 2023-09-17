@@ -85,6 +85,12 @@ local plugins = {
 	"onsails/lspkind-nvim", -- vscode like icons for autocompletion popup menu
 	"rafamadriz/friendly-snippets",
 
+	-- code action menu
+	{
+		"weilbith/nvim-code-action-menu",
+		cmd = "CodeActionMenu",
+	},
+
 	-- code debuging: sudo pacman -Syu lldb
 	"mfussenegger/nvim-dap",
 	{
@@ -202,6 +208,14 @@ local plugins = {
 	-- terminal
 	"akinsho/toggleterm.nvim",
 
+	-- rest client
+	{
+		"rest-nvim/rest.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+	},
+
 	-- wakatime
 	--[[ "wakatime/vim-wakatime", ]]
 }
@@ -219,6 +233,7 @@ if not ok then
 	return
 end
 
+---@diagnostic disable-next-line: missing-fields
 notify.setup({
 	background_colour = "#000000",
 	fps = 60,

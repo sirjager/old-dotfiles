@@ -1,5 +1,4 @@
-local name = "tabnine"
-local ok, pkg = pcall(require, name)
+local ok, pkg = pcall(require, "tabnine")
 if not ok then
 	return
 end

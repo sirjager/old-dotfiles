@@ -11,7 +11,7 @@ local options = {
 	cmdheight = 1, -- more space in the neovim command line for displaying messages
 	completeopt = { "menuone", "noselect" }, -- mostly just for cmp
 	conceallevel = 0, -- so that is visible in markdown files
-	cursorline = false, -- highlight the current line
+	cursorline = true, -- highlight the current line
 	colorcolumn = "80",
 	expandtab = true, -- convert tabs to spaces
 	fileencoding = "utf-8", -- the encoding written to a file
@@ -55,6 +55,7 @@ local options = {
 	writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 }
 
+-- prevents error when plugins in not installed
 for k, v in pairs(options) do
 	local status, _ = pcall(function()
 		vim.opt[k] = v

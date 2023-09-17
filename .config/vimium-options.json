@@ -4,7 +4,7 @@
   "filterLinkHints": false,
   "waitForEnterForFilteredHints": true,
   "hideHud": false,
-  "keyMappings": "# links highlight mode\nunmap f\nmap <a-f> LinkHints.activateMode\n\nmap K previousTab\nmap J nextTab\nmap <a-k> moveTabLeft\nmap <a-j> moveTabRight\n\nmap <a-e> Vomnibar.activateEditUrl\nmap <a-b> Vomnibar.activateEditUrlInNewTab\nmap <a-w> removeTab\nmap <a-r> restoreTab\nmap <a-p> togglePinTab\nmap <a-d> duplicateTab\nmap <a-m> toggleMuteTab\nmap <a-c> closeOtherTabs\nmap <a-z> closeTabsOnLeft\nmap <a-x> closeTabsOnRight\n\n\n# for youtube playback speed shortcut to work\nunmap <<\nunmap >>",
+  "keyMappings": "unmapAll\n\nmap ? showHelp\nmap vs toggleViewSource\n\nmap gg scrollToTop\nmap G scrollToBottom\nmap u scrollPageUp\nmap d scrollPageDown\n\nmap j scrollDown\nmap k scrollUp\nmap h scrollLeft\nmap k scrollRight\n\nmap yy copyCurrentUrl\n\n# links highlight mode\nunmap f\nmap <a-f> LinkHints.activateMode\n\nmap K moveTabRight\nmap J moveTabLeft\nmap <a-k> nextTab\nmap <a-j> previousTab\nmap <a-h> goBack\nmap <a-l> goForward\n\nmap <a-e> Vomnibar.activateEditUrl\nmap <a-b> Vomnibar.activateEditUrlInNewTab\nmap <a-w> removeTab\nmap <a-r> restoreTab\nmap <a-p> togglePinTab\nmap <a-d> duplicateTab\nmap <a-m> toggleMuteTab\nmap <a-c> closeOtherTabs\nmap <a-z> closeTabsOnLeft\nmap <a-x> closeTabsOnRight\n\n\n# for youtube playback speed shortcut to work\nunmap <<\nunmap >>",
   "linkHintCharacters": "sadfjklewcmpgh",
   "linkHintNumbers": "0123456789",
   "newTabUrl": "about:newtab",
