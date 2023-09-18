@@ -26,6 +26,21 @@ local plugins = {
 		end,
 	},
 
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			"linrongbin16/lsp-progress.nvim",
+		},
+	},
+	{
+		"linrongbin16/lsp-progress.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("lsp-progress").setup()
+		end,
+	},
+
 	-- windows navigation works well with tmux
 	{ "christoomey/vim-tmux-navigator", lazy = false },
 	{ "szw/vim-maximizer", lazy = false }, -- maximizes and restores current window
@@ -44,7 +59,6 @@ local plugins = {
 	"sunjon/shade.nvim",
 	"nvim-tree/nvim-tree.lua",
 	"akinsho/bufferline.nvim",
-	"nvim-lualine/lualine.nvim",
 	"windwp/windline.nvim",
 	"nvim-tree/nvim-web-devicons",
 
@@ -214,6 +228,32 @@ local plugins = {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
+	},
+
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {},
+    -- stylua: ignore
+    keys = {
+      { "s", mode = { "n", "o", "x" }, function() require("flash").jump() end,       desc = "Flash" },
+      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o",               function() require("flash").remote() end,     desc = "Remote Flash" },
+      {
+        "R",
+        mode = { "o", "x" },
+        function() require("flash").treesitter_search() end,
+        desc =
+        "Treesitter Search"
+      },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function() require("flash").toggle() end,
+        desc =
+        "Toggle Flash Search"
+      },
+    },
 	},
 
 	-- wakatime

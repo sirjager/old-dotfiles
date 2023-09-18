@@ -8,6 +8,7 @@ pkg.setup({
 		"bash",
 		"go",
 		"html",
+		"http",
 		"json",
 		"lua",
 		"markdown",

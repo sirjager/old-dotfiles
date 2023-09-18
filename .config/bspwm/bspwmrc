@@ -4,7 +4,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 bspc monitor -d ⼀ ⼆ 三 四 五 六 七 ⼋ ⼏ ⼗
 # bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 
-xset r rate 250 50
+xset r rate 210 65
 
 xsetroot -cursor_name left_ptr
 
@@ -70,4 +70,4 @@ sudo chmod a+rw /sys/class/backlight/amdgpu_bl2/brightness &
 
 rog-control-center &
 
-~/.local/bin/wallpaper -wall="/mnt/storage/wallpaper/nordic/58.png" &
+~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/wallheaven/2.jpg" &

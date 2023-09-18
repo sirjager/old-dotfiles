@@ -2,11 +2,11 @@
 
 # Reload sxhkd
 ctrl + shift + Escape
-    pkill -usr1 -x sxhkd &
+    chmod +x $HOME/.config/sxhkd/sxhkdrc && pkill -usr1 -x sxhkd &
 
 # Reload bspwm
 super + shift + r
-    bspc wm -r & ~/.config/polybar/launch.sh &
+    chmod +x $HOME/.config/bspwm/bspwmrc && bspc wm -r & ~/.config/polybar/launch.sh &
 
 # Logout, quit bspwm
 super + alt + q
@@ -120,7 +120,7 @@ super + shift + f
 
 # Terminal: Alacritty, Xfce4
 super + {_,shift + } Return
-  { alacritty, xfce4-terminal } &
+  { kitty, xfce4-terminal } &
 
 # Primary Terminal with last tmux session
 alt + {_,shift + } Return
@@ -201,9 +201,17 @@ super + d; v
 super + d; n
     nemo &
 
+# Keyboard Shortcuts, Sxhkd Keybindings
+super + q; k
+  ~/.local/bin/keybinds &
+
+# Lazygit for dotfiles
+super + q; g
+  kitty sh -c "/usr/bin/lazygit --git-dir=$HOME/.local/share/dotfiles --work-tree=$HOME" &
+
 # Show bookmark manager
-# super + q; b; m
-    # ~/.local/bin/bookmark-manager --dmenu --type --copy --notify &
+super + q; b; m
+    ~/.local/bin/bookmark-manager --dmenu --type --copy --notify &
 
 # Visit and copy bookmark
 super + q; b; b
@@ -268,13 +276,4 @@ super + q; p; s
 # Set window private
 super + ctrl + z
     bspc node -g private
-
-
-# Keyboard Shortcuts, Sxhkd Keybindings
-super + e; k
-  ~/.local/bin/keybinds &
-
-# Lazygit for dotfiles
-super + e; g
-  kitty sh -c "/usr/bin/lazygit --git-dir=$HOME/.local/share/dotfiles --work-tree=$HOME" &
 
