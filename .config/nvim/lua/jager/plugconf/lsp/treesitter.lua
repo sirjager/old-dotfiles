@@ -3,6 +3,14 @@ if not ok then
   return
 end
 
+vim.filetype.add {
+  extension = {
+    mdx = "mdx",
+  },
+}
+
+vim.treesitter.language.register("markdown", "mdx")
+
 ts.setup {
   ensure_installed = {
     "bash",

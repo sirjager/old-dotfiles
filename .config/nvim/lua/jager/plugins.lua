@@ -16,6 +16,7 @@ local plugins = {
   "nvim-lua/popup.nvim",
   "nvim-lua/plenary.nvim",
   "rcarriga/nvim-notify",
+  "nvim-tree/nvim-web-devicons",
 
   -- tools/utils
   {
@@ -65,7 +66,6 @@ local plugins = {
   "nvim-tree/nvim-tree.lua",
   "akinsho/bufferline.nvim",
   "windwp/windline.nvim",
-  "nvim-tree/nvim-web-devicons",
   "RRethy/vim-illuminate",
   "simrat39/symbols-outline.nvim",
   "SmiteshP/nvim-navic",
@@ -272,6 +272,14 @@ local plugins = {
   "kylechui/nvim-surround",
   "windwp/nvim-autopairs",
   "windwp/nvim-ts-autotag",
+
+  -- markdown
+  {
+    "iamcco/markdown-preview.nvim",
+    ft = { "markdown", "mdx" },
+    -- build = "cd app && yarn install",
+    build = ":call mkdp#util#install()",
+  },
 }
 
 local opts = {}

@@ -1,4 +1,5 @@
 require "jager.plugconf.core.alpha"
+require "jager.plugconf.core.webicons"
 --[[ require "jager.plugconf.core.barbecue" ]]
 require "jager.plugconf.core.barbar"
 require "jager.plugconf.core.bufferline"

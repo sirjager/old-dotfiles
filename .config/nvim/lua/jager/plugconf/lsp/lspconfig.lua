@@ -114,9 +114,42 @@ lspconfig.tsserver.setup {
   },
 }
 
+-- tailwindcss
 lspconfig.tailwindcss.setup {
   capabilities = capabilities,
   on_attach = on_attach,
+  filetypes = {
+    "astro",
+    "astro-markdown",
+    "html",
+    --[[ "markdown", ]]
+    --[[ "mdx", ]]
+    "css",
+    "less",
+    "postcss",
+    "sass",
+    "scss",
+    "stylus",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "svelte",
+  },
+}
+
+-- markdown
+lspconfig.marksman.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  filetypes = { "markdown", "markdown.mdx" },
+}
+
+-- mdx
+lspconfig.mdx_analyzer.setup {
+  cmd = { "mdx-language-server", "--stdio" },
+  filetypes = { "markdown.mdx" },
 }
 
 -- python pyright

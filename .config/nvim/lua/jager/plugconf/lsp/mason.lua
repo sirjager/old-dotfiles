@@ -86,6 +86,7 @@ mason_null_ls.setup {
     "golines", -- go
     "lua-language-server", -- lua
     "markdownlint", -- md
+    "mdx_analyzer",
     "prettierd", -- ts, js
     "rust-analyzer", -- rust
     "stylua", -- lua
