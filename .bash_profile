@@ -1,5 +1,6 @@
 # ~/.bash_profile
 
+
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
@@ -32,7 +33,7 @@ export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml" # default ~/.co
 
 export EDITOR="nvim" 
 export ALTERNATE_EDITOR="lvim"
-export TERMINAL="kitty"
+export TERMINAL="alacritty"
 export BROWSER="brave"
 export LSCOLORS="0xGxBxDxCxEgEdxbxgxcxd	" # terminal colors releated
 export PG_COLOR="always" # postgres
@@ -44,6 +45,7 @@ export QT_IM_MODULE='fcitx' # multilang keyboard
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=1  # github
 export CHROME_EXECUTABLE='/usr/bin/chromium' # Crome executable path
 # export DRI_PRIME=1 # For graphic card
+
 
 # Go programming language
 export GO111MODULE="on"

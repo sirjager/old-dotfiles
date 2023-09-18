@@ -5,7 +5,11 @@ vim.g.maplocalleader = " "
 
 local keymaps = {
 	n = {
+		-- clear highlights
 		["<Esc>"] = { ":noh <CR>", "clear highlights" },
+
+		-- disabling recording:
+		["q"] = { "<ESC><ESC>:noh<CR>", "clear highlights" },
 
 		-- select all text in current buffer
 		["<C-a>"] = { "gg<S-v>G", "select all" },

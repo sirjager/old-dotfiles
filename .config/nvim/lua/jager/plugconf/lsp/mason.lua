@@ -1,91 +1,94 @@
 local ok1, mason = pcall(require, "mason")
 if not ok1 then
-	return
+  return
 end
 
 local ok2, mason_lspconfig = pcall(require, "mason-lspconfig")
 if not ok2 then
-	return
+  return
 end
 
 local ok3, mason_null_ls = pcall(require, "mason-null-ls")
 if not ok3 then
-	return
+  return
 end
 
 local ok4, neodev = pcall(require, "neodev")
 if not ok4 then
-	return
+  return
 end
 
 -- needs to come before mason
-neodev.setup({})
+neodev.setup {}
 
-mason.setup({
-	PATH = "prepend",
-	max_concurrent_installers = 10,
-	ui = {
-		border = "rounded", -- none | single | double | rounded | solid | shadow
-		-- Width of the window. Accepts:
-		-- - Integer greater than 1 for fixed width.
-		-- - Float in the range of 0-1 for a percentage of screen width.
-		width = 0.8,
+mason.setup {
+  PATH = "prepend",
+  max_concurrent_installers = 10,
+  ui = {
+    border = "rounded", -- none | single | double | rounded | solid | shadow
+    -- Width of the window. Accepts:
+    -- - Integer greater than 1 for fixed width.
+    -- - Float in the range of 0-1 for a percentage of screen width.
+    width = 0.8,
 
-		-- Height of the window. Accepts:
-		-- - Integer greater than 1 for fixed height.
-		-- - Float in the range of 0-1 for a percentage of screen height.
-		height = 0.9,
+    -- Height of the window. Accepts:
+    -- - Integer greater than 1 for fixed height.
+    -- - Float in the range of 0-1 for a percentage of screen height.
+    height = 0.9,
 
-		icons = {
-			package_pending = " ",
-			package_installed = "󰄳 ",
-			package_uninstalled = " 󰚌",
-		},
-		keymaps = {
-			toggle_server_expand = "<CR>",
-			install_server = "i",
-			update_server = "u",
-			check_server_version = "c",
-			update_all_servers = "U",
-			check_outdated_servers = "C",
-			uninstall_server = "X",
-			cancel_installation = "<C-c>",
-		},
-	},
-})
+    icons = {
+      package_pending = " ",
+      package_installed = "󰄳 ",
+      package_uninstalled = " 󰚌",
+    },
+    keymaps = {
+      toggle_server_expand = "<CR>",
+      install_server = "i",
+      update_server = "u",
+      check_server_version = "c",
+      update_all_servers = "U",
+      check_outdated_servers = "C",
+      uninstall_server = "X",
+      cancel_installation = "<C-c>",
+    },
+  },
+}
 
-mason_lspconfig.setup({
-	automatic_installation = true,
-	ensure_installed = {
-		"bashls", -- sh
-		"emmet_ls",
-		"gopls", -- go
-		"html", -- html
-		"jsonls", -- json
-		"lua_ls", -- lua
-		"marksman", -- md
-		"tsserver", -- ts
-		"pyright", -- py
-		"yamlls", -- yml
-	},
-})
+mason_lspconfig.setup {
+  automatic_installation = true,
+  ensure_installed = {
+    "bashls", -- sh
+    "emmet_ls",
+    "gopls", -- go
+    "html", -- html
+    "jsonls", -- json
+    "lua_ls", -- lua
+    "marksman", -- md
+    "tsserver", -- ts
+    "tailwindcss",
+    "pyright", -- py
+    "yamlls", -- yml
+  },
+}
 
-mason_null_ls.setup({
-	automatic_installation = true,
-	ensure_installed = {
-		"black", -- py
-		"codelldb", -- rust, c,cpp debugger
-		"debugpy", -- py
-		"eslint-lsp", -- ts js
-		"gofumpt", -- go
-		"mypy", -- py
-		"ruff", -- py
-		"goimports_reviser", -- go
-		"golines", -- go
-		"lua-language-server", -- lua
-		"markdownlint", -- md
-		"rust-analyzer", -- rust
-		"stylua", -- lua
-		"typescript-languange-server", -- ts
-	},
-})
+mason_null_ls.setup {
+  automatic_installation = true,
+  ensure_installed = {
+    "black", -- py
+    "codelldb", -- rust, c,cpp debugger
+    "debugpy", -- py
+    "eslint_d", -- ts,js
+    "gofumpt", -- go
+    "mypy", -- py
+    "ruff", -- py
+    "rustywind",
+    "goimports_reviser", -- go
+    "golines", -- go
+    "lua-language-server", -- lua
+    "markdownlint", -- md
+    "prettierd", -- ts, js
+    "rust-analyzer", -- rust
+    "stylua", -- lua
+    "typescript-languange-server", -- ts,js
+  },
+}

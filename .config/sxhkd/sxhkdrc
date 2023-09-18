@@ -120,11 +120,11 @@ super + shift + f
 
 # Terminal: Alacritty, Xfce4
 super + {_,shift + } Return
-  { kitty, xfce4-terminal } &
+  { alacritty, xfce4-terminal } &
 
 # Primary Terminal with last tmux session
 alt + {_,shift + } Return
-  kitty sh -c { "tmux attach", "tmux new" } &
+  ~/.local/bin/float-window alacritty -e { "tmux attach", "tmux new" } &
 
 # Screenshot
 super + Print
@@ -207,7 +207,7 @@ super + q; k
 
 # Lazygit for dotfiles
 super + q; g
-  kitty sh -c "/usr/bin/lazygit --git-dir=$HOME/.local/share/dotfiles --work-tree=$HOME" &
+  ~/.local/bin/float-window alacritty -e "/usr/bin/lazygit --git-dir=$HOME/.local/share/dotfiles --work-tree=$HOME" &
 
 # Show bookmark manager
 super + q; b; m

@@ -1,85 +1,93 @@
-local ok, pkg = pcall(require, "nvim-treesitter.configs")
+local ok, ts = pcall(require, "nvim-treesitter.configs")
 if not ok then
-	return
+  return
 end
 
-pkg.setup({
-	ensure_installed = {
-		"bash",
-		"go",
-		"html",
-		"http",
-		"json",
-		"lua",
-		"markdown",
-		"markdown_inline",
-		"python",
-		"rust",
-		"vim",
-		"yaml",
-	},
+ts.setup {
+  ensure_installed = {
+    "bash",
+    "css",
+    "csv",
+    "go",
+    "gomod",
+    "gosum",
+    "html",
+    "http",
+    "json",
+    "lua",
+    "markdown",
+    "markdown_inline",
+    "python",
+    "rust",
+    "tsx",
+    "typescript",
+    "vim",
+    "yaml",
+  },
 
-	-- Install parsers syncronously (only applicable to `ensure_installed`)
-	sync_install = false,
-	auto_install = true,
+  -- Install parsers syncronously (only applicable to `ensure_installed`)
+  sync_install = false,
+  auto_install = true,
 
-	indent = { enable = true },
+  indent = { enable = true },
 
-	highlights = {
-		enable = true,
-		use_languagetree = true,
-	},
+  highlights = {
+    enable = true,
+    use_languagetree = true,
+  },
 
-	refactor = {
-		highlight_current_scope = {
-			enable = true,
-		},
+  autotag = {
+    enable = true,
+    filetypes = { "html", "javascript", "javascriptreact", "typescriptreact", "svelte", "vue", "markdown" },
+  },
 
-		highlight_definitions = {
-			enable = true,
-			clear_on_cursor_move = true, -- Set to false if you have an `updatetime` of ~100.
-		},
+  refactor = {
+    highlight_current_scope = {
+      enable = true,
+    },
 
-		smart_rename = {
-			enable = true,
-			keymaps = {
-				smart_rename = "grr",
-			},
-		},
+    highlight_definitions = {
+      enable = true,
+      clear_on_cursor_move = true, -- Set to false if you have an `updatetime` of ~100.
+    },
 
-		navigation = {
-			enable = true,
-			-- Assign keymaps to false to disable them, e.g. `goto_definition = false`.
-			keymaps = {
-				goto_definition = "gnd",
-				list_definitions = "gnD",
-				list_definitions_toc = "gO",
-				goto_next_usage = "<A->",
-				goto_previous_usage = "<A-<",
-			},
-		},
+    smart_rename = {
+      enable = true,
+      keymaps = {
+        smart_rename = "grr",
+      },
+    },
 
-		indent = {
-			enable = true,
-			disable = {
-				"yaml",
-			},
-		},
+    navigation = {
+      enable = true,
+      -- Assign keymaps to false to disable them, e.g. `goto_definition = false`.
+      keymaps = {
+        goto_definition = "gnd",
+        list_definitions = "gnD",
+        list_definitions_toc = "gO",
+        goto_next_usage = "<A->",
+        goto_previous_usage = "<A-<",
+      },
+    },
 
-		context_commentstring = {
-			enable = true,
-			enable_autocmd = false,
-		},
-	},
+    indent = {
+      enable = true,
+      disable = {
+        "yaml",
+      },
+    },
 
-	autotag = {
-		enable = true,
-	},
+    context_commentstring = {
+      enable = true,
+      enable_autocmd = false,
+    },
+  },
 
-	rainbow = {
-		enable = true,
-		disable = { "cpp" },
-		query = "rainbow-parens",
-		strategy = require("ts-rainbow").strategy.global,
-	},
-})
+  textobjects = {
+    select = {
+      enable = true,
+      -- Automatically jump forward to textobj, similar to targets.vim
+      lookahead = true,
+    },
+  },
+}

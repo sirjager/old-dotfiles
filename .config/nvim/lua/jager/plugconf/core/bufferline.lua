@@ -3,7 +3,23 @@ if not ok then
 	return
 end
 
+local mocha = require("catppuccin.palettes").get_palette("mocha")
+
 pkg.setup({
+	highlights = require("catppuccin.groups.integrations.bufferline").get({
+		styles = { "italic", "bold" },
+		custom = {
+			all = {
+				fill = { bg = "#000000" },
+			},
+			mocha = {
+				background = { fg = mocha.text },
+			},
+			latte = {
+				background = { fg = "#000000" },
+			},
+		},
+	}),
 	options = {
 		numbers = "ordinal", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
 		close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
@@ -72,9 +88,11 @@ pkg.setup({
 		separator_style = "thick", -- | "thick" | "thin" | { 'any', 'any' },
 		enforce_regular_tabs = true,
 		always_show_bufferline = true,
-		-- sort_by = 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
-		--   -- add custom logic
-		--   return buffer_a.modified > buffer_b.modified
-		-- end
+		after = "catppuccin",
+		config = function()
+			require("bufferline").setup({
+				highlights = require("catppuccin.groups.integrations.bufferline").get(),
+			})
+		end,
 	},
 })

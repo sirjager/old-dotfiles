@@ -20,12 +20,14 @@ lspsaga.setup({
 		devicons = true,
 		border = "single",
 
-		code_action = "💡",
+		code_action = "", -- 💡                                 
 
 		lines = { "┗", "┣", "┃", "━", "┏" },
 
 		colors = {
 			normal_bg = "#022746",
 		},
+
+		kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
 	},
 })

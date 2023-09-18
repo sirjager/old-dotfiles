@@ -24,27 +24,57 @@ pkg.setup({
 	styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
 		comments = { "italic" }, -- Change the style of comments
 		conditionals = { "italic" },
-		loops = {},
-		functions = {},
-		keywords = {},
-		strings = {},
-		variables = {},
-		numbers = {},
-		booleans = {},
-		properties = {},
-		types = {},
-		operators = {},
+		--[[ loops = {}, ]]
+		--[[ functions = {}, ]]
+		--[[ keywords = {}, ]]
+		--[[ strings = {}, ]]
+		--[[ variables = {}, ]]
+		--[[ numbers = {}, ]]
+		--[[ booleans = {}, ]]
+		--[[ properties = {}, ]]
+		--[[ types = {}, ]]
+		--[[ operators = {}, ]]
 	},
-	color_overrides = {},
-	custom_highlights = {},
+	--[[ color_overrides = {}, ]]
+	--[[ custom_highlights = {}, ]]
 	integration_default = nil, -- set to true/false to enable/disable integrations by default
+	-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 	integrations = {
 		cmp = true,
 		gitsigns = true,
-		nvimtree = false,
+		nvimtree = true,
 		treesitter = true,
 		notify = true,
 		mini = false,
-		-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+		barbar = true,
+		alpha = true,
+		markdown = true,
+		which_key = true,
+		telescope = {
+			enabled = true,
+			style = "nvchad",
+		},
+		indent_blankline = {
+			enabled = true,
+			colored_indent_levels = false,
+		},
+		native_lsp = {
+			enabled = true,
+			virtual_text = {
+				errors = { "italic" },
+				hints = { "italic" },
+				warnings = { "italic" },
+				information = { "italic" },
+			},
+			underlines = {
+				errors = { "underline" },
+				hints = { "underline" },
+				warnings = { "underline" },
+				information = { "underline" },
+			},
+			inlay_hints = {
+				background = true,
+			},
+		},
 	},
 })
