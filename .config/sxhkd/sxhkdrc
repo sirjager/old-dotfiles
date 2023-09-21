@@ -56,6 +56,10 @@ super + {_,shift} {1-9}
 super + shift + Tab
     bspc node @/ -C {forward,backward} &
 
+# move floating window 
+super + ctrl + {KP_8,KP_4,KP_5,KP_6}
+  bspc node -v {0 -30,-30 0,0 30,30 0} &
+
 # Numpad: 4(inc width), 6(dec width), 8(inc height), 5(dec height)
 # Controls the size of only the 2nd Window in current workspace
 super + shift  + {KP_8,KP_4,KP_5,KP_6}
@@ -124,7 +128,7 @@ super + {_,shift + } Return
 
 # Primary Terminal with last tmux session
 alt + {_,shift + } Return
-  ~/.local/bin/float-window alacritty -e { "tmux attach", "tmux new" } &
+  kitty sh -c { "tmux attach", "tmux new" } &
 
 # Screenshot
 super + Print

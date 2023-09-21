@@ -57,6 +57,21 @@ export GOBIN="/mnt/storage/workspace/goenv/bin"
 export GOCACHE="/mnt/storage/workspace/goenv/cache"
 export PNPM_HOME="/mnt/storage/programs/pnpm"
 
+
+export PATH="$PATH":"$GOPATH/bin"
+export PATH="$PATH":"$HOME/.local/bin"
+export PATH="$PATH":"$HOME/.config/emacs/bin"
+export PATH="$PATH":"$HOME/.config/rofi/scripts"
+export PATH="$PATH":"/mnt/storage/programs/pnpm"
+export PATH="$PATH":"/mnt/storage/programs/node/bin"
+export PATH="$PATH":"/mnt/storage/programs/go/sdk/bin"
+export PATH="$PATH":"/mnt/storage/programs/protoc/bin"
+export PATH="$PATH":"/mnt/storage/programs/flutter/bin"
+export PATH="$PATH":"/home/jager/.local/share/nvim/mason/bin"
+export PATH="$PATH":"/mnt/storage/programs/android-studio/bin"
+export PATH="$PATH":"/mnt/storage/programs/android-studio-sdk/platform-tools"
+export PATH="$PATH":"/mnt/storage/programs/node/pnpm/global/5/node_modules/grpc-tools/bin"
+
 [ -f ~/.bashrc ] && . ~/.bashrc
 
 [ -f "$CARGO_HOME/env" ] && . "$CARGO_HOME/env"
