@@ -68,6 +68,6 @@ sudo chmod a+rw /sys/class/backlight/amdgpu_bl2/brightness &
 
 # kdeconnect-indicator &
 
-rog-control-center &
+# rog-control-center &
 
 ~/.local/bin/wallpaper -bspwm -dunst -polybar -wall="/mnt/storage/wallpaper/wallheaven/2.jpg" &

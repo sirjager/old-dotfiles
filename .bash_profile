@@ -30,6 +30,7 @@ export W3M_DIR="$XDG_STATE_HOME/w3m"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml" # default ~/.config/starship.toml
+export BUN_INSTALL="$XDG_DATA_HOME/bun"
 
 export EDITOR="nvim" 
 export ALTERNATE_EDITOR="lvim"
@@ -59,6 +60,7 @@ export PNPM_HOME="/mnt/storage/programs/pnpm"
 
 
 export PATH="$PATH":"$GOPATH/bin"
+export PATH="$PATH":"$BUN_INSTALL/bin"
 export PATH="$PATH":"$HOME/.local/bin"
 export PATH="$PATH":"$HOME/.config/emacs/bin"
 export PATH="$PATH":"$HOME/.config/rofi/scripts"
@@ -73,6 +75,7 @@ export PATH="$PATH":"/mnt/storage/programs/android-studio-sdk/platform-tools"
 export PATH="$PATH":"/mnt/storage/programs/node/pnpm/global/5/node_modules/grpc-tools/bin"
 
 [ -f ~/.bashrc ] && . ~/.bashrc
+
 
 [ -f "$CARGO_HOME/env" ] && . "$CARGO_HOME/env"
 

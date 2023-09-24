@@ -8,9 +8,28 @@ if not ok2 then
   return
 end
 
+local ok3, ufo = pcall(require, "ufo")
+if not ok3 then
+  return
+end
+
+ufo.setup {
+  ---@diagnostic disable-next-line: unused-local
+  provider_selector = function(bufnr, filetype, buftype)
+    return { "treesitter", "indent" }
+  end,
+}
+
+local util = require "lspconfig/util"
+
 -- enable autocompletion capabilities
 local capabilities = cmp_nvim_lsp.default_capabilities()
-local util = require "lspconfig/util"
+
+-- ufo: code folding
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
 
 -- enable keybinds for available lsp servers
 local on_attach = function(_, bufnr)
@@ -160,8 +179,8 @@ lspconfig.pyright.setup {
 }
 
 -- rust tools
-local ok3, rust_tools = pcall(require, "rust-tools")
-if not ok3 then
+local ok4, rust_tools = pcall(require, "rust-tools")
+if not ok4 then
   return
 end
 

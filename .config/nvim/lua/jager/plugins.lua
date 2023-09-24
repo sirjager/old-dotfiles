@@ -280,6 +280,14 @@ local plugins = {
     -- build = "cd app && yarn install",
     build = ":call mkdp#util#install()",
   },
+
+  -- code folding
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = {
+      "kevinhwang91/promise-async",
+    },
+  },
 }
 
 local opts = {}
