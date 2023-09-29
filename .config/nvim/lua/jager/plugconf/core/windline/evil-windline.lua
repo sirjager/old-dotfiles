@@ -244,10 +244,10 @@ windline.setup {
     colors.red = "#ff5555"
     colors.green = "#50fa7b"
     colors.blue = "#8be9fd"
-    colors.purple = "#bd93f9"
+    colors.purple = "#eeead6"
     colors.yellow = "#f1fa8c"
-    colors.black = "#44475a"
-    colors.NormalBg = "#44475a"
+    colors.black = "#3c3836"
+    colors.NormalBg = "#3c3836"
     --- add new colors
     return colors
   end,

@@ -81,16 +81,11 @@ local plugins = {
 
   -- colorschemes
   "navarasu/onedark.nvim",
-  "morhetz/gruvbox",
   "Mofiqul/dracula.nvim",
+  --[[ { "AlphaTechnolog/pywal.nvim", as = "pywal" }, ]]
+  --[[ { "folke/tokyonight.nvim", priority = 1000 }, ]]
+  { "ellisonleao/gruvbox.nvim", priority = 1000 },
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-  { "AlphaTechnolog/pywal.nvim", as = "pywal" },
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
 
   -- github
   "lewis6991/gitsigns.nvim",
@@ -201,7 +196,15 @@ local plugins = {
   "nvim-treesitter/nvim-treesitter",
   "nvim-treesitter/nvim-treesitter-context",
 
-  "lukas-reineke/indent-blankline.nvim",
+  -- indent line
+  { "echasnovski/mini.indentscope", version = "*" },
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "UIEnter" },
+    config = function()
+      require("hlchunk").setup {}
+    end,
+  },
 
   -- ######################################################
   -- Completions

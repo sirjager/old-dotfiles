@@ -4,7 +4,8 @@ vim.o.background = "dark" -- > or "light" for light mode
 -- > import customized themes here
 --[[ require("jager.core.colorscheme.onedark") ]]
 --[[ require("jager.core.colorscheme.tokyonight") ]]
---[[ require("jager.core.colorscheme.catppuccin") ]]
+--[[ require "jager.core.colorscheme.catppuccin" ]]
+require "jager.core.colorscheme.gruvbox"
 
 -- CHANGE YOUR THEME HERE
 local theme = "gruvbox"
@@ -19,4 +20,5 @@ vim.cmd("colorscheme " .. theme)
 
 -- change colors of line numbers
 -- none #A6ADC8 #BAC2DE #585B70 #45475A #B4BEFE #1E1E2E
-vim.cmd "hi LineNr guibg=none guifg=#A6ADC8"
+-- #B2AC8F #A09A7F #DCD4AF #eeead6 #908B75 #a6a395 #3c3836
+vim.cmd "hi LineNr guibg=none guifg=#DCD4AF"
