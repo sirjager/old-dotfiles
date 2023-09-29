@@ -36,6 +36,33 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 
+-- jsonls
+lspconfig.jsonls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    json = {
+      schemas = require("schemastore").json.schemas(),
+      validate = { enable = true },
+    },
+  },
+}
+
+lspconfig.yamlls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  yaml = {
+    schemastore = {
+      -- You must disable built-in schemaStore support if you want to use
+      -- this plugin and its advanced options like `ignore`.
+      enable = false,
+      -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+      url = "",
+    },
+    schemas = require("schemastore").yaml.schemas(),
+  },
+}
+
 -- Lua
 lspconfig.lua_ls.setup {
   capabilities = capabilities,
@@ -55,6 +82,11 @@ lspconfig.lua_ls.setup {
       },
     },
   },
+}
+
+lspconfig.prismals.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
 
 -- configure gopls server

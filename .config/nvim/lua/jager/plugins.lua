@@ -263,7 +263,10 @@ local plugins = {
   },
 
   -- wakatime
-  --[[ "wakatime/vim-wakatime", ]]
+  "wakatime/vim-wakatime",
+
+  -- json schema
+  "b0o/schemastore.nvim",
 
   -- language specific
   "jose-elias-alvarez/typescript.nvim", -- for advance typescript features
@@ -287,6 +290,31 @@ local plugins = {
     dependencies = {
       "kevinhwang91/promise-async",
     },
+  },
+
+  -- prisma support
+  "prisma/vim-prisma",
+
+  "folke/zen-mode.nvim",
+
+  -- database client
+  "tpope/vim-dadbod",
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = {
+      { "tpope/vim-dadbod", lazy = true },
+      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+    },
+    cmd = {
+      "DBUI",
+      "DBUIToggle",
+      "DBUIAddConnection",
+      "DBUIFindBuffer",
+    },
+    init = function()
+      -- Your DBUI configuration
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
   },
 }
 

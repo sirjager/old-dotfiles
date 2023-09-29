@@ -127,7 +127,7 @@ set_dunst_colors(){
 set_bspwm_colors(){
     . "$PYWAL_COLORS.sh"
     bspc config normal_border_color "#000000"
-    bspc config focused_border_color "#82aaff"
+    bspc config focused_border_color "$color10"
 }
 
 set_wallpaper(){

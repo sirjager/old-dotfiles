@@ -62,7 +62,10 @@ local keymaps = {
     ["<A-s>j"] = { ":split<CR><C-w>w", "split window down" },
 
     -- maximize window and restore window
-    ["<A-f><A-f>"] = { ":MaximizerToggle<CR>", "maximize / restore window" },
+    ["<A-f>"] = { ":MaximizerToggle<CR>", "maximize / restore window" },
+
+    -- toggle zen mode
+    ["<A-z>"] = { ":ZenMode<CR>", "toggle zen mode" },
 
     -- go lang specific
     ["<leader>gsj"] = { "<CMD> GoTagAdd json <CR>", "go: add json struct tags" },
@@ -105,8 +108,15 @@ local which_keymaps = {
 
   e = { ":NvimTreeFindFileToggle<CR>", "toggle file explorer" },
 
+  m = {
+    name = "database client",
+    m = { ":DBUIToggle<CR>", "database ui toggle" },
+    c = { ":DBUIClose<CR>", "database ui close" },
+  },
+
   t = {
     name = "toggle",
+
     w = {
       name = "wrap long lines",
       r = { ":set wrap <CR>", "wrap long lines" },

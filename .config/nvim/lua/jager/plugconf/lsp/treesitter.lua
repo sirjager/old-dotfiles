@@ -27,6 +27,7 @@ ts.setup {
     "markdown_inline",
     "python",
     "rust",
+    "prisma",
     "tsx",
     "typescript",
     "vim",
