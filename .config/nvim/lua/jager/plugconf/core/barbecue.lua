@@ -81,7 +81,6 @@ pkg.setup {
     return " "
   end,
 
-  ---@alias barbecue.Config.custom_section
   ---|string # Literal string.
   ---|{ [1]: string, [2]: string? }[] # List-like table of `[text, highlight?]` tuples in which `highlight` is optional.
   ---
@@ -117,7 +116,6 @@ pkg.setup {
     separator = "", -- 
   },
 
-  ---@alias barbecue.Config.kinds
   ---|false # Disable kind icons.
   ---|table<string, string> # Type to icon mapping.
   ---
@@ -153,7 +151,6 @@ pkg.setup {
     TypeParameter = "",
   },
 
-  ---@alias barbecue.Config.theme
   ---|'"auto"' # Use your current colorscheme's theme or generate a theme based on it.
   ---|string # Theme located under `barbecue.theme` module.
   ---

@@ -3,12 +3,13 @@ vim.o.background = "dark" -- > or "light" for light mode
 
 -- > import customized themes here
 --[[ require("jager.core.colorscheme.onedark") ]]
---[[ require("jager.core.colorscheme.tokyonight") ]]
+require "jager.core.colorscheme.tokyonight"
 --[[ require "jager.core.colorscheme.catppuccin" ]]
-require "jager.core.colorscheme.gruvbox"
+--[[ require "jager.core.colorscheme.material" ]]
+--[[ require "jager.core.colorscheme.gruvbox" ]]
 
 -- CHANGE YOUR THEME HERE
-local theme = "gruvbox"
+local theme = "tokyonight"
 
 ---@diagnostic disable-next-line: param-type-mismatch
 local ok, _ = pcall(vim.cmd, "colorscheme ", theme)

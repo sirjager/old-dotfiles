@@ -38,6 +38,10 @@ ts.setup {
   sync_install = false,
   auto_install = true,
 
+  playground = { enable = true },
+
+  markid = { enable = true },
+
   indent = { enable = true },
 
   highlights = {
@@ -47,7 +51,7 @@ ts.setup {
 
   autotag = {
     enable = true,
-    filetypes = { "html", "javascript", "javascriptreact", "typescriptreact", "svelte", "vue", "markdown" },
+    filetypes = { "html", "javascript", "javascriptreact", "typescriptreact", "svelte", "vue", "markdown", "mdx" },
   },
 
   refactor = {

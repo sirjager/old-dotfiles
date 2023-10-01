@@ -14,15 +14,9 @@ if not ok3 then
   return
 end
 
-local ok4, ts_utils = pcall(require, "nvim-treesitter.ts_utils")
-if not ok4 then
-  return
-end
-
 -- load vs-code like snippets from plugins (e.g. friendly-snippets)
 require("luasnip/loaders/from_vscode").lazy_load()
 vim.opt.completeopt = "menu,menuone,noselect"
-local compare = cmp.config.compare
 
 ---@diagnostic disable-next-line: unused-local
 local lsp_kind_order = {

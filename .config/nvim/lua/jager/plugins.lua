@@ -82,8 +82,9 @@ local plugins = {
   -- colorschemes
   "navarasu/onedark.nvim",
   "Mofiqul/dracula.nvim",
-  --[[ { "AlphaTechnolog/pywal.nvim", as = "pywal" }, ]]
-  --[[ { "folke/tokyonight.nvim", priority = 1000 }, ]]
+  "marko-cerovac/material.nvim",
+  -- [[ { "AlphaTechnolog/pywal.nvim", as = "pywal" }, ]]
+  { "folke/tokyonight.nvim", priority = 1000 },
   { "ellisonleao/gruvbox.nvim", priority = 1000 },
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
@@ -133,6 +134,10 @@ local plugins = {
       require("dap-python").setup(path)
     end,
   },
+
+  -- treesitter
+  "nvim-treesitter/nvim-treesitter",
+  "nvim-treesitter/playground",
 
   -- lsp
   "folke/trouble.nvim",
@@ -287,14 +292,6 @@ local plugins = {
     build = ":call mkdp#util#install()",
   },
 
-  -- code folding
-  {
-    "kevinhwang91/nvim-ufo",
-    dependencies = {
-      "kevinhwang91/promise-async",
-    },
-  },
-
   -- prisma support
   "prisma/vim-prisma",
 
@@ -318,6 +315,12 @@ local plugins = {
       -- Your DBUI configuration
       vim.g.db_ui_use_nerd_fonts = 1
     end,
+  },
+
+  -- my plugins
+  {
+    "sirjager/livemd.nvim",
+    dir = "/mnt/storage/workspace/neovim/livemd.nvim",
   },
 }
 

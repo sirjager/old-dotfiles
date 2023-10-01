@@ -8,17 +8,16 @@ if not ok2 then
   return
 end
 
+-- code folding
 local ok3, ufo = pcall(require, "ufo")
-if not ok3 then
-  return
+if ok3 then
+  ufo.setup {
+    ---@diagnostic disable-next-line: unused-local
+    provider_selector = function(bufnr, filetype, buftype)
+      return { "treesitter", "indent" }
+    end,
+  }
 end
-
-ufo.setup {
-  ---@diagnostic disable-next-line: unused-local
-  provider_selector = function(bufnr, filetype, buftype)
-    return { "treesitter", "indent" }
-  end,
-}
 
 local util = require "lspconfig/util"
 
@@ -194,13 +193,13 @@ lspconfig.tailwindcss.setup {
 lspconfig.marksman.setup {
   capabilities = capabilities,
   on_attach = on_attach,
-  filetypes = { "markdown", "markdown.mdx" },
+  filetypes = { "markdown", "markdown.mdx", "mdx" },
 }
 
 -- mdx
 lspconfig.mdx_analyzer.setup {
   cmd = { "mdx-language-server", "--stdio" },
-  filetypes = { "markdown.mdx" },
+  filetypes = { "markdown.mdx", "mdx" },
 }
 
 -- python pyright

@@ -8,6 +8,12 @@ local keymaps = {
     -- clear highlights
     ["<Esc>"] = { ":noh <CR>", "clear highlights" },
 
+    ["w"] = { '<ESC>:execute "normal! v"<CR>w', "select word to right" },
+    ["b"] = { '<ESC>:execute "normal! v"<CR>b', "select word to left" },
+
+    ["W"] = { [[<ESC>:execute "normal! v" .. (col('$') - col('.')) .. 'l'<CR>]], "select words till end of line" },
+    ["B"] = { [[:execute "normal! v" .. (col('.') - 1) .. 'h'<CR>]], "select words till start of line" },
+
     -- disabling recording:
     ["q"] = { "<ESC><ESC>:noh<CR>", "clear highlights" },
 
@@ -93,6 +99,8 @@ local keymaps = {
     -- keep last copied in clipboard
     ["p"] = { '"_dp', "paste last copied" },
 
+    ["q"] = { "<ESC><ESC> :noh <CR>", "escape visual mode" },
+
     -- move selection left, right, top, bottom
     ["H"] = { "<gv", "indent left" },
     ["L"] = { ">gv", "indent right" },
@@ -105,6 +113,11 @@ local keymaps = {
 }
 
 local which_keymaps = {
+
+  q = {
+    name = "Testing Custom Plugins",
+    w = { ":lua require 'livemd'.run()<CR>", "run LiveMD" },
+  },
 
   e = { ":NvimTreeFindFileToggle<CR>", "toggle file explorer" },
 
