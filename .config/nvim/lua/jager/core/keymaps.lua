@@ -8,8 +8,8 @@ local keymaps = {
     -- clear highlights
     ["<Esc>"] = { ":noh <CR>", "clear highlights" },
 
-    ["w"] = { '<ESC>:execute "normal! v"<CR>w', "select word to right" },
-    ["b"] = { '<ESC>:execute "normal! v"<CR>b', "select word to left" },
+    ["w"] = { "<ESC>ve", "select word to right" },
+    ["b"] = { "<ESC>vb", "select word to left" },
 
     ["W"] = { [[<ESC>:execute "normal! v" .. (col('$') - col('.')) .. 'l'<CR>]], "select words till end of line" },
     ["B"] = { [[:execute "normal! v" .. (col('.') - 1) .. 'h'<CR>]], "select words till start of line" },
@@ -47,9 +47,8 @@ local keymaps = {
     ["<S-j>"] = { ":resize -2<CR>", "decrease window height" },
     ["<S-k>"] = { ":resize +2<CR>", "increase window height" },
 
-    -- tabs by barbar plugin
-    ["<A-p>"] = { "<Cmd>BufferPin<CR>", "pin buffer" },
-    ["<A-i>"] = { "<Cmd>BufferPick<CR>", "smart buffer picker" },
+    -- dont really use it,
+    --[[ ["<A-i>"] = { "<Cmd>BufferPick<CR>", "smart buffer picker" }, ]]
 
     -- fast swtich tabs
     ["<A-1>"] = { "<Cmd>BufferGoto 1<CR>", "go to 1 buffer" },
@@ -67,15 +66,51 @@ local keymaps = {
     ["<A-s>l"] = { ":vsplit<CR><C-w>w", "split window right" },
     ["<A-s>j"] = { ":split<CR><C-w>w", "split window down" },
 
-    -- maximize window and restore window
-    ["<A-f>"] = { ":MaximizerToggle<CR>", "maximize / restore window" },
-
-    -- toggle zen mode
-    ["<A-z>"] = { ":ZenMode<CR>", "toggle zen mode" },
-
     -- go lang specific
     ["<leader>gsj"] = { "<CMD> GoTagAdd json <CR>", "go: add json struct tags" },
     ["<leader>gsy"] = { "<CMD> GoTagAdd yaml <CR>", "go: add yaml struct tags" },
+
+    ["<leader>gg"] = { ":Gen <CR>", "go: add yaml struct tags" },
+
+    -- INFO:  =================================================================
+    -- All Most Used toggleable options using Alt key
+    -- Some keybinds may conflict with tmux, keep cross checking tmux configs
+    -- ========================================================================
+    --
+    -- Toggle Maximize Current Buffer
+    --[[ ["<A-a>"] = { ":MaximizerToggle<CR>", "maximize / restore window" }, ]]
+    -- Toggle Zen Mode
+    ["<A-z>"] = { ":ZenMode<CR>", "toggle zen mode" },
+    -- Change Colorschems on fly
+    ["<A-t>"] = { ":Themery<CR>", "change colorscheme live preview" },
+    -- Toggle Pin Current Buffer
+    ["<A-p>"] = { "<Cmd>BufferPin<CR>", "toggle pin current buffer" },
+    -- Toggle Markdown Preview
+    ["<A-m>"] = { ":MarkdownPreviewToggle<CR>", "toggle markdown preview" },
+    -- Toggle Comment: Also in visual mode
+    ["<A-c>"] = { "gcc", "toggle comment" },
+    -- Toggle Wrap Lines with custom function in function.lua
+    ["<A-r>"] = { ":lua Toggle_WrapLines()<CR>", "toggle wrap lines" },
+    -- Toggle Line Numbers with custom function in function.lua
+    ["<A-n>"] = { ":lua Toggle_LineNumbers()<CR>", "toggle line numbers" },
+    -- Toggle Lspsage Outline; using L to increase size
+    ["<A-o>"] = { ":NvimTreeClose<CR>:Lspsaga outline<CR>LLLLLLL", "toggle lsp outline" },
+    -- Toggle Hover Pic
+    ["<A-i>"] = { ":Lspsaga hover_doc <CR>", "toggle doc" },
+    -- Toggle Peek Definition
+    ["<A-e>"] = { ":Lspsaga peek_definition <CR>", "toggle peek definition" },
+    -- Go To Definition
+    ["<A-d>"] = { ":Lspsaga goto_definition <CR>", "goto definition" },
+    -- Toggle Quick Fix Window
+    ["<A-f>"] = { ":CodeActionMenu<CR>", "code action" },
+    -- Toggle Database UI, closing nvimtree first to keep one opened at same time
+    ["<A-u>"] = { ":NvimTreeClose<CR> :DBUIToggle<CR>", "toggle database ui" },
+    -- Close All But Current Or Pinned Buffers
+    ["<A-w>"] = { ":BufferCloseAllButCurrentOrPinned<CR>", "close all buffer but current or pinned" },
+    -- Toggle Terminal - Keeping here for ref. set by toggleterm.lua configs
+    --[[ ["<C-\>"] = { ":ToggleTerm direction=float<CR>", "toggle terminal" }, ]]
+
+    -- ========================================================================
   },
 
   -- insert mode
@@ -91,7 +126,7 @@ local keymaps = {
     ["<C-k>"] = { "<Up>", "Move up" },
 
     -- save buffer
-    ["<C-s>"] = { "<ESC>:w<CR>", "save buffer" },
+    ["<C-s>"] = { "<ESC>:w<CR>i<Right>", "save buffer" },
   },
 
   -- visual mode
@@ -99,13 +134,19 @@ local keymaps = {
     -- keep last copied in clipboard
     ["p"] = { '"_dp', "paste last copied" },
 
+    ["<leader>gg"] = { ":Gen <CR>", "go: add yaml struct tags" },
+
     ["q"] = { "<ESC><ESC> :noh <CR>", "escape visual mode" },
+    ["w"] = { "e", "select word to right" },
 
     -- move selection left, right, top, bottom
     ["H"] = { "<gv", "indent left" },
     ["L"] = { ">gv", "indent right" },
     ["J"] = { ":move '>+1<CR>gv-gv", "move selection down" },
     ["K"] = { ":move '<-2<CR>gv-gv", "move selection up" },
+
+    -- Toggle Comment: Also in normal mode
+    ["<A-c>"] = { "gcc", "toggle comment" },
   },
 
   -- terminal
@@ -113,53 +154,29 @@ local keymaps = {
 }
 
 local which_keymaps = {
-
-  q = {
-    name = "Testing Custom Plugins",
-    w = { ":lua require 'livemd'.run()<CR>", "run LiveMD" },
-  },
-
   e = { ":NvimTreeFindFileToggle<CR>", "toggle file explorer" },
 
-  m = {
-    name = "database client",
-    m = { ":DBUIToggle<CR>", "database ui toggle" },
-    c = { ":DBUIClose<CR>", "database ui close" },
-  },
-
-  t = {
-    name = "toggle",
-
-    w = {
-      name = "wrap long lines",
-      r = { ":set wrap <CR>", "wrap long lines" },
-      n = { ":set nowrap <CR>", "nowrap long lines" },
-    },
-
-    l = {
-      name = "line numbers",
-      n = { "<cmd> set nu! <CR>", "toggle line number" },
-      r = { "<cmd> set rnu! <CR>", "toggle relative number" },
-    },
-
-    t = {
-      name = "toggle terminal",
-      f = { ":ToggleTerm direction=float<CR>", "terminal on float" },
-      l = { ":ToggleTerm direction=vertical size=80<CR>", "terminal on right" },
-      j = { ":ToggleTerm direction=horizontal size=8<CR>", "terminal on left" },
-    },
-  },
+  --[[ t = { ]]
+  --[[   name = "toggle", ]]
+  --[[   t = { ]]
+  --[[     name = "toggle terminal", ]]
+  --[[     f = { ":ToggleTerm direction=float<CR>", "terminal on float" }, ]]
+  --[[     l = { ":ToggleTerm direction=vertical size=80<CR>", "terminal on right" }, ]]
+  --[[     j = { ":ToggleTerm direction=horizontal size=8<CR>", "terminal on left" }, ]]
+  --[[   }, ]]
+  --[[ }, ]]
 
   s = {
     name = "search",
-    s = { ":Telescope find_files hidden=true <CR>", "find files" }, -- most used
+    s = { ":Telescope find_files <CR>", "find files" }, -- most used
     w = { ":Telescope live_grep <CR>", "live grep" },
     o = { ":Telescope oldfiles <CR>", "recent files" },
     p = { ":Telescope project <CR>", "open project" },
     r = { ":Telescope resume <CR>", "resume search" },
     W = { ":Telescope current_buffer_fuzzy_find <CR>", "find word" },
     h = { ":Telescope help_tags <CR>", "help tags" },
-    c = { ":Telescope colorschemes <CR>", "color schemes" },
+    k = { ":Telescope keymaps <CR>", "key bindings" },
+    c = { ":Telescope colorscheme <CR>", "color schemes" },
     a = { ":Telescope autocommands <CR>", "auto commands" },
     C = { ":Telescope commands <CR>", "list commands" },
   },
@@ -230,21 +247,18 @@ end
 
 -- which key mappings:
 local ok, wk = pcall(require, "which-key")
-if not ok then
-  return
+if ok then
+  -- default which-key opts: https://github.com/folke/which-key.nvim
+  local which_key_opts = {
+    mode = "n", -- NORMAL mode
+    -- prefix: use "<leader>f" for example for mapping everything related to finding files
+    -- the prefix is prepended to every mapping part of `mappings`
+    prefix = "<leader>",
+    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = false, -- use `nowait` when creating keymaps
+    expr = false, -- use `expr` when creating keymaps
+  }
+  wk.register(which_keymaps, which_key_opts)
 end
-
--- default which-key opts: https://github.com/folke/which-key.nvim
-local which_key_opts = {
-  mode = "n", -- NORMAL mode
-  -- prefix: use "<leader>f" for example for mapping everything related to finding files
-  -- the prefix is prepended to every mapping part of `mappings`
-  prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = false, -- use `nowait` when creating keymaps
-  expr = false, -- use `expr` when creating keymaps
-}
-
-wk.register(which_keymaps, which_key_opts)

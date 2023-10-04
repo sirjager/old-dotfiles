@@ -209,9 +209,9 @@ cmp.setup {
     --[[ { name = "cmp_tabnine" }, -- completions from tabnine ai ]]
     { name = "buffer" }, -- completions from opened buffers
     { name = "path" }, -- filesystem path completions
-    { name = "crates" }, -- rust crates completions and hints
-    { name = "emoji" },
-    { name = "calc" },
+    --[[ { name = "crates" }, -- rust crates completions and hints ]]
+    --[[ { name = "emoji" }, ]]
+    --[[ { name = "calc" }, ]]
 
     {
       name = "tmux", -- completions from tmux sessions

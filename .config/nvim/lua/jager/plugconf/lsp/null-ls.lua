@@ -7,41 +7,26 @@ end
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local format = null_ls.builtins.formatting
 local diagnostic = null_ls.builtins.diagnostics
-local code_actions = null_ls.builtins.code_actions
+local actions = null_ls.builtins.code_actions
 
 -- configure null_ls
 null_ls.setup {
   -- setup formatters & linters
   sources = {
-
-    -- lua
+    format.shfmt,
+    actions.shellcheck,
     format.stylua,
-
-    -- go
+    format.rustywind,
     format.gofumpt,
     format.golines,
     format.goimports_reviser,
-
-    -- python
     format.black,
-    --[[ diagnostics.myy, ]]
-    --[[ diagnostics.ruff, ]]
-
-    -- typesciprt/javascript
-    format.rustywind,
-    code_actions.eslint_d.with {
-      filetypes = {
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "vue",
-      },
-    },
-    format.prettierd,
+    diagnostic.ruff,
+    actions.eslint_d,
     diagnostic.eslint_d.with {
       diagnostics_format = "[eslint] #{m}\n(#{c})",
     },
+    format.prettierd,
   },
 
   -- configure format on save

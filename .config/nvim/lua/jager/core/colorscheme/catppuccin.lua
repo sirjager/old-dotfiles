@@ -1,4 +1,3 @@
--- Use a protected call so we don't error out on first use
 local ok, pkg = pcall(require, "catppuccin")
 if not ok then
   return

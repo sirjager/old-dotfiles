@@ -20,8 +20,8 @@ pkg.setup {
       "--line-number",
       "--column",
       "--smart-case",
-      "--no-ignore", -- **This is the added flag**
-      "--hidden", -- **Also this flag. The combination of the two is the same as `-uu`**
+      --[[ "--no-ignore", -- **This is the added flag** ]]
+      --[[ "--hidden", -- **Also this flag. The combination of the two is the same as `-uu`** ]]
     },
   },
 
@@ -86,14 +86,9 @@ pkg.setup {
 
   extensions = {
     projects = {
-      base_dirs = {
-        { "~/.config/nvim", max_depth = 4 },
-        "~/.config/polybar",
-        "~/.config/bspwm",
-        "~/.config/sxhkd",
-      },
+      base_dirs = {},
       display_type = "full",
-      hidden_files = true, -- default: false
+      hidden_files = false, -- default: false
       theme = "dropdown",
       order_by = "asc",
       search_by = "title",

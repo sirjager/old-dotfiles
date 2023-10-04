@@ -274,21 +274,21 @@ if [ "$METHOD" = "select" ]; then
     if [ "$ENABLE_BRAVE" = "true" ]; then 
         if [ -f "$BRAVE_BOOKMARKS" ]; then   
             result=$(get_bookmarks "$BRAVE_BOOKMARKS" "brave: " )
-            ALL_BOOKMARKS="${ALL_BOOKMARKS}${result}"
+            ALL_BOOKMARKS="${ALL_BOOKMARKS}\n${result}"
         fi
     fi
 
     if [ "$ENABLE_GOOGLE" = "true" ]; then 
         if [ -f "$GOOGLE_CHROME_BOOKMARKS" ]; then   
             result=$(get_bookmarks "$GOOGLE_CHROME_BOOKMARKS" "google: " )
-            ALL_BOOKMARKS="${ALL_BOOKMARKS}${result}"
+            ALL_BOOKMARKS="${ALL_BOOKMARKS}\n${result}"
         fi
     fi
 
     if [ "$ENABLE_CHROMIUM" = "true" ]; then 
         if [ -f "$CHROMIUM_BOOKMARKS" ]; then   
             result=$(get_bookmarks "$CHROMIUM_BOOKMARKS" "chromium: " )
-            ALL_BOOKMARKS="${ALL_BOOKMARKS}${result}"
+            ALL_BOOKMARKS="${ALL_BOOKMARKS}\n${result}"
         fi 
     fi
 

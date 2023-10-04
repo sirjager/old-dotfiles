@@ -59,9 +59,24 @@ local plugins = {
     dependencies = { "nvim-lua/plenary.nvim" },
   },
 
+  -- mini
+  { "echasnovski/mini.completion", version = "*" },
+  { "echasnovski/mini.comment", version = "*" },
+
+  -- Neoscroll: a smooth scrolling neovim plugin
+  "karb94/neoscroll.nvim",
+
+  -- fold cycle
+  {
+    "jghauser/fold-cycle.nvim",
+    config = function()
+      require("fold-cycle").setup()
+    end,
+  },
+
   -- ui
   "romgrk/barbar.nvim",
-  "karb94/neoscroll.nvim",
+
   "sunjon/shade.nvim",
   "nvim-tree/nvim-tree.lua",
   "akinsho/bufferline.nvim",
@@ -153,6 +168,8 @@ local plugins = {
     branch = "main",
     after = "nvim-treesitter",
   },
+
+  -- neovim plugin development utils
   {
     "folke/neodev.nvim",
     lazy = true,
@@ -288,7 +305,6 @@ local plugins = {
   {
     "iamcco/markdown-preview.nvim",
     ft = { "markdown", "mdx" },
-    -- build = "cd app && yarn install",
     build = ":call mkdp#util#install()",
   },
 
@@ -312,48 +328,72 @@ local plugins = {
       "DBUIFindBuffer",
     },
     init = function()
-      -- Your DBUI configuration
       vim.g.db_ui_use_nerd_fonts = 1
     end,
   },
 
-  -- my plugins
   {
-    "sirjager/livemd.nvim",
-    dir = "/mnt/storage/workspace/neovim/livemd.nvim",
+    "kevinhwang91/nvim-ufo",
+    dependencies = {
+      "kevinhwang91/promise-async",
+    },
   },
+
+  {
+    "akinsho/flutter-tools.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "stevearc/dressing.nvim", -- optional for vim.ui.select
+    },
+    config = true,
+  },
+
+  "David-Kunz/gen.nvim",
+
+  -- Show where your cursor moves when jumping large distances (e.g between windows).
+  --[[ "edluffy/specs.nvim", ]]
+
+  --[[ -- chat gpt ]]
+  --[[ { ]]
+  --[[   "jackMort/ChatGPT.nvim", ]]
+  --[[   event = "VeryLazy", ]]
+  --[[   dependencies = { ]]
+  --[[     "MunifTanjim/nui.nvim", ]]
+  --[[     "nvim-lua/plenary.nvim", ]]
+  --[[     "nvim-telescope/telescope.nvim", ]]
+  --[[   }, ]]
+  --[[ }, ]]
+
+  -- end of plugins table
 }
 
 local opts = {}
 
 require("lazy").setup(plugins, opts)
 
--- needed by notify to work properly and avoid warnings
-vim.opt.termguicolors = true
-
 -- Notification
 local ok, notify = pcall(require, "notify")
-if not ok then
-  return
+if ok then
+  vim.opt.termguicolors = true
+  notify.setup {
+    background_colour = "#000000",
+    fps = 60,
+    icons = {
+      DEBUG = "",
+      ERROR = "",
+      INFO = "",
+      TRACE = "✎",
+      WARN = "",
+    },
+    level = 2,
+    minimum_width = 50,
+    render = "compact", -- default, minimal, simple, compact
+    stages = "fade_in_slide_out", -- fade_in_slide_out, fade, slide, static
+    timeout = 2500,
+    top_down = true,
+  }
+  vim.notify = notify
 end
 
----@diagnostic disable-next-line: missing-fields
-notify.setup {
-  background_colour = "#000000",
-  fps = 60,
-  icons = {
-    DEBUG = "",
-    ERROR = "",
-    INFO = "",
-    TRACE = "✎",
-    WARN = "",
-  },
-  level = 2,
-  minimum_width = 50,
-  render = "compact", -- default, minimal, simple, compact
-  stages = "fade_in_slide_out", -- fade_in_slide_out, fade, slide, static
-  timeout = 2500,
-  top_down = true,
-}
-
-vim.notify = notify
+--

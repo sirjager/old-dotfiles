@@ -8,17 +8,6 @@ if not ok2 then
   return
 end
 
--- code folding
-local ok3, ufo = pcall(require, "ufo")
-if ok3 then
-  ufo.setup {
-    ---@diagnostic disable-next-line: unused-local
-    provider_selector = function(bufnr, filetype, buftype)
-      return { "treesitter", "indent" }
-    end,
-  }
-end
-
 local util = require "lspconfig/util"
 
 -- enable autocompletion capabilities
@@ -34,6 +23,30 @@ capabilities.textDocument.foldingRange = {
 local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 end
+
+-- Lua
+lspconfig.lua_ls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      completion = {
+        callSnippet = "Replace",
+      },
+      -- make the language server recognize "vim" global
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        -- make language server aware of runtime files
+        library = {
+          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+          [vim.fn.stdpath "config" .. "/lua"] = true,
+        },
+      },
+    },
+  },
+}
 
 -- jsonls
 lspconfig.jsonls.setup {
@@ -59,27 +72,6 @@ lspconfig.yamlls.setup {
       url = "",
     },
     schemas = require("schemastore").yaml.schemas(),
-  },
-}
-
--- Lua
-lspconfig.lua_ls.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  settings = {
-    Lua = {
-      -- make the language server recognize "vim" global
-      diagnostics = {
-        globals = { "vim" },
-      },
-      workspace = {
-        -- make language server aware of runtime files
-        library = {
-          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-          [vim.fn.stdpath "config" .. "/lua"] = true,
-        },
-      },
-    },
   },
 }
 
@@ -155,7 +147,14 @@ lspconfig.gopls.setup {
 lspconfig.tsserver.setup {
   capabilities = capabilities,
   on_attach = on_attach,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
+  filetypes = {
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+  },
   cmd = { "typescript-language-server", "--stdio" },
   init_options = {
     perferences = {
@@ -211,25 +210,39 @@ lspconfig.pyright.setup {
 
 -- rust tools
 local ok4, rust_tools = pcall(require, "rust-tools")
-if not ok4 then
-  return
+if ok4 then
+  rust_tools.setup {
+    server = {
+      capabilities = capabilities,
+      on_attach = function(_, bufnr)
+        vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+        vim.keymap.set("n", "<leader>ldd", ":RustDebuggables <CR>", { buffer = bufnr })
+        vim.keymap.set("n", "<leader>lh", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+        vim.keymap.set("n", "<leader>la", ":CodeActionMenu<CR>", { buffer = bufnr })
+        --[[ vim.keymap.set("n", "<leader>la", rust_tools.code_action_group.code_action_group, { buffer = bufnr }) ]]
+      end,
+    },
+
+    tools = {
+      hover_actions = {
+        auto_focus = true,
+      },
+    },
+  }
 end
 
-rust_tools.setup {
-  server = {
-    capabilities = capabilities,
-    on_attach = function(_, bufnr)
-      vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-      vim.keymap.set("n", "<leader>ldd", ":RustDebuggables <CR>", { buffer = bufnr })
-      vim.keymap.set("n", "<leader>lh", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
-      vim.keymap.set("n", "<leader>la", ":CodeActionMenu<CR>", { buffer = bufnr })
-      --[[ vim.keymap.set("n", "<leader>la", rust_tools.code_action_group.code_action_group, { buffer = bufnr }) ]]
+-- code folding
+local okufo, ufo = pcall(require, "ufo")
+if okufo then
+  ufo.setup {
+    ---@diagnostic disable-next-line: unused-local
+    provider_selector = function(bufnr, filetype, buftype)
+      return { "treesitter", "indent" }
     end,
-  },
+  }
+end
 
-  tools = {
-    hover_actions = {
-      auto_focus = true,
-    },
-  },
-}
+local okf, flutter = pcall(require, "flutter")
+if okf then
+  flutter.setup {}
+end

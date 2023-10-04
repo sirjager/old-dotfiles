@@ -13,13 +13,10 @@ if not ok3 then
   return
 end
 
-local ok4, neodev = pcall(require, "neodev")
-if not ok4 then
-  return
+local okneodev, neodev = pcall(require, "neodev")
+if okneodev then
+  neodev.setup {}
 end
-
--- needs to come before mason
-neodev.setup {}
 
 mason.setup {
   PATH = "prepend",
