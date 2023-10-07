@@ -1,8 +1,17 @@
--- recommended: to have plugins at first
-require "jager.plugins"
-require "jager.plugconf.core"
-require "jager.plugconf.lsp"
-require "jager.core.options"
-require "jager.core.colorscheme"
-require "jager.core.functions"
-require "jager.core.keymaps"
+-- INFO: Installed Plugins ################################
+require "user.plugins"
+
+-- INFO: Plugins Configs ##################################
+require "user.plugins.configs"
+
+-- INFO: Neovim Option ####################################
+require "user.options"
+
+-- INFO: Color Schemes ####################################
+require "user.colorscheme"
+
+-- INFO: Custom Functions #################################
+require "user.functions"
+
+-- INFO: Keybindings ######################################
+require "user.keymaps"
