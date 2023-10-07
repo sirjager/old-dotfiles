@@ -2,7 +2,7 @@
 
 # Reload sxhkd
 ctrl + shift + Escape
-    chmod +x $HOME/.config/sxhkd/sxhkdrc && pkill -usr1 -x sxhkd &
+   pkill -usr1 -x sxhkd &
 
 # Reload bspwm
 super + shift + r
