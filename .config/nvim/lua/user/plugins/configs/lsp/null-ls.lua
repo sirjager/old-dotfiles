@@ -5,7 +5,7 @@ end
 
 -- to setup format on save
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-local format = null_ls.builtins.formatting
+--[[ local format = null_ls.builtins.formatting ]]
 local diagnostic = null_ls.builtins.diagnostics
 local actions = null_ls.builtins.code_actions
 
@@ -13,20 +13,20 @@ local actions = null_ls.builtins.code_actions
 null_ls.setup {
   -- setup formatters & linters
   sources = {
-    format.shfmt,
+    --[[ format.shfmt, ]]
     actions.shellcheck,
-    format.stylua,
-    format.rustywind,
-    format.gofumpt,
-    format.golines,
-    format.goimports_reviser,
-    format.black,
+    --[[ format.stylua, ]]
+    --[[ format.rustywind, ]]
+    --[[ format.gofumpt, ]]
+    --[[ format.golines, ]]
+    --[[ format.goimports_reviser, ]]
+    --[[ format.black, ]]
     diagnostic.ruff,
     actions.eslint_d,
     diagnostic.eslint_d.with {
       diagnostics_format = "[eslint] #{m}\n(#{c})",
     },
-    format.prettierd,
+    --[[ format.prettierd, ]]
   },
 
   -- configure format on save

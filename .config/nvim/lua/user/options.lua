@@ -66,6 +66,9 @@ for k, v in pairs(options) do
   ::continue::
 end
 
+vim.wo.foldlevel = 99
+vim.wo.conceallevel = 2
+
 vim.opt.shortmess:append "c"
 vim.opt.path:append { "**" } -- find files, search down into subfolders
 

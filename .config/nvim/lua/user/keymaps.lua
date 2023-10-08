@@ -107,6 +107,11 @@ local keymaps = {
     ["<A-u>"] = { ":NvimTreeClose<CR> :DBUIToggle<CR>", "toggle database ui" },
     -- Close All But Current Or Pinned Buffers
     ["<A-w>"] = { ":BufferCloseAllButCurrentOrPinned<CR>", "close all buffer but current or pinned" },
+    -- Close All But Current Or Pinned Buffers
+    ["<A-b>"] = {
+      ":lua require'conform'.format({lsp_fallback = true,async = false,timeout_ms = 5000})<CR>",
+      "format without saving",
+    },
     -- Toggle Terminal - Keeping here for ref. set by toggleterm.lua configs
     --[[ ["<C-\>"] = { ":ToggleTerm direction=float<CR>", "toggle terminal" }, ]]
 
@@ -204,6 +209,7 @@ local which_keymaps = {
       name = "def,impl,decl,types",
       d = { ":Lspsaga peek_definition <CR>", "peek definitions" }, -- most used
       i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "implementation" },
+
       D = { ":Lspsaga goto_definition <CR>", "goto definitions" },
       t = { ":Lspsaga peek_type_definition <CR>", "peek type definitions" },
       T = { ":Lspsaga goto_type_definition <CR>", "goto type definitions" },

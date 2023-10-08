@@ -77,6 +77,8 @@ mason_null_ls.setup {
     "eslint_d", -- ts,js
     "gofumpt", -- go
     "mypy", -- py
+    "codespell",
+    "yamlfix",
     "ruff", -- py
     "rustywind",
     "goimports_reviser", -- go

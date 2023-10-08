@@ -25,6 +25,7 @@ ts.setup {
     "lua",
     "markdown",
     "markdown_inline",
+    "norg",
     "python",
     "rust",
     "prisma",

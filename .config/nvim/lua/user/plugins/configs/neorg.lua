@@ -6,11 +6,14 @@ end
 pkg.setup {
   load = {
     ["core.defaults"] = {},
+    ["core.concealer"] = {},
+    ["core.keybinds"] = {},
+
     ["core.dirman"] = {
       config = {
         workspaces = {
-          work = "~/notes/work",
-          home = "~/notes/home",
+          work = "~/Documents/work",
+          home = "~/Documents/home",
         },
       },
     },

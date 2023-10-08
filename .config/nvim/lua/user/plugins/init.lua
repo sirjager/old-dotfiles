@@ -287,6 +287,14 @@ local plugins = {
   "windwp/nvim-ts-autotag",
 
   -- ######################################################
+  -- code formatter, formatting
+  -- ######################################################
+  {
+    "stevearc/conform.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+  },
+
+  -- ######################################################
   -- Portable package manager, install and manage various
   -- LSP servers, DAP servers, linters, and formatters.
   -- ######################################################

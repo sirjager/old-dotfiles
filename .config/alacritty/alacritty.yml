@@ -17,18 +17,19 @@ scrolling:
   history: 100000
   multiplier: 3
 
+# JetbrainsMono Nerd Font
 font:
   normal:
-    family: JetbrainsMono Nerd Font
+    family: MesloLGM Nerd Font Mono
     style: Regular
   bold:
-    family: JetbrainsMono Nerd Font
+    family: MesloLGM Nerd Font Mono
     style: Bold
   italic:
-    family: JetbrainsMono Nerd Font
+    family: MesloLGM Nerd Font Mono
     style: Italic
   bold_italic:
-    family: JetbrainsMono Nerd Font
+    family: MesloLGM Nerd Font Mono
     style: Bold Italic
   size: 8
 draw_bold_text_with_bright_colors: true
