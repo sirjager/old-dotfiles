@@ -80,6 +80,18 @@ lspconfig.prismals.setup {
   on_attach = on_attach,
 }
 
+lspconfig.dockerls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  filetypes = { "Dockerfile" },
+}
+
+lspconfig.docker_compose_language_service.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  filetypes = { "docker-compose.yaml", "docker-compose.yml" },
+}
+
 -- configure gopls server
 lspconfig.gopls.setup {
   capabilities = capabilities,

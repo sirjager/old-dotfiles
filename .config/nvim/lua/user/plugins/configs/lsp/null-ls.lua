@@ -14,18 +14,18 @@ null_ls.setup {
   -- setup formatters & linters
   sources = {
     --[[ format.shfmt, ]]
-    actions.shellcheck,
+    --[[ actions.shellcheck, ]]
     --[[ format.stylua, ]]
     --[[ format.rustywind, ]]
     --[[ format.gofumpt, ]]
     --[[ format.golines, ]]
     --[[ format.goimports_reviser, ]]
     --[[ format.black, ]]
-    diagnostic.ruff,
-    actions.eslint_d,
-    diagnostic.eslint_d.with {
-      diagnostics_format = "[eslint] #{m}\n(#{c})",
-    },
+    --[[ diagnostic.ruff, ]]
+    --[[ actions.eslint_d, ]]
+    --[[ diagnostic.eslint_d.with { ]]
+    --[[ diagnostics_format = "[eslint] #{m}\n(#{c})", ]]
+    --[[ }, ]]
     --[[ format.prettierd, ]]
   },
 

@@ -295,6 +295,14 @@ local plugins = {
   },
 
   -- ######################################################
+  -- code linting, linter
+  -- ######################################################
+  {
+    "mfussenegger/nvim-lint",
+    event = { "BufReadPre", "BufNewFile" },
+  },
+
+  -- ######################################################
   -- Portable package manager, install and manage various
   -- LSP servers, DAP servers, linters, and formatters.
   -- ######################################################

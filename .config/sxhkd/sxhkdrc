@@ -49,8 +49,8 @@ super + shift + KP_Subtract
     bspc node -t floating &
 
 # change workspace, send window to workspace 1-9
-super + {_,shift} {1-9}
-    bspc {desktop -f, node -d} '^{1-9}' &
+super + {_,shift} {1-9,0}
+    bspc {desktop -f, node -d} '^{1-9,10}' &
 
 # Windo swap position among other windows in same workspace
 super + shift + Tab
@@ -189,20 +189,21 @@ super + d; f
 super + d; q
     qutebrowser &
 
-# Doom Emacs
-super + d; e
-    /usr/bin/emacs &
-
-# Doom Emacs
-super + d; o
+# Notes Obsidian
+super + d; n
     obsidian &
 
 # Vscode
 super + d; v
     code --password-store="gnome" &
 
-# Nemo file manager
-super + d; n
+
+# Obs studio, Screen Recorder
+super + d; o
+    obs &
+
+# File Explorer, File Manager, Nemo
+super + d; e
     nemo &
 
 # Keyboard Shortcuts, Sxhkd Keybindings

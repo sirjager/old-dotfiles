@@ -84,6 +84,8 @@ mason_null_ls.setup {
     "goimports_reviser", -- go
     "golines", -- go
     "lua-language-server", -- lua
+    "docker-compose-language-service", -- docker-compose.yaml
+    "dockerfile-language-server", -- Dockerfile
     "markdownlint", -- md
     "mdx_analyzer",
     "prettierd", -- ts, js
