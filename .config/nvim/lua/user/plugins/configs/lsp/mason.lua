@@ -55,6 +55,9 @@ mason_lspconfig.setup {
   automatic_installation = true,
   ensure_installed = {
     "bashls", -- sh
+    "clangd",
+    "cssls",
+    "eslint",
     "emmet_ls",
     "gopls", -- go
     "html", -- html
@@ -63,8 +66,12 @@ mason_lspconfig.setup {
     "marksman", -- md
     "tsserver", -- ts
     "tailwindcss",
+    "cssmodules_ls",
+    "pylsp",
     "pyright", -- py
     "yamlls", -- yml
+    "phpactor", -- php
+    --[[ "intelephense", -- php ]]
   },
 }
 
@@ -74,6 +81,7 @@ mason_null_ls.setup {
     "black", -- py
     "codelldb", -- rust, c,cpp debugger
     "debugpy", -- py
+    "beautysh",
     "eslint_d", -- ts,js
     "gofumpt", -- go
     "mypy", -- py
@@ -81,6 +89,10 @@ mason_null_ls.setup {
     "yamlfix",
     "ruff", -- py
     "rustywind",
+    "shellharden", -- sh
+    "jq",
+    "shfmt",
+    "fixjson",
     "goimports_reviser", -- go
     "golines", -- go
     "lua-language-server", -- lua
@@ -92,5 +104,8 @@ mason_null_ls.setup {
     "rust-analyzer", -- rust
     "stylua", -- lua
     "typescript-languange-server", -- ts,js
+    "phpcs",
+    "php-cbf",
+    "php-cs-fixer",
   },
 }

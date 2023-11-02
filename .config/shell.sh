@@ -4,7 +4,17 @@
 # [ -f /usr/share/blesh/ble.sh ]  && [[ $- == *i* ]] && source /usr/share/blesh/ble.sh
 #
 
+# Starship
+eval "$(starship init bash)"
+
+# Direnv
+eval "$(direnv hook bash)"
+export DIRENV_LOG_FORMAT=""
+
 [ -f ~/.local/share/cargo/env ] && . "/home/jager/.local/share/cargo/env"
+
+# external aliases
+[ -f "/mnt/storage/global/alias" ] && . "/mnt/storage/global/alias"
 
 export GO111MODULE="on"
 export GOPRIVATE="github.com/sirjager/*"
@@ -56,7 +66,7 @@ alias tmk='tmux kill-session -t'
 alias tmka='tmux kill-session -a'
 
 # saving some misc commands
-alias ibattery="upower -i /org/freedesktop/UPower/devices/battery_BAT0"
+alias battery-info="upower -i /org/freedesktop/UPower/devices/battery_BAT0"
 
 # exa: ls commands with style
 alias l='exa -h --long --all --sort=name --icons'
@@ -81,8 +91,6 @@ alias .i='yay --noconfirm --needed -S' # To install a package (always run pacman
 alias .r="yay --noconfirm -Rns"        # To remove the package, avoid orphaned dependencies and erase its global configuration (which in most cases is the proper command to remove software.)
 alias .u="yay --noconfirm -Syu"        # To update the system && Update the database
 
-# external aliases
-[ -f "/mnt/storage/global/alias" ] && . "/mnt/storage/global/alias"
 # usage > install-go go1.20.4
 alias install-go='function _pkg-install-go(){ GOVER=$1 && echo "$GOVER.linux-amd64.tar.gz"; mkdir -p /mnt/storage/programs/go && rm -f /mnt/storage/programs/go/$GOVER.linux-amd64.tar.gz ; rm -rf /mnt/storage/programs/go/sdk ; wget -O /mnt/storage/programs/go/$GOVER.linux-amd64.tar.gz https://golang.org/dl/$GOVER.linux-amd64.tar.gz && tar -C /mnt/storage/programs/go -xzf /mnt/storage/programs/go/$GOVER.linux-amd64.tar.gz && mv /mnt/storage/programs/go/go /mnt/storage/programs/go/sdk && clear && /mnt/storage/programs/go/sdk/bin/go version && rm -f /mnt/storage/programs/go/$GOVER.linux-amd64.tar.gz ; unset -f _pkg-install-go; };_pkg-install-go'
 
@@ -98,25 +106,15 @@ alias tmux-delete-sessions="rm -rf ~/.local/share/tmux/resurrect/*"
 
 # [ ! -f /mnt/storage/programs/miniconda3/conda-init ] || . /mnt/storage/programs/miniconda3/conda-init && conda activate system
 
-
 alias n="nvim"
 alias nv="nvim"
 alias snv="sudo -E -s nvim"
 
-# Neovim configs switcher
-alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
-alias nvim-chad="NVIM_APPNAME=NvChad nvim"
-alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+alias date-dd-mm-yyyy="echo $(date +'%d-%m-%Y') | xclip -selection clipboard"
+alias date-yyyy-mm-dd="echo $(date +'%Y-%m-%d') | xclip -selection clipboard"
+alias date-yyyy-mm-dd-hh-mm-ss="echo $(date +'%Y-%m-%d %H:%M:%S') | xclip -selection clipboard"
+alias date-day-month-day-year="echo $(date +'%A, %B %d, %Y') | xclip -selection clipboard"
 
-function neovim_selector() {
-  items=("default" "LazyVim" "NvChad" "AstroNvim")
-  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
-  if [[ -z $config ]]; then
-    echo "Nothing selected"
-    return 0
-  elif [[ $config == "default" ]]; then
-    config=""
-  fi
-  NVIM_APPNAME=$config nvim $@
-}
+alias nvim-remove-shada="rm -rf $HOME/.local/state/nvim/shada/"
 
+#

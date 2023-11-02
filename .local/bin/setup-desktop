@@ -92,7 +92,7 @@ install_core_pkgs() {
 		base-devel dash os-prober meson ninja uthash \
 		pass archlinux-xdg-menu network-manager-applet \
 		htop wget curl git gtk3 gtk4 libconfig pkgconfig \
-		gvfs jq gvfs-afc gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb \
+		gvfs direnv jq gvfs-afc gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb \
 		grub-btrfs xorg-server xorg-xinit xorg-xsetroot xorg-xbacklight \
 		xorg-xinput xorg-xprop xorg-xkill xorg-xwininfo xorg-xrandr \
 		xfce4-terminal xclip xsel xdotool playerctl pamixer polkit-gnome \

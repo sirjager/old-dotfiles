@@ -202,9 +202,9 @@ super + d; v
 super + d; o
     obs &
 
-# File Explorer, File Manager, Nemo
+# File Explorer, File Manager, Nautilus
 super + d; e
-    nemo &
+    nautilus &
 
 # Keyboard Shortcuts, Sxhkd Keybindings
 super + q; k

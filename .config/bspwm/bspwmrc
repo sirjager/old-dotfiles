@@ -32,7 +32,6 @@ bspc config borderless_monocle true &
 bspc config gapless_monocle true &
 
 bspc rule -a mpv state=fullscreen focus=on border=off &
-
 bspc rule -a Yad state=floating &
 bspc rule -a kitty state=floating focus=on &
 bspc rule -a Alacritty state=floating focus=on &
@@ -51,6 +50,8 @@ bspc rule -a emacs desktop='^3' state=fullscreen border=off focus=on &
 bspc rule -a emacsclient desktop='^3' state=fullscreen border=off focus=on &
 bspc rule -a obs desktop='^10' focus=on follow=true &
 bspc rule -a bottles desktop='^9' focus=on follow=false &
+bspc rule -a "brave-browser" desktop='^1' focus=on follow=true &
+bspc rule -a brave desktop='^1' focus=on follow=true &
 
 sudo chmod a+rw /sys/class/backlight/amdgpu_bl2/brightness &
 

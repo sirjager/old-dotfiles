@@ -30,6 +30,7 @@ ts.setup {
     "rust",
     "prisma",
     "tsx",
+    "php",
     "typescript",
     "vim",
     "yaml",

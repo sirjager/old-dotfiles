@@ -1,5 +1,5 @@
 -- INFO: ##################################################
--- Auto installing lazy plugin manager
+-- Auto installing lazy plugin manager == != -->
 -- ########################################################
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -50,6 +50,11 @@ local plugins = {
   "karb94/neoscroll.nvim",
 
   -- ######################################################
+  -- color picker
+  -- ######################################################
+  "ziontee113/color-picker.nvim",
+
+  -- ######################################################
   -- color schemes (optional)
   -- ######################################################
   "navarasu/onedark.nvim",
@@ -69,6 +74,11 @@ local plugins = {
   -- color codes hightlighting
   -- ######################################################
   "NvChad/nvim-colorizer.lua",
+
+  -- ######################################################
+  -- tailwindcss colors hightlighting
+  -- ######################################################
+  "roobert/tailwindcss-colorizer-cmp.nvim",
 
   -- ######################################################
   -- special comments hightlighting (optional)
@@ -345,6 +355,7 @@ local plugins = {
   "hrsh7th/cmp-buffer", -- completions from opened buffers
   "hrsh7th/cmp-cmdline", -- completions in commandline mode
   "hrsh7th/cmp-nvim-lsp", -- completions from lsp
+  "hrsh7th/cmp-nvim-lua", -- completions for lua
   "saadparwaiz1/cmp_luasnip",
   "andersevenrud/cmp-tmux", -- completions of tmux sessions (optional)
   "hrsh7th/cmp-emoji", -- emoji completions (optional)

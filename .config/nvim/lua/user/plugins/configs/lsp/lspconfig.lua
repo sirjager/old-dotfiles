@@ -48,6 +48,23 @@ lspconfig.lua_ls.setup {
   },
 }
 
+-- css
+lspconfig.cssmodules_ls.setup {
+  capabilities = capabilities,
+  on_attach = function(client)
+    client.server_capabilities.definitionProvider = false
+    on_attach(client)
+  end,
+  init_options = {
+    camelCase = "dashes",
+  },
+}
+
+lspconfig.cssls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
 -- jsonls
 lspconfig.jsonls.setup {
   capabilities = capabilities,
@@ -80,6 +97,11 @@ lspconfig.prismals.setup {
   on_attach = on_attach,
 }
 
+lspconfig.bashls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
 lspconfig.dockerls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
@@ -92,68 +114,23 @@ lspconfig.docker_compose_language_service.setup {
   filetypes = { "docker-compose.yaml", "docker-compose.yml" },
 }
 
--- configure gopls server
-lspconfig.gopls.setup {
+lspconfig.phpactor.setup {
   capabilities = capabilities,
   on_attach = on_attach,
-  cmd = { "gopls" },
-  filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  root_dir = util.root_pattern("go.work", "go.mod", "go.sum", ".git"),
-  settings = {
-    gopls = {
-      analyses = {
-        assign = true,
-        atomic = true,
-        bools = true,
-        composites = true,
-        copylocks = true,
-        deepequalerrors = true,
-        embed = true,
-        errorsas = true,
-        fieldalignment = true,
-        httpresponse = true,
-        ifaceassert = true,
-        loopclosure = true,
-        lostcancel = true,
-        nilfunc = true,
-        nilness = true,
-        nonewvars = true,
-        printf = true,
-        shadow = true,
-        shift = true,
-        simplifycompositelit = true,
-        simplifyrange = true,
-        simplifyslice = true,
-        sortslice = true,
-        stdmethods = true,
-        stringintconv = true,
-        structtag = true,
-        testinggoroutine = true,
-        tests = true,
-        timeformat = true,
-        unmarshal = true,
-        unreachable = true,
-        unsafeptr = true,
-        unusedparams = true,
-        unusedresult = true,
-        unusedvariable = true,
-        unusedwrite = true,
-        useany = true,
-      },
-      hoverKind = "FullDocumentation",
-      linkTarget = "pkg.go.dev",
-      usePlaceholders = true,
-      vulncheck = "Imports",
-    },
-  },
 }
 
+-- Flutter
+local okf, flutter = pcall(require, "flutter")
+if okf then
+  flutter.setup {}
+end
+
 --[[ -- emmet ]]
---[[ lspconfig.emmet_ls.setup { ]]
---[[   capabilities = capabilities, ]]
---[[   on_attach = on_attach, ]]
---[[   filetype = { "html", "typescript", "typescriptreact", "javascript", "javascriptreact", "ts", "tsx" }, ]]
---[[ } ]]
+lspconfig.emmet_ls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  filetype = { "html", "typescript", "typescriptreact", "javascript", "javascriptreact", "ts", "tsx" },
+}
 
 -- typescript
 lspconfig.tsserver.setup {
@@ -254,7 +231,58 @@ if okufo then
   }
 end
 
-local okf, flutter = pcall(require, "flutter")
-if okf then
-  flutter.setup {}
-end
+-- configure gopls server
+lspconfig.gopls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  cmd = { "gopls" },
+  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+  root_dir = util.root_pattern("go.work", "go.mod", "go.sum", ".git"),
+  settings = {
+    gopls = {
+      analyses = {
+        assign = true,
+        atomic = true,
+        bools = true,
+        composites = true,
+        copylocks = true,
+        deepequalerrors = true,
+        embed = true,
+        errorsas = true,
+        fieldalignment = true,
+        httpresponse = true,
+        ifaceassert = true,
+        loopclosure = true,
+        lostcancel = true,
+        nilfunc = true,
+        nilness = true,
+        nonewvars = true,
+        printf = true,
+        shadow = true,
+        shift = true,
+        simplifycompositelit = true,
+        simplifyrange = true,
+        simplifyslice = true,
+        sortslice = true,
+        stdmethods = true,
+        stringintconv = true,
+        structtag = true,
+        testinggoroutine = true,
+        tests = true,
+        timeformat = true,
+        unmarshal = true,
+        unreachable = true,
+        unsafeptr = true,
+        unusedparams = true,
+        unusedresult = true,
+        unusedvariable = true,
+        unusedwrite = true,
+        useany = true,
+      },
+      hoverKind = "FullDocumentation",
+      linkTarget = "pkg.go.dev",
+      usePlaceholders = true,
+      vulncheck = "Imports",
+    },
+  },
+}

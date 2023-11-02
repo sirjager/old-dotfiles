@@ -14,6 +14,8 @@ if not ok3 then
   return
 end
 
+local icons = require "user.icons"
+
 -- load vs-code like snippets from plugins (e.g. friendly-snippets)
 require("luasnip/loaders/from_vscode").lazy_load()
 vim.opt.completeopt = "menu,menuone,noselect"
@@ -51,6 +53,11 @@ local lsp_kind_order = {
 --[[ vim.api.nvim_set_hl(0, "MyNormal", { bg = "Black", fg = "White" }) ]]
 --[[ vim.api.nvim_set_hl(0, "MyFloatBorder", { bg = "#A084E8", fg = "White" }) ]]
 --[[ vim.api.nvim_set_hl(0, "MyCursorLine", { bg = "Black", fg = "White" }) ]]
+
+--[[ vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" }) ]]
+--[[ vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" }) ]]
+--[[ vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" }) ]]
+--[[ vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" }) ]]
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1
@@ -107,7 +114,6 @@ cmp.setup {
   formatting = {
     expandable_indicator = true,
     fields = { "kind", "abbr", "menu" }, -- rearrange positions if needed
-
     format = lspkind.cmp_format {
       mode = "symbol_text", -- show only symbol annotations -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
       maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
@@ -119,9 +125,11 @@ cmp.setup {
         local maxwidth = 80
         vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
 
+        vim_item.kind = icons.kind[vim_item.kind]
         vim_item.menu = ({
-          buffer = "[BUFR]",
+
           nvim_lsp = "[LSP]",
+          buffer = "[BUF]",
           nvim_lua = "[LUA]",
           luasnip = "[LUASNIP]",
           cmp_tabnine = "[TAB9]",
@@ -131,15 +139,37 @@ cmp.setup {
           emoji = "[EMOJI]",
           calc = "[CALC]",
           look = "[DICT]",
+
+          --
         })[entry.source.name]
 
         if source == "luasnip" then
           vim_item.dup = 0
         end
 
+        if entry.source.name == "copilot" then
+          vim_item.kind = icons.git.Octoface
+          vim_item.kind_hl_group = "CmpItemKindCopilot"
+        end
+
         if source == "cmp_tabnine" then
           vim_item.dup = 0
-          vim_item.kind = " Tab9"
+          vim_item.kind = icons.misc.Robot
+        end
+
+        if entry.source.name == "crates" then
+          vim_item.kind = icons.misc.Package
+          vim_item.kind_hl_group = "CmpItemKindCrate"
+        end
+
+        if entry.source.name == "lab.quick_data" then
+          vim_item.kind = icons.misc.CircuitBoard
+          vim_item.kind_hl_group = "CmpItemKindConstant"
+        end
+
+        if entry.source.name == "emoji" then
+          vim_item.kind = icons.misc.Smiley
+          vim_item.kind_hl_group = "CmpItemKindEmoji"
         end
 
         return vim_item
@@ -205,13 +235,14 @@ cmp.setup {
         return true
       end,
     },
+
     { name = "luasnip" }, -- snippets completions
-    --[[ { name = "cmp_tabnine" }, -- completions from tabnine ai ]]
+
+    { name = "cmp_tabnine" }, -- completions from tabnine ai
+
     { name = "buffer" }, -- completions from opened buffers
+
     { name = "path" }, -- filesystem path completions
-    --[[ { name = "crates" }, -- rust crates completions and hints ]]
-    --[[ { name = "emoji" }, ]]
-    --[[ { name = "calc" }, ]]
 
     {
       name = "tmux", -- completions from tmux sessions
@@ -234,6 +265,10 @@ cmp.setup {
         --dict = '/usr/share/dict/words'
       },
     },
+
+    { name = "crates" }, -- rust crates completions and hints
+    { name = "emoji" },
+    { name = "calc" },
   },
 
   confirm_opts = {
@@ -246,14 +281,14 @@ cmp.setup {
       side_padding = 0,
       col_offset = 0,
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, -- single | double | shadow etc.
-      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:CurSearch,Search:None",
+      --[[ winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:CurSearch,Search:None", ]]
     },
 
     documentation = cmp.config.window.bordered {
       side_padding = 0,
       col_offset = 0,
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, -- single | double | shadow etc.
-      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:CurSearch,Search:None",
+      --[[ winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:CurSearch,Search:None", ]]
     },
   },
 

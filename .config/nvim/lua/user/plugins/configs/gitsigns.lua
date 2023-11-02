@@ -7,37 +7,37 @@ pkg.setup {
   signs = {
     untracked = {
       hl = "GitSignsUntracked",
-      text = "", --    "┆",
+      text = "┆", --    "┆",
       numhl = "GitSignsUntrackedNr",
       linehl = "GitSignsUntrackedLn",
     },
     add = {
       hl = "GitSignsAdd",
-      text = "", --    "▎"
+      text = "▎", --    "▎"
       numhl = "GitSignsAddNr",
       linehl = "GitSignsAddLn",
     },
     change = {
       hl = "GitSignsChange",
-      text = "", --  "▎",
+      text = "▎", --  "▎",
       numhl = "GitSignsChangeNr",
       linehl = "GitSignsChangeLn",
     },
     delete = {
       hl = "GitSignsDelete",
-      text = "", --   "契",
+      text = "契", --   "契",
       numhl = "GitSignsDeleteNr",
       linehl = "GitSignsDeleteLn",
     },
     topdelete = {
       hl = "GitSignsDelete",
-      text = "", --  "契",
+      text = "契", --  "契",
       numhl = "GitSignsDeleteNr",
       linehl = "GitSignsDeleteLn",
     },
     changedelete = {
       hl = "GitSignsChange",
-      text = "", --    "▎",
+      text = "▎", --    "▎",
       numhl = "GitSignsChangeNr",
       linehl = "GitSignsChangeLn",
     },

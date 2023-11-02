@@ -6,33 +6,29 @@ end
 pkg.setup {
   format_on_save = {
     lsp_fallback = true,
-    async = false,
+    async = true,
     timeout_ms = 5000,
   },
-
-  --[[ format_after_save = { ]]
-  --[[   lsp_fallback = true, ]]
-  --[[   async = false, ]]
-  --[[   timeout_ms = 5000, ]]
-  --[[ }, ]]
 
   log_level = vim.log.levels.ERROR,
   notify_on_error = true,
   formatters_by_ft = {
-    css = { "prettierd" },
-    html = { "prettierd" },
-    javascript = { "eslint_d", "prettierd" },
-
-    javascriptreact = { "eslint_d", "prettierd" },
-    typescript = { "eslint_d", "prettierd" },
-    typescriptreact = { "eslint_d", "prettierd" },
-    markdown = { { "markdownlint", "prettierd" } },
-    mdx = { { "markdownlint", "prettierd" } },
+    css = { "prettier" },
+    html = { "prettier" },
+    javascript = { "prettier" },
+    javascriptreact = { "prettier" },
+    typescript = { "prettier" },
+    typescriptreact = { "prettier" },
+    --[[ markdown = { { "markdownlint" } }, ]]
+    --[[ mdx = { { "markdownlint" } }, ]]
+    org = { { "markdownlint", "prettier" } },
+    norg = { { "markdownlint", "prettier" } },
     python = { "isort", "black" },
+    php = { "phpcbf", "php_cs_fixer" },
     rust = { "rustywind" },
-    sh = { "shfmt" },
+    sh = { { "shfmt", "beautysh" } },
     lua = { "stylua" },
-    json = { { "jq", "prettierd" } },
+    json = { { "jq", "prettier" } },
     dart = { "dart_format" },
     go = { "gofumpt", "golines", "goimports" },
     yaml = { "yamlfix", "yamlfmt" },

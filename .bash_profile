@@ -1,5 +1,6 @@
 # ~/.bash_profile
 
+export MYSTORAGE="/mnt/storage"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -22,6 +23,7 @@ export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export INPUTRC="$XDG_CONFIG_HOME/inputrc"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export PASSWORD_STORE_DIR="$HOME/.local/share/pass"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 # export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export KODI_DATA="$XDG_DATA_HOME/kodi"
@@ -32,21 +34,20 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml" # default ~/.config/starship.toml
 export BUN_INSTALL="$XDG_DATA_HOME/bun"
 
-export EDITOR="nvim" 
+export EDITOR="nvim"
 export ALTERNATE_EDITOR="lvim"
 export TERMINAL="alacritty"
 export BROWSER="brave"
-export LSCOLORS="0xGxBxDxCxEgEdxbxgxcxd	" # terminal colors releated
-export PG_COLOR="always" # postgres
-export _JAVA_AWT_WM_NONREPARENTING=1 # For Java Applications
-export XMODIFIERS='@im=fcitx' # multilang keyboard
-export GTK_IM_MODULE='fcitx' # multilang keyboard
-export SDL_IM_MODULE='fcitx' # multilang keyboard
-export QT_IM_MODULE='fcitx' # multilang keyboard
-export GIT_DISCOVERY_ACROSS_FILESYSTEM=1  # github
+export LSCOLORS="0xGxBxDxCxEgEdxbxgxcxd	"    # terminal colors releated
+export PG_COLOR="always"                     # postgres
+export _JAVA_AWT_WM_NONREPARENTING=1         # For Java Applications
+export XMODIFIERS='@im=fcitx'                # multilang keyboard
+export GTK_IM_MODULE='fcitx'                 # multilang keyboard
+export SDL_IM_MODULE='fcitx'                 # multilang keyboard
+export QT_IM_MODULE='fcitx'                  # multilang keyboard
+export GIT_DISCOVERY_ACROSS_FILESYSTEM=1     # github
 export CHROME_EXECUTABLE='/usr/bin/chromium' # Crome executable path
 # export DRI_PRIME=1 # For graphic card
-
 
 # Go programming language
 export GO111MODULE="on"
@@ -57,7 +58,6 @@ export GOPATH="/mnt/storage/workspace/goenv"
 export GOBIN="/mnt/storage/workspace/goenv/bin"
 export GOCACHE="/mnt/storage/workspace/goenv/cache"
 export PNPM_HOME="/mnt/storage/programs/pnpm"
-
 
 export PATH="$PATH":"$GOPATH/bin"
 export PATH="$PATH":"$BUN_INSTALL/bin"
@@ -76,7 +76,4 @@ export PATH="$PATH":"/mnt/storage/programs/node/pnpm/global/5/node_modules/grpc-
 
 [ -f ~/.bashrc ] && . ~/.bashrc
 
-
 [ -f "$CARGO_HOME/env" ] && . "$CARGO_HOME/env"
-
-

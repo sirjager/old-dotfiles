@@ -90,7 +90,7 @@ local keymaps = {
     -- Toggle Comment: Also in visual mode
     ["<A-c>"] = { "gcc", "toggle comment" },
     -- Toggle Wrap Lines with custom function in function.lua
-    ["<A-r>"] = { ":lua Toggle_WrapLines()<CR>", "toggle wrap lines" },
+    ["<A-y>"] = { ":lua Toggle_WrapLines()<CR>", "toggle wrap lines" },
     -- Toggle Line Numbers with custom function in function.lua
     ["<A-n>"] = { ":lua Toggle_LineNumbers()<CR>", "toggle line numbers" },
     -- Toggle Lspsage Outline; using L to increase size
@@ -112,6 +112,8 @@ local keymaps = {
       ":lua require'conform'.format({lsp_fallback = true,async = false,timeout_ms = 5000})<CR>",
       "format without saving",
     },
+    -- Color picker
+    ["<A-P>"] = { ":PickColor<CR>", "color picker" },
     -- Toggle Terminal - Keeping here for ref. set by toggleterm.lua configs
     --[[ ["<C-\>"] = { ":ToggleTerm direction=float<CR>", "toggle terminal" }, ]]
 
