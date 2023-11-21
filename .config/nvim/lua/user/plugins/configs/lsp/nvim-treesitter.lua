@@ -36,6 +36,10 @@ ts.setup {
     "yaml",
   },
 
+  matchup = {
+    enable = false, -- mandatory, false will disable the whole extension
+    -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
+  },
   -- Install parsers syncronously (only applicable to `ensure_installed`)
   sync_install = false,
   auto_install = true,
@@ -44,16 +48,48 @@ ts.setup {
 
   markid = { enable = true },
 
-  indent = { enable = true },
+  indent = { enable = true, disable = { "yaml", "python" } },
 
-  highlights = {
+  highlight = {
+    enable = true, -- false will disable the whole extension
+    additional_vim_regex_highlighting = false,
+    disable = function(lang, buf)
+      if vim.tbl_contains({ "latex" }, lang) then
+        return true
+      end
+
+      local status_ok, big_file_detected = pcall(vim.api.nvim_buf_get_var, buf, "bigfile_disable_treesitter")
+      return status_ok and big_file_detected
+    end,
+  },
+
+  context_commentstring = {
     enable = true,
-    use_languagetree = true,
+    enable_autocmd = false,
+    config = {
+      -- Languages that have a single comment style
+      typescript = "// %s",
+      css = "/* %s */",
+      scss = "/* %s */",
+      html = "<!-- %s -->",
+      svelte = "<!-- %s -->",
+      vue = "<!-- %s -->",
+      json = "",
+    },
   },
 
   autotag = {
     enable = true,
-    filetypes = { "html", "javascript", "javascriptreact", "typescriptreact", "svelte", "vue", "markdown", "mdx" },
+    filetypes = {
+      "html",
+      "javascript",
+      "javascriptreact",
+      "typescriptreact",
+      "svelte",
+      "vue",
+      "markdown",
+      "mdx",
+    },
   },
 
   refactor = {
@@ -69,7 +105,7 @@ ts.setup {
     smart_rename = {
       enable = true,
       keymaps = {
-        smart_rename = "grr",
+        smart_rename = "gcr",
       },
     },
 
@@ -90,11 +126,6 @@ ts.setup {
       disable = {
         "yaml",
       },
-    },
-
-    context_commentstring = {
-      enable = true,
-      enable_autocmd = false,
     },
   },
 

@@ -23,15 +23,15 @@ pkg.setup {
   styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
     comments = { "italic" }, -- Change the style of comments
     conditionals = { "italic" },
-    --[[ loops = {}, ]]
-    --[[ functions = {}, ]]
+    loops = { "italic" },
+    functions = { "italic" },
     --[[ keywords = {}, ]]
-    --[[ strings = {}, ]]
-    --[[ variables = {}, ]]
-    --[[ numbers = {}, ]]
-    --[[ booleans = {}, ]]
+    strings = { "italic" },
+    --[[ variables = {''}, ]]
+    --[[ numbers = { "bold" }, ]]
+    --[[ booleans = { "bold" }, ]]
     --[[ properties = {}, ]]
-    --[[ types = {}, ]]
+    --[[ types = { "bold" }, ]]
     --[[ operators = {}, ]]
   },
   --[[ color_overrides = {}, ]]
@@ -51,11 +51,11 @@ pkg.setup {
     which_key = true,
     telescope = {
       enabled = true,
-      style = "nvchad",
+      --[[ style = "nvchad", ]]
     },
     indent_blankline = {
       enabled = true,
-      colored_indent_levels = false,
+      colored_indent_levels = true,
     },
     native_lsp = {
       enabled = true,

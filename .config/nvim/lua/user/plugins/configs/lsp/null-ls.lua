@@ -6,7 +6,7 @@ end
 -- to setup format on save
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local format = null_ls.builtins.formatting
-local diagnostic = null_ls.builtins.diagnostics
+local diagnostics = null_ls.builtins.diagnostics
 local actions = null_ls.builtins.code_actions
 
 -- configure null_ls
@@ -20,12 +20,12 @@ null_ls.setup {
     --[[ format.gofumpt, ]]
     --[[ format.golines, ]]
     --[[ format.goimports_reviser, ]]
+    --[[ diagnostics.golangci_lint, ]]
+    --[[ diagnostics.gospel, ]]
     --[[ format.black, ]]
     --[[ diagnostic.ruff, ]]
     actions.eslint_d,
-    diagnostic.eslint_d.with {
-      diagnostics_format = "[eslint] #{m}\n(#{c})",
-    },
+    diagnostics.eslint_d,
     --[[ format.prettier, ]]
   },
 
@@ -40,6 +40,12 @@ null_ls.setup {
         buffer = bufnr,
         callback = function()
           vim.lsp.buf.format { bufnr = bufnr }
+
+          local okgo, _ = pcall(require, "go")
+          if okgo then
+            require("go.format").gofmt()
+            --[[ require("go.format").goimport() ]]
+          end
         end,
       })
 

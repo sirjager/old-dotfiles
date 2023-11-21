@@ -59,6 +59,7 @@ local plugins = {
   -- ######################################################
   "navarasu/onedark.nvim",
   "Mofiqul/dracula.nvim",
+  { "projekt0n/github-nvim-theme" },
   "marko-cerovac/material.nvim",
   { "folke/tokyonight.nvim", priority = 1000 },
   { "ellisonleao/gruvbox.nvim", priority = 1000 },
@@ -343,6 +344,15 @@ local plugins = {
   "rafamadriz/friendly-snippets",
 
   -- ######################################################
+  -- Standalone UI for nvim-lsp progress. Eye candy for the impatient.
+  -- ######################################################
+  {
+    "j-hui/fidget.nvim",
+    tag = "legacy",
+    event = "LspAttach",
+  },
+
+  -- ######################################################
   -- code action , quick fix menu
   -- ######################################################
   { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" },
@@ -365,6 +375,30 @@ local plugins = {
   -- code debuging. may need to install 'lldb' from your system pkg manager
   -- ######################################################
   { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
+
+  --[[ -- ###################################################### ]]
+  --[[ -- golang A modern go neovim plugin based on treesitter, nvim-lsp and dap debugger ]]
+  --[[ -- ###################################################### ]]
+  --[[ { ]]
+  --[[   "ray-x/go.nvim", ]]
+  --[[   dependencies = { -- optional packages ]]
+  --[[     "ray-x/guihua.lua", ]]
+  --[[     "neovim/nvim-lspconfig", ]]
+  --[[     "nvim-treesitter/nvim-treesitter", ]]
+  --[[   }, ]]
+  --[[   event = { "CmdlineEnter" }, ]]
+  --[[   ft = { "go", "gomod" }, ]]
+  --[[   build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries ]]
+  --[[ }, ]]
+
+  -- ######################################################
+  -- go code debugger
+  -- ######################################################
+  {
+    "dreamsofcode-io/nvim-dap-go",
+    ft = "go",
+    dependencies = { "mfussenegger/nvim-dap" },
+  },
 
   -- ######################################################
   -- python code debugger

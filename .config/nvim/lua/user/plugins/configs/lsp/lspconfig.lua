@@ -231,57 +231,32 @@ if okufo then
   }
 end
 
+-- NOTE: GO LANG SPECIFIC
+
+--[[ lspconfig.golangci_lint_ls.setup { ]]
+--[[   capabilities = capabilities, ]]
+--[[   on_attach = on_attach, ]]
+--[[ } ]]
+
 -- configure gopls server
 lspconfig.gopls.setup {
-  capabilities = capabilities,
   on_attach = on_attach,
+  capabilities = capabilities,
   cmd = { "gopls" },
-  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+  filetypes = { "go" },
   root_dir = util.root_pattern("go.work", "go.mod", "go.sum", ".git"),
   settings = {
     gopls = {
       analyses = {
-        assign = true,
-        atomic = true,
-        bools = true,
-        composites = true,
-        copylocks = true,
-        deepequalerrors = true,
-        embed = true,
-        errorsas = true,
-        fieldalignment = true,
-        httpresponse = true,
-        ifaceassert = true,
-        loopclosure = true,
-        lostcancel = true,
-        nilfunc = true,
-        nilness = true,
-        nonewvars = true,
-        printf = true,
-        shadow = true,
-        shift = true,
-        simplifycompositelit = true,
-        simplifyrange = true,
-        simplifyslice = true,
-        sortslice = true,
-        stdmethods = true,
-        stringintconv = true,
-        structtag = true,
-        testinggoroutine = true,
-        tests = true,
-        timeformat = true,
         unmarshal = true,
-        unreachable = true,
         unsafeptr = true,
         unusedparams = true,
-        unusedresult = true,
         unusedvariable = true,
-        unusedwrite = true,
-        useany = true,
       },
+      staticcheck = true,
       hoverKind = "FullDocumentation",
       linkTarget = "pkg.go.dev",
-      usePlaceholders = true,
+      usePlaceholders = false,
       vulncheck = "Imports",
     },
   },

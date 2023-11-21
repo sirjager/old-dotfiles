@@ -60,6 +60,7 @@ mason_lspconfig.setup {
     "eslint",
     "emmet_ls",
     "gopls", -- go
+    "golangci_lint_ls",
     "html", -- html
     "jsonls", -- json
     "lua_ls", -- lua
@@ -93,6 +94,8 @@ mason_null_ls.setup {
     "jq",
     "shfmt",
     "fixjson",
+    "golangci-lint",
+    "gospel",
     "goimports_reviser", -- go
     "golines", -- go
     "lua-language-server", -- lua

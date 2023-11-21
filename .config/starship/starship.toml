@@ -1,5 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+continuation_prompt = '▶▶ '
 add_newline = false
 command_timeout = 1000
 
@@ -9,7 +10,6 @@ $username\
 $hostname$os\
 $directory\
 $git_branch\
-$git_status \
 $python\
 $aws\
 $golang\
@@ -27,14 +27,22 @@ $package\
 $buf\
 $memory_usage\
 $docker_context\
-[](#1C3A5E)$time[ ](#1C3A5E)$cmd_duration
+$cmd_duration
 [└─>](bold green) """
 
 
-continuation_prompt = '▶▶ '
+right_format = """${custom.filescount}"""
+
+[custom.filescount]
+style = "dimmed"
+command = "ls -a | wc -l"
+detect_extensions = ["md","mdx",'ts',"tsx","js","jsx","jpg","png","webp","avif","mp4","mkv"]
+detect_files = [".bashrc"]
+detect_folders = ["/mnt/storage","/"]
+format = "[$output]($style)"
 
 [username]
-style_user = 'white italic'
+style_user = 'purple italic'
 style_root = 'black bold'
 format = '[$user]($style) '
 disabled = false
@@ -89,13 +97,13 @@ format = 'at [$path]($style)[$read_only]($read_only_style) '
 '/mnt/storage/workspace/goenv/src/github.com/sirjager' = ' ' #  
 '/mnt/storage/workspace/app' = ' ' #  
 '/mnt/storage/workspace/rust' = ' '
-'/mnt/storage/workspace/stacks' = ' ' # 
 '/mnt/storage/workspace/web' = ' '
 '/mnt/storage/workspace/projects' = ' '
 '/mnt/storage/workspace/cli' = ' '
 '/mnt/storage/workspace/scripts' = ' '
 '/mnt/storage/workspace/notes' = ' ' # 
 '/mnt/storage/workspace/api' = ' '
+'/mnt/storage/workspace/stacks' = ' '  # 
 '/mnt/storage/workspace' = ' ' # 
 '/mnt/storage/wallpaper' = ' '
 '/mnt/storage/programs' = ' '
@@ -186,3 +194,4 @@ symbol = " "
 
 [scala]
 symbol = " "
+

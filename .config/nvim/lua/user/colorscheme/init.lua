@@ -4,6 +4,7 @@ require "user.colorscheme.gruvbox"
 require "user.colorscheme.material"
 require "user.colorscheme.catppuccin"
 require "user.colorscheme.onedark"
+require "user.colorscheme.github-theme"
 
 vim.o.termguicolor = true
 

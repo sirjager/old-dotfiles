@@ -81,8 +81,10 @@ local keymaps = {
     --[[ ["<A-a>"] = { ":MaximizerToggle<CR>", "maximize / restore window" }, ]]
     -- Toggle Zen Mode
     ["<A-z>"] = { ":ZenMode<CR>", "toggle zen mode" },
-    -- Change Colorschems on fly
-    ["<A-t>"] = { ":Themery<CR>", "change colorscheme live preview" },
+    -- Toggle Trouble panel
+    ["<A-t>"] = { ":TroubleToggle<CR>", "toggle trouble" },
+    -- Rename instance
+    ["<A-r>"] = { ":Lspsaga rename<CR>", "smart rename" },
     -- Toggle Pin Current Buffer
     ["<A-p>"] = { "<Cmd>BufferPin<CR>", "toggle pin current buffer" },
     -- Toggle Markdown Preview
@@ -163,6 +165,18 @@ local keymaps = {
 local which_keymaps = {
   e = { ":NvimTreeFindFileToggle<CR>", "toggle file explorer" },
 
+  g = {
+    name = "golang",
+    t = { ":GoAddTag<CR>", "add tags" },
+    x = { ":GoRmTag<CR>", "remove tags" },
+    e = { ":GoIfErr<CR>", "add error check" },
+    f = { ":GoFixPlurals<CR>", "fix func args" }, -- change func foo(b int, a int, r int) -> func foo(b, a, r int)
+    r = { ":GoRun ./cmd<CR>", "run code" },
+    s = { ":GoStop<CR>", "stop running code" },
+    g = { ":GoModTidy<CR>", "mod tidy" },
+    v = { ":GoModVendor<CR>", "mod vendor" },
+  },
+
   --[[ t = { ]]
   --[[   name = "toggle", ]]
   --[[   t = { ]]
@@ -204,8 +218,7 @@ local which_keymaps = {
     h = { ":Lspsaga hover_doc <CR>", "hover doc" }, -- most used 1
     a = { ":CodeActionMenu<CR>", "code action" }, -- most used 2
     o = { ":Lspsaga outline <CR>", "outline" },
-    r = { ":Lspsaga rename <CR>", "rename" },
-    R = { ":Lspsaga project_replace <CR>", "project replace" },
+    r = { ":LspRestart<CR>", "restart lsp" },
 
     l = {
       name = "def,impl,decl,types",

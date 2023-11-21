@@ -4,12 +4,25 @@
 # [ -f /usr/share/blesh/ble.sh ]  && [[ $- == *i* ]] && source /usr/share/blesh/ble.sh
 #
 
-# Starship
-eval "$(starship init bash)"
-
-# Direnv
-eval "$(direnv hook bash)"
 export DIRENV_LOG_FORMAT=""
+
+update_tmux_window_name() {
+	dirname="$(basename "$(pwd)")"
+	[ "$dirname" = "$USER" ] && dirname="home"
+	tmux rename-window "$dirname"
+}
+
+# this function runs after every command get executed on terminal
+prompt_commands_chain() {
+	eval "$(direnv hook bash)"
+	eval "$(starship init bash)"
+	update_tmux_window_name
+}
+
+PROMPT_COMMAND=prompt_commands_chain
+
+eval "$(direnv hook bash)"
+eval "$(starship init bash)"
 
 [ -f ~/.local/share/cargo/env ] && . "/home/jager/.local/share/cargo/env"
 
@@ -57,7 +70,7 @@ alias ssh-newkey="ssh-keygen -t ed25519 -C"
 alias ssh-eval='eval "$(ssh-agent -s)"'
 alias ssh-test='ssh -T git@github.com'
 
-alias virt-start-net='sudo virsh net-start default'
+alias net-start-virt='sudo virsh net-start default'
 
 # Tmux
 alias tm="tmux"
@@ -80,6 +93,9 @@ alias rbf='fc-cache -fv'
 alias lv="~/.local/bin/lvim"
 alias slv="sudo -E -s ~/.local/bin/lvim"
 alias k='killall -q'
+alias knode='sudo pkill -f nodejs && sudo pkill -f node'
+
+alias s=". ~/.bashrc;"
 
 # change directories
 alias cds="cd /mnt/storage"
@@ -115,6 +131,24 @@ alias date-yyyy-mm-dd="echo $(date +'%Y-%m-%d') | xclip -selection clipboard"
 alias date-yyyy-mm-dd-hh-mm-ss="echo $(date +'%Y-%m-%d %H:%M:%S') | xclip -selection clipboard"
 alias date-day-month-day-year="echo $(date +'%A, %B %d, %Y') | xclip -selection clipboard"
 
-alias nvim-remove-shada="rm -rf $HOME/.local/state/nvim/shada/"
+alias nvim-remove-shada="rm -rf ~/.local/state/nvim/shada/"
 
-#
+port_kill() {
+	if [ -z "$1" ]; then
+		echo "Usage: killport <port>"
+	else
+		kill -9 "$(lsof -t -i:"$1")"
+	fi
+}
+
+port_expose() {
+	if [ -z "$1" ]; then
+		echo "Usage: ssh -R 80:localhost:<port> localhost.run"
+	else
+		ssh -R 80:localhost:"$1" localhost.run
+	fi
+}
+
+port_hide() {
+	ssh -R 0:localhost:0 localhost.run
+}

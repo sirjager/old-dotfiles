@@ -30,7 +30,7 @@ pkg.setup {
     lua = { "stylua" },
     json = { { "jq", "prettier" } },
     dart = { "dart_format" },
-    go = { "gofumpt", "golines", "goimports" },
+    --[[ go = { "gofumpt", "golines", "goimports" }, -- using null-ls ]]
     yaml = { "yamlfix", "yamlfmt" },
     ["_"] = { "trim_whitespace" },
   },

@@ -26,10 +26,10 @@ if ok then
     -- You can configure multiple style with comma separated, For e.g., keywords = 'italic,bold'
     code_style = {
       comments = "italic",
-      keywords = "none",
-      functions = "none",
+      keywords = "bold",
+      functions = "italic",
       strings = "none",
-      variables = "none",
+      variables = "bold",
     },
 
     -- Lualine options --
@@ -38,8 +38,10 @@ if ok then
     },
 
     -- Custom Highlights --
-    colors = {}, -- Override default colors
-    highlights = {}, -- Override highlight groups
+    --[[ colors = {}, ]]
+
+    -- Override highlight groups
+    --[[ highlights = {}, ]]
 
     -- Plugins Config --
     diagnostics = {
