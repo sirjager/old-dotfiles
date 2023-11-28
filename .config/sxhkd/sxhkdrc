@@ -242,6 +242,18 @@ super + q; h; h
 super + q; h; t
     ~/.local/bin/brohistory --bro="brave" --bro-limit=999999999 --dmenu --prompt="select link" --copy --type &
 
+# yt youtube download video
+super + q; y; y
+    ~/.local/bin/ytdload -n &
+
+# yt youtube download and open dir
+super + q; y; d
+    ~/.local/bin/ytdload -n -show &
+
+# yt youtube download and play video
+super + q; y; p
+    ~/.local/bin/ytdload -n -player=mpv -play &
+
 # Emoji selector
 super + q; e
     rofi -show emoji -theme ~/.config/rofi/launchers/type-5/style-4.rasi &
