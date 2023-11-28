@@ -133,6 +133,8 @@ fi
 execute_command=$(download_command)
 
 # PERF: EXECUTE COMMAND
+
+notify "Video download started" "$DOWNLOAD_URL"
 result=$(eval "$execute_command")
 
 # INFO: AFTER COMMAND EXECUTION
@@ -148,7 +150,7 @@ if [ $? -eq 0 ]; then
 
 else
 	# ERROR: IF FAILED
-	notify "Failed to download video" "$DOWNLOAD_URL"
+	notify "Failed to download video" "$result"
 fi
 
 #
