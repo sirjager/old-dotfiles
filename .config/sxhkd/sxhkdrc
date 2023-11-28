@@ -254,6 +254,10 @@ super + q; y; d
 super + q; y; p
     ~/.local/bin/ytdload -n -player=mpv -play &
 
+# yt youtube download playlist
+super + q; y; l
+    ~/.local/bin/ytdload -n -p &
+
 # Emoji selector
 super + q; e
     rofi -show emoji -theme ~/.config/rofi/launchers/type-5/style-4.rasi &
