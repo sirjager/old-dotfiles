@@ -64,7 +64,8 @@ notify() {
 
 # INFO: YOUTUBE LINK VALIDATATION (OPTIONAL)
 is_valid_link() {
-	youtube_pattern='^(https?://)?(www\.)?(youtube\.com/watch\?v=|youtu\.be/)[a-zA-Z0-9_-]+$'
+	# youtube_pattern='^(https?://)?(www\.)?(youtube\.com/watch\?v=|youtu\.be/)[a-zA-Z0-9_-]+$'
+	youtube_pattern='^https?://www\.youtube\.com/'
 	if echo "$1" | grep -qE "$youtube_pattern"; then
 		return 0
 	fi
@@ -89,7 +90,7 @@ show_link_prompt() {
 download_command() {
 	[ -z "$DOWNLOAD_URL" ] && exit 1
 	full_command="youtube-dl"
-	full_command="$full_command -f \"best[height<=1080]/best[ext=mp4]/best\""
+	full_command="$full_command -f \"bestvideo[height<=1080]+bestaudio/best[height<=1080]/best\""
 	if [ "$DOWNLOAD_PLAYLIST" = "true" ]; then
 		full_command="$full_command --yes-playlist"
 	fi

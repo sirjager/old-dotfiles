@@ -242,6 +242,10 @@ super + q; h; h
 super + q; h; t
     ~/.local/bin/brohistory --bro="brave" --bro-limit=999999999 --dmenu --prompt="select link" --copy --type &
 
+# yt youtube stop downlaoder
+super + q; y; s
+   killall -q youtube-dl &
+
 # yt youtube download video
 super + q; y; y
     ~/.local/bin/ytdload -n &
