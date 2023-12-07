@@ -169,6 +169,7 @@ local plugins = {
   "nvim-telescope/telescope.nvim",
   "nvim-telescope/telescope-project.nvim",
   "nvim-telescope/telescope-media-files.nvim",
+  "xiyaowong/telescope-emoji.nvim",
 
   -- ######################################################
   -- shows code context in breadcrumb. (optional)
@@ -208,8 +209,11 @@ local plugins = {
   -- ######################################################
   {
     "iamcco/markdown-preview.nvim",
-    ft = { "markdown", "mdx", "markdown.mdx" },
-    build = ":call mkdp#util#install()",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   },
 
   -- ######################################################
@@ -272,7 +276,10 @@ local plugins = {
   -- ######################################################
   -- file hopping, quick change maked files (optional)
   -- ######################################################
-  "ThePrimeagen/harpoon",
+  {  "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    requires = { {"nvim-lua/plenary.nvim"} }
+  },
 
   -- ######################################################
   -- Neorg is an all-encompassing tool based around
@@ -462,7 +469,7 @@ local plugins = {
   -- typescript language support
   -- ######################################################
   "jose-elias-alvarez/typescript.nvim",
-  "JoosepAlviste/nvim-ts-context-commentstring",
+  -- "JoosepAlviste/nvim-ts-context-commentstring",
 
   -- ######################################################
   -- flutter / dart language support

@@ -5,10 +5,14 @@
 #
 
 export DIRENV_LOG_FORMAT=""
-
 update_tmux_window_name() {
 	dirname="$(basename "$(pwd)")"
-	[ "$dirname" = "$USER" ] && dirname="home"
+	myuser=$(whoami)
+	[ "$dirname" = "$myuser" ] && dirname="home"
+	sess_count="$(tmux list-sessions 2>/dev/null | wc -l)"
+	if [ "$sess_count" = "0" ]; then
+		return 0
+	fi
 	tmux rename-window "$dirname"
 }
 
@@ -23,8 +27,6 @@ PROMPT_COMMAND=prompt_commands_chain
 
 eval "$(direnv hook bash)"
 eval "$(starship init bash)"
-
-[ -f ~/.local/share/cargo/env ] && . "/home/jager/.local/share/cargo/env"
 
 # external aliases
 [ -f "/mnt/storage/global/alias" ] && . "/mnt/storage/global/alias"
@@ -152,3 +154,6 @@ port_expose() {
 port_hide() {
 	ssh -R 0:localhost:0 localhost.run
 }
+
+[ -f ~/.config/task.bash ] && . ~/.config/task.bash
+[ -f ~/.local/share/cargo/env ] && . ~/.local/share/cargo/env

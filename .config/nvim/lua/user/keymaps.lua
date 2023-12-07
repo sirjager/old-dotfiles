@@ -190,6 +190,7 @@ local which_keymaps = {
   s = {
     name = "search",
     s = { ":Telescope find_files <CR>", "find files" }, -- most used
+    e = { ":Telescope emoji <CR>", "find emoji" },
     w = { ":Telescope live_grep <CR>", "live grep" },
     o = { ":Telescope oldfiles <CR>", "recent files" },
     p = { ":Telescope project <CR>", "open project" },

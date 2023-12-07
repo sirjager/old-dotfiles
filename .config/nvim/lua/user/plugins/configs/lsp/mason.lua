@@ -71,6 +71,7 @@ mason_lspconfig.setup {
     "pylsp",
     "pyright", -- py
     "yamlls", -- yml
+    "sqlls",
     "phpactor", -- php
     --[[ "intelephense", -- php ]]
   },
@@ -83,7 +84,7 @@ mason_null_ls.setup {
     "codelldb", -- rust, c,cpp debugger
     "debugpy", -- py
     "beautysh",
-    "eslint_d", -- ts,js
+    "eslint", -- ts,js
     "gofumpt", -- go
     "mypy", -- py
     "codespell",
@@ -93,6 +94,8 @@ mason_null_ls.setup {
     "shellharden", -- sh
     "jq",
     "shfmt",
+    "sqlfmt",
+    "sql-formatter",
     "fixjson",
     "golangci-lint",
     "gospel",

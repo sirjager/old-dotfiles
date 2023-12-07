@@ -19,20 +19,22 @@ pkg.setup {
     javascriptreact = { "prettier" },
     typescript = { "prettier" },
     typescriptreact = { "prettier" },
-    --[[ markdown = { { "markdownlint" } }, ]]
-    --[[ mdx = { { "markdownlint" } }, ]]
+    markdown = { { "markdownlint" } },
+    mdx = { { "markdownlint" } },
     org = { { "markdownlint", "prettier" } },
     norg = { { "markdownlint", "prettier" } },
     python = { "isort", "black" },
     php = { "phpcbf", "php_cs_fixer" },
     rust = { "rustywind" },
     sh = { { "shfmt", "beautysh" } },
+    sql = { { "sql_formatter" } },
     lua = { "stylua" },
     json = { { "jq", "prettier" } },
     dart = { "dart_format" },
     --[[ go = { "gofumpt", "golines", "goimports" }, -- using null-ls ]]
     yaml = { "yamlfix", "yamlfmt" },
-    ["_"] = { "trim_whitespace" },
+    makefile = { "prettier" },
+    -- ["_"] = { "trim_whitespace" },
   },
 }
 
