@@ -126,7 +126,8 @@ super + shift + f
 super + {_,shift + } Return
   { alacritty, xfce4-terminal } &
 
-# Primary Terminal with last tmux session
+
+# Kitty Terminal with last tmux session
 alt + {_,shift + } Return
   kitty sh -c { "tmux attach", "tmux new" } &
 

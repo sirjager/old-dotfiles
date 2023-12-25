@@ -24,8 +24,8 @@ null_ls.setup {
     --[[ diagnostics.gospel, ]]
     --[[ format.black, ]]
     --[[ diagnostic.ruff, ]]
-    actions.eslint,
-    diagnostics.eslint,
+    actions.eslint_d,
+    diagnostics.eslint_d,
     format.sqlfmt,
     -- [[ format.prettier, ]]
   },

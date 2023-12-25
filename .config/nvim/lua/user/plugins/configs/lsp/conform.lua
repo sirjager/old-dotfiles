@@ -10,6 +10,19 @@ pkg.setup {
     timeout_ms = 5000,
   },
 
+  formatters = {
+    yamlfix = {
+      -- command = "~/.local/share/nvim/mason/bin/yamlfix",
+      command = "yamlfix",
+      env = {
+        YAMLFIX_WHITELINES = "1",
+        YAMLFIX_preserve_quotes = "true",
+        YAMLFIX_SECTION_WHITELINES = "1",
+        YAMLFIX_SEQUENCE_STYLE = "block_style",
+      },
+    },
+  },
+
   log_level = vim.log.levels.ERROR,
   notify_on_error = true,
   formatters_by_ft = {
@@ -32,7 +45,7 @@ pkg.setup {
     json = { { "jq", "prettier" } },
     dart = { "dart_format" },
     --[[ go = { "gofumpt", "golines", "goimports" }, -- using null-ls ]]
-    yaml = { "yamlfix", "yamlfmt" },
+    yaml = { { "yamlfix" } }, -- "yamlfmt"
     makefile = { "prettier" },
     -- ["_"] = { "trim_whitespace" },
   },

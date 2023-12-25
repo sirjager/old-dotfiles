@@ -57,7 +57,7 @@ mason_lspconfig.setup {
     "bashls", -- sh
     "clangd",
     "cssls",
-    "eslint",
+    -- "eslint",
     "emmet_ls",
     "gopls", -- go
     "golangci_lint_ls",
@@ -84,7 +84,8 @@ mason_null_ls.setup {
     "codelldb", -- rust, c,cpp debugger
     "debugpy", -- py
     "beautysh",
-    "eslint", -- ts,js
+    -- "eslint", -- ts,js
+    "eslint_d", -- ts,js
     "gofumpt", -- go
     "mypy", -- py
     "codespell",
