@@ -58,6 +58,7 @@ mason_lspconfig.setup {
     "clangd",
     "cssls",
     -- "eslint",
+    -- "eslint", -- ts,js
     "emmet_ls",
     "gopls", -- go
     "golangci_lint_ls",
@@ -68,11 +69,11 @@ mason_lspconfig.setup {
     "tsserver", -- ts
     "tailwindcss",
     "cssmodules_ls",
-    "pylsp",
-    "pyright", -- py
+    -- "pylsp",
+    -- "pyright", -- py
     "yamlls", -- yml
     "sqlls",
-    "phpactor", -- php
+    -- "phpactor", -- php
     --[[ "intelephense", -- php ]]
   },
 }

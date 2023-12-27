@@ -276,10 +276,7 @@ local plugins = {
   -- ######################################################
   -- file hopping, quick change maked files (optional)
   -- ######################################################
-  {  "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    requires = { {"nvim-lua/plenary.nvim"} }
-  },
+  { "ThePrimeagen/harpoon", branch = "harpoon2", requires = { { "nvim-lua/plenary.nvim" } } },
 
   -- ######################################################
   -- Neorg is an all-encompassing tool based around

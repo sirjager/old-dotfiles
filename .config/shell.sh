@@ -80,6 +80,10 @@ alias tma='tmux attach -t'
 alias tmk='tmux kill-session -t'
 alias tmka='tmux kill-session -a'
 
+alias docker-clean-buildx="docker buildx prune --all"
+alias docker-clean-builder="docker builder prune --all"
+alias docker-clean-image="docker image prune --all"
+
 # saving some misc commands
 alias battery-info="upower -i /org/freedesktop/UPower/devices/battery_BAT0"
 

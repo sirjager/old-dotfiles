@@ -48,7 +48,7 @@ ts.setup {
 
   markid = { enable = true },
 
-  indent = { enable = true, disable = { "yaml", "python" } },
+  indent = { enable = true, disable = { "yaml", "python", "yml" } },
 
   highlight = {
     enable = true, -- false will disable the whole extension
@@ -74,7 +74,7 @@ ts.setup {
       html = "<!-- %s -->",
       svelte = "<!-- %s -->",
       vue = "<!-- %s -->",
-      json = "",
+      json = "// %s",
     },
   },
 
@@ -89,6 +89,7 @@ ts.setup {
       "vue",
       "markdown",
       "mdx",
+      "markdown",
     },
   },
 
@@ -125,6 +126,8 @@ ts.setup {
       enable = true,
       disable = {
         "yaml",
+        "yml",
+        "python",
       },
     },
   },

@@ -3,4 +3,12 @@ if not ok then
   return
 end
 
-autotag.setup {}
+autotag.setup {
+  ft = {
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "html",
+  },
+}
