@@ -60,6 +60,11 @@ lspconfig.cssmodules_ls.setup {
   },
 }
 
+lspconfig.graphql.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
 lspconfig.cssls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
@@ -98,10 +103,10 @@ lspconfig.yamlls.setup {
   },
 }
 
-lspconfig.prismals.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-}
+-- lspconfig.prismals.setup {
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+-- }
 
 lspconfig.bashls.setup {
   capabilities = capabilities,
@@ -120,16 +125,16 @@ lspconfig.docker_compose_language_service.setup {
   filetypes = { "docker-compose.yaml", "docker-compose.yml" },
 }
 
-lspconfig.phpactor.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-}
+-- lspconfig.phpactor.setup {
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+-- }
 
--- Flutter
-local okf, flutter = pcall(require, "flutter")
-if okf then
-  flutter.setup {}
-end
+-- -- Flutter
+-- local okf, flutter = pcall(require, "flutter")
+-- if okf then
+--   flutter.setup {}
+-- end
 
 --[[ -- emmet ]]
 lspconfig.emmet_ls.setup {
@@ -196,35 +201,34 @@ lspconfig.mdx_analyzer.setup {
   filetypes = { "markdown.mdx", "mdx" },
 }
 
--- python pyright
-lspconfig.pyright.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  filetype = { "python" },
-}
+-- -- python pyright
+-- lspconfig.pyright.setup {
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+--   filetype = { "python" },
+-- }
 
--- rust tools
-local ok4, rust_tools = pcall(require, "rust-tools")
-if ok4 then
-  rust_tools.setup {
-    server = {
-      capabilities = capabilities,
-      on_attach = function(_, bufnr)
-        vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-        vim.keymap.set("n", "<leader>ldd", ":RustDebuggables <CR>", { buffer = bufnr })
-        vim.keymap.set("n", "<leader>lh", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
-        vim.keymap.set("n", "<leader>la", ":CodeActionMenu<CR>", { buffer = bufnr })
-        --[[ vim.keymap.set("n", "<leader>la", rust_tools.code_action_group.code_action_group, { buffer = bufnr }) ]]
-      end,
-    },
-
-    tools = {
-      hover_actions = {
-        auto_focus = true,
-      },
-    },
-  }
-end
+-- -- rust tools
+-- local ok4, rust_tools = pcall(require, "rust-tools")
+-- if ok4 then
+--   rust_tools.setup {
+--     server = {
+--       capabilities = capabilities,
+--       on_attach = function(_, bufnr)
+--         vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+--         vim.keymap.set("n", "<leader>ldd", ":RustDebuggables <CR>", { buffer = bufnr })
+--         vim.keymap.set("n", "<leader>lh", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+--         vim.keymap.set("n", "<leader>la", ":CodeActionMenu<CR>", { buffer = bufnr })
+--         --[[ vim.keymap.set("n", "<leader>la", rust_tools.code_action_group.code_action_group, { buffer = bufnr }) ]]
+--       end,
+--     },
+--     tools = {
+--       hover_actions = {
+--         auto_focus = true,
+--       },
+--     },
+--   }
+-- end
 
 -- code folding
 local okufo, ufo = pcall(require, "ufo")

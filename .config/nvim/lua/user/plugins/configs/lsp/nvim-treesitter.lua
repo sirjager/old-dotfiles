@@ -12,29 +12,7 @@ vim.filetype.add {
 vim.treesitter.language.register("markdown", "mdx")
 
 ts.setup {
-  ensure_installed = {
-    "bash",
-    "css",
-    "csv",
-    "go",
-    "gomod",
-    "gosum",
-    "html",
-    "http",
-    "json",
-    "lua",
-    "markdown",
-    "markdown_inline",
-    "norg",
-    "python",
-    "rust",
-    "prisma",
-    "tsx",
-    "php",
-    "typescript",
-    "vim",
-    "yaml",
-  },
+  ensure_installed = { "bash", "lua" },
 
   matchup = {
     enable = false, -- mandatory, false will disable the whole extension
@@ -42,7 +20,7 @@ ts.setup {
   },
   -- Install parsers syncronously (only applicable to `ensure_installed`)
   sync_install = false,
-  auto_install = true,
+  auto_install = true, -- auto installs treesitter for new languages discovered
 
   playground = { enable = true },
 

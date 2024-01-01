@@ -6,6 +6,7 @@ end
 pkg.load_extension "project"
 pkg.load_extension "media_files"
 pkg.load_extension "emoji"
+-- pkg.load_extension "ui-select"
 
 local actions = require "telescope.actions"
 local project_actions = require "telescope._extensions.project.actions"
@@ -86,12 +87,13 @@ pkg.setup {
   extensions_list = { "themes", "media_files", "projects", "terms", "fzf" },
 
   extensions = {
+    -- ["ui-select"] = { require("telescope.themes").get_dropdown() },
     emoji = {
       action = function(emoji)
         -- argument emoji is a table.
         -- {name="", value="", cagegory="", description=""}
         vim.fn.setreg("*", emoji.value)
-         print([[Press p or "*p to paste this emoji]] .. emoji.value)
+        print([[Press p or "*p to paste this emoji]] .. emoji.value)
         -- insert emoji when picked
         vim.api.nvim_put({ emoji.value }, "c", false, true)
       end,

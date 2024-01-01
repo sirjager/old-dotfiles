@@ -1,5 +1,5 @@
 # ~/.bash_profile
-
+#
 export MYSTORAGE="/mnt/storage"
 
 export XDG_CONFIG_HOME="$HOME/.config"

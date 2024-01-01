@@ -1,4 +1,4 @@
 indent_width = 2
 line_endings = "Unix"
-indent_type = "Spaces"
+indent_type = "Tab"
 no_call_parentheses = true

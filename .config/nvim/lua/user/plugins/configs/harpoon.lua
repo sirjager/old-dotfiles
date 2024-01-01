@@ -1,6 +1,4 @@
-local ok, pkg = pcall(require, "harpoon")
-if not ok then
-  return
+local harpoon_ok, harpoon = pcall(require, "harpoon")
+if harpoon_ok then
+  harpoon.setup {}
 end
-
-pkg.setup {}

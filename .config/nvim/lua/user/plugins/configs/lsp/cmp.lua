@@ -70,7 +70,6 @@ cmp.setup {
       luasnip.lsp_expand(args.body)
     end,
   },
-
   mapping = cmp.mapping.preset.insert {
     ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
     ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
@@ -281,14 +280,14 @@ cmp.setup {
       side_padding = 0,
       col_offset = 0,
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, -- single | double | shadow etc.
-      --[[ winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:CurSearch,Search:None", ]]
+      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:CurSearch,Search:None",
     },
 
     documentation = cmp.config.window.bordered {
       side_padding = 0,
       col_offset = 0,
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, -- single | double | shadow etc.
-      --[[ winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:CurSearch,Search:None", ]]
+      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:CurSearch,Search:None",
     },
   },
 

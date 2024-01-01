@@ -43,6 +43,16 @@ local plugins = {
   -- sidebar folder explorer, nvim-tree, explorer
   -- ######################################################
   "nvim-tree/nvim-tree.lua",
+  -- {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   branch = "v3.x",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+  --     "MunifTanjim/nui.nvim",
+  --     "3rd/image.nvim", -- Optional image support in preview window
+  --   },
+  -- },
 
   -- ######################################################
   -- neoscroll: a smooth scrolling neovim plugin (optional)
@@ -58,12 +68,12 @@ local plugins = {
   -- color schemes (optional)
   -- ######################################################
   "navarasu/onedark.nvim",
-  "Mofiqul/dracula.nvim",
-  { "projekt0n/github-nvim-theme" },
-  "marko-cerovac/material.nvim",
-  { "folke/tokyonight.nvim", priority = 1000 },
-  { "ellisonleao/gruvbox.nvim", priority = 1000 },
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  -- "Mofiqul/dracula.nvim",
+  -- { "projekt0n/github-nvim-theme" },
+  -- "marko-cerovac/material.nvim",
+  -- { "folke/tokyonight.nvim", priority = 1000 },
+  -- { "ellisonleao/gruvbox.nvim", priority = 1000 },
+  { "catppuccin/nvim",          name = "catppuccin",                       priority = 1000 },
 
   -- ######################################################
   -- github related
@@ -146,30 +156,35 @@ local plugins = {
   -- ######################################################
   -- maximizes and restores current window
   -- ######################################################
-  { "szw/vim-maximizer", lazy = false },
+  { "szw/vim-maximizer",              lazy = false },
 
   -- ######################################################
   -- headings, code folding
   -- ######################################################
-  { "kevinhwang91/nvim-ufo", dependencies = { "kevinhwang91/promise-async" } },
+  { "kevinhwang91/nvim-ufo",          dependencies = { "kevinhwang91/promise-async" } },
 
   -- ######################################################
   -- vscode like breadcrumbs (optional)
   -- ######################################################
-  {
-    "utilyre/barbecue.nvim",
-    name = "barbecue",
-    version = "*",
-    dependencies = { "SmiteshP/nvim-navic" },
-  },
+  -- {
+  --   "utilyre/barbecue.nvim",
+  --   name = "barbecue",
+  --   version = "*",
+  --   dependencies = { "SmiteshP/nvim-navic" },
+  -- },
 
   -- ######################################################
   -- Telescope, quick finder, fuzzy finder
   -- ######################################################
-  "nvim-telescope/telescope.nvim",
-  "nvim-telescope/telescope-project.nvim",
-  "nvim-telescope/telescope-media-files.nvim",
-  "xiyaowong/telescope-emoji.nvim",
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-project.nvim",
+      "nvim-telescope/telescope-media-files.nvim",
+      "xiyaowong/telescope-emoji.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
+    },
+  },
 
   -- ######################################################
   -- shows code context in breadcrumb. (optional)
@@ -177,12 +192,12 @@ local plugins = {
   -- show your current code context. Named after the Indian
   -- satellite navigation system.
   -- ######################################################
-  "SmiteshP/nvim-navic",
+  -- "SmiteshP/nvim-navic",
 
   -- ######################################################
   -- terminal inside neovim (optional)
   -- ######################################################
-  "akinsho/toggleterm.nvim",
+  -- "akinsho/toggleterm.nvim",
 
   -- ######################################################
   -- zen mode, clean ui mode, fullscreen, centered (optional)
@@ -228,7 +243,7 @@ local plugins = {
   {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = {
-      { "tpope/vim-dadbod", lazy = true },
+      { "tpope/vim-dadbod",                     lazy = true },
       { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
     },
     cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection", "DBUIFindBuffer" },
@@ -246,16 +261,11 @@ local plugins = {
     opts = {},
     -- stylua: ignore
     keys = {
-      { "s", mode = { "n", "o", "x" }, function() require("flash").jump() end,       desc = "Flash" },
-      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o",               function() require("flash").remote() end,     desc = "Remote Flash" },
-      {
-        "R",
-        mode = { "o", "x" },
-        function() require("flash").treesitter_search() end,
-        desc = "Treesitter Search"
-      },
-    },
+      { "s", mode = { "n", "o", "x" }, function() require("flash").jump() end,              desc = "Flash" },
+      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+      { "r", mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+      -- stylua: ignore
+      { "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" } },
   },
 
   -- ######################################################
@@ -266,24 +276,24 @@ local plugins = {
   -- ######################################################
   -- shade, dim inactive buffers, chunk of code (optional)
   -- ######################################################
-  "sunjon/shade.nvim",
+  -- "sunjon/shade.nvim",
 
   -- ######################################################
   -- buffer symbols outline (optional)
   -- ######################################################
-  "simrat39/symbols-outline.nvim",
+  -- "simrat39/symbols-outline.nvim",
 
   -- ######################################################
   -- file hopping, quick change maked files (optional)
   -- ######################################################
-  { "ThePrimeagen/harpoon", branch = "harpoon2", requires = { { "nvim-lua/plenary.nvim" } } },
+  -- { "ThePrimeagen/harpoon", branch = "harpoon2", requires = { { "nvim-lua/plenary.nvim" } } },
 
   -- ######################################################
   -- Neorg is an all-encompassing tool based around
   -- structured note taking, project and task management, time
   -- tracking, slideshows, writing typeset documents and much more
   -- ######################################################
-  { "nvim-neorg/neorg", build = ":Neorg sync-parsers" },
+  { "nvim-neorg/neorg",    build = ":Neorg sync-parsers" },
 
   -- INFO: ##################################################
   -- lsp (Language server protocols) related plugins
@@ -292,7 +302,7 @@ local plugins = {
   -- ######################################################
   -- neovim plugin development utils
   -- ######################################################
-  { "folke/neodev.nvim", lazy = true },
+  { "folke/neodev.nvim",   lazy = true },
 
   -- ######################################################
   -- words surround, auto pairs, auto close tags
@@ -300,14 +310,6 @@ local plugins = {
   "kylechui/nvim-surround",
   "windwp/nvim-autopairs",
   "windwp/nvim-ts-autotag",
-
-  -- ######################################################
-  -- code formatter, formatting
-  -- ######################################################
-  {
-    "stevearc/conform.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-  },
 
   -- ######################################################
   -- code linting, linter
@@ -321,24 +323,28 @@ local plugins = {
   -- Portable package manager, install and manage various
   -- LSP servers, DAP servers, linters, and formatters.
   -- ######################################################
-  "williamboman/mason.nvim",
-  "neovim/nvim-lspconfig",
-  "folke/trouble.nvim",
-  "williamboman/mason-lspconfig.nvim",
-  "jose-elias-alvarez/null-ls.nvim", -- archived
-  "jayp0521/mason-null-ls.nvim",
+  {
+    "williamboman/mason.nvim",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "jayp0521/mason-null-ls.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "nvimtools/none-ls.nvim", -- new fork of null-ls (alternative of null-ls)
+    },
+  },
 
   -- ######################################################
   -- inhanced ui and improved lsp experience
   -- ######################################################
-  { "glepnir/lspsaga.nvim", branch = "main", after = "nvim-treesitter" },
+  { "glepnir/lspsaga.nvim",           branch = "main",       after = "nvim-treesitter" },
+  "folke/trouble.nvim",
 
   -- ######################################################
   -- code hightlighting, syntax hightlighting
   -- ######################################################
   "nvim-treesitter/nvim-treesitter",
   "nvim-treesitter/nvim-treesitter-context",
-  "nvim-treesitter/playground", -- (optional)
+  -- "nvim-treesitter/playground", -- (optional)
 
   -- ######################################################
   -- snippet engine, snippet related plugins
@@ -350,11 +356,11 @@ local plugins = {
   -- ######################################################
   -- Standalone UI for nvim-lsp progress. Eye candy for the impatient.
   -- ######################################################
-  {
-    "j-hui/fidget.nvim",
-    tag = "legacy",
-    event = "LspAttach",
-  },
+  -- {
+  --   "j-hui/fidget.nvim",
+  --   tag = "legacy",
+  --   event = "LspAttach",
+  -- },
 
   -- ######################################################
   -- code action , quick fix menu
@@ -364,16 +370,20 @@ local plugins = {
   -- ######################################################
   -- code completion, completion menu
   -- ######################################################
-  "hrsh7th/nvim-cmp",
-  "hrsh7th/cmp-path", -- filesystem paths completions
-  "hrsh7th/cmp-buffer", -- completions from opened buffers
-  "hrsh7th/cmp-cmdline", -- completions in commandline mode
-  "hrsh7th/cmp-nvim-lsp", -- completions from lsp
-  "hrsh7th/cmp-nvim-lua", -- completions for lua
-  "saadparwaiz1/cmp_luasnip",
-  "andersevenrud/cmp-tmux", -- completions of tmux sessions (optional)
-  "hrsh7th/cmp-emoji", -- emoji completions (optional)
-  "hrsh7th/cmp-calc", -- inline calc completions (optional)
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-path",       -- filesystem paths completions
+      "hrsh7th/cmp-buffer",     -- completions from opened buffers
+      "hrsh7th/cmp-cmdline",    -- completions in commandline mode
+      "hrsh7th/cmp-nvim-lsp",   -- completions from lsp
+      "hrsh7th/cmp-nvim-lua",   -- completions for lua
+      "saadparwaiz1/cmp_luasnip",
+      "andersevenrud/cmp-tmux", -- completions of tmux sessions (optional)
+      "hrsh7th/cmp-emoji",      -- emoji completions (optional)
+      "hrsh7th/cmp-calc",       -- inline calc completions (optional)
+    },
+  },
 
   -- ######################################################
   -- code debuging. may need to install 'lldb' from your system pkg manager
@@ -407,46 +417,46 @@ local plugins = {
   -- ######################################################
   -- python code debugger
   -- ######################################################
-  {
-    "mfussenegger/nvim-dap-python",
-    ft = "python",
-    dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
-    config = function(_, _)
-      local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-      require("dap-python").setup(path)
-    end,
-  },
+  -- {
+  --   "mfussenegger/nvim-dap-python",
+  --   ft = "python",
+  --   dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
+  --   config = function(_, _)
+  --     local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+  --     require("dap-python").setup(path)
+  --   end,
+  -- },
 
   -- ######################################################
   -- prisma file support: schema.prisma etc (optional)
   -- ######################################################
-  "prisma/vim-prisma",
+  -- "prisma/vim-prisma",
 
   -- ######################################################
   -- rust lsp, rust language support,
   -- ######################################################
-  { "simrat39/rust-tools.nvim", ft = "rust" },
-  {
-    "rust-lang/rust.vim",
-    ft = "rust",
-    init = function()
-      vim.g.rustfmt_autosave = 1
-    end,
-  },
+  -- { "simrat39/rust-tools.nvim", ft = "rust" },
+  -- {
+  --   "rust-lang/rust.vim",
+  --   ft = "rust",
+  --   init = function()
+  --     vim.g.rustfmt_autosave = 1
+  --   end,
+  -- },
 
   -- ######################################################
   -- rust crates support, cartes file support. (optional)
   -- ######################################################
-  {
-    "saecki/crates.nvim",
-    ft = { "rust", "toml" },
-    event = { "BufRead Cargo.toml" },
-    config = function(_, opts)
-      local crates = require "crates"
-      crates.setup(opts)
-      crates.show()
-    end,
-  },
+  -- {
+  --   "saecki/crates.nvim",
+  --   ft = { "rust", "toml" },
+  --   event = { "BufRead Cargo.toml" },
+  --   config = function(_, opts)
+  --     local crates = require "crates"
+  --     crates.setup(opts)
+  --     crates.show()
+  --   end,
+  -- },
 
   -- ######################################################
   -- go golang language support
@@ -471,11 +481,11 @@ local plugins = {
   -- ######################################################
   -- flutter / dart language support
   -- ######################################################
-  {
-    "akinsho/flutter-tools.nvim",
-    dependencies = { "stevearc/dressing.nvim" },
-    config = true,
-  },
+  -- {
+  --   "akinsho/flutter-tools.nvim",
+  --   dependencies = { "stevearc/dressing.nvim" },
+  --   config = true,
+  -- },
 
   -- TODO: ################################################
   -- Plugins Table End
@@ -505,7 +515,7 @@ if ok then
     },
     level = 2,
     minimum_width = 50,
-    render = "compact", -- default, minimal, simple, compact
+    render = "compact",           -- default, minimal, simple, compact
     stages = "fade_in_slide_out", -- fade_in_slide_out, fade, slide, static
     timeout = 2500,
     top_down = true,

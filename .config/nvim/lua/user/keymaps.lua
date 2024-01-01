@@ -110,10 +110,7 @@ local keymaps = {
     -- Close All But Current Or Pinned Buffers
     ["<A-w>"] = { ":BufferCloseAllButCurrentOrPinned<CR>", "close all buffer but current or pinned" },
     -- Close All But Current Or Pinned Buffers
-    ["<A-b>"] = {
-      ":lua require'conform'.format({lsp_fallback = true,async = false,timeout_ms = 5000})<CR>",
-      "format without saving",
-    },
+    ["<A-b>"] = { ":lua vim.lsp.buf.format({timeout_ms = 10000})<CR>", "format without saving" },
     -- Color picker
     ["<A-P>"] = { ":PickColor<CR>", "color picker" },
     -- Toggle Terminal - Keeping here for ref. set by toggleterm.lua configs
@@ -164,6 +161,7 @@ local keymaps = {
 
 local which_keymaps = {
   e = { ":NvimTreeFindFileToggle<CR>", "toggle file explorer" },
+  -- e = { ":Neotree toggle<CR>", "toggle file explorer" },
 
   g = {
     name = "golang",
@@ -191,11 +189,11 @@ local which_keymaps = {
     name = "search",
     s = { ":Telescope find_files <CR>", "find files" }, -- most used
     e = { ":Telescope emoji <CR>", "find emoji" },
-    w = { ":Telescope live_grep <CR>", "live grep" },
+    W = { ":Telescope live_grep <CR>", "find in workspace" },
     o = { ":Telescope oldfiles <CR>", "recent files" },
     p = { ":Telescope project <CR>", "open project" },
     r = { ":Telescope resume <CR>", "resume search" },
-    W = { ":Telescope current_buffer_fuzzy_find <CR>", "find word" },
+    w = { ":Telescope current_buffer_fuzzy_find <CR>", "find in buffer" },
     h = { ":Telescope help_tags <CR>", "help tags" },
     k = { ":Telescope keymaps <CR>", "key bindings" },
     c = { ":Telescope colorscheme <CR>", "color schemes" },
