@@ -37,11 +37,11 @@ if mason_lspconfig_ok then
       -- "eslint",
       -- "eslint", -- ts,js
       "emmet_ls",
-      "gopls", -- go
+      "gopls",    -- go
       "golangci_lint_ls",
-      "html", -- html
-      "jsonls", -- json
-      "lua_ls", -- lua
+      "html",     -- html
+      "jsonls",   -- json
+      "lua_ls",   -- lua
       "marksman", -- md
       "tsserver", -- ts
       "tailwindcss",
@@ -67,7 +67,7 @@ if mason_null_ls_ok then
       "beautysh",
       -- "eslint", -- ts,js
       "eslint_d", -- ts,js
-      "gofumpt", -- go
+      "gofumpt",  -- go
       -- "mypy", -- py
       "codespell",
       "yamlfix",
@@ -81,17 +81,17 @@ if mason_null_ls_ok then
       "fixjson",
       "golangci-lint",
       "gospel",
-      "goimports_reviser", -- go
-      "golines", -- go
-      "lua-language-server", -- lua
+      "goimports_reviser",               -- go
+      "golines",                         -- go
+      "lua-language-server",             -- lua
       "docker-compose-language-service", -- docker-compose.yaml
-      "dockerfile-language-server", -- Dockerfile
-      "markdownlint", -- md
+      "dockerfile-language-server",      -- Dockerfile
+      "markdownlint",                    -- md
       "mdx_analyzer",
-      "prettierd", -- ts, js
+      "prettierd",                       -- ts, js
       -- "rust-analyzer", -- rust
-      "stylua", -- lua
-      "typescript-languange-server", -- ts,js
+      "stylua",                          -- lua
+      "typescript-languange-server",     -- ts,js
       -- "phpcs",
       -- "php-cbf",
       -- "php-cs-fixer",

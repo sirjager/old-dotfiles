@@ -221,7 +221,7 @@ super + q; b; m
 
 # Visit and copy bookmark
 super + q; b; b
-    ~/.local/bin/bookmark --select --brave --google --visit --copy --notify &
+    ~/.local/bin/bookmark --select --brave --google --visit --copy &
 
 # Add Bookmark
 super + q; b; a

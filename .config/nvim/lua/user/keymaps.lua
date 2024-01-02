@@ -86,7 +86,7 @@ local keymaps = {
     -- Rename instance
     ["<A-r>"] = { ":Lspsaga rename<CR>", "smart rename" },
     -- Toggle Pin Current Buffer
-    ["<A-p>"] = { "<Cmd>BufferPin<CR>", "toggle pin current buffer" },
+    ["<A-P>"] = { "<Cmd>BufferPin<CR>", "toggle pin current buffer" },
     -- Toggle Markdown Preview
     ["<A-m>"] = { ":MarkdownPreviewToggle<CR>", "toggle markdown preview" },
     -- Toggle Comment: Also in visual mode
@@ -110,9 +110,9 @@ local keymaps = {
     -- Close All But Current Or Pinned Buffers
     ["<A-w>"] = { ":BufferCloseAllButCurrentOrPinned<CR>", "close all buffer but current or pinned" },
     -- Close All But Current Or Pinned Buffers
-    ["<A-b>"] = { ":lua vim.lsp.buf.format({timeout_ms = 10000})<CR>", "format without saving" },
+    ["<A-p>"] = { ":lua vim.lsp.buf.format({timeout_ms = 10000})<CR>", "format without saving" },
     -- Color picker
-    ["<A-P>"] = { ":PickColor<CR>", "color picker" },
+    ["<A-b>"] = { ":PickColor<CR>", "color picker" },
     -- Toggle Terminal - Keeping here for ref. set by toggleterm.lua configs
     --[[ ["<C-\>"] = { ":ToggleTerm direction=float<CR>", "toggle terminal" }, ]]
 
@@ -160,8 +160,8 @@ local keymaps = {
 }
 
 local which_keymaps = {
-  e = { ":NvimTreeFindFileToggle<CR>", "toggle file explorer" },
-  -- e = { ":Neotree toggle<CR>", "toggle file explorer" },
+  -- e = { ":NvimTreeFindFileToggle<CR>", "toggle file explorer" },
+  e = { ":Neotree toggle<CR>", "toggle file explorer" },
 
   g = {
     name = "golang",

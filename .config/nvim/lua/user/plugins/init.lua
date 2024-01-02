@@ -43,16 +43,17 @@ local plugins = {
   -- sidebar folder explorer, nvim-tree, explorer
   -- ######################################################
   "nvim-tree/nvim-tree.lua",
-  -- {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   branch = "v3.x",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-  --     "MunifTanjim/nui.nvim",
-  --     "3rd/image.nvim", -- Optional image support in preview window
-  --   },
-  -- },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      "s1n7ax/nvim-window-picker",
+      "3rd/image.nvim", -- Optional image support in preview window
+    },
+  },
 
   -- ######################################################
   -- neoscroll: a smooth scrolling neovim plugin (optional)
@@ -286,7 +287,7 @@ local plugins = {
   -- ######################################################
   -- file hopping, quick change maked files (optional)
   -- ######################################################
-  -- { "ThePrimeagen/harpoon", branch = "harpoon2", requires = { { "nvim-lua/plenary.nvim" } } },
+  { "ThePrimeagen/harpoon", branch = "harpoon2", requires = { { "nvim-lua/plenary.nvim" } } },
 
   -- ######################################################
   -- Neorg is an all-encompassing tool based around
@@ -309,7 +310,11 @@ local plugins = {
   -- ######################################################
   "kylechui/nvim-surround",
   "windwp/nvim-autopairs",
-  "windwp/nvim-ts-autotag",
+  {
+
+    "windwp/nvim-ts-autotag",
+    ft = { "javascript", "typescript", "javascriptreact", "typescriptreact" }
+  },
 
   -- ######################################################
   -- code linting, linter
@@ -476,7 +481,6 @@ local plugins = {
   -- typescript language support
   -- ######################################################
   "jose-elias-alvarez/typescript.nvim",
-  -- "JoosepAlviste/nvim-ts-context-commentstring",
 
   -- ######################################################
   -- flutter / dart language support

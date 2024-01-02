@@ -58,17 +58,6 @@ ts.setup {
 
   autotag = {
     enable = true,
-    filetypes = {
-      "html",
-      "javascript",
-      "javascriptreact",
-      "typescriptreact",
-      "svelte",
-      "vue",
-      "markdown",
-      "mdx",
-      "markdown",
-    },
   },
 
   refactor = {
