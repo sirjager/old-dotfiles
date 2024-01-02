@@ -79,6 +79,8 @@ local keymaps = {
     --
     -- Toggle Maximize Current Buffer
     --[[ ["<A-a>"] = { ":MaximizerToggle<CR>", "maximize / restore window" }, ]]
+    -- Switch Buffer
+    -- ["<A-b>"] = { ":Telescope buffers <CR>", "opened buffers" },
     -- Toggle Zen Mode
     ["<A-z>"] = { ":ZenMode<CR>", "toggle zen mode" },
     -- Toggle Trouble panel
@@ -112,7 +114,10 @@ local keymaps = {
     -- Close All But Current Or Pinned Buffers
     ["<A-p>"] = { ":lua vim.lsp.buf.format({timeout_ms = 10000})<CR>", "format without saving" },
     -- Color picker
-    ["<A-b>"] = { ":PickColor<CR>", "color picker" },
+    ["<A-x>"] = { ":PickColor<CR>", "color picker" },
+    -- Code fold
+    ["<A-v>"] = { ":lua require'ufo'.openAllFolds()<CR>", "open all folds" },
+    ["<A-b>"] = { ":lua require'ufo'.closeAllFolds()<CR>", "close all folds" },
     -- Toggle Terminal - Keeping here for ref. set by toggleterm.lua configs
     --[[ ["<C-\>"] = { ":ToggleTerm direction=float<CR>", "toggle terminal" }, ]]
 
@@ -188,6 +193,7 @@ local which_keymaps = {
   s = {
     name = "search",
     s = { ":Telescope find_files <CR>", "find files" }, -- most used
+    b = { ":Telescope buffers <CR>", "opened buffers" },
     e = { ":Telescope emoji <CR>", "find emoji" },
     W = { ":Telescope live_grep <CR>", "find in workspace" },
     o = { ":Telescope oldfiles <CR>", "recent files" },
@@ -211,22 +217,20 @@ local which_keymaps = {
     c = { ":Lspsaga show_cursor_diagnostics <CR>", "cursor diagnostics" },
   },
 
+
   l = {
     name = "lsp",
     i = { ":LspInfo<CR>", "lsp info" },
     h = { ":Lspsaga hover_doc <CR>", "hover doc" }, -- most used 1
-    a = { ":CodeActionMenu<CR>", "code action" }, -- most used 2
+    a = { ":CodeActionMenu<CR>", "code action" },   -- most used 2
     o = { ":Lspsaga outline <CR>", "outline" },
     r = { ":LspRestart<CR>", "restart lsp" },
 
     l = {
-      name = "def,impl,decl,types",
-      d = { ":Lspsaga peek_definition <CR>", "peek definitions" }, -- most used
-      i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "implementation" },
-
-      D = { ":Lspsaga goto_definition <CR>", "goto definitions" },
-      t = { ":Lspsaga peek_type_definition <CR>", "peek type definitions" },
-      T = { ":Lspsaga goto_type_definition <CR>", "goto type definitions" },
+      name = "lab:code runner",
+      r = { ":Lab code run<CR>", "start code runner" },
+      s = { ":Lab code stop<CR>", "stop code runner" },
+      p = { ":Lab code panel<CR>", "code runner panel" },
     },
 
     c = {
@@ -274,11 +278,11 @@ if ok then
     -- prefix: use "<leader>f" for example for mapping everything related to finding files
     -- the prefix is prepended to every mapping part of `mappings`
     prefix = "<leader>",
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
+    buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true,  -- use `silent` when creating keymaps
     noremap = true, -- use `noremap` when creating keymaps
     nowait = false, -- use `nowait` when creating keymaps
-    expr = false, -- use `expr` when creating keymaps
+    expr = false,   -- use `expr` when creating keymaps
   }
   wk.register(which_keymaps, which_key_opts)
 end

@@ -162,7 +162,20 @@ local plugins = {
   -- ######################################################
   -- headings, code folding
   -- ######################################################
-  { "kevinhwang91/nvim-ufo",          dependencies = { "kevinhwang91/promise-async" } },
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = {
+      "kevinhwang91/promise-async",
+      "luukvbaal/statuscol.nvim",
+    },
+  },
+  -- ######################################################
+  -- logs in buffers
+  -- ######################################################
+  {
+    "0x100101/lab.nvim",
+    build = "cd js && npm ci"
+  },
 
   -- ######################################################
   -- vscode like breadcrumbs (optional)
@@ -213,7 +226,15 @@ local plugins = {
   -- ######################################################
   -- comments support
   -- ######################################################
-  "numToStr/Comment.nvim",
+  {
+    "numToStr/Comment.nvim",
+    dependencies = {
+      {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        event = "VeryLazy",
+      }
+    }
+  },
 
   -- ######################################################
   -- json schema support, hinting support in json files (optional)
@@ -235,7 +256,7 @@ local plugins = {
   -- ######################################################
   -- rest api client (optional)
   -- ######################################################
-  { "rest-nvim/rest.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+  { "rest-nvim/rest.nvim",  dependencies = { "nvim-lua/plenary.nvim" } },
 
   -- ######################################################
   -- database client, sql database client with ui (optional)
@@ -287,14 +308,14 @@ local plugins = {
   -- ######################################################
   -- file hopping, quick change maked files (optional)
   -- ######################################################
-  { "ThePrimeagen/harpoon", branch = "harpoon2", requires = { { "nvim-lua/plenary.nvim" } } },
+  { "ThePrimeagen/harpoon", branch = "harpoon2",                       requires = { { "nvim-lua/plenary.nvim" } } },
 
   -- ######################################################
   -- Neorg is an all-encompassing tool based around
   -- structured note taking, project and task management, time
   -- tracking, slideshows, writing typeset documents and much more
   -- ######################################################
-  { "nvim-neorg/neorg",    build = ":Neorg sync-parsers" },
+  { "nvim-neorg/neorg",     build = ":Neorg sync-parsers" },
 
   -- INFO: ##################################################
   -- lsp (Language server protocols) related plugins
@@ -303,7 +324,7 @@ local plugins = {
   -- ######################################################
   -- neovim plugin development utils
   -- ######################################################
-  { "folke/neodev.nvim",   lazy = true },
+  { "folke/neodev.nvim",    lazy = true },
 
   -- ######################################################
   -- words surround, auto pairs, auto close tags

@@ -22,15 +22,15 @@ vim.opt.completeopt = "menu,menuone,noselect"
 
 ---@diagnostic disable-next-line: unused-local
 local lsp_kind_order = {
-  5, -- Field
+  5,  -- Field
   10, -- Property
-  2, -- Method
-  3, -- Function
-  4, -- Constructor
-  6, -- Variable
-  7, -- Class
-  8, -- Interface
-  9, -- Module
+  2,  -- Method
+  3,  -- Function
+  4,  -- Constructor
+  6,  -- Variable
+  7,  -- Class
+  8,  -- Interface
+  9,  -- Module
   11, -- Unit
   12, -- Value
   13, -- Enum
@@ -46,7 +46,7 @@ local lsp_kind_order = {
   23, -- Event
   24, -- Operator
   25, -- TypeParameter
-  1, -- Text
+  1,  -- Text
 }
 
 --[[ -- custom Colors: not working]]
@@ -76,7 +76,7 @@ cmp.setup {
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete()), -- autocomple suggestion popupmenu toggle
-    ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    ["<C-y>"] = cmp.config.disable,                      -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<CR>"] = cmp.mapping.confirm { select = false },
     ["<C-e>"] = cmp.mapping {
       i = cmp.mapping.abort(),
@@ -114,9 +114,9 @@ cmp.setup {
     expandable_indicator = true,
     fields = { "kind", "abbr", "menu" }, -- rearrange positions if needed
     format = lspkind.cmp_format {
-      mode = "symbol_text", -- show only symbol annotations -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-      ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+      mode = "symbol_text",              -- show only symbol annotations -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+      maxwidth = 50,                     -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      ellipsis_char = "...",             -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 
       before = function(entry, vim_item)
         local source = entry.source.name
@@ -237,11 +237,13 @@ cmp.setup {
 
     { name = "luasnip" }, -- snippets completions
 
+    { name = 'lab.quick_data', keyword_length = 4 },
+
     { name = "cmp_tabnine" }, -- completions from tabnine ai
 
-    { name = "buffer" }, -- completions from opened buffers
+    { name = "buffer" },      -- completions from opened buffers
 
-    { name = "path" }, -- filesystem path completions
+    { name = "path" },        -- filesystem path completions
 
     {
       name = "tmux", -- completions from tmux sessions

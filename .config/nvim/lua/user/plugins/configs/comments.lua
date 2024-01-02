@@ -1,18 +1,28 @@
-local ok2, pkg2 = pcall(require, "ts_context_commentstring")
-if ok2 then
+local ok_comment_string, comment_string = pcall(require, "ts_context_commentstring")
+if ok_comment_string then
   vim.g.skip_ts_context_commentstring_module = true
-  pkg2.setup {}
+  comment_string.setup({
+    enable_autocmd = false,
+    languages = {
+      typescript = "// %s",
+      css = "/* %s */",
+      scss = "/* %s */",
+      html = "<!-- %s -->",
+      svelte = "<!-- %s -->",
+      vue = "<!-- %s -->",
+      json = "// %s",
+    },
+  })
 end
 
-local ok, pkg = pcall(require, "Comment")
-if ok then
-  pkg.setup {
+local ok_comment, comment = pcall(require, "Comment")
+if ok_comment then
+  comment.setup {
+    pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
     ---Add a space b/w comment and the line
     padding = true,
     ---Whether the cursor should stay at its position
     sticky = true,
-    ---Lines to be ignored while (un)comment
-    ignore = nil,
     ---LHS of toggle mappings in NORMAL mode
     toggler = {
       ---Line-comment toggle keymap

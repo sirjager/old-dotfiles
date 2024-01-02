@@ -15,3 +15,6 @@ require "user.functions"
 
 -- INFO: Keybindings ######################################
 require "user.keymaps"
+
+-- INFO: Autocmds Configs ##################################
+require "user.autocmds"

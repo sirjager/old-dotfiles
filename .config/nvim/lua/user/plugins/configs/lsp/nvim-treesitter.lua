@@ -12,7 +12,7 @@ vim.filetype.add {
 vim.treesitter.language.register("markdown", "mdx")
 
 ts.setup {
-  ensure_installed = { "bash", "lua" },
+  ensure_installed = { "bash", "lua","tsx" },
 
   matchup = {
     enable = false, -- mandatory, false will disable the whole extension
@@ -41,20 +41,6 @@ ts.setup {
     end,
   },
 
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-    config = {
-      -- Languages that have a single comment style
-      typescript = "// %s",
-      css = "/* %s */",
-      scss = "/* %s */",
-      html = "<!-- %s -->",
-      svelte = "<!-- %s -->",
-      vue = "<!-- %s -->",
-      json = "// %s",
-    },
-  },
 
   autotag = {
     enable = true,
