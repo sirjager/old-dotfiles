@@ -129,6 +129,7 @@ cmp.setup {
 
           nvim_lsp = "[LSP]",
           buffer = "[BUF]",
+          codeium = "[CODIUM]",
           nvim_lua = "[LUA]",
           luasnip = "[LUASNIP]",
           cmp_tabnine = "[TAB9]",
@@ -235,9 +236,9 @@ cmp.setup {
       end,
     },
 
-    { name = "luasnip" }, -- snippets completions
+    { name = "luasnip" },     -- snippets completions
 
-    { name = 'lab.quick_data', keyword_length = 4 },
+    { name = "codeium" },     -- completions from codeium
 
     { name = "cmp_tabnine" }, -- completions from tabnine ai
 
@@ -294,6 +295,6 @@ cmp.setup {
   },
 
   experimental = {
-    ghost_text = false,
+    ghost_text = true,
   },
 }

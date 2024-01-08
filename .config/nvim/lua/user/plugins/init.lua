@@ -35,6 +35,11 @@ local plugins = {
   "rcarriga/nvim-notify",
 
   -- ######################################################
+  -- Free, ultrafast ai code completion for Neovim
+  -- ######################################################
+  "Exafunction/codeium.vim",
+
+  -- ######################################################
   -- icons package
   -- ######################################################
   "nvim-tree/nvim-web-devicons",
@@ -72,9 +77,9 @@ local plugins = {
   -- "Mofiqul/dracula.nvim",
   -- { "projekt0n/github-nvim-theme" },
   -- "marko-cerovac/material.nvim",
-  -- { "folke/tokyonight.nvim", priority = 1000 },
+  { "folke/tokyonight.nvim", priority = 1000 },
   -- { "ellisonleao/gruvbox.nvim", priority = 1000 },
-  { "catppuccin/nvim",          name = "catppuccin",                       priority = 1000 },
+   { "catppuccin/nvim",          name = "catppuccin",                       priority = 1000 },
 
   -- ######################################################
   -- github related

@@ -13,7 +13,7 @@ lspsaga.setup {
   code_action = {
     num_shortcut = true,
     show_server_name = true, -- default false
-    extend_gitsigns = true, -- default false
+    extend_gitsigns = true,  -- default false
   },
   ui = {
     title = true,
@@ -23,11 +23,10 @@ lspsaga.setup {
     code_action = "💡", --  💡                                 
 
     lines = { "┗", "┣", "┃", "━", "┏" },
-
     colors = {
       normal_bg = "#022746",
     },
 
-    kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
+    -- kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
   },
 }

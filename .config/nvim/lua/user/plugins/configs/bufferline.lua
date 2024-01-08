@@ -3,29 +3,29 @@ if not ok then
   return
 end
 
-local mocha = require("catppuccin.palettes").get_palette "mocha"
+-- local mocha = require("catppuccin.palettes").get_palette "mocha"
 
 pkg.setup {
-  highlights = require("catppuccin.groups.integrations.bufferline").get {
-    styles = { "italic", "bold" },
-    custom = {
-      all = {
-        fill = { bg = "#000000" },
-      },
-      mocha = {
-        background = { fg = mocha.text },
-      },
-      latte = {
-        background = { fg = "#000000" },
-      },
-    },
-  },
+  -- highlights = require("catppuccin.groups.integrations.bufferline").get {
+  --   styles = { "italic", "bold" },
+  --   custom = {
+  --     all = {
+  --       fill = { bg = "#000000" },
+  --     },
+  --     mocha = {
+  --       background = { fg = mocha.text },
+  --     },
+  --     latte = {
+  --       background = { fg = "#000000" },
+  --     },
+  --   },
+  -- },
   options = {
-    numbers = "ordinal", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-    close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
+    numbers = "ordinal",                 -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+    close_command = "Bdelete! %d",       -- can be a string | function, see "Mouse actions"
     right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
-    left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
-    middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
+    left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
+    middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
     -- NOTE: this plugin is designed with this icon in mind,
     -- and so changing this is NOT recommended, this is intended
     -- as an escape hatch for people who cannot bear it for whatever reason
@@ -48,7 +48,7 @@ pkg.setup {
     --   end
     -- end,
     max_name_length = 30,
-    max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
+    max_prefix_length = 30,   -- prefix used when a buffer is de-duplicated
     tab_size = 21,
     diagnostics = "nvim_lsp", -- | "nvim_lsp" | "coc",
     diagnostics_update_in_insert = false,
@@ -88,11 +88,11 @@ pkg.setup {
     separator_style = "thick", -- | "thick" | "thin" | { 'any', 'any' },
     enforce_regular_tabs = true,
     always_show_bufferline = true,
-    after = "catppuccin",
-    config = function()
-      require("bufferline").setup {
-        highlights = require("catppuccin.groups.integrations.bufferline").get(),
-      }
-    end,
+    -- after = "catppuccin",
+    -- config = function()
+    --   require("bufferline").setup {
+    --     highlights = require("catppuccin.groups.integrations.bufferline").get(),
+    --   }
+    -- end,
   },
 }

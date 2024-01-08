@@ -26,3 +26,5 @@ require "user.plugins.configs.neo-tree"
 -- require "user.plugins.configs.nvim-tree"
 require "user.plugins.configs.ufo"
 require "user.plugins.configs.lab"
+require "user.plugins.configs.extras.codeium"
+
