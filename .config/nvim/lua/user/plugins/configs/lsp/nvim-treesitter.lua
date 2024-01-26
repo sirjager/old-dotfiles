@@ -15,7 +15,7 @@ ts.setup {
   ensure_installed = { "bash", "lua","tsx" },
 
   matchup = {
-    enable = false, -- mandatory, false will disable the whole extension
+    enable = true, -- mandatory, false will disable the whole extension
     -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
   },
   -- Install parsers syncronously (only applicable to `ensure_installed`)
@@ -30,7 +30,7 @@ ts.setup {
 
   highlight = {
     enable = true, -- false will disable the whole extension
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
     disable = function(lang, buf)
       if vim.tbl_contains({ "latex" }, lang) then
         return true

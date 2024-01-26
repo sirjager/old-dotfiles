@@ -168,6 +168,17 @@ local which_keymaps = {
   -- e = { ":NvimTreeFindFileToggle<CR>", "toggle file explorer" },
   e = { ":Neotree toggle<CR>", "toggle file explorer" },
 
+  w = {
+    name = "nx workspace",
+    a = { "<CMD>Telescope nx actions<CR>", "nx action" },
+    g = { "<CMD>Telescope nx generators<CR>", "nx generators" },
+    f = { "<CMD>Telescope nx affected<CR>", "nx affected" },
+    m = { "<CMD>Telescope nx run_many<CR>", "nx run many" },
+    e = { "<CMD>Telescope nx external_generators<CR>", "nx external generators" },
+    w = { "<CMD>Telescope nx workspace_generators<CR>", "nx workspace generators" },
+  },
+
+
   g = {
     name = "golang",
     t = { ":GoAddTag<CR>", "add tags" },

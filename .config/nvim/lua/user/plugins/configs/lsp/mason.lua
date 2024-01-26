@@ -61,6 +61,7 @@ if mason_null_ls_ok then
   mason_null_ls.setup {
     automatic_installation = true,
     ensure_installed = {
+      "astro-language-server", -- astro
       -- "black", -- py
       -- "codelldb", -- rust, c,cpp debugger
       -- "debugpy", -- py

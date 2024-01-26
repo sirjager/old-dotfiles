@@ -1,5 +1,6 @@
 require "user.plugins.configs.alpha"
 require "user.plugins.configs.nvim-web-devicons"
+require "user.plugins.configs.noice"
 require "user.plugins.configs.bufferline"
 require "user.plugins.configs.neoscroll"
 require "user.plugins.configs.telescope"
@@ -27,4 +28,5 @@ require "user.plugins.configs.neo-tree"
 require "user.plugins.configs.ufo"
 require "user.plugins.configs.lab"
 require "user.plugins.configs.extras.codeium"
+require "user.plugins.configs.extras.nx"
 

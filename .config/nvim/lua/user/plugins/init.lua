@@ -30,6 +30,30 @@ local plugins = {
   "nvim-lua/plenary.nvim",
 
   -- ######################################################
+  -- Nx is a powerful open-source build system that provides
+  -- tools and techniques for enhancing developer productivity,
+  -- optimizing CI performance, and maintaining code quality
+  -- ######################################################
+  'Equilibris/nx.nvim',
+
+  -- ######################################################
+  -- Highly experimental plugin that completely replaces 
+  -- the UI for messages, cmdline and the popupmenu.
+  -- ######################################################
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    }
+  },
+
+  -- ######################################################
   -- notifications
   -- ######################################################
   "rcarriga/nvim-notify",
@@ -79,7 +103,7 @@ local plugins = {
   -- "marko-cerovac/material.nvim",
   { "folke/tokyonight.nvim", priority = 1000 },
   -- { "ellisonleao/gruvbox.nvim", priority = 1000 },
-   { "catppuccin/nvim",          name = "catppuccin",                       priority = 1000 },
+  { "catppuccin/nvim",       name = "catppuccin", priority = 1000 },
 
   -- ######################################################
   -- github related
@@ -107,7 +131,7 @@ local plugins = {
   -- HACK: This is hack comment hightlighting
   -- INFO: this is info comment hightlighting
   -- ######################################################
-  { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+  { "folke/todo-comments.nvim",       dependencies = { "nvim-lua/plenary.nvim" } },
 
   -- ######################################################
   -- Keybindings helper/predictionns (optional)
@@ -162,7 +186,7 @@ local plugins = {
   -- ######################################################
   -- maximizes and restores current window
   -- ######################################################
-  { "szw/vim-maximizer",              lazy = false },
+  { "szw/vim-maximizer",   lazy = false },
 
   -- ######################################################
   -- headings, code folding
@@ -261,7 +285,7 @@ local plugins = {
   -- ######################################################
   -- rest api client (optional)
   -- ######################################################
-  { "rest-nvim/rest.nvim",  dependencies = { "nvim-lua/plenary.nvim" } },
+  { "rest-nvim/rest.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 
   -- ######################################################
   -- database client, sql database client with ui (optional)
@@ -313,7 +337,7 @@ local plugins = {
   -- ######################################################
   -- file hopping, quick change maked files (optional)
   -- ######################################################
-  { "ThePrimeagen/harpoon", branch = "harpoon2",                       requires = { { "nvim-lua/plenary.nvim" } } },
+  { "ThePrimeagen/harpoon", branch = "harpoon2",          requires = { { "nvim-lua/plenary.nvim" } } },
 
   -- ######################################################
   -- Neorg is an all-encompassing tool based around

@@ -7,20 +7,20 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 null_ls.setup {
   sources = {
-    null_ls.builtins.formatting.stylua,            -- lua
+    null_ls.builtins.formatting.stylua,       -- lua
 
-    null_ls.builtins.formatting.shfmt,             -- sh/bash
-    null_ls.builtins.formatting.beautysh,          -- sh/bash
-    null_ls.builtins.code_actions.shellcheck,      -- sh/bash
+    null_ls.builtins.formatting.shfmt,        -- sh/bash
+    null_ls.builtins.formatting.beautysh,     -- sh/bash
+    null_ls.builtins.code_actions.shellcheck, -- sh/bash
 
-    null_ls.builtins.formatting.sqlfmt,            -- sql
+    null_ls.builtins.formatting.sqlfmt,       -- sql
 
-    null_ls.builtins.formatting.jq,                -- json
+    null_ls.builtins.formatting.jq,           -- json
 
-    null_ls.builtins.formatting.prettier,          -- ts,tsx,js,jsx,html, ...etc.
-    null_ls.builtins.diagnostics.eslint_d,         -- ts,tsx,js,jsx,html, ...etc.
-    null_ls.builtins.code_actions.eslint_d,        -- ts,tsx,js,jsx,html, ...etc.
+    null_ls.builtins.formatting.prettier,     -- ts,tsx,js,jsx,html, ...etc.
 
+    null_ls.builtins.diagnostics.eslint_d,
+    null_ls.builtins.code_actions.eslint_d,
     null_ls.builtins.formatting.black,             -- py
     null_ls.builtins.formatting.isort,             -- py imports
 

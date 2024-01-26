@@ -140,8 +140,17 @@ lspconfig.docker_compose_language_service.setup {
 lspconfig.emmet_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
-  filetype = { "html", "typescript", "typescriptreact", "javascript", "javascriptreact", "ts", "tsx" },
+  filetype = { "html", "astro", "typescript", "typescriptreact", "javascript", "javascriptreact", "ts", "tsx" },
 }
+
+-- astro
+lspconfig.astro.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  filetype = { "astro" },
+  root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+}
+
 
 -- typescript
 lspconfig.tsserver.setup {

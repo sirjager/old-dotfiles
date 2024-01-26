@@ -49,6 +49,8 @@ export GIT_DISCOVERY_ACROSS_FILESYSTEM=1     # github
 export CHROME_EXECUTABLE='/usr/bin/chromium' # Crome executable path
 # export DRI_PRIME=1 # For graphic card
 
+export ESLINT_USE_FLAT_CONFIG=true
+
 # Go programming language
 export GO111MODULE="on"
 export GOPRIVATE="github.com/sirjager/*"

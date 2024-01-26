@@ -16,5 +16,6 @@ prettier.setup {
     "less",
     "markdown",
     "mdx",
+    "astro"
   },
 }
