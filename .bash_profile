@@ -1,6 +1,7 @@
 # ~/.bash_profile
 #
 export MYSTORAGE="/mnt/storage"
+export MYDOTFILES="$HOME/.local/dotfiles"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -33,7 +34,9 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml" # default ~/.config/starship.toml
 export BUN_INSTALL="$XDG_DATA_HOME/bun"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export PNPM_HOME="$HOME/.local/pnpm"
 
+export GPG_TTY="$(tty)"
 export EDITOR="nvim"
 export ALTERNATE_EDITOR="lvim"
 export TERMINAL="alacritty"
@@ -49,8 +52,6 @@ export GIT_DISCOVERY_ACROSS_FILESYSTEM=1     # github
 export CHROME_EXECUTABLE='/usr/bin/chromium' # Crome executable path
 # export DRI_PRIME=1 # For graphic card
 
-export ESLINT_USE_FLAT_CONFIG=true
-
 # Go programming language
 export GO111MODULE="on"
 export GOPRIVATE="github.com/sirjager/*"
@@ -59,15 +60,14 @@ export GOROOT="/mnt/storage/programs/go/sdk"
 export GOPATH="/mnt/storage/workspace/goenv"
 export GOBIN="/mnt/storage/workspace/goenv/bin"
 export GOCACHE="/mnt/storage/workspace/goenv/cache"
-export PNPM_HOME="/mnt/storage/programs/pnpm"
 
+export PATH="$PATH:$PNPM_HOME"
 export PATH="$PATH":"$GOPATH/bin"
 export PATH="$PATH":"$BUN_INSTALL/bin"
 export PATH="$PATH":"$HOME/.local/bin"
 export PATH="$PATH":"$HOME/.config/emacs/bin"
 export PATH="$PATH":"$HOME/.config/rofi/scripts"
 export PATH="$PATH":"/mnt/storage/programs/pnpm"
-export PATH="$PATH":"/mnt/storage/programs/node/bin"
 export PATH="$PATH":"/mnt/storage/programs/go/sdk/bin"
 export PATH="$PATH":"/mnt/storage/programs/protoc/bin"
 export PATH="$PATH":"/mnt/storage/programs/flutter/bin"
@@ -79,3 +79,4 @@ export PATH="$PATH":"/mnt/storage/programs/node/pnpm/global/5/node_modules/grpc-
 [ -f ~/.bashrc ] && . ~/.bashrc
 
 [ -f "$CARGO_HOME/env" ] && . "$CARGO_HOME/env"
+. "/home/jager/.local/share/cargo/env"

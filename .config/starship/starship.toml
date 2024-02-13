@@ -9,7 +9,7 @@ $character\
 $username\
 $hostname$os\
 $directory\
-$git_branch\
+$git_branch \
 $python\
 $aws\
 $golang\

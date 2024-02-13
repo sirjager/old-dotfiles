@@ -56,6 +56,7 @@ bspc rule -a "qemu-system-x86_64" focus=on follow=true state=floating &
 
 sudo chmod a+rw /sys/class/backlight/amdgpu_bl2/brightness &
 
+## sudo pacman -Syuu polkit-gnome
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 ~/.config/polybar/launch.sh &

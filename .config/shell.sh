@@ -31,29 +31,6 @@ eval "$(starship init bash)"
 # external aliases
 [ -f "/mnt/storage/global/alias" ] && . "/mnt/storage/global/alias"
 
-export GO111MODULE="on"
-export GOPRIVATE="github.com/sirjager/*"
-export GOROOT="/mnt/storage/programs/go/sdk"
-export GOPATH="/mnt/storage/workspace/goenv"
-export PNPM_HOME="/mnt/storage/programs/pnpm"
-export GOMODCACHE="/mnt/storage/programs/go/mod"
-export GOCACHE="/mnt/storage/workspace/goenv/cache"
-export FLUTTER_GIT_URL='ssh://git@github.com/flutter/flutter.git'
-
-# export PATH="$PATH":"$GOPATH/bin"
-# export PATH="$PATH":"$HOME/.local/bin"
-# export PATH="$PATH":"$HOME/.config/emacs/bin"
-# export PATH="$PATH":"$HOME/.config/rofi/scripts"
-# export PATH="$PATH":"/mnt/storage/programs/pnpm"
-# export PATH="$PATH":"/mnt/storage/programs/node/bin"
-# export PATH="$PATH":"/mnt/storage/programs/go/sdk/bin"
-# export PATH="$PATH":"/mnt/storage/programs/protoc/bin"
-# export PATH="$PATH":"/mnt/storage/programs/flutter/bin"
-# export PATH="$PATH":"/home/jager/.local/share/nvim/mason/bin"
-# export PATH="$PATH":"/mnt/storage/programs/android-studio/bin"
-# export PATH="$PATH":"/mnt/storage/programs/android-studio-sdk/platform-tools"
-# export PATH="$PATH":"/mnt/storage/programs/node/pnpm/global/5/node_modules/grpc-tools/bin"
-
 # export keys: use gpg-export-public-key "email@gmail.com"
 alias gpg-export-public-key="gpg --output public.gpg --armor --export"
 alias gpg-export-private-key="gpg --output private.gpg --armor --export-secret-key"
@@ -61,10 +38,10 @@ alias gpg-export-private-key="gpg --output private.gpg --armor --export-secret-k
 alias wget="/usr/bin/wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 
 # .dotfiles github bare repository
-alias dot="/usr/bin/lazygit --git-dir=$HOME/.local/share/dotfiles --work-tree=$HOME"
-alias dot-remove-lock="rm -f ~/.local/share/dotfiles/index.lock"
-alias dots="/usr/bin/git --git-dir=$HOME/.local/share/dotfiles --work-tree=$HOME"
-alias dots-hide-untracked="/usr/bin/git --git-dir=$HOME/.local/share/dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no"
+alias dot="/usr/bin/lazygit --git-dir=$MYDOTFILES --work-tree=$HOME"
+alias dot-remove-lock="rm -f ~/$MYDOTFILES/index.lock"
+alias dots="/usr/bin/git --git-dir=$MYDOTFILES --work-tree=$HOME"
+alias dots-hide-untracked="/usr/bin/git --git-dir=$MYDOTFILES --work-tree=$HOME config --local status.showUntrackedFiles no"
 
 alias grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
@@ -104,9 +81,10 @@ alias knode='sudo pkill -f nodejs && sudo pkill -f node'
 alias s=". ~/.bashrc;"
 
 # change directories
-alias cds="cd /mnt/storage"
-alias cdw="cd /mnt/storage/workspace"
-alias cdd="cd /mnt/storage/downloads"
+alias cds="cd $MYSTORAGE"
+alias cdw="cd $MYSTORAGE/workspace"
+alias cdd="cd $MYSTORAGE/downloads"
+alias web="cd $MYSTORAGE/workspace/web"
 
 # Yay Package Manager / Aur Helper
 alias .i='yay --noconfirm --needed -S' # To install a package (always run pacman -Syu, before installing)
@@ -118,9 +96,8 @@ alias install-go='function _pkg-install-go(){ GOVER=$1 && echo "$GOVER.linux-amd
 
 alias pn='pnpm'
 alias np='npm run'
-alias pn-update='sudo wget -qO /bin/pnpm "https://github.com/pnpm/pnpm/releases/latest/download/pnpm-linuxstatic-x64" && sudo chmod +x /bin/pnpm'
 
-alias conda-init='source /mnt/storage/programs/miniconda3/conda-init'
+alias conda-init=". $MYSTORAGE/miniconda3/conda-init"
 
 alias ai="ollama run mistral"
 alias aic="ollama run codellama"
@@ -161,4 +138,3 @@ port_hide() {
 }
 
 [ -f ~/.config/task.bash ] && . ~/.config/task.bash
-[ -f ~/.local/share/cargo/env ] && . ~/.local/share/cargo/env
