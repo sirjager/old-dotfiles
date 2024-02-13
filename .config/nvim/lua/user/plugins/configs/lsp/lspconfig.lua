@@ -252,11 +252,6 @@ end
 
 -- NOTE: GO LANG SPECIFIC
 
---[[ lspconfig.golangci_lint_ls.setup { ]]
---[[   capabilities = capabilities, ]]
---[[   on_attach = on_attach, ]]
---[[ } ]]
-
 -- configure gopls server
 lspconfig.gopls.setup {
   on_attach = on_attach,
@@ -266,17 +261,18 @@ lspconfig.gopls.setup {
   root_dir = util.root_pattern("go.work", "go.mod", "go.sum", ".git"),
   settings = {
     gopls = {
+      completeUnimported = true,
+      staticcheck = true,
+      hoverKind = "FullDocumentation",
+      linkTarget = "pkg.go.dev",
+      usePlaceholders = false,
+      vulncheck = "Imports",
       analyses = {
         unmarshal = true,
         unsafeptr = true,
         unusedparams = true,
         unusedvariable = true,
       },
-      staticcheck = true,
-      hoverKind = "FullDocumentation",
-      linkTarget = "pkg.go.dev",
-      usePlaceholders = false,
-      vulncheck = "Imports",
     },
   },
 }

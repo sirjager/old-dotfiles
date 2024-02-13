@@ -163,18 +163,18 @@ if neotree_ok then
         hide_by_name = {
           "node_modules",
           ".next",
-          ".git"
+          ".git",
+          "yarn.lock",
+          "pnpm-lock.yaml",
+          "package-lock.json",
         },
         hide_by_pattern = { -- uses glob style patterns
           --"*.meta",
           --"*/src/*/tsconfig.json",
         },
         always_show = { -- remains visible even if other settings would normally hide it
-          "temp",
-          "tmp",
-          ".tmp",
-          ".temp",
           ".github",
+          "tmp",
           ".env",
           ".envrc"
         },
@@ -189,7 +189,7 @@ if neotree_ok then
       follow_current_file = {
         enabled = true,                       -- This will find and focus the file in the active buffer every time
         --               -- the current file is changed while the tree is open.
-        leave_dirs_open = true,               -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+        leave_dirs_open = false,               -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
       },
       group_empty_dirs = false,               -- when true, empty folders will be grouped together
       hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
