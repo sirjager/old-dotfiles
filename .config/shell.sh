@@ -115,6 +115,8 @@ alias date-yyyy-mm-dd="echo $(date +'%Y-%m-%d') | xclip -selection clipboard"
 alias date-yyyy-mm-dd-hh-mm-ss="echo $(date +'%Y-%m-%d %H:%M:%S') | xclip -selection clipboard"
 alias date-day-month-day-year="echo $(date +'%A, %B %d, %Y') | xclip -selection clipboard"
 
+alias brightness-chmod="sudo chmod a+rw /sys/class/backlight/amdgpu_bl2/brightness"
+
 alias nvim-remove-shada="rm -rf ~/.local/state/nvim/shada/"
 
 port_kill() {
@@ -138,3 +140,15 @@ port_hide() {
 }
 
 [ -f ~/.config/task.bash ] && . ~/.config/task.bash
+
+.space(){ 
+  _path="$1"
+  [ -z "$_path" ] && _path="."
+  sudo du -hd 1 "$_path" | sort -h -r
+}
+
+.cpath(){
+_path="$1"
+[ -z "$_path" ] && _path="$(pwd)"
+   echo $_path | xclip -selection clipboard
+}
