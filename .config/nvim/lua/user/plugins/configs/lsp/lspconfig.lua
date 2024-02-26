@@ -60,6 +60,7 @@ lspconfig.cssmodules_ls.setup {
   },
 }
 
+
 lspconfig.graphql.setup {
   capabilities = capabilities,
   on_attach = on_attach,

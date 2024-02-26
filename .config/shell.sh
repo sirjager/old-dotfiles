@@ -6,27 +6,29 @@
 
 export DIRENV_LOG_FORMAT=""
 update_tmux_window_name() {
-	dirname="$(basename "$(pwd)")"
-	myuser=$(whoami)
-	[ "$dirname" = "$myuser" ] && dirname="home"
-	sess_count="$(tmux list-sessions 2>/dev/null | wc -l)"
-	if [ "$sess_count" = "0" ]; then
-		return 0
-	fi
-	tmux rename-window "$dirname"
+    dirname="$(basename "$(pwd)")"
+    myuser=$(whoami)
+    [ "$dirname" = "$myuser" ] && dirname="home"
+    sess_count="$(tmux list-sessions 2>/dev/null | wc -l)"
+    if [ "$sess_count" = "0" ]; then
+        return 0
+    fi
+    tmux rename-window "$dirname"
 }
 
 # this function runs after every command get executed on terminal
 prompt_commands_chain() {
-	eval "$(direnv hook bash)"
-	eval "$(starship init bash)"
-	update_tmux_window_name
+    eval "$(direnv hook bash)"
+    eval "$(starship init bash)"
+    eval "$(zoxide init --cmd cd bash)"
+    update_tmux_window_name
 }
 
 PROMPT_COMMAND=prompt_commands_chain
 
 eval "$(direnv hook bash)"
 eval "$(starship init bash)"
+eval "$(zoxide init --cmd cd bash)"
 
 # external aliases
 [ -f "/mnt/storage/global/alias" ] && . "/mnt/storage/global/alias"
@@ -54,7 +56,7 @@ alias net-start-virt='sudo virsh net-start default'
 # Tmux
 alias tm="tmux"
 alias tma='tmux attach -t'
-alias tmk='tmux kill-session -t'
+alias tmk='tmux kill-session'
 alias tmka='tmux kill-session -a'
 
 alias docker-clean-buildx="docker buildx prune --all"
@@ -90,10 +92,12 @@ alias web="cd $MYSTORAGE/workspace/web"
 alias .i='yay --noconfirm --needed -S' # To install a package (always run pacman -Syu, before installing)
 alias .r="yay --noconfirm -Rns"        # To remove the package, avoid orphaned dependencies and erase its global configuration (which in most cases is the proper command to remove software.)
 alias .u="yay --noconfirm -Syu"        # To update the system && Update the database
+alias .rank-mirrors="sudo reflector --verbose --save /etc/pacman.d/mirrorlist --sort rate -l 30 -p https"
 
 # usage > install-go go1.20.4
 alias install-go='function _pkg-install-go(){ GOVER=$1 && echo "$GOVER.linux-amd64.tar.gz"; mkdir -p /mnt/storage/programs/go && rm -f /mnt/storage/programs/go/$GOVER.linux-amd64.tar.gz ; rm -rf /mnt/storage/programs/go/sdk ; wget -O /mnt/storage/programs/go/$GOVER.linux-amd64.tar.gz https://golang.org/dl/$GOVER.linux-amd64.tar.gz && tar -C /mnt/storage/programs/go -xzf /mnt/storage/programs/go/$GOVER.linux-amd64.tar.gz && mv /mnt/storage/programs/go/go /mnt/storage/programs/go/sdk && clear && /mnt/storage/programs/go/sdk/bin/go version && rm -f /mnt/storage/programs/go/$GOVER.linux-amd64.tar.gz ; unset -f _pkg-install-go; };_pkg-install-go'
 
+alias fl="flutter"
 alias pn='pnpm'
 alias np='npm run'
 
@@ -120,35 +124,43 @@ alias brightness-chmod="sudo chmod a+rw /sys/class/backlight/amdgpu_bl2/brightne
 alias nvim-remove-shada="rm -rf ~/.local/state/nvim/shada/"
 
 port_kill() {
-	if [ -z "$1" ]; then
-		echo "Usage: killport <port>"
-	else
-		kill -9 "$(lsof -t -i:"$1")"
-	fi
+    if [ -z "$1" ]; then
+        echo "Usage: killport <port>"
+    else
+        kill -9 "$(lsof -t -i:"$1")"
+    fi
 }
 
 port_expose() {
-	if [ -z "$1" ]; then
-		echo "Usage: ssh -R 80:localhost:<port> localhost.run"
-	else
-		ssh -R 80:localhost:"$1" localhost.run
-	fi
+    if [ -z "$1" ]; then
+        echo "Usage: ssh -R 80:localhost:<port> localhost.run"
+    else
+        ssh -R 80:localhost:"$1" localhost.run
+    fi
 }
 
 port_hide() {
-	ssh -R 0:localhost:0 localhost.run
+    ssh -R 0:localhost:0 localhost.run
 }
 
 [ -f ~/.config/task.bash ] && . ~/.config/task.bash
 
-.space(){ 
-  _path="$1"
-  [ -z "$_path" ] && _path="."
-  sudo du -hd 1 "$_path" | sort -h -r
+.space(){
+    _path="$1"
+    [ -z "$_path" ] && _path="."
+    sudo du -hd 1 "$_path" | sort -h -r
 }
 
 .cpath(){
-_path="$1"
-[ -z "$_path" ] && _path="$(pwd)"
-   echo $_path | xclip -selection clipboard
+    _path="$1"
+    [ -z "$_path" ] && _path="$(pwd)"
+    echo $_path | xclip -selection clipboard
+}
+
+adb-connect () {
+    adb connect 192.168.0.101:$1
+}
+
+adb-pair(){
+    adb pair 192.168.0.101:$1
 }

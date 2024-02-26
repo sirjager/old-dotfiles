@@ -36,6 +36,7 @@ export BUN_INSTALL="$XDG_DATA_HOME/bun"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export PNPM_HOME="$HOME/.local/pnpm"
 
+
 export GPG_TTY="$(tty)"
 export EDITOR="nvim"
 export ALTERNATE_EDITOR="lvim"
@@ -49,28 +50,33 @@ export GTK_IM_MODULE='fcitx'                 # multilang keyboard
 export SDL_IM_MODULE='fcitx'                 # multilang keyboard
 export QT_IM_MODULE='fcitx'                  # multilang keyboard
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=1     # github
-export CHROME_EXECUTABLE='/usr/bin/chromium' # Crome executable path
+export CHROME_EXECUTABLE='/usr/bin/brave' # Chrome executable path
 # export DRI_PRIME=1 # For graphic card
 
 # Go programming language
 export GO111MODULE="on"
 export GOPRIVATE="github.com/sirjager/*"
-export GOMODCACHE="/mnt/storage/programs/go/mod"
-export GOROOT="/mnt/storage/programs/go/sdk"
-export GOPATH="/mnt/storage/workspace/goenv"
-export GOBIN="/mnt/storage/workspace/goenv/bin"
-export GOCACHE="/mnt/storage/workspace/goenv/cache"
+export GOMODCACHE="$MYSTORAGE/programs/go/mod"
+export GOROOT="$MYSTORAGE/programs/go/sdk"
+export GOPATH="$MYSTORAGE/workspace/goenv"
+export GOBIN="$MYSTORAGE/workspace/goenv/bin"
+export GOCACHE="$MYSTORAGE/workspace/goenv/cache"
+
+export FLUTTER_ROOT="$MYSTORAGE/programs/flutter"
+
+export JAVA_HOME="$MYSTORAGE/programs/jdk/jdk"
 
 export PATH="$PATH:$PNPM_HOME"
 export PATH="$PATH":"$GOPATH/bin"
+export PATH="$PATH":"$GOROOT/bin"
+export PATH="$PATH":"$JAVA_HOME/bin"
 export PATH="$PATH":"$BUN_INSTALL/bin"
 export PATH="$PATH":"$HOME/.local/bin"
+export PATH="$PATH":"$FLUTTER_ROOT/bin"
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$PATH":"$HOME/.config/emacs/bin"
 export PATH="$PATH":"$HOME/.config/rofi/scripts"
-export PATH="$PATH":"/mnt/storage/programs/pnpm"
-export PATH="$PATH":"/mnt/storage/programs/go/sdk/bin"
 export PATH="$PATH":"/mnt/storage/programs/protoc/bin"
-export PATH="$PATH":"/mnt/storage/programs/flutter/bin"
 export PATH="$PATH":"/home/jager/.local/share/nvim/mason/bin"
 export PATH="$PATH":"/mnt/storage/programs/android-studio/bin"
 export PATH="$PATH":"/mnt/storage/programs/android-studio-sdk/platform-tools"

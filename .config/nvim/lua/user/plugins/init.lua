@@ -37,7 +37,7 @@ local plugins = {
   'Equilibris/nx.nvim',
 
   -- ######################################################
-  -- Highly experimental plugin that completely replaces 
+  -- Highly experimental plugin that completely replaces
   -- the UI for messages, cmdline and the popupmenu.
   -- ######################################################
   {
@@ -428,15 +428,18 @@ local plugins = {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "hrsh7th/cmp-path",       -- filesystem paths completions
-      "hrsh7th/cmp-buffer",     -- completions from opened buffers
-      "hrsh7th/cmp-cmdline",    -- completions in commandline mode
-      "hrsh7th/cmp-nvim-lsp",   -- completions from lsp
-      "hrsh7th/cmp-nvim-lua",   -- completions for lua
+      "hrsh7th/cmp-path",          -- filesystem paths completions
+      "FelipeLema/cmp-async-path", -- same as path with async
+      "hrsh7th/cmp-buffer",        -- completions from opened buffers
+      "hrsh7th/cmp-cmdline",       -- completions in commandline mode
+      "hrsh7th/cmp-nvim-lsp",      -- completions from lsp
+      "hrsh7th/cmp-nvim-lua",      -- completions for lua
       "saadparwaiz1/cmp_luasnip",
-      "andersevenrud/cmp-tmux", -- completions of tmux sessions (optional)
-      "hrsh7th/cmp-emoji",      -- emoji completions (optional)
-      "hrsh7th/cmp-calc",       -- inline calc completions (optional)
+      "andersevenrud/cmp-tmux",    -- completions of tmux sessions (optional)
+      "hrsh7th/cmp-emoji",         -- emoji completions (optional)
+      "hrsh7th/cmp-calc",          -- inline calc completions (optional)
+      "hrsh7th/vim-vsnip",
+      "hrsh7th/vim-vsnip-integ"
     },
   },
 
@@ -535,11 +538,14 @@ local plugins = {
   -- ######################################################
   -- flutter / dart language support
   -- ######################################################
-  -- {
-  --   "akinsho/flutter-tools.nvim",
-  --   dependencies = { "stevearc/dressing.nvim" },
-  --   config = true,
-  -- },
+  {
+    "akinsho/flutter-tools.nvim",
+    dependencies = {
+      "stevearc/dressing.nvim",
+      "Neevash/awesome-flutter-snippets",
+    },
+    config = true,
+  },
 
   -- TODO: ################################################
   -- Plugins Table End

@@ -14,6 +14,8 @@ if not ok3 then
   return
 end
 
+luasnip.filetype_extend("dart", { "flutter" })
+
 local icons = require "user.icons"
 
 -- load vs-code like snippets from plugins (e.g. friendly-snippets)
@@ -237,15 +239,11 @@ cmp.setup {
     },
 
     { name = "luasnip" },     -- snippets completions
-
     { name = "codeium" },     -- completions from codeium
-
     { name = "cmp_tabnine" }, -- completions from tabnine ai
-
     { name = "buffer" },      -- completions from opened buffers
-
-    { name = "path" },        -- filesystem path completions
-
+    -- { name = "path" },        -- filesystem path completions
+    { name = "async_path" },  -- filesystem path completions
     {
       name = "tmux", -- completions from tmux sessions
       option = {
@@ -257,7 +255,7 @@ cmp.setup {
         capture_history = false,
       },
     },
-
+    -- { name = "cmdline" },
     {
       name = "look",
       keyword_length = 3,
@@ -267,7 +265,6 @@ cmp.setup {
         --dict = '/usr/share/dict/words'
       },
     },
-
     { name = "crates" }, -- rust crates completions and hints
     { name = "emoji" },
     { name = "calc" },

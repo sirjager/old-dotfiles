@@ -18,7 +18,7 @@ super + ctrl + p
 
 # Lockscreen: Locks bitwarden and Locks screen
 super + shift + l
-  rbw lock && ~/.local/bin/i3lock/i3lock-fancy.sh &
+  ~/.local/bin/i3lock/i3lock-fancy.sh &
 
 # Focus next window, Select next window
 alt + Tab

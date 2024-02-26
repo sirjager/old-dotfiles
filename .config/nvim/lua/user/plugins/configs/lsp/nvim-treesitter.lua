@@ -12,7 +12,11 @@ vim.filetype.add {
 vim.treesitter.language.register("markdown", "mdx")
 
 ts.setup {
-  ensure_installed = { "bash", "lua", "tsx", "markdown", "markdown_inline" },
+  ensure_installed = {
+    "bash", "lua", "html", "dart",
+    "yaml", "json", "css", "tsx", "markdown",
+    "markdown_inline",
+  },
 
   matchup = {
     enable = true, -- mandatory, false will disable the whole extension

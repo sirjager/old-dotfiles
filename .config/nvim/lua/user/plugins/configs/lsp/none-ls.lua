@@ -34,6 +34,8 @@ null_ls.setup {
 
     null_ls.builtins.formatting.yamlfix,           -- yml/yaml
     null_ls.builtins.formatting.markdownlint,      -- mdx/md/markdow
+
+    null_ls.builtins.formatting.dart_format,       -- dart
   },
 
   -- -- configure format on save

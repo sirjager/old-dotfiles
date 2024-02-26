@@ -95,7 +95,7 @@ format = 'at [$path]($style)[$read_only]($read_only_style) '
 
 [directory.substitutions]
 '/mnt/storage/workspace/goenv/src/github.com/sirjager' = ' ' #  
-'/mnt/storage/workspace/app' = ' ' #  
+'/mnt/storage/workspace/apps' = ' ' #  
 '/mnt/storage/workspace/rust' = ' '
 '/mnt/storage/workspace/web' = ' '
 '/mnt/storage/workspace/projects' = ' '
