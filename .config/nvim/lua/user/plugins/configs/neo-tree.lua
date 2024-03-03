@@ -162,6 +162,9 @@ if neotree_ok then
         hide_hidden = true, -- only works on Windows for hidden files/directories
         hide_by_name = {
           "node_modules",
+          ".nx",
+          ".husky",
+          ".vscode",
           ".next",
           ".git",
           "yarn.lock",
@@ -176,7 +179,7 @@ if neotree_ok then
           ".github",
           "tmp",
           ".env",
-          ".envrc"
+          ".envrc",
         },
         never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
           ".DS_Store",
@@ -189,7 +192,7 @@ if neotree_ok then
       follow_current_file = {
         enabled = true,                       -- This will find and focus the file in the active buffer every time
         --               -- the current file is changed while the tree is open.
-        leave_dirs_open = false,               -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+        leave_dirs_open = false,              -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
       },
       group_empty_dirs = false,               -- when true, empty folders will be grouped together
       hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
@@ -197,7 +200,7 @@ if neotree_ok then
       -- "open_current",  -- netrw disabled, opening a directory opens within the
       -- window like netrw would, regardless of window.position
       -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
-      use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
+      use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
       -- instead of relying on nvim autocmd events.
       window = {
         mappings = {
@@ -207,7 +210,6 @@ if neotree_ok then
           ["/"] = "fuzzy_finder",
           ["D"] = "fuzzy_finder_directory",
           ["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
-          -- ["D"] = "fuzzy_sorter_directory",
           ["f"] = "filter_on_submit",
           ["<c-x>"] = "clear_filter",
           ["[g"] = "prev_git_modified",
@@ -229,7 +231,20 @@ if neotree_ok then
         },
       },
 
-      commands = {} -- Add a custom command or override a global one using the same function name
+      commands = {
+        -- Override delete to use trash instead of rm
+        delete = function(state)
+          local inputs = require "neo-tree.ui.inputs"
+          local path = state.tree:get_node().path
+          local msg = "Are you sure you want to delete " .. path
+          inputs.confirm(msg, function(confirmed)
+            if not confirmed then return end
+
+            vim.fn.system { "trash", vim.fn.fnameescape(path) }
+            require("neo-tree.sources.manager").refresh(state.name)
+          end)
+        end,
+      },
     },
     buffers = {
       follow_current_file = {

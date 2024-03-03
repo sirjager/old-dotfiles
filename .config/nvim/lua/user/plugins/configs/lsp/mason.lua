@@ -59,9 +59,9 @@ end
 local mason_null_ls_ok, mason_null_ls = pcall(require, "mason-null-ls")
 if mason_null_ls_ok then
   mason_null_ls.setup {
-    automatic_installation = true,
+    automatic_installation = false,
     ensure_installed = {
-      "astro-language-server", -- astro
+      -- "astro-language-server", -- astro
       -- "black", -- py
       -- "codelldb", -- rust, c,cpp debugger
       -- "debugpy", -- py

@@ -20,6 +20,7 @@ local icons = require "user.icons"
 
 -- load vs-code like snippets from plugins (e.g. friendly-snippets)
 require("luasnip/loaders/from_vscode").lazy_load()
+require("luasnip/loaders/from_vscode").lazy_load({ paths = "~/.local/share/nvim/vim-snippets/snippets" })
 vim.opt.completeopt = "menu,menuone,noselect"
 
 ---@diagnostic disable-next-line: unused-local
@@ -133,7 +134,7 @@ cmp.setup {
           buffer = "[BUF]",
           codeium = "[CODIUM]",
           nvim_lua = "[LUA]",
-          luasnip = "[LUASNIP]",
+          luasnip = "[SNIP]",
           cmp_tabnine = "[TAB9]",
           path = "[PATH]",
           tmux = "[TMUX]",

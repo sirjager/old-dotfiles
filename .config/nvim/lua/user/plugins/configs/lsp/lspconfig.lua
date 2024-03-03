@@ -49,6 +49,12 @@ lspconfig.lua_ls.setup {
 }
 
 -- css
+lspconfig.cssls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
+
 lspconfig.cssmodules_ls.setup {
   capabilities = capabilities,
   on_attach = function(client)
@@ -62,11 +68,6 @@ lspconfig.cssmodules_ls.setup {
 
 
 lspconfig.graphql.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-}
-
-lspconfig.cssls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }
@@ -100,14 +101,22 @@ lspconfig.yamlls.setup {
       -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
       url = "",
     },
-    schemas = require("schemastore").yaml.schemas(),
+    -- schemas = require("schemastore").yaml.schemas(),
+    schemas = {
+      ['http://json.schemastore.org/github-workflow'] = '.github/workflows/*.{yml,yaml}',
+      ['http://json.schemastore.org/github-action'] = '.github/action.{yml,yaml}',
+      ['http://json.schemastore.org/ansible-stable-2.9'] = 'roles/tasks/*.{yml,yaml}',
+      ['http://json.schemastore.org/prettierrc'] = '.prettierrc.{yml,yaml}',
+      ['http://json.schemastore.org/stylelintrc'] = '.stylelintrc.{yml,yaml}',
+      ['http://json.schemastore.org/circleciconfig'] = '.circleci/**/*.{yml,yaml}'
+    }
   },
 }
 
--- lspconfig.prismals.setup {
---   capabilities = capabilities,
---   on_attach = on_attach,
--- }
+lspconfig.prismals.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
 
 lspconfig.bashls.setup {
   capabilities = capabilities,
@@ -181,8 +190,8 @@ lspconfig.tailwindcss.setup {
     "astro",
     "astro-markdown",
     "html",
-    --[[ "markdown", ]]
-    --[[ "mdx", ]]
+    "markdown",
+    "mdx",
     "css",
     "less",
     "postcss",
@@ -240,16 +249,6 @@ lspconfig.mdx_analyzer.setup {
 --   }
 -- end
 
--- code folding
-local okufo, ufo = pcall(require, "ufo")
-if okufo then
-  ufo.setup {
-    ---@diagnostic disable-next-line: unused-local
-    provider_selector = function(bufnr, filetype, buftype)
-      return { "treesitter", "indent" }
-    end,
-  }
-end
 
 -- NOTE: GO LANG SPECIFIC
 
@@ -277,3 +276,14 @@ lspconfig.gopls.setup {
     },
   },
 }
+
+-- code folding
+local okufo, ufo = pcall(require, "ufo")
+if okufo then
+  ufo.setup {
+    ---@diagnostic disable-next-line: unused-local
+    provider_selector = function(bufnr, filetype, buftype)
+      return { "treesitter", "indent" }
+    end,
+  }
+end

@@ -3,13 +3,9 @@ if not ok then
   return
 end
 
-vim.filetype.add {
-  extension = {
-    mdx = "mdx",
-  },
-}
-
+vim.filetype.add { extension = { mdx = "mdx" } }
 vim.treesitter.language.register("markdown", "mdx")
+vim.filetype.add({ extension = { astro = "astro" } })
 
 ts.setup {
   ensure_installed = {
