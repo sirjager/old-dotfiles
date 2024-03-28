@@ -29,10 +29,10 @@ end
 local mason_lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
 if mason_lspconfig_ok then
   mason_lspconfig.setup {
-    automatic_installation = true,
+    automatic_installation = false,
     ensure_installed = {
       "bashls", -- sh
-      -- "clangd",
+      "clangd",
       "cssls",
       -- "eslint",
       -- "eslint", -- ts,js
@@ -61,11 +61,14 @@ if mason_null_ls_ok then
   mason_null_ls.setup {
     automatic_installation = false,
     ensure_installed = {
+      -- @astrojs/language-server@2.6.3 -- working -- latest is broken
       -- "astro-language-server", -- astro
       -- "black", -- py
       -- "codelldb", -- rust, c,cpp debugger
       -- "debugpy", -- py
       "beautysh",
+      "buf",
+      "buf-language-server",
       -- "eslint", -- ts,js
       "eslint_d", -- ts,js
       "gofumpt",  -- go
@@ -75,6 +78,7 @@ if mason_null_ls_ok then
       -- "ruff", -- py
       -- "rustywind",
       "shellharden", -- sh
+      "shellcheck",
       "jq",
       "shfmt",
       "sqlfmt",
@@ -93,6 +97,7 @@ if mason_null_ls_ok then
       -- "rust-analyzer", -- rust
       "stylua",                          -- lua
       "typescript-languange-server",     -- ts,js
+      "protolint",
       -- "phpcs",
       -- "php-cbf",
       -- "php-cs-fixer",

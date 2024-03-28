@@ -13,11 +13,16 @@ null_ls.setup {
     null_ls.builtins.formatting.beautysh,     -- sh/bash
     null_ls.builtins.code_actions.shellcheck, -- sh/bash
 
-    null_ls.builtins.formatting.sqlfmt,       -- sql
+    null_ls.builtins.diagnostics.buf,         -- proto
+    null_ls.builtins.formatting.buf,          -- proto
+    null_ls.builtins.diagnostics.protolint,   -- proto
 
-    null_ls.builtins.formatting.jq,           -- json
 
-    null_ls.builtins.formatting.prettier,     -- ts,tsx,js,jsx,html, ...etc.
+    null_ls.builtins.formatting.sqlfmt,   -- sql
+
+    null_ls.builtins.formatting.jq,       -- json
+
+    null_ls.builtins.formatting.prettier, -- ts,tsx,js,jsx,html, ...etc.
 
     null_ls.builtins.diagnostics.eslint_d,
     null_ls.builtins.code_actions.eslint_d,
@@ -26,7 +31,7 @@ null_ls.setup {
 
     null_ls.builtins.formatting.gofumpt,           -- go
     null_ls.builtins.formatting.golines,           -- go
-    null_ls.builtins.diagnostics.gospel,           -- go
+    -- null_ls.builtins.diagnostics.gospel,           -- go
     null_ls.builtins.diagnostics.golangci_lint,    -- go
     null_ls.builtins.formatting.goimports_reviser, -- go imports
 
