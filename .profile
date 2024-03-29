@@ -94,10 +94,10 @@ export PATH="$PATH":"$mystorage/programs/android-studio/bin"
 export PATH="$PATH":"$mystorage/programs/android-studio-sdk/platform-tools"
 export PATH="$PATH":"$mystorage/programs/node/pnpm/global/5/node_modules/grpc-tools/bin"
 
-[ -f "$CARGO_HOME/env" ] && . "$CARGO_HOME/env"                       # Cargo environment
+[ -f "$CARGO_HOME/env" ] && . "$CARGO_HOME/env" # Cargo environment
 
-[ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"                             ## source .bashrc
-[ -f "$ZDOTDIR/.zshrc" ] && . "$ZDOTDIR/.zshrc"                         ## source .zshrc
-[ -f "$XDG_CONFIG_HOME/task.bash" ] && . "$XDG_CONFIG_HOME/task.bash"   ## source Taskfile complitions
-[ -f "$XDG_CONFIG_HOME/shell.sh" ] && . "$XDG_CONFIG_HOME/shell.sh"     ## user's shell preferences
-[ -f "$mystorage/global/alias" ] && . "$mystorage/global/alias"         ## personal aliases
+[ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"                           ## source .bashrc
+[ -f "$ZDOTDIR/.zshrc" ] && . "$ZDOTDIR/.zshrc"                       ## source .zshrc
+[ -f "$XDG_CONFIG_HOME/task.bash" ] && . "$XDG_CONFIG_HOME/task.bash" ## source Taskfile complitions
+[ -f "$XDG_CONFIG_HOME/shell.sh" ] && . "$XDG_CONFIG_HOME/shell.sh"   ## user's shell preferences
+[ -f "$mystorage/global/alias" ] && . "$mystorage/global/alias"       ## personal aliases
