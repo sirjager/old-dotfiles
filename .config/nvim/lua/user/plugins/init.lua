@@ -344,14 +344,14 @@ local plugins = {
   -- ######################################################
   -- file hopping, quick change maked files (optional)
   -- ######################################################
-  { "ThePrimeagen/harpoon", branch = "harpoon2",          requires = { { "nvim-lua/plenary.nvim" } } },
+  { "ThePrimeagen/harpoon", branch = "harpoon2", requires = { { "nvim-lua/plenary.nvim" } } },
 
   -- ######################################################
   -- Neorg is an all-encompassing tool based around
   -- structured note taking, project and task management, time
   -- tracking, slideshows, writing typeset documents and much more
   -- ######################################################
-  { "nvim-neorg/neorg",     build = ":Neorg sync-parsers" },
+  -- { "nvim-neorg/neorg",     build = ":Neorg sync-parsers" },
 
   -- INFO: ##################################################
   -- lsp (Language server protocols) related plugins
@@ -393,6 +393,21 @@ local plugins = {
       "williamboman/mason-lspconfig.nvim",
       "nvimtools/none-ls.nvim", -- new fork of null-ls (alternative of null-ls)
     },
+  },
+
+  -- ######################################################
+  -- A framework for interacting with tests within NeoVim.
+  -- ######################################################
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      -- go test package
+      "nvim-neotest/neotest-go",
+    }
   },
 
   -- ######################################################
@@ -453,28 +468,35 @@ local plugins = {
   -- ######################################################
   -- code debuging. may need to install 'lldb' from your system pkg manager
   -- ######################################################
-  { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio",
+      "theHamsta/nvim-dap-virtual-text",
+    },
+  },
 
-  --[[ -- ###################################################### ]]
-  --[[ -- golang A modern go neovim plugin based on treesitter, nvim-lsp and dap debugger ]]
-  --[[ -- ###################################################### ]]
-  --[[ { ]]
-  --[[   "ray-x/go.nvim", ]]
-  --[[   dependencies = { -- optional packages ]]
-  --[[     "ray-x/guihua.lua", ]]
-  --[[     "neovim/nvim-lspconfig", ]]
-  --[[     "nvim-treesitter/nvim-treesitter", ]]
-  --[[   }, ]]
-  --[[   event = { "CmdlineEnter" }, ]]
-  --[[   ft = { "go", "gomod" }, ]]
-  --[[   build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries ]]
-  --[[ }, ]]
+  -- ###################################################### ]]
+  -- golang A modern go neovim plugin based on treesitter, nvim-lsp and dap debugger ]]
+  -- ###################################################### ]]
+  {
+    "ray-x/go.nvim",
+    dependencies = { -- optional packages
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    event = { "CmdlineEnter" },
+    ft = { "go", "gomod" },
+    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+  },
 
   -- ######################################################
   -- go code debugger
   -- ######################################################
   {
-    "dreamsofcode-io/nvim-dap-go",
+    "leoluz/nvim-dap-go",
     ft = "go",
     dependencies = { "mfussenegger/nvim-dap" },
   },

@@ -16,6 +16,9 @@ prettier.setup {
     "less",
     "markdown",
     "mdx",
-    "astro"
+    "astro",
+    "yaml",
+    "html",
+    "vue",
   },
 }

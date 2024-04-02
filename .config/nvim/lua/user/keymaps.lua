@@ -78,7 +78,7 @@ local keymaps = {
     -- ========================================================================
     --
     -- Toggle Maximize Current Buffer
-    --[[ ["<A-a>"] = { ":MaximizerToggle<CR>", "maximize / restore window" }, ]]
+    ["<A-a>"] = { ":MaximizerToggle<CR>", "maximize / restore window" },
     -- Switch Buffer
     -- ["<A-b>"] = { ":Telescope buffers <CR>", "opened buffers" },
     -- Toggle Zen Mode
@@ -182,6 +182,17 @@ local which_keymaps = {
     w = { "<CMD>Telescope nx workspace_generators<CR>", "nx workspace generators" },
   },
 
+  d = {
+    name = "debugging",
+    u = { "<CMD> DapUiToggle<CR>", "toggle dap ui" },
+    b = { "<cmd> DapToggleBreakpoint <CR>", "toggle breakpoint" },
+    c = { "<cmd> DapContinue <CR>", "debug continue" },
+    t = { "<cmd> DapTerminate <CR>", "debug terminate" },
+    l = { "<cmd> DapShowLog <CR>", "debug show log" },
+    i = { "<cmd> DapStepInto <CR>", "debug step into" },
+    j = { "<cmd> DapStepOver <CR>", "debug step over" },
+    o = { "<cmd> DapStepOut <CR>", "debug step out" },
+  },
 
   g = {
     name = "golang",
@@ -195,15 +206,20 @@ local which_keymaps = {
     v = { ":GoModVendor<CR>", "mod vendor" },
   },
 
-  --[[ t = { ]]
-  --[[   name = "toggle", ]]
-  --[[   t = { ]]
-  --[[     name = "toggle terminal", ]]
-  --[[     f = { ":ToggleTerm direction=float<CR>", "terminal on float" }, ]]
-  --[[     l = { ":ToggleTerm direction=vertical size=80<CR>", "terminal on right" }, ]]
-  --[[     j = { ":ToggleTerm direction=horizontal size=8<CR>", "terminal on left" }, ]]
-  --[[   }, ]]
-  --[[ }, ]]
+  t = {
+    name = "tests",
+    n = { ':lua require("neotest").run.run()<CR>', "test nearest" },
+    a = { ':lua require("neotest").run.attach()<CR>', "attach nearest" },
+    s = { ':lua require("neotest").run.stop()<CR>', "stop nearest" },
+    c = { ':lua require("neotest").run.run(vim.fn.expand("%"))<CR>', "test current file" },
+    d = { ':lua require("neotest").run.run({strategy = "dap"})<CR>', "test nearest with debugger" },
+
+    g = {
+      name = "go test",
+      n = { ':lua require("dap-go").debug_test()<CR>', "test nearest" },
+      l = { ':lua require("dap-go").debug_last()<CR>', "test last" },
+    }
+  },
 
   s = {
     name = "search",
@@ -222,16 +238,6 @@ local which_keymaps = {
     C = { ":Telescope commands <CR>", "list commands" },
   },
 
-  d = {
-    name = "diagnostic",
-    d = { ":Lspsaga show_buf_diagnostics <CR>", "buf diagnostics" }, -- most used
-    w = { ":Lspsaga show_workspace_diagnostics <CR>", "workspace diagnostics" },
-    l = { ":Lspsaga show_line_diagnostics <CR>", "line diagnostics" },
-    j = { ":Lspsaga diagnostic_jump_next <CR>", "next diagnostic" },
-    k = { ":Lspsaga diagnostic_jump_prev <CR>", "prev diagnostic" },
-    c = { ":Lspsaga show_cursor_diagnostics <CR>", "cursor diagnostics" },
-  },
-
 
   l = {
     name = "lsp",
@@ -240,6 +246,16 @@ local which_keymaps = {
     a = { ":CodeActionMenu<CR>", "code action" },   -- most used 2
     o = { ":Lspsaga outline <CR>", "outline" },
     r = { ":LspRestart<CR>", "restart lsp" },
+
+    d = {
+      name = "diagnostics",
+      d = { ":Lspsaga show_buf_diagnostics <CR>", "buf diagnostics" }, -- most used
+      w = { ":Lspsaga show_workspace_diagnostics <CR>", "workspace diagnostics" },
+      l = { ":Lspsaga show_line_diagnostics <CR>", "line diagnostics" },
+      j = { ":Lspsaga diagnostic_jump_next <CR>", "next diagnostic" },
+      k = { ":Lspsaga diagnostic_jump_prev <CR>", "prev diagnostic" },
+      c = { ":Lspsaga show_cursor_diagnostics <CR>", "cursor diagnostics" },
+    },
 
     s = {
       name = "live server",
@@ -262,24 +278,6 @@ local which_keymaps = {
       o = { ":Lspsaga outgoing_calls <CR>", "outgoing calls" },
     },
 
-    d = {
-      name = "debugging",
-      b = { "<cmd> DapToggleBreakpoint <CR>", "toggle breakpoint" },
-      c = { "<cmd> DapContinue <CR>", "debug continue" },
-      t = { "<cmd> DapTerminate <CR>", "debug terminate" },
-      l = { "<cmd> DapShowLog <CR>", "debug show log" },
-      i = { "<cmd> DapStepInto <CR>", "debug step into" },
-      j = { "<cmd> DapStepOver <CR>", "debug step over" },
-      o = { "<cmd> DapStepOut <CR>", "debug step out" },
-      u = {
-        function()
-          local widgets = require "dap.ui.widgets"
-          local sidebar = widgets.sidebar(widgets.scopes)
-          sidebar.open()
-        end,
-        "open debug sidebar",
-      },
-    },
   },
 }
 

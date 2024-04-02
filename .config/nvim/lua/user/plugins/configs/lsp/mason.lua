@@ -34,7 +34,6 @@ if mason_lspconfig_ok then
       "bashls", -- sh
       "clangd",
       "cssls",
-      -- "eslint",
       -- "eslint", -- ts,js
       "emmet_ls",
       "gopls",    -- go
