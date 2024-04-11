@@ -68,7 +68,6 @@ alias np='npm run'
 alias ai="ollama run mistral"
 alias aic="ollama run codellama"
 
-
 alias n="nvim"
 alias nv="nvim"
 alias snv="sudo -E -s nvim"

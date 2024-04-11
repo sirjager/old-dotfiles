@@ -413,7 +413,7 @@ local plugins = {
   -- ######################################################
   -- inhanced ui and improved lsp experience
   -- ######################################################
-  { "glepnir/lspsaga.nvim",           branch = "main",       after = "nvim-treesitter" },
+  { "glepnir/lspsaga.nvim", branch = "main", after = "nvim-treesitter" },
   "folke/trouble.nvim",
 
   -- ######################################################

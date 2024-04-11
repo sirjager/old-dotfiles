@@ -38,6 +38,9 @@ null_ls.setup {
     null_ls.builtins.diagnostics.ruff,             -- rust
 
     null_ls.builtins.formatting.yamlfix,           -- yml/yaml
+    null_ls.builtins.diagnostics.yamllint,           -- yml/yaml
+    -- null_ls.builtins.formatting.yamlfmt,           -- yml/yaml
+
     null_ls.builtins.formatting.markdownlint,      -- mdx/md/markdow
 
     null_ls.builtins.formatting.dart_format,       -- dart

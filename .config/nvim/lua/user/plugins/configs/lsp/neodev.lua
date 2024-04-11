@@ -9,11 +9,11 @@ if neodevok then
       -- plugins = true, -- installed opt or start plugins in packpath
       -- you can also specify the list of plugins to make available as a workspace library
       plugins = {
-        "neotest",
         "nvim-dap-ui",
         "nvim-treesitter",
         "plenary.nvim",
         "telescope.nvim",
+        "neotest",
       },
     },
     setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files

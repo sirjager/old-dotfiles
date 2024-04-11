@@ -22,7 +22,7 @@ go.setup {
   -- settings with {}
   go = "go", -- go command, can be go[default] or go1.18beta1
   goimports = "gopls", -- goimport command, can be gopls[default] or goimport
-  fillstruct = "gopls", -- default, can also use fillstruct
+  fillstruct = false, -- "gopls", -- default, can also use fillstruct
   gofmt = "golines", --gofmt cmd,
   max_line_len = 300, -- max line length in golines format, Target maximum line length for golines
   tag_transform = "snakecase", -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
@@ -98,7 +98,7 @@ go.setup {
 
   dap_port = 38697,                                              -- can be set to a number, if set to -1 go.nvim will pick up a random port
   dap_timeout = 15,                                              --  see dap option initialize_timeout_sec = 15,
-  dap_retries = 20,                                              -- see dap option max_retries
+  dap_retries = 5,                                              -- see dap option max_retries
   build_tags = "tag1,tag2",                                      -- set default build tags
   textobjects = true,                                            -- enable default text jobects through treesittter-text-objects
   test_runner = "go",                                            -- one of {`go`, `richgo`, `dlv`, `ginkgo`, `gotestsum`}

@@ -7,8 +7,9 @@ pkg.setup({
   adapters = {
     require("neotest-go")({
       recursive_run = true,
+      test_table = true,
       experimental = { test_table = true },
-      args = { "-count=1", "-timeout=60s" },
+      args = { "-count=1", "-timeout=30s" },
     }),
   },
 })

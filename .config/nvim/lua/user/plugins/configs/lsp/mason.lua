@@ -73,7 +73,9 @@ if mason_null_ls_ok then
       "gofumpt",  -- go
       -- "mypy", -- py
       "codespell",
-      "yamlfix",
+      -- "yamlfix",
+      "yamlfmt",
+      "yamllint", -- yml
       -- "ruff", -- py
       -- "rustywind",
       "shellharden", -- sh

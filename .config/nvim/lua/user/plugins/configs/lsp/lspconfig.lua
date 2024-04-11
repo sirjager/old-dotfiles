@@ -109,16 +109,7 @@ lspconfig.yamlls.setup {
       -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
       url = "",
     },
-    -- schemas = require("schemastore").yaml.schemas(),
-    schemas = {
-      ['http://json.schemastore.org/github-workflow'] = '.github/workflows/*.{yml,yaml}',
-      ['http://json.schemastore.org/github-action'] = '.github/action.{yml,yaml}',
-      ['http://json.schemastore.org/ansible-stable-2.9'] = 'roles/tasks/*.{yml,yaml}',
-      ['http://json.schemastore.org/prettierrc'] = '.prettierrc.{yml,yaml}',
-      ['http://json.schemastore.org/stylelintrc'] = '.stylelintrc.{yml,yaml}',
-      ['http://json.schemastore.org/circleciconfig'] = '.circleci/**/*.{yml,yaml}',
-      ['https://taskfile.dev/schema.json'] = '**/Taskfile.{yml,yaml}'
-    }
+    schemas = require("schemastore").yaml.schemas(),
   },
 }
 
@@ -285,4 +276,3 @@ lspconfig.gopls.setup {
     },
   },
 }
-
