@@ -182,7 +182,7 @@ local plugins = {
   -- bottom bar, alternative: nvim-lualine/lualine.nvim
   -- ######################################################
   "windwp/windline.nvim",
-  --[[ "nvim-lualine/lualine.nvim", ]]
+  -- "nvim-lualine/lualine.nvim",
 
   -- ######################################################
   -- neovim tabs
@@ -193,7 +193,7 @@ local plugins = {
   -- ######################################################
   -- maximizes and restores current window
   -- ######################################################
-  { "szw/vim-maximizer",   lazy = false },
+  { "szw/vim-maximizer",    lazy = false },
 
   -- ######################################################
   -- headings, code folding
@@ -290,9 +290,9 @@ local plugins = {
   },
 
   -- ######################################################
-  -- rest api client (optional)
+  -- rest api client (optional), required dependencies : lua-curl, xml2lua
   -- ######################################################
-  { "rest-nvim/rest.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+  -- { "rest-nvim/rest.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 
   -- ######################################################
   -- database client, sql database client with ui (optional)
@@ -391,7 +391,9 @@ local plugins = {
       "neovim/nvim-lspconfig",
       "jayp0521/mason-null-ls.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "nvimtools/none-ls.nvim", -- new fork of null-ls (alternative of null-ls)
+      "nvimtools/none-ls.nvim", -- new fork of null-ls (alternative of null-ls),
+      "nvimtools/none-ls-extras.nvim",
+      "gbprod/none-ls-shellcheck.nvim",
     },
   },
 
@@ -413,7 +415,7 @@ local plugins = {
   -- ######################################################
   -- inhanced ui and improved lsp experience
   -- ######################################################
-  { "glepnir/lspsaga.nvim", branch = "main", after = "nvim-treesitter" },
+  { "glepnir/lspsaga.nvim",           branch = "main",       after = "nvim-treesitter" },
   "folke/trouble.nvim",
 
   -- ######################################################
@@ -491,6 +493,12 @@ local plugins = {
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
+
+  -- ######################################################
+  -- rofi configs, rasi extension
+  -- ######################################################
+  { "Fymyte/rasi.vim", ft = { "rasi" } },
+
 
   -- ######################################################
   -- go code debugger

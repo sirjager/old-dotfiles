@@ -65,7 +65,7 @@ if mason_null_ls_ok then
       -- "black", -- py
       -- "codelldb", -- rust, c,cpp debugger
       -- "debugpy", -- py
-      "beautysh",
+      -- "beautysh",
       "buf",
       "buf-language-server",
       -- "eslint", -- ts,js

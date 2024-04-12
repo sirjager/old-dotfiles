@@ -1,4 +1,5 @@
 #!/bin/sh
+# shellcheck disable=3010,2199,3024,3030,3054
 
 eval "$(direnv hook bash)"
 eval "$(starship init bash)"
@@ -45,7 +46,7 @@ alias slv="sudo -E -s ~/.local/bin/lvim"
 alias k='killall -q'
 alias knode='sudo pkill -f nodejs && sudo pkill -f node'
 
-alias s=". ~/.bashrc;"
+alias s=". ~/.profile;"
 
 # change directories
 alias cds="cd $mystorage"
@@ -72,3 +73,7 @@ alias n="nvim"
 alias nv="nvim"
 alias snv="sudo -E -s nvim"
 alias nvim-remove-shada="rm -rf ~/.local/state/nvim/shada/"
+
+alias hyprwin="hyprctl clients -j | jq '.[] | {class,title,pid}'"
+
+alias .bookmarks="jq '..|select(.url? and .name?)|{name: .name, url: .url}' ~/.config/chromium/Default/Bookmarks"

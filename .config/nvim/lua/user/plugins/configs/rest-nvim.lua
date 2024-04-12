@@ -3,6 +3,8 @@ if not ok then
   return
 end
 
+-- install required dependencies: lua-curl, xml2lua
+
 pkg.setup {
   -- Open request results in a horizontal split
   result_split_horizontal = false,
