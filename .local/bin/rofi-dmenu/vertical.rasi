@@ -20,13 +20,13 @@
 }
 
 window {
-    location:                    center;
-    anchor:                      center;
+    location:                    south;
+    anchor:                      north;
     fullscreen:                  false;
-    width:                       70%;
-    height:                      30%;
+    width:                       99%;
+    height:                      25%;
     x-offset:                    0px;
-    y-offset:                    0px;
+    y-offset:                    -10px;
     background-color:            @main-bg;
     border-radius:               @border-radius;
     border:                      2px solid;

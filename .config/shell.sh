@@ -77,3 +77,8 @@ alias nvim-remove-shada="rm -rf ~/.local/state/nvim/shada/"
 alias hyprwin="hyprctl clients -j | jq '.[] | {class,title,pid}'"
 
 alias .bookmarks="jq '..|select(.url? and .name?)|{name: .name, url: .url}' ~/.config/chromium/Default/Bookmarks"
+
+findcmd() {
+    keyword="$@"
+    history | grep "$keyword" | grep -v "findcmd" | awk '{$1=""; print $0}'
+}

@@ -61,7 +61,7 @@ if mason_null_ls_ok then
     automatic_installation = false,
     ensure_installed = {
       -- @astrojs/language-server@2.6.3 -- working -- latest is broken
-      -- "astro-language-server", -- astro
+      "astro-language-server", -- astro
       -- "black", -- py
       -- "codelldb", -- rust, c,cpp debugger
       -- "debugpy", -- py
@@ -73,7 +73,6 @@ if mason_null_ls_ok then
       "gofumpt",  -- go
       -- "mypy", -- py
       "codespell",
-      -- "yamlfix",
       "yamlfmt",
       "yamllint", -- yml
       -- "ruff", -- py
@@ -87,6 +86,7 @@ if mason_null_ls_ok then
       "fixjson",
       "golangci-lint",
       "gospel",
+      "gofumpt",
       "goimports_reviser",               -- go
       "golines",                         -- go
       "lua-language-server",             -- lua

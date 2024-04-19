@@ -204,6 +204,7 @@ local which_keymaps = {
     s = { ":GoStop<CR>", "stop running code" },
     g = { ":GoModTidy<CR>", "mod tidy" },
     v = { ":GoModVendor<CR>", "mod vendor" },
+    i = { ":GoImpl<CR>", "implement struct" },
   },
 
   t = {

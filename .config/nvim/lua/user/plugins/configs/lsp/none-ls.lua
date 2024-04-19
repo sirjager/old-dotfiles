@@ -24,13 +24,6 @@ null_ls.setup {
     null_ls.builtins.formatting.black,             -- py
     null_ls.builtins.formatting.isort,             -- py imports
 
-    null_ls.builtins.formatting.gofumpt,           -- go
-    -- null_ls.builtins.diagnostics.gospel,           -- go
-    null_ls.builtins.diagnostics.golangci_lint,    -- go
-    null_ls.builtins.formatting.goimports_reviser, -- go imports
-    null_ls.builtins.formatting.golines,           -- go
-
-
     null_ls.builtins.formatting.yamlfix,   -- yml/yaml
     null_ls.builtins.diagnostics.yamllint, -- yml/yaml
     -- null_ls.builtins.formatting.yamlfmt,           -- yml/yaml
@@ -57,6 +50,14 @@ null_ls.setup {
     require("none-ls.code_actions.eslint_d"),
     require("none-ls-shellcheck.diagnostics"),
     require("none-ls-shellcheck.code_actions"),
+
+    null_ls.builtins.formatting.gofumpt,           -- go
+    -- null_ls.builtins.diagnostics.gospel,           -- go
+    null_ls.builtins.diagnostics.golangci_lint,    -- go
+    null_ls.builtins.formatting.goimports_reviser, -- go imports
+    null_ls.builtins.formatting.golines,           -- go
+
+  --
   },
 
   -- -- NOTE: UNCOMMENT BELOW: -- If you want to configure format on save
