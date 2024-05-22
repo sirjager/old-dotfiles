@@ -9,9 +9,9 @@ vim.filetype.add({ extension = { astro = "astro" } })
 
 ts.setup {
   ensure_installed = {
-    "bash", "lua", "html", "dart",
+    "astro", "bash", "lua", "html", "dart",
     "yaml", "json", "css", "tsx", "markdown",
-    "markdown_inline",
+    "markdown_inline", "typescript", "javascript"
   },
 
   matchup = {

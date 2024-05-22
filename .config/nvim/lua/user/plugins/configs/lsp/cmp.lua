@@ -211,7 +211,7 @@ cmp.setup {
   sources = cmp.config.sources {
     {
       name = "nvim_lsp", -- completions from lsp
-
+      trigger_characters = { '-' },
       -- tutorial: https://www.youtube.com/watch?v=yTk3C3JMKzQ&list=PLOe6AggsTaVuIXZU4gxWJpIQNHMrDknfN&index=40
       ---@diagnostic disable-next-line: unused-local
       entry_filter = function(entry, context)
@@ -255,7 +255,7 @@ cmp.setup {
     -- { name = "path" },        -- filesystem path completions
     { name = "async_path" },  -- filesystem path completions
     {
-      name = "tmux", -- completions from tmux sessions
+      name = "tmux",          -- completions from tmux sessions
       option = {
         all_panes = true,
         label = "[TMUX]",

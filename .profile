@@ -93,6 +93,7 @@ export PATH="$PATH":"$mystorage/programs/protoc/bin"
 export PATH="$PATH":"$mystorage/programs/android-studio/bin"
 export PATH="$PATH":"$mystorage/programs/android-studio-sdk/platform-tools"
 export PATH="$PATH":"$mystorage/programs/node/pnpm/global/5/node_modules/grpc-tools/bin"
+export PATH="$PATH":"$mystorage/programs/Postman"
 
 [ -f "$CARGO_HOME/env" ] && . "$CARGO_HOME/env" # Cargo environment
 

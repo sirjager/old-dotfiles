@@ -34,6 +34,7 @@ if mason_lspconfig_ok then
       "bashls", -- sh
       "clangd",
       "cssls",
+      -- "prismals",
       -- "eslint", -- ts,js
       "emmet_ls",
       "gopls",    -- go
@@ -90,6 +91,7 @@ if mason_null_ls_ok then
       "goimports_reviser",               -- go
       "golines",                         -- go
       "lua-language-server",             -- lua
+      "svelte-language-server",             -- lua
       "docker-compose-language-service", -- docker-compose.yaml
       "dockerfile-language-server",      -- Dockerfile
       "markdownlint",                    -- md
@@ -110,3 +112,10 @@ local neodevok, neodev = pcall(require, "neodev")
 if neodevok then
   neodev.setup {}
 end
+
+
+-- NOTE: astro-ls stopped working, neovim gets crashed
+-- This is temporary fix, clone the following repo somewhere and install parser
+-- https://github.com/virchau13/tree-sitter-astro
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.astro.install_info.url = "~/.local/share/nvim/mason/packages/tree-sitter-astro"

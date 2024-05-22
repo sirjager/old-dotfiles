@@ -66,9 +66,6 @@ alias fl="flutter"
 alias pn='pnpm'
 alias np='npm run'
 
-alias ai="ollama run mistral"
-alias aic="ollama run codellama"
-
 alias n="nvim"
 alias nv="nvim"
 alias snv="sudo -E -s nvim"
@@ -78,7 +75,9 @@ alias hyprwin="hyprctl clients -j | jq '.[] | {class,title,pid}'"
 
 alias .bookmarks="jq '..|select(.url? and .name?)|{name: .name, url: .url}' ~/.config/chromium/Default/Bookmarks"
 
+alias start-docker="sudo systemctl start docker"
+
 findcmd() {
-    keyword="$@"
-    history | grep "$keyword" | grep -v "findcmd" | awk '{$1=""; print $0}'
+	keyword="$@"
+	history | grep "$keyword" | grep -v "findcmd" | awk '{$1=""; print $0}'
 }

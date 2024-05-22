@@ -48,6 +48,12 @@ lspconfig.lua_ls.setup {
   },
 }
 
+-- css
+lspconfig.svelte.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
 
 -- css
 lspconfig.bufls.setup {
@@ -186,26 +192,10 @@ lspconfig.tsserver.setup {
 lspconfig.tailwindcss.setup {
   capabilities = capabilities,
   on_attach = on_attach,
-  filetypes = {
-    "astro",
-    "astro-markdown",
-    "html",
-    "markdown",
-    "mdx",
-    "css",
-    "less",
-    "postcss",
-    "sass",
-    "scss",
-    "stylus",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "vue",
-    "svelte",
-  },
+  filetypes = { "astro", "astro-markdown", "html", "markdown", "mdx", "css", "less", "postcss", "sass",
+    "scss", "stylus", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte", },
 }
+
 
 -- markdown
 lspconfig.marksman.setup {
