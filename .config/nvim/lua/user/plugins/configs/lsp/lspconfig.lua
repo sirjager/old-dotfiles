@@ -18,10 +18,10 @@ capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true,
 }
-
 -- enable keybinds for available lsp servers
 local on_attach = function(_, bufnr)
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.api.nvim_set_option_value(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 
 -- Lua
@@ -248,7 +248,7 @@ lspconfig.gopls.setup {
   capabilities = capabilities,
   cmd = { "gopls" },
   filetypes = { "go" },
-  root_dir = util.root_pattern("go.work", "go.mod", "go.sum", ".git"),
+  root_dir = util.root_pattern("go.work", "go.mod", "go.sum", ".git", "gotmpl"),
   settings = {
     gopls = {
       completeUnimported = true,
