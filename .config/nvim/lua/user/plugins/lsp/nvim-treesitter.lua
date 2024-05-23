@@ -10,7 +10,7 @@ vim.filetype.add({ extension = { astro = "astro" } })
 ts.setup {
   ensure_installed = {
     "astro", "bash", "lua", "html", "dart",
-    "yaml", "json", "css", "tsx", "markdown",
+    "yaml", "json", "css", "tsx", "markdown", "go",
     "markdown_inline", "typescript", "javascript"
   },
 
@@ -41,11 +41,6 @@ ts.setup {
     end,
   },
 
-
-  autotag = {
-    enable = true,
-  },
-
   refactor = {
     highlight_current_scope = {
       enable = true,
@@ -59,7 +54,7 @@ ts.setup {
     smart_rename = {
       enable = true,
       keymaps = {
-        smart_rename = "gcr",
+        -- smart_rename = "gcr",
       },
     },
 
@@ -67,11 +62,11 @@ ts.setup {
       enable = true,
       -- Assign keymaps to false to disable them, e.g. `goto_definition = false`.
       keymaps = {
-        goto_definition = "gnd",
-        list_definitions = "gnD",
-        list_definitions_toc = "gO",
-        goto_next_usage = "<A->",
-        goto_previous_usage = "<A-<",
+        -- goto_definition = "gnd",
+        -- list_definitions = "gnD",
+        -- list_definitions_toc = "gO",
+        -- goto_next_usage = "<A->",
+        -- goto_previous_usage = "<A-<",
       },
     },
 

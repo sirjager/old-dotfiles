@@ -19,10 +19,10 @@ null_ls.setup {
     null_ls.builtins.formatting.sqlfmt,     -- sql
 
 
-    null_ls.builtins.formatting.prettierd,         -- ts,tsx,js,jsx,html, ...etc.
+    null_ls.builtins.formatting.prettierd, -- ts,tsx,js,jsx,html, ...etc.
 
-    null_ls.builtins.formatting.black,             -- py
-    null_ls.builtins.formatting.isort,             -- py imports
+    null_ls.builtins.formatting.black,     -- py
+    null_ls.builtins.formatting.isort,     -- py imports
 
     null_ls.builtins.formatting.yamlfix,   -- yml/yaml
     null_ls.builtins.diagnostics.yamllint, -- yml/yaml
@@ -57,7 +57,7 @@ null_ls.setup {
     null_ls.builtins.formatting.goimports_reviser, -- go imports
     null_ls.builtins.formatting.golines,           -- go
 
-  --
+    --
   },
 
   -- -- NOTE: UNCOMMENT BELOW: -- If you want to configure format on save

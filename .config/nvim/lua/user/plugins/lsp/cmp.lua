@@ -4,63 +4,27 @@ if not ok1 then
   return
 end
 
-local ok2, luasnip = pcall(require, "luasnip")
-if not ok2 then
-  return
-end
-
 local ok3, lspkind = pcall(require, "lspkind")
 if not ok3 then
   return
 end
 
+local ok2, luasnip = pcall(require, "luasnip")
+if not ok2 then
+  return
+end
+
+
 luasnip.filetype_extend("dart", { "flutter" })
 
+local ts_utils = require "nvim-treesitter.ts_utils"
 local icons = require "user.icons"
 
 -- load vs-code like snippets from plugins (e.g. friendly-snippets)
 require("luasnip/loaders/from_vscode").lazy_load()
 require("luasnip/loaders/from_vscode").lazy_load({ paths = "~/.local/share/nvim/vim-snippets/snippets" })
+
 vim.opt.completeopt = "menu,menuone,noselect"
-
----@diagnostic disable-next-line: unused-local
-local lsp_kind_order = {
-  5,  -- Field
-  10, -- Property
-  2,  -- Method
-  3,  -- Function
-  4,  -- Constructor
-  6,  -- Variable
-  7,  -- Class
-  8,  -- Interface
-  9,  -- Module
-  11, -- Unit
-  12, -- Value
-  13, -- Enum
-  14, -- Keyword
-  15, -- Snippet
-  16, -- Color
-  17, -- File
-  18, -- Reference
-  19, -- Folder
-  20, -- EnumMember
-  21, -- Constant
-  22, -- Struct
-  23, -- Event
-  24, -- Operator
-  25, -- TypeParameter
-  1,  -- Text
-}
-
---[[ -- custom Colors: not working]]
---[[ vim.api.nvim_set_hl(0, "MyNormal", { bg = "Black", fg = "White" }) ]]
---[[ vim.api.nvim_set_hl(0, "MyFloatBorder", { bg = "#A084E8", fg = "White" }) ]]
---[[ vim.api.nvim_set_hl(0, "MyCursorLine", { bg = "Black", fg = "White" }) ]]
-
---[[ vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" }) ]]
---[[ vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" }) ]]
---[[ vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" }) ]]
---[[ vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" }) ]]
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1
@@ -116,40 +80,23 @@ cmp.setup {
   formatting = {
     expandable_indicator = true,
     fields = { "kind", "abbr", "menu" }, -- rearrange positions if needed
+
     format = lspkind.cmp_format {
-      mode = "symbol_text",              -- show only symbol annotations -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-      maxwidth = 50,                     -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-      ellipsis_char = "...",             -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-
+      mode = "symbol_text",  -- show only symbol annotations -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+      maxwidth = 70,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
       before = function(entry, vim_item)
-        local source = entry.source.name
-
-        local maxwidth = 80
+        local maxwidth = 70
+        local source = entry.source.name --> nvim_lsp, nvim_lua, luasnip, buffer, path
+        local kind = vim_item.kind       --> Class, Method, Variable etc...
+        -- local item = entry:get_completion_item()
         vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
+        vim_item.kind = icons.kind[kind] or "?"
+        vim_item.menu = " [" .. kind .. "] "
 
-        vim_item.kind = icons.kind[vim_item.kind]
-        vim_item.menu = ({
-
-          nvim_lsp = "[LSP]",
-          buffer = "[BUF]",
-          codeium = "[CODIUM]",
-          nvim_lua = "[LUA]",
-          luasnip = "[SNIP]",
-          cmp_tabnine = "[TAB9]",
-          path = "[PATH]",
-          tmux = "[TMUX]",
-          crates = "[CRATE]",
-          emoji = "[EMOJI]",
-          calc = "[CALC]",
-          look = "[DICT]",
-
-          --
-        })[entry.source.name]
-
-        if source == "luasnip" then
+        if source == "luasnip" or source == "nvim_lsp" then
           vim_item.dup = 0
         end
-
 
         if entry.source.name == "codeium" then
           vim_item.kind = icons.misc.Wand
@@ -187,79 +134,42 @@ cmp.setup {
         return vim_item
       end,
     },
-
-    --
   },
 
-  sorting = {
-    --[[ comparators = { ]]
-    --[[ 	compare.exact, ]]
-    --[[ 	compare.kind, ]]
-    --[[ 	compare.score, ]]
-    --[[ 	compare.length, ]]
-    --[[ 	function(entry1, entry2) ]]
-    --[[ 		local kind1 = lsp_kind_order[entry1:get_kind()] ]]
-    --[[ 		local kind2 = lsp_kind_order[entry2:get_kind()] ]]
-    --[[ 		if kind1 < kind2 then ]]
-    --[[ 			return true ]]
-    --[[ 		end ]]
-    --[[ 	end, ]]
-    --[[ }, ]]
-  },
+  -- sorting = {},
 
   -- sources for autocompletion, priorties from top to bottom order
+  -- tutorial: https://www.youtube.com/watch?v=yTk3C3JMKzQ&list=PLOe6AggsTaVuIXZU4gxWJpIQNHMrDknfN&index=40
   sources = cmp.config.sources {
     {
       name = "nvim_lsp", -- completions from lsp
-      trigger_characters = { '-' },
-      -- tutorial: https://www.youtube.com/watch?v=yTk3C3JMKzQ&list=PLOe6AggsTaVuIXZU4gxWJpIQNHMrDknfN&index=40
-      ---@diagnostic disable-next-line: unused-local
-      entry_filter = function(entry, context)
+      trigger_characters = { '.' },
+      keyword_length = 2,
+      entry_filter = function(entry, _)
         local kind = entry:get_kind()
-        --[[ -- with treesitter ]]
-        --[[ local node = ts_utils.get_node_at_cursor():type() ]]
-        --[[ if node == "arguments" then ]]
-        --[[ 	if kind == 6 then ]]
-        --[[ 		return true ]]
-        --[[ 	else ]]
-        --[[ 		return false ]]
-        --[[ 	end ]]
-        --[[ end ]]
-
-        -- -- without treesitter
-        local line = context.cursor_line
-        local col = context.cursor.col
-        local char_before_cursor = string.sub(line, col - 1, col - 1)
-        if char_before_cursor == "." then
-          if kind == 2 or kind == 5 then
-            return true
-          else
-            return false
-          end
-        elseif string.match(line, "^%s*%w*$") then
-          if kind == 2 or kind == 5 then
+        local node = ts_utils.get_node_at_cursor():type()
+        if node == "arguments" then
+          if kind == 6 then
             return true
           else
             return false
           end
         end
-
         return true
       end,
     },
-
     { name = "luasnip" },     -- snippets completions
     { name = "codeium" },     -- completions from codeium
     { name = "cmp_tabnine" }, -- completions from tabnine ai
     { name = "buffer" },      -- completions from opened buffers
-    -- { name = "path" },        -- filesystem path completions
+    { name = "path" },        -- filesystem path completions
     { name = "async_path" },  -- filesystem path completions
     {
       name = "tmux",          -- completions from tmux sessions
       option = {
         all_panes = true,
         label = "[TMUX]",
-        trigger_characters = { "." },
+        trigger_characters = { "?" },
         trigger_characters_ft = {},
         keyword_pattern = [[\w\+]],
         capture_history = false,
@@ -275,9 +185,8 @@ cmp.setup {
         --dict = '/usr/share/dict/words'
       },
     },
-    { name = "crates" }, -- rust crates completions and hints
-    { name = "emoji" },
-    { name = "calc" },
+    { name = "emoji", option = { trigger_characters = { ":" } } },
+    { name = "calc",  option = { trigger_characters = { "=" } } },
   },
 
   confirm_opts = {
@@ -290,14 +199,15 @@ cmp.setup {
       side_padding = 0,
       col_offset = 0,
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, -- single | double | shadow etc.
-      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:CurSearch,Search:None",
+      winhighlight = "Normal:LineNr,FloatBorder:LineNr,CursorLine:CurSearch,Search:None",
     },
 
     documentation = cmp.config.window.bordered {
       side_padding = 0,
       col_offset = 0,
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, -- single | double | shadow etc.
-      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:CurSearch,Search:None",
+      border = "double",
+      -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, -- single | double | shadow etc.
+      winhighlight = "Normal:LineNr,FloatBorder:LineNr,CursorLine:CurSearch,Search:None",
     },
   },
 

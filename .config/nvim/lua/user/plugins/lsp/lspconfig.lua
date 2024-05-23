@@ -3,8 +3,8 @@ if not ok then
   return
 end
 
-local ok2, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not ok2 then
+local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not status_ok then
   return
 end
 
@@ -13,6 +13,7 @@ local util = require "lspconfig/util"
 -- enable autocompletion capabilities
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
+
 -- ufo: code folding
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
@@ -20,8 +21,7 @@ capabilities.textDocument.foldingRange = {
 }
 -- enable keybinds for available lsp servers
 local on_attach = function(_, bufnr)
-  -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  vim.api.nvim_set_option_value(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.api.nvim_buf_set_option(bufnr or 0, "omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 
 -- Lua
