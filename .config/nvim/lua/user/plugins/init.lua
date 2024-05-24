@@ -71,18 +71,24 @@ local plugins = {
   -- ######################################################
   -- sidebar folder explorer, nvim-tree, explorer
   -- ######################################################
-  "nvim-tree/nvim-tree.lua",
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
+    "nvim-tree/nvim-tree.lua",
     dependencies = {
-      "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-      "s1n7ax/nvim-window-picker",
-      "3rd/image.nvim", -- Optional image support in preview window
-    },
+    }
   },
+
+  -- {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   branch = "v3.x",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+  --     "MunifTanjim/nui.nvim",
+  --     "s1n7ax/nvim-window-picker",
+  --     "3rd/image.nvim", -- Optional image support in preview window
+  --   },
+  -- },
 
   -- ######################################################
   -- neoscroll: a smooth scrolling neovim plugin (optional)
@@ -173,9 +179,6 @@ local plugins = {
   {
     "goolord/alpha-nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require("alpha").setup(require("alpha.themes.startify").config)
-    end,
   },
 
   -- ######################################################

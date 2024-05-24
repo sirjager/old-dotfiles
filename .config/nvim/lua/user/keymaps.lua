@@ -165,8 +165,8 @@ local keymaps = {
 }
 
 local which_keymaps = {
-  -- e = { ":NvimTreeFindFileToggle<CR>", "toggle file explorer" },
-  e = { ":Neotree toggle<CR>", "toggle file explorer" },
+  e = { ":NvimTreeToggle<CR>", "toggle file explorer" },
+  -- e = { ":Neotree toggle<CR>", "toggle file explorer" },
 
   f = {
     l = { "<CMD>Telescope flutter commands<CR>", "flutter commands" },
