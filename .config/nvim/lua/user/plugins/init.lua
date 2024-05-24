@@ -191,7 +191,7 @@ local plugins = {
   -- neovim tabs
   -- ######################################################
   "akinsho/bufferline.nvim",
-  "romgrk/barbar.nvim",
+  -- "romgrk/barbar.nvim",
 
   -- ######################################################
   -- maximizes and restores current window

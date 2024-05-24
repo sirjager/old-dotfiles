@@ -45,7 +45,7 @@ pkg.setup {
     treesitter = true,
     notify = true,
     mini = false,
-    barbar = true,
+    barbar = false,
     alpha = true,
     markdown = true,
     which_key = true,

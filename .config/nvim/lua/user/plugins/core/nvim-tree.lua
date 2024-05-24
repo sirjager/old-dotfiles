@@ -15,7 +15,7 @@ pkg.setup {
     files_first = false,
   },
   view = {
-    width = 35,
+    width = 37,
     side = "left",
     signcolumn = "yes",
     number = true,
@@ -72,7 +72,7 @@ pkg.setup {
         bookmark = "",
         modified = "●",
         folder = {
-          arrow_closed = " ",
+          arrow_closed = " ", -- 
           arrow_open = "",
           default = "",
           open = "",
@@ -101,6 +101,11 @@ pkg.setup {
     },
     symlink_destination = true,
   },
+
+  sync_root_with_cwd = true,
+  hijack_cursor = true,
+  disable_netrw = true,
+  hijack_netrw = true,
   hijack_directories = {
     enable = true,
     auto_open = true,
@@ -119,11 +124,13 @@ pkg.setup {
     enable = true,
     dotfiles = false,
     git_clean = false,
-    git_ignored = false,
+    git_ignored = true,
     no_bookmark = false,
     no_buffer = false,
     custom = { "node_modules", "\\.cache" },
-    exclude = {},
+    exclude = {
+      ".git", "dist", "tmp"
+    },
   },
   filesystem_watchers = {
     enable = true,
@@ -138,12 +145,20 @@ pkg.setup {
     timeout = 400,
     cygwin_support = false,
   },
+  update_focused_file = {
+    enable = true,
+    update_root = true,
+    ignore_list = {
+      "", "fzf", "help", "qf",
+      "lspinfo", "undotree"
+    }
+  },
   actions = {
     use_system_clipboard = true,
     change_dir = {
-      enable = true,
+      enable = false,
       global = false,
-      restrict_above_cwd = false,
+      restrict_above_cwd = true,
     },
     expand_all = {
       max_folder_discovery = 300,

@@ -77,7 +77,12 @@ alias .bookmarks="jq '..|select(.url? and .name?)|{name: .name, url: .url}' ~/.c
 
 alias start-docker="sudo systemctl start docker"
 
+alias audio-relay="pactl load-module module-null-sink sink_name=audiorelay-speakers sink_properties=device.description=AudioRelay-Speakers"
+alias audio-relay-stop="pulseaudio -k"
+
 findcmd() {
 	keyword="$@"
 	history | grep "$keyword" | grep -v "findcmd" | awk '{$1=""; print $0}'
 }
+
+

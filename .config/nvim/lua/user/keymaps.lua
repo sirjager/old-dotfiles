@@ -24,7 +24,7 @@ local keymaps = {
     ["<C-s>"] = { ":w<CR>", "save buffer" },
 
     -- close buffers
-    ["<C-w>"] = { "<Cmd>BufferClose<CR>", "close buffer" },
+    ["<C-w>"] = { ":bd<CR>", "close buffer" },
 
     -- new buffer
     ["<C-n>"] = { "<Cmd>enew<CR>", "new buffer" },
@@ -51,16 +51,16 @@ local keymaps = {
     --[[ ["<A-i>"] = { "<Cmd>BufferPick<CR>", "smart buffer picker" }, ]]
 
     -- fast swtich tabs
-    ["<A-1>"] = { "<Cmd>BufferGoto 1<CR>", "go to 1 buffer" },
-    ["<A-2>"] = { "<Cmd>BufferGoto 2<CR>", "go to 2 buffer" },
-    ["<A-3>"] = { "<Cmd>BufferGoto 3<CR>", "go to 3 buffer" },
-    ["<A-4>"] = { "<Cmd>BufferGoto 4<CR>", "go to 4 buffer" },
-    ["<A-5>"] = { "<Cmd>BufferGoto 5<CR>", "go to 5 buffer" },
-    ["<A-6>"] = { "<Cmd>BufferGoto 6<CR>", "go to 6 buffer" },
-    ["<A-7>"] = { "<Cmd>BufferGoto 7<CR>", "go to 7 buffer" },
-    ["<A-8>"] = { "<Cmd>BufferGoto 8<CR>", "go to 8 buffer" },
-    ["<A-9>"] = { "<Cmd>BufferGoto 9<CR>", "go to 9 buffer" },
-    ["<A-0>"] = { "<Cmd>BufferLast<CR>", "go to last buffer" },
+    ["<A-1>"] = { "<Cmd>BufferLineGoToBuffer 1<CR>", "go to 1 buffer" },
+    ["<A-2>"] = { "<Cmd>BufferLineGoToBuffer 2<CR>", "go to 2 buffer" },
+    ["<A-3>"] = { "<Cmd>BufferLineGoToBuffer 3<CR>", "go to 3 buffer" },
+    ["<A-4>"] = { "<Cmd>BufferLineGoToBuffer 4<CR>", "go to 4 buffer" },
+    ["<A-5>"] = { "<Cmd>BufferLineGoToBuffer 5<CR>", "go to 5 buffer" },
+    ["<A-6>"] = { "<Cmd>BufferLineGoToBuffer 6<CR>", "go to 6 buffer" },
+    ["<A-7>"] = { "<Cmd>BufferLineGoToBuffer 7<CR>", "go to 7 buffer" },
+    ["<A-8>"] = { "<Cmd>BufferLineGoToBuffer 8<CR>", "go to 8 buffer" },
+    ["<A-9>"] = { "<Cmd>BufferLineGoToBuffer 9<CR>", "go to 9 buffer" },
+    ["<A-0>"] = { "<Cmd>BufferLineGoToBuffer 10<CR>", "go to 10 buffer" },
 
     -- split windows horizontally and vertically
     ["<A-s>l"] = { ":vsplit<CR><C-w>w", "split window right" },
@@ -88,7 +88,7 @@ local keymaps = {
     -- Rename instance
     ["<A-r>"] = { ":Lspsaga rename<CR>", "smart rename" },
     -- Toggle Pin Current Buffer
-    ["<A-P>"] = { "<Cmd>BufferPin<CR>", "toggle pin current buffer" },
+    ["<A-P>"] = { "<Cmd>BufferLineTogglePin<CR>", "toggle pin current buffer" },
     -- Toggle Markdown Preview
     ["<A-m>"] = { ":MarkdownPreviewToggle<CR>", "toggle markdown preview" },
     -- Toggle Comment: Also in visual mode
@@ -110,7 +110,7 @@ local keymaps = {
     -- Toggle Database UI, closing nvimtree first to keep one opened at same time
     ["<A-u>"] = { ":NvimTreeClose<CR> :DBUIToggle<CR>", "toggle database ui" },
     -- Close All But Current Or Pinned Buffers
-    ["<A-w>"] = { ":BufferCloseAllButCurrentOrPinned<CR>", "close all buffer but current or pinned" },
+    ["<A-w>"] = { ":BufferLineCloseOthers<CR>", "close other buffers" },
     -- Close All But Current Or Pinned Buffers
     ["<A-p>"] = { ":lua vim.lsp.buf.format({timeout_ms = 10000})<CR>", "format without saving" },
     -- Color picker
