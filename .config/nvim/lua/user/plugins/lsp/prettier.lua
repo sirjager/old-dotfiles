@@ -14,8 +14,6 @@ prettier.setup {
     "json",
     "scss",
     "less",
-    "markdown",
-    "mdx",
     "astro",
     "yaml",
     "html",

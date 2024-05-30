@@ -1,14 +1,11 @@
 -- INFO: Installed Plugins ################################
 require "user.plugins"
 
--- INFO: Plugins Configs ##################################
-require "user.plugins.configs"
+-- INFO: Color Schemes ####################################
+require "user.colorscheme"
 
 -- INFO: Neovim Option ####################################
 require "user.options"
-
--- INFO: Color Schemes ####################################
-require "user.colorscheme"
 
 -- INFO: Custom Functions #################################
 require "user.functions"
@@ -18,3 +15,7 @@ require "user.keymaps"
 
 -- INFO: Autocmds Configs ##################################
 require "user.autocmds"
+
+-- INFO: Plugins Configs ##################################
+require "user.plugins.configs"
+

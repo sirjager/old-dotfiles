@@ -165,22 +165,22 @@ local keymaps = {
 }
 
 local which_keymaps = {
-  e = { ":NvimTreeToggle<CR>", "toggle file explorer" },
-  -- e = { ":Neotree toggle<CR>", "toggle file explorer" },
+  -- e = { ":NvimTreeToggle<CR>", "toggle file explorer" },
+  e = { ":Neotree toggle<CR>", "toggle file explorer" },
 
   f = {
     l = { "<CMD>Telescope flutter commands<CR>", "flutter commands" },
   },
 
-  w = {
-    name = "nx workspace",
-    a = { "<CMD>Telescope nx actions<CR>", "nx action" },
-    g = { "<CMD>Telescope nx generators<CR>", "nx generators" },
-    f = { "<CMD>Telescope nx affected<CR>", "nx affected" },
-    m = { "<CMD>Telescope nx run_many<CR>", "nx run many" },
-    e = { "<CMD>Telescope nx external_generators<CR>", "nx external generators" },
-    w = { "<CMD>Telescope nx workspace_generators<CR>", "nx workspace generators" },
-  },
+  -- w = {
+  --   name = "workspace",
+  --   a = { "<CMD>Telescope nx actions<CR>", "nx action" },
+  --   g = { "<CMD>Telescope nx generators<CR>", "nx generators" },
+  --   f = { "<CMD>Telescope nx affected<CR>", "nx affected" },
+  --   m = { "<CMD>Telescope nx run_many<CR>", "nx run many" },
+  --   e = { "<CMD>Telescope nx external_generators<CR>", "nx external generators" },
+  --   w = { "<CMD>Telescope nx workspace_generators<CR>", "nx workspace generators" },
+  -- },
 
   d = {
     name = "debugging",
@@ -278,8 +278,8 @@ local which_keymaps = {
       i = { ":Lspsaga incoming_calls <CR>", "incoming calls" },
       o = { ":Lspsaga outgoing_calls <CR>", "outgoing calls" },
     },
-
   },
+
 }
 
 --

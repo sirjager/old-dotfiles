@@ -3,11 +3,18 @@ if not ok then
   return
 end
 
+local okflutter, _ = pcall(require, "flutter-tools")
+if okflutter then
+  pkg.load_extension("flutter")
+end
+
+
+
 pkg.load_extension "project"
 pkg.load_extension "media_files"
 pkg.load_extension "emoji"
-pkg.load_extension("flutter")
 pkg.load_extension "ui-select"
+pkg.load_extension('git_diffs')
 
 local actions = require "telescope.actions"
 local project_actions = require "telescope._extensions.project.actions"

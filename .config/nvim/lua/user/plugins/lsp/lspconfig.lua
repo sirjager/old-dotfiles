@@ -22,6 +22,7 @@ capabilities.textDocument.foldingRange = {
 -- enable keybinds for available lsp servers
 local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr or 0, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  -- vim.api.nvim_set_option_value(bufnr or 0, "omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 
 -- Lua
@@ -78,6 +79,11 @@ lspconfig.cssmodules_ls.setup {
   init_options = {
     camelCase = "dashes",
   },
+}
+
+lspconfig.terraformls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
 
 
@@ -192,23 +198,23 @@ lspconfig.tsserver.setup {
 lspconfig.tailwindcss.setup {
   capabilities = capabilities,
   on_attach = on_attach,
-  filetypes = { "astro", "astro-markdown", "html", "markdown", "mdx", "css", "less", "postcss", "sass",
+  filetypes = { "astro", "astro-markdown", "html", "css", "less", "postcss", "sass",
     "scss", "stylus", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte", },
 }
 
 
--- markdown
-lspconfig.marksman.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  filetypes = { "markdown", "markdown.mdx", "mdx" },
-}
+-- -- markdown
+-- lspconfig.marksman.setup {
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+--   filetypes = { "markdown", "markdown.mdx", "mdx" },
+-- }
 
--- mdx
-lspconfig.mdx_analyzer.setup {
-  cmd = { "mdx-language-server", "--stdio" },
-  filetypes = { "markdown.mdx", "mdx" },
-}
+-- -- mdx
+-- lspconfig.mdx_analyzer.setup {
+--   cmd = { "mdx-language-server", "--stdio" },
+--   filetypes = { "markdown.mdx", "mdx" },
+-- }
 
 -- -- python pyright
 -- lspconfig.pyright.setup {
@@ -242,27 +248,27 @@ lspconfig.mdx_analyzer.setup {
 
 -- NOTE: GO LANG SPECIFIC
 
--- configure gopls server
-lspconfig.gopls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  cmd = { "gopls" },
-  filetypes = { "go" },
-  root_dir = util.root_pattern("go.work", "go.mod", "go.sum", ".git", "gotmpl"),
-  settings = {
-    gopls = {
-      completeUnimported = true,
-      staticcheck = true,
-      hoverKind = "FullDocumentation",
-      linkTarget = "pkg.go.dev",
-      usePlaceholders = false,
-      vulncheck = "Imports",
-      analyses = {
-        unmarshal = true,
-        unsafeptr = true,
-        unusedparams = true,
-        unusedvariable = true,
-      },
-    },
-  },
-}
+-- -- configure gopls server
+-- lspconfig.gopls.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   cmd = { "gopls" },
+--   filetypes = { "go" },
+--   root_dir = util.root_pattern("go.work", "go.mod", "go.sum", ".git", "gotmpl"),
+--   settings = {
+--     gopls = {
+--       completeUnimported = true,
+--       staticcheck = true,
+--       hoverKind = "FullDocumentation",
+--       linkTarget = "pkg.go.dev",
+--       usePlaceholders = false,
+--       vulncheck = "Imports",
+--       analyses = {
+--         unmarshal = true,
+--         unsafeptr = true,
+--         unusedparams = true,
+--         unusedvariable = true,
+--       },
+--     },
+--   },
+-- }

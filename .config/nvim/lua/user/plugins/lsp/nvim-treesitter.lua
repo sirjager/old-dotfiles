@@ -9,18 +9,17 @@ vim.filetype.add({ extension = { astro = "astro" } })
 
 ts.setup {
   ensure_installed = {
-    "astro", "bash", "lua", "html", "dart",
+    "astro", "bash", "lua", "html",
     "yaml", "json", "css", "tsx", "markdown", "go",
     "markdown_inline", "typescript", "javascript"
   },
 
   matchup = {
-    enable = true, -- mandatory, false will disable the whole extension
-    -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
+    enable = true,
+    disable = { "c", "ruby" }
   },
-  -- Install parsers syncronously (only applicable to `ensure_installed`)
   sync_install = false,
-  auto_install = true, -- auto installs treesitter for new languages discovered
+  auto_install = true,
 
   playground = { enable = true },
 
@@ -29,10 +28,10 @@ ts.setup {
   indent = { enable = true, disable = { "yaml", "python", "yml" } },
 
   highlight = {
-    enable = true, -- false will disable the whole extension
+    enable = true,
     additional_vim_regex_highlighting = true,
     disable = function(lang, buf)
-      if vim.tbl_contains({ "latex" }, lang) then
+      if vim.tbl_contains({ "latex", "tex" }, lang) then
         return true
       end
 
@@ -60,7 +59,6 @@ ts.setup {
 
     navigation = {
       enable = true,
-      -- Assign keymaps to false to disable them, e.g. `goto_definition = false`.
       keymaps = {
         -- goto_definition = "gnd",
         -- list_definitions = "gnD",
@@ -83,7 +81,6 @@ ts.setup {
   textobjects = {
     select = {
       enable = true,
-      -- Automatically jump forward to textobj, similar to targets.vim
       lookahead = true,
     },
   },

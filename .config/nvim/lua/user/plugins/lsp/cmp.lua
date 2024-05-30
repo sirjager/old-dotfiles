@@ -145,22 +145,23 @@ cmp.setup {
       name = "nvim_lsp", -- completions from lsp
       trigger_characters = { '.' },
       keyword_length = 2,
-      entry_filter = function(entry, _)
-        local kind = entry:get_kind()
-        local node = ts_utils.get_node_at_cursor():type()
-        if node == "arguments" then
-          if kind == 6 then
-            return true
-          else
-            return false
-          end
-        end
-        return true
-      end,
+      -- entry_filter = function(entry, _)
+      --   local kind = entry:get_kind()
+      --   local node = ts_utils.get_node_at_cursor():type()
+      --   if node == "arguments" then
+      --     if kind == 6 then
+      --       return true
+      --     else
+      --       return false
+      --     end
+      --   end
+      --   return true
+      -- end,
     },
     { name = "luasnip" },     -- snippets completions
+    { name = "luasnip" },     -- snippets completions
     { name = "codeium" },     -- completions from codeium
-    { name = "cmp_tabnine" }, -- completions from tabnine ai
+    -- { name = "cmp_tabnine" }, -- completions from tabnine ai
     { name = "buffer" },      -- completions from opened buffers
     { name = "path" },        -- filesystem path completions
     { name = "async_path" },  -- filesystem path completions
@@ -186,7 +187,7 @@ cmp.setup {
       },
     },
     { name = "emoji", option = { trigger_characters = { ":" } } },
-    { name = "calc",  option = { trigger_characters = { "=" } } },
+    -- { name = "calc",  option = { trigger_characters = { "=" } } },
   },
 
   confirm_opts = {

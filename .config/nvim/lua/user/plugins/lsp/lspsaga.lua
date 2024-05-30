@@ -4,9 +4,7 @@ if not ok then
 end
 
 lspsaga.setup {
-  -- keybinds for navigation in lspsaga window
   scroll_preview = { scroll_down = "<C-f>", scroll_up = "<C-b>" },
-  -- use enter to open file with definition preview
   definition = {
     edit = "<CR>",
   },
@@ -19,14 +17,11 @@ lspsaga.setup {
     title = true,
     devicons = true,
     border = "single",
-
     code_action = "💡", --  💡                                 
-
     lines = { "┗", "┣", "┃", "━", "┏" },
     colors = {
       normal_bg = "#022746",
     },
-
     -- kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
   },
 }

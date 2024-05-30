@@ -10,7 +10,7 @@ if masonok then
       icons = {
         package_pending = " ",
         package_installed = "󰄳 ",
-        package_uninstalled = " 󰚌",
+        package_uninstalled = " 󰚌 ",
       },
       keymaps = {
         toggle_server_expand = "<CR>",
@@ -42,7 +42,7 @@ if mason_lspconfig_ok then
       "html",     -- html
       "jsonls",   -- json
       "lua_ls",   -- lua
-      "marksman", -- md
+      -- "marksman", -- md
       "tsserver", -- ts
       "tailwindcss",
       "cssmodules_ls",
@@ -68,6 +68,7 @@ if mason_null_ls_ok then
       -- "debugpy", -- py
       -- "beautysh",
       "buf",
+      "terraform-ls",
       "buf-language-server",
       -- "eslint", -- ts,js
       "eslint_d", -- ts,js
@@ -91,11 +92,11 @@ if mason_null_ls_ok then
       "goimports_reviser",               -- go
       "golines",                         -- go
       "lua-language-server",             -- lua
-      "svelte-language-server",             -- lua
+      "svelte-language-server",          -- lua
       "docker-compose-language-service", -- docker-compose.yaml
       "dockerfile-language-server",      -- Dockerfile
       "markdownlint",                    -- md
-      "mdx_analyzer",
+      -- "mdx_analyzer",
       "prettierd",                       -- ts, js
       -- "rust-analyzer", -- rust
       "stylua",                          -- lua

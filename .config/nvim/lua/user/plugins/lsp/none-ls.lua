@@ -3,7 +3,7 @@ if not ok then
   return
 end
 
--- NOTE: UNCOMMENT BELOW: -- If you want to set up formatting on save
+-- UNCOMMENT BELOW: -- If you want to set up formatting on save
 -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 null_ls.setup {
@@ -30,7 +30,7 @@ null_ls.setup {
 
     null_ls.builtins.formatting.markdownlint, -- mdx/md/markdow
 
-    null_ls.builtins.formatting.dart_format,  -- dart
+    null_ls.builtins.formatting.dart_format, -- dart
 
 
     -- WARN: Avoid using these, they are removed from none-ls in latest version
@@ -52,7 +52,6 @@ null_ls.setup {
     require("none-ls-shellcheck.code_actions"),
 
     null_ls.builtins.formatting.gofumpt,           -- go
-    -- null_ls.builtins.diagnostics.gospel,           -- go
     null_ls.builtins.diagnostics.golangci_lint,    -- go
     null_ls.builtins.formatting.goimports_reviser, -- go imports
     null_ls.builtins.formatting.golines,           -- go
