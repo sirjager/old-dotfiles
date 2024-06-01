@@ -34,7 +34,7 @@ pkg.setup {
   notes_subdir = "notes",
   log_level = vim.log.levels.INFO,
   daily_notes = {
-    folder = "notes/dailies",
+    folder = "",
     date_format = "%Y-%m-%d",
     alias_format = "%B %-d, %Y",
     template = nil
@@ -45,27 +45,7 @@ pkg.setup {
     min_chars = 0,
   },
 
-  mappings = {
-    ["gf"] = {
-      action = function()
-        return require("obsidian").util.gf_passthrough()
-      end,
-      opts = { noremap = false, expr = true, buffer = true },
-    },
-    -- Toggle check-boxes. Alt + b
-    ["<leader>ob"] = {
-      action = function()
-        return require("obsidian").util.toggle_checkbox()
-      end,
-      opts = { buffer = true },
-    },
-    ["<cr>"] = {
-      action = function()
-        return require("obsidian").util.smart_action()
-      end,
-      opts = { buffer = true, expr = true },
-    }
-  },
+  mappings = {},
 
   new_notes_location = "notes",
 
@@ -129,8 +109,8 @@ pkg.setup {
 
   follow_url_func = function(url)
     -- Open the URL in the default web browser.
-    vim.fn.jobstart({ "open", url }) -- Mac OS
-    -- vim.fn.jobstart({"xdg-open", url})  -- linux
+    -- vim.fn.jobstart({ "open", url }) -- Mac OS
+    vim.fn.jobstart({"xdg-open", url})  -- linux
   end,
 
   use_advanced_uri = false,
@@ -155,9 +135,7 @@ pkg.setup {
   -- 1. "current" (the default) - to always open in the current window
   -- 2. "vsplit" - to open in a vertical split if there's not already a vertical split
   -- 3. "hsplit" - to open in a horizontal split if there's not already a horizontal split
-  open_notes_in = "current",
-
-  -- Optional, define your own callbacks to further customize behavior.
+  open_notes_in = "vsplit",
 
   ui = {
     enable = true,         -- set to false to disable all additional syntax features
