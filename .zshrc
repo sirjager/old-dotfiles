@@ -6,6 +6,13 @@ if [ ! -f "${ZINIT_HOME}/zinit.zsh" ]; then
   git clone https://github.com/zdharma-continuum/zinit.git "${ZINIT_HOME}"
 fi
 
+# setup tmux plugin manager 
+if [ ! -d "$HOME/.config/tmux/plugins/tpm" ]; then 
+  mkdir -p ~/.config/tmux/plugins
+  git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+fi
+
+
 source "${ZINIT_HOME}/zinit.zsh"
 
 zinit light zsh-users/zsh-syntax-highlighting
