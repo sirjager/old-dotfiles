@@ -1,14 +1,14 @@
 # .zshenv or .zprofile |  .bash_profile | .profile
-#
+
 export mystorage="/mnt/storage"
-export mydotfiles="$HOME/.local/dotfiles"
 export mygithub="github.com/sirjager"
+export mydotfiles="$HOME/.local/dotfiles"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-# https://wiki.archlinux.org/title/XDG_user_directories
+# NOTE: https://wiki.archlinux.org/title/XDG_user_directories
 export XDG_DESKTOP_DIR="$HOME/Desktop"
 export XDG_DOCUMENTS_DIR="$HOME/Documents"
 export XDG_DOWNLOAD_DIR="$mystorage/downloads"
@@ -18,7 +18,7 @@ export XDG_PUBLICSHARE_DIR="$HOME/Public"
 export XDG_TEMPLATES_DIR="$HOME/Templates"
 export XDG_VIDEOS_DIR="$HOME/Videos"
 
-# https://wiki.archlinux.org/title/XDG_Base_Directory
+# NOTE: https://wiki.archlinux.org/title/XDG_Base_Directory
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
@@ -44,7 +44,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml" # default ~/.config/starship.toml
 export BUN_INSTALL="$XDG_DATA_HOME/bun"
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+# export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export PNPM_HOME="$mystorage/programs/pnpm"
 export CARGO_HOME="$mystorage/programs/cargo"
 export RUSTUP_HOME="$mystorage/programs/rustup"
@@ -54,7 +54,7 @@ export EDITOR="nvim"
 export DIRENV_LOG_FORMAT=""
 export ALTERNATE_EDITOR="lvim"
 export TERMINAL="kitty sh -c 'tmux attach || tmux new'"
-export BROWSER="chromium"
+export BROWSER="google-chrome-stable"
 export LSCOLORS="0xGxBxDxCxEgEdxbxgxcxd	"    # terminal colors releated
 export PG_COLOR="always"                     # postgres
 export _JAVA_AWT_WM_NONREPARENTING=1         # For Java Applications
@@ -95,10 +95,6 @@ export PATH="$PATH":"$mystorage/programs/android-studio-sdk/platform-tools"
 export PATH="$PATH":"$mystorage/programs/node/pnpm/global/5/node_modules/grpc-tools/bin"
 export PATH="$PATH":"$mystorage/programs/Postman"
 
-[ -f "$CARGO_HOME/env" ] && . "$CARGO_HOME/env" # Cargo environment
 
-[ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"                           ## source .bashrc
-[ -f "$ZDOTDIR/.zshrc" ] && . "$ZDOTDIR/.zshrc"                       ## source .zshrc
-[ -f "$XDG_CONFIG_HOME/task.bash" ] && . "$XDG_CONFIG_HOME/task.bash" ## source Taskfile complitions
-[ -f "$XDG_CONFIG_HOME/shell.sh" ] && . "$XDG_CONFIG_HOME/shell.sh"   ## user's shell preferences
-[ -f "$mystorage/global/alias" ] && . "$mystorage/global/alias"       ## personal aliases
+[ -f "$CARGO_HOME/env" ] && source "$CARGO_HOME/env" 
+[ -f "$mystorage/global/alias" ] && source "$mystorage/global/alias"

@@ -1,9 +1,76 @@
-#!/bin/sh
-# shellcheck disable=3010,2199,3024,3030,3054
+ZINIT_HOME=${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git
 
-eval "$(direnv hook bash)"
-eval "$(starship init bash)"
-eval "$(zoxide init --cmd cd bash)"
+if [ ! -f "${ZINIT_HOME}/zinit.zsh" ]; then
+  rm -rf "${ZINIT_HOME}"
+  mkdir -p "$(dirname "${ZINIT_HOME}")"
+  git clone https://github.com/zdharma-continuum/zinit.git "${ZINIT_HOME}"
+fi
+
+source "${ZINIT_HOME}/zinit.zsh"
+
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+zinit light zsh-users/zsh-completions
+
+# Add snippets
+#  # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::tmux
+zinit snippet OMZP::archlinux
+zinit snippet OMZP::dotenv
+zinit snippet OMZP::golang
+zinit snippet OMZP::kubectl
+zinit snippet OMZP::kubectx
+zinit snippet OMZP::docker
+zinit snippet OMZP::docker-compose
+zinit snippet OMZP::command-not-found
+
+autoload -U compinit && compinit
+zinit cdreplay -q
+
+# emacs mode for zsh
+# ctrl+e -> to move curosr to end; 
+# ctrl+a -> to move cursor to beginning
+# ctrl+f -> to move cursor to right; or accect autosuggestions
+# ctrl+b -> to move cursor to left; or backward
+# ctrl+p -> to navigate through previous history of commands
+# ctrl+n -> to navigate through next history of commands
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+
+
+# History 
+HISTSIZE=999999999
+SAVEHIST=$HISTSIZE
+HISTFILE="$HISTFILE"
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
+
+# make suggestion case insensitive
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -h --long --all --sort=name --icons'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'exa -h --long --all --sort=name --icons'
+
+# shell integrations; ctrl + r
+eval "$(fzf --zsh)"
+
+# starship prompt
+eval "$(starship init zsh)"
+
+# zoxide
+eval "$(zoxide init --cmd cd zsh)"
+
+# INFO: ================================[ custom aliases  ]================================
 
 # .dotfiles github bare repository
 alias dot="/usr/bin/lazygit --git-dir=$mydotfiles --work-tree=$HOME"
@@ -11,7 +78,7 @@ alias dot-remove-lock="rm -f ~/$mydotfiles/index.lock"
 alias dots="/usr/bin/git --git-dir=$mydotfiles --work-tree=$HOME"
 alias dots-hide-untracked="/usr/bin/git --git-dir=$mydotfiles --work-tree=$HOME config --local status.showUntrackedFiles no"
 
-alias .grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+alias grub-update="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
 alias ssh-newkey="ssh-keygen -t ed25519 -C"
 alias ssh-eval='eval "$(ssh-agent -s)"'
@@ -73,16 +140,10 @@ alias nvim-remove-shada="rm -rf ~/.local/state/nvim/shada/"
 
 alias hyprwin="hyprctl clients -j | jq '.[] | {class,title,pid}'"
 
-alias .bookmarks="jq '..|select(.url? and .name?)|{name: .name, url: .url}' ~/.config/chromium/Default/Bookmarks"
+alias bookmark-find="jq '..|select(.url? and .name?)|{name: .name, url: .url}' ~/.config/chromium/Default/Bookmarks"
 
 alias start-docker="sudo systemctl start docker"
 
 alias audio-relay="pactl load-module module-null-sink sink_name=audiorelay-speakers sink_properties=device.description=AudioRelay-Speakers"
 alias audio-relay-stop="pulseaudio -k"
-
-findcmd() {
-	keyword="$@"
-	history | grep "$keyword" | grep -v "findcmd" | awk '{$1=""; print $0}'
-}
-
 
