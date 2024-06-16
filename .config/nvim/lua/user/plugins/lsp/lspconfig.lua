@@ -110,21 +110,6 @@ lspconfig.jsonls.setup {
   },
 }
 
-lspconfig.yamlls.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  yaml = {
-    schemastore = {
-      -- You must disable built-in schemaStore support if you want to use
-      -- this plugin and its advanced options like `ignore`.
-      enable = false,
-      -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-      url = "",
-    },
-    schemas = require("schemastore").yaml.schemas(),
-  },
-}
-
 lspconfig.prismals.setup {
   capabilities = capabilities,
   on_attach = on_attach,
@@ -147,18 +132,13 @@ lspconfig.docker_compose_language_service.setup {
   filetypes = { "docker-compose.yaml", "docker-compose.yml" },
 }
 
--- lspconfig.phpactor.setup {
---   capabilities = capabilities,
---   on_attach = on_attach,
--- }
-
 -- -- Flutter
 -- local okf, flutter = pcall(require, "flutter")
 -- if okf then
 --   flutter.setup {}
 -- end
 
---[[ -- emmet ]]
+-- emmet ls
 lspconfig.emmet_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
@@ -170,7 +150,7 @@ lspconfig.astro.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   filetype = { "astro" },
-  root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+  root_dir = util.root_pattern("package.json", "tsconfig.json", "astro.config.mjs"),
 }
 
 
@@ -203,72 +183,25 @@ lspconfig.tailwindcss.setup {
 }
 
 
--- -- markdown
--- lspconfig.marksman.setup {
---   capabilities = capabilities,
---   on_attach = on_attach,
---   filetypes = { "markdown", "markdown.mdx", "mdx" },
--- }
+lspconfig.yamlls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  yaml = {
+    schemastore = {
+      enable = false,
+      url = "",
+    },
+    validate = { enable = false },
+    schemas = require("schemastore").yaml.schemas({
+      extra = {
+        {
+          description = 'Taskfile schema',
+          fileMatch = 'Taskfile.yaml',
+          name = 'Taskfile.yaml',
+          url = 'https://taskfile.dev/schema.json',
+        },
+      }
+    }),
+  },
+}
 
--- -- mdx
--- lspconfig.mdx_analyzer.setup {
---   cmd = { "mdx-language-server", "--stdio" },
---   filetypes = { "markdown.mdx", "mdx" },
--- }
-
--- -- python pyright
--- lspconfig.pyright.setup {
---   capabilities = capabilities,
---   on_attach = on_attach,
---   filetype = { "python" },
--- }
-
--- -- rust tools
--- local ok4, rust_tools = pcall(require, "rust-tools")
--- if ok4 then
---   rust_tools.setup {
---     server = {
---       capabilities = capabilities,
---       on_attach = function(_, bufnr)
---         vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
---         vim.keymap.set("n", "<leader>ldd", ":RustDebuggables <CR>", { buffer = bufnr })
---         vim.keymap.set("n", "<leader>lh", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
---         vim.keymap.set("n", "<leader>la", ":CodeActionMenu<CR>", { buffer = bufnr })
---         --[[ vim.keymap.set("n", "<leader>la", rust_tools.code_action_group.code_action_group, { buffer = bufnr }) ]]
---       end,
---     },
---     tools = {
---       hover_actions = {
---         auto_focus = true,
---       },
---     },
---   }
--- end
-
-
--- NOTE: GO LANG SPECIFIC
-
--- -- configure gopls server
--- lspconfig.gopls.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
---   cmd = { "gopls" },
---   filetypes = { "go" },
---   root_dir = util.root_pattern("go.work", "go.mod", "go.sum", ".git", "gotmpl"),
---   settings = {
---     gopls = {
---       completeUnimported = true,
---       staticcheck = true,
---       hoverKind = "FullDocumentation",
---       linkTarget = "pkg.go.dev",
---       usePlaceholders = false,
---       vulncheck = "Imports",
---       analyses = {
---         unmarshal = true,
---         unsafeptr = true,
---         unusedparams = true,
---         unusedvariable = true,
---       },
---     },
---   },
--- }

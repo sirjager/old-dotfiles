@@ -3,25 +3,115 @@ if not ok then
   return
 end
 
+local util = require "obsidian.util";
+
+local M = {};
+
+M.slugify = function(title)
+  if title == nil then
+    return ""
+  end
+  return title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+end
+
+M.get_filename_without_ext = function(path)
+  -- Remove the directory part
+  local filename = path:match("^.+/(.+)$")
+  if filename == nil then
+    filename = path -- If there's no directory in the path, use the entire path
+  end
+  -- Remove the extension part
+  local name_without_ext = filename:match("(.+)%..+$")
+  if name_without_ext == nil then
+    name_without_ext = filename -- If there's no extension, use the filename as is
+  end
+  return name_without_ext
+end
+
+M.custom_link_func = function(prefix, opts)
+  local anchor = ""
+  local header = ""
+  local path = M.get_filename_without_ext(opts.path)
+  if opts.anchor then
+    anchor = opts.anchor.anchor
+    header = util.format_anchor_label(opts.anchor)
+  elseif opts.block then
+    anchor = "#" .. opts.block.id
+    header = "#" .. opts.block.id
+  end
+  path = util.urlencode(path, { keep_path_sep = true })
+  return string.format("[%s%s](%s%s%s)", opts.label, header, prefix, path, anchor)
+end
+
+M.new_note_name_func = function(title)
+  local suffix = ""
+  if title ~= nil then
+    suffix = M.slugify(title)
+  else
+    for _ = 1, 4 do
+      suffix = suffix .. string.char(math.random(65, 90))
+    end
+  end
+  return suffix
+end
+
+M.note_path_func = function(spec)
+  local path = spec.dir / tostring(spec.id)
+  return path:with_suffix(".md")
+end
+
+M.note_frontmatter_func = function(note)
+  if note.title then
+    note:add_alias(note.title)
+  end
+  local out = {
+    tags = note.tags,
+    categories = "[]",
+  }
+  if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+    for k, v in pairs(note.metadata) do
+      out[k] = v
+    end
+  end
+  out.modified = os.date("%Y-%m-%dT%H:%M:%S.000Z")
+  return out
+end
+
 pkg.setup {
   workspaces = {
     {
       name = "idealogs",
       path = "/mnt/storage/personal/idealogs",
+      strict = true,
+      overrides = {
+        new_notes_location = "notes",
+        notes_subdir = "notes",
+        templates = {
+          folder = "templates"
+        },
+      }
     },
     {
       name = "ankur-kumar",
       path = "/mnt/storage/workspace/projects/ankur-kumar.in",
+      strict = true,
+      overrides = {
+        notes_subdir = "src/content/blog",
+        new_notes_location = "src/content/blog",
+        preferred_link_style = "markdown",
+        markdown_link_func = function(opts)
+          return M.custom_link_func("/blog/", opts)
+        end,
+
+      }
     },
     {
       name = "no-vault",
       path = function()
-        -- alternatively use the CWD:
-        -- return assert(vim.fn.getcwd())
         return assert(vim.fs.dirname(vim.api.nvim_buf_get_name(0)))
       end,
       overrides = {
-        notes_subdir = vim.NIL, -- have to use 'vim.NIL' instead of 'nil'
+        notes_subdir = vim.NIL,
         new_notes_location = "current_dir",
         templates = {
           folder = vim.NIL,
@@ -31,40 +121,21 @@ pkg.setup {
     },
   },
 
-  notes_subdir = "notes",
+  notes_subdir = nil,
   log_level = vim.log.levels.INFO,
-  daily_notes = {
-    folder = "",
-    date_format = "%Y-%m-%d",
-    alias_format = "%B %-d, %Y",
-    template = nil
-  },
-
+  daily_notes = nil,
   completion = {
     nvim_cmp = true,
-    min_chars = 0,
+    min_chars = 2,
   },
 
   mappings = {},
 
   new_notes_location = "notes",
-
   note_id_func = function(title)
-    local suffix = ""
-    if title ~= nil then
-      suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
-    else
-      for _ = 1, 4 do
-        suffix = suffix .. string.char(math.random(65, 90))
-      end
-    end
-    return tostring(os.time()) .. "-" .. suffix
+    return M.new_note_name_func(title)
   end,
 
-  note_path_func = function(spec)
-    local path = spec.dir / tostring(spec.id)
-    return path:with_suffix(".md")
-  end,
 
   wiki_link_func = function(opts)
     return require("obsidian.util").wiki_link_id_prefix(opts)
@@ -79,38 +150,23 @@ pkg.setup {
 
   disable_frontmatter = false,
 
-  -- Optional, alternatively you can customize the frontmatter data.
-  ---@return table
   note_frontmatter_func = function(note)
-    -- Add the title of the note as an alias.
-    if note.title then
-      note:add_alias(note.title)
-    end
-
-    local out = { id = note.id, aliases = note.aliases, tags = note.tags }
-
-    -- `note.metadata` contains any manually added fields in the frontmatter.
-    -- So here we just make sure those fields are kept in the frontmatter.
-    if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
-      for k, v in pairs(note.metadata) do
-        out[k] = v
-      end
-    end
-
-    return out
+    return M.note_frontmatter_func(note)
   end,
 
   templates = {
     folder = "templates",
     date_format = "%Y-%m-%d",
     time_format = "%H:%M",
-    substitutions = {},
+    substitutions = {
+
+    },
   },
 
   follow_url_func = function(url)
     -- Open the URL in the default web browser.
     -- vim.fn.jobstart({ "open", url }) -- Mac OS
-    vim.fn.jobstart({"xdg-open", url})  -- linux
+    vim.fn.jobstart({ "xdg-open", url }) -- linux
   end,
 
   use_advanced_uri = false,
@@ -190,6 +246,23 @@ pkg.setup {
       ObsidianBlockID = { italic = true, fg = "#89ddff" },
       ObsidianHighlightText = { bg = "#75662e" },
     },
+  },
+
+  attachments = {
+    -- The default folder to place images in via `:ObsidianPasteImg`.
+    -- If this is a relative path it will be interpreted as relative to the vault root.
+    -- You can always override this per image by passing a full path to the command instead of just a filename.
+    img_folder = "assets/images", -- This is the default
+    -- A function that determines the text to insert in the note when pasting an image.
+    -- It takes two arguments, the `obsidian.Client` and an `obsidian.Path` to the image file.
+    -- This is the default implementation.
+    ---@param client obsidian.Client
+    ---@param path obsidian.Path the absolute path to the image file
+    ---@return string
+    img_text_func = function(client, path)
+      path = client:vault_relative_path(path) or path
+      return string.format("![%s](%s)", path.name, path)
+    end,
   },
 
 }

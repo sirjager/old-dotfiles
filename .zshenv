@@ -20,7 +20,7 @@ export XDG_VIDEOS_DIR="$HOME/Videos"
 
 # NOTE: https://wiki.archlinux.org/title/XDG_Base_Directory
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
-export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
+# export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
 export HISTFILE="$XDG_STATE_HOME/shell_history"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
@@ -54,7 +54,7 @@ export EDITOR="nvim"
 export DIRENV_LOG_FORMAT=""
 export ALTERNATE_EDITOR="lvim"
 export TERMINAL="kitty sh -c 'tmux attach || tmux new'"
-export BROWSER="google-chrome-stable"
+export BROWSER="chromium"
 export LSCOLORS="0xGxBxDxCxEgEdxbxgxcxd	"    # terminal colors releated
 export PG_COLOR="always"                     # postgres
 export _JAVA_AWT_WM_NONREPARENTING=1         # For Java Applications
@@ -91,10 +91,12 @@ export PATH="$PATH":"$XDG_CONFIG_HOME/rofi/scripts"
 export PATH="$PATH":"$XDG_DATA_HOME/nvim/mason/bin"
 export PATH="$PATH":"$mystorage/programs/protoc/bin"
 export PATH="$PATH":"$mystorage/programs/android-studio/bin"
-export PATH="$PATH":"$mystorage/programs/android-studio-sdk/platform-tools"
+# export PATH="$PATH":"$mystorage/programs/android-studio-sdk/platform-tools"
 export PATH="$PATH":"$mystorage/programs/node/pnpm/global/5/node_modules/grpc-tools/bin"
 export PATH="$PATH":"$mystorage/programs/Postman"
 
+
+export ZSH_TMUX_AUTONAME_SESSION="true"
 
 [ -f "$CARGO_HOME/env" ] && source "$CARGO_HOME/env" 
 [ -f "$mystorage/global/alias" ] && source "$mystorage/global/alias"

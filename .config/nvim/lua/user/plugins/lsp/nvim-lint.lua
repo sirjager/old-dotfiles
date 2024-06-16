@@ -15,5 +15,4 @@ pkg.linters_by_ft = {
   rust = { "rstlint", "rstcheck" },
   lua = { "luacheck" },
   go = { "golangcilint" },
-  yaml = { "yamllint" },
 }

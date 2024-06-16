@@ -12,7 +12,7 @@ local options = {
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0, -- so that is visible in markdown files
   cursorline = true, -- highlight the current line
-  colorcolumn = "94",
+  colorcolumn = "100",
   expandtab = true, -- convert tabs to spaces
   fileencoding = "utf-8", -- the encoding written to a file
   guifont = "monospace:h18", -- the font used in graphical neovim applications
@@ -29,7 +29,7 @@ local options = {
   pumheight = 10, -- pop up menu height
   relativenumber = true, -- set relative numbered lines
   scrolloff = 8, --
-  shell = "bash",
+  shell = "zsh",
   shiftround = true,
   shiftwidth = 2, -- the number of spaces inserted for each indentation
   showcmd = true,
@@ -55,6 +55,7 @@ local options = {
   wrap = false, -- display lines as one long line
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 }
+
 
 -- prevents error when plugins in not installed
 for k, v in pairs(options) do

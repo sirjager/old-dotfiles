@@ -68,15 +68,14 @@ if mason_null_ls_ok then
       -- "debugpy", -- py
       -- "beautysh",
       "buf",
-      "terraform-ls",
+      -- "terraform-ls",
       "buf-language-server",
       -- "eslint", -- ts,js
       "eslint_d", -- ts,js
       "gofumpt",  -- go
       -- "mypy", -- py
       "codespell",
-      "yamlfmt",
-      "yamllint", -- yml
+      -- "yamllint", -- yml
       -- "ruff", -- py
       -- "rustywind",
       "shellharden", -- sh
@@ -92,8 +91,8 @@ if mason_null_ls_ok then
       "goimports_reviser",               -- go
       "golines",                         -- go
       "lua-language-server",             -- lua
-      "svelte-language-server",          -- lua
-      "docker-compose-language-service", -- docker-compose.yaml
+      -- "svelte-language-server",          -- lua
+      -- "docker-compose-language-service", -- docker-compose.yaml
       "dockerfile-language-server",      -- Dockerfile
       "markdownlint",                    -- md
       -- "mdx_analyzer",
@@ -102,6 +101,7 @@ if mason_null_ls_ok then
       "stylua",                          -- lua
       "typescript-languange-server",     -- ts,js
       "protolint",
+      "yamlfix",                         -- yml
       -- "phpcs",
       -- "php-cbf",
       -- "php-cs-fixer",

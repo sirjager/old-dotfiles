@@ -1,5 +1,6 @@
+vim.uv = vim.uv or vim.loop
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system {
     "git",
     "clone",
@@ -46,18 +47,11 @@ local plugins = {
     "navarasu/onedark.nvim",
     priority = 1000,
     config = function()
-      vim.o.background = "dark" -- light | dark
+      vim.o.background = "dark"
       vim.cmd "colorscheme onedark"
       vim.cmd "hi LineNr guibg=none guifg=#8294C4"
     end
   },
-  -- "Mofiqul/dracula.nvim",
-  -- { "projekt0n/github-nvim-theme" },
-  -- "marko-cerovac/material.nvim",
-  -- { "folke/tokyonight.nvim", priority = 1000 },
-  -- { "ellisonleao/gruvbox.nvim", priority = 1000 },
-  -- { "catppuccin/nvim",       name = "catppuccin", priority = 1000 },
-
 
   "nvim-lua/popup.nvim",
   "nvim-lua/plenary.nvim",
@@ -77,14 +71,11 @@ local plugins = {
     end,
   },
 
-
-
-  "nvim-tree/nvim-web-devicons",
-  -- {"nvim-tree/nvim-tree.lua"},
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     dependencies = {
+      "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
       "s1n7ax/nvim-window-picker",
       "3rd/image.nvim",
@@ -95,11 +86,6 @@ local plugins = {
   "Exafunction/codeium.vim",
   "lewis6991/gitsigns.nvim",
   "kdheepak/lazygit.nvim",
-
-
-
-  'Equilibris/nx.nvim',
-
   {
     "epwalsh/obsidian.nvim",
     ft = { "markdown" },
@@ -108,12 +94,9 @@ local plugins = {
     lazy = true
   },
 
-
   "karb94/neoscroll.nvim",
-  "ziontee113/color-picker.nvim",
   "NvChad/nvim-colorizer.lua",
   "aurum77/live-server.nvim",
-
 
   -- indentation line hightlighting
   {
@@ -124,31 +107,20 @@ local plugins = {
     end,
   },
 
-
   -- tmux navigation, navigates between neovim and tmux (optional)
   { "christoomey/vim-tmux-navigator", lazy = false },
 
-
   -- dashboard, start page, first screen after launching (optional)
-  {
-    "goolord/alpha-nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-  },
-
+  "goolord/alpha-nvim",
 
   -- bottom bar, alternative: nvim-lualine/lualine.nvim
   "windwp/windline.nvim",
-  -- "nvim-lualine/lualine.nvim",
-
 
   -- neovim tabs
   "akinsho/bufferline.nvim",
-  -- "romgrk/barbar.nvim",
-
 
   -- maximizes and restores current window
   { "szw/vim-maximizer",              lazy = false },
-
 
   -- headings, code folding
   {
@@ -159,17 +131,9 @@ local plugins = {
     },
   },
 
-  -- logs in buffers
-  {
-    "0x100101/lab.nvim",
-    build = "cd js && npm ci"
-  },
-
   {
     'paopaol/telescope-git-diffs.nvim',
-    dependencies = {
-      "sindrets/diffview.nvim",
-    },
+    dependencies = { "sindrets/diffview.nvim" },
   },
 
   -- Telescope, quick finder, fuzzy finder
@@ -183,32 +147,18 @@ local plugins = {
     },
   },
 
-
-  -- shows code context in breadcrumb. (optional)
-  -- "SmiteshP/nvim-navic",
-
-
-  -- terminal inside neovim (optional)
-  -- "akinsho/toggleterm.nvim",
-
-
   -- zen mode, clean ui mode, fullscreen, centered (optional)
   "folke/zen-mode.nvim",
   "folke/twilight.nvim",
 
-
   -- wakatime, time tracker (optional)
   "wakatime/vim-wakatime",
-
 
   -- comments support
   {
     "numToStr/Comment.nvim",
     dependencies = {
-      {
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        event = "VeryLazy",
-      }
+      { "JoosepAlviste/nvim-ts-context-commentstring", event = "VeryLazy" }
     }
   },
 
@@ -216,20 +166,15 @@ local plugins = {
   -- json schema support, hinting support in json files (optional)
   "b0o/schemastore.nvim",
 
-
-  -- -- markdown file live preview
-  -- {
-  --   "iamcco/markdown-preview.nvim",
-  --   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-  --   ft = { "markdown" },
-  --   build = function()
-  --     vim.fn["mkdp#util#install"]()
-  --   end,
-  -- },
-
-
-  -- -- rest api client (optional), required dependencies : lua-curl, xml2lua
-  -- { "rest-nvim/rest.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+  -- markdown file live preview
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
 
 
   -- database client, sql database client with ui (optional)
@@ -237,8 +182,8 @@ local plugins = {
   {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = {
-      { "tpope/vim-dadbod",                     lazy = true },
-      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+      { "tpope/vim-dadbod", lazy = true },
+      -- { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
     },
     cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection", "DBUIFindBuffer" },
     init = function()
@@ -247,41 +192,14 @@ local plugins = {
   },
 
 
-  -- quick navigate in opened buffers using letters, words (optional)
-  {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    opts = {},
-    -- stylua: ignore
-    keys = {
-      { "s", mode = { "n", "o", "x" }, function() require("flash").jump() end,              desc = "Flash" },
-      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-      { "r", mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-      -- stylua: ignore
-      { "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" } },
-  },
-
-
   -- same word hightlighting under cursor (optional)
   "RRethy/vim-illuminate",
-
 
   -- -- shade, dim inactive buffers, chunk of code (optional)
   -- "sunjon/shade.nvim",
 
-
   -- buffer symbols outline (optional)
   -- "simrat39/symbols-outline.nvim",
-
-  -- file hopping, quick change maked files (optional)
-  { "ThePrimeagen/harpoon",     branch = "harpoon2",                       requires = { { "nvim-lua/plenary.nvim" } } },
-
-  -- {
-  --   "vhyrro/luarocks.nvim",
-  --   priority = 1000,
-  --   -- opts = { rocks = { "fzy", "pathlib.nvim ~> 1.0" } },
-  -- },
-  -- { "nvim-neorg/neorg",  version = "*" },
 
   "roobert/tailwindcss-colorizer-cmp.nvim",
   { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
@@ -314,9 +232,6 @@ local plugins = {
   },
 
   "jose-elias-alvarez/typescript.nvim",
-  { "Fymyte/rasi.vim",        ft = { "rasi" } },
-
-
 
   -- inhanced ui and improved lsp experience
   { "glepnir/lspsaga.nvim",   branch = "main",                       after = "nvim-treesitter" },
@@ -325,7 +240,6 @@ local plugins = {
   -- code hightlighting, syntax hightlighting
   "nvim-treesitter/nvim-treesitter",
   "nvim-treesitter/nvim-treesitter-context",
-  -- "nvim-treesitter/playground", -- (optional)
 
   -- snippet engine, snippet related plugins
   "L3MON4D3/LuaSnip",
@@ -348,7 +262,6 @@ local plugins = {
       "saadparwaiz1/cmp_luasnip",
       "andersevenrud/cmp-tmux",    -- completions of tmux sessions (optional)
       "hrsh7th/cmp-emoji",         -- emoji completions (optional)
-      -- "hrsh7th/cmp-calc",          -- inline calc completions (optional)
       "hrsh7th/vim-vsnip",
       "hrsh7th/vim-vsnip-integ"
     },
@@ -364,7 +277,7 @@ local plugins = {
     },
   },
 
-  -- golang A modern go neovim plugin based on treesitter, nvim-lsp and dap debugger ]]
+  -- golang A modern go neovim plugin based on treesitter, nvim-lsp and dap debugger
   {
     "ray-x/go.nvim",
     dependencies = { -- optional packages
@@ -390,7 +303,7 @@ local plugins = {
   {
     "leoluz/nvim-dap-go",
     ft = "go",
-    dependencies = { "mfussenegger/nvim-dap" },
+    dependencies = { "mfussenegger/nvim-dap" }
   },
 
   -- A framework for interacting with tests within NeoVim.
@@ -401,61 +314,12 @@ local plugins = {
       "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
-      -- go test package
       "nvim-neotest/neotest-go",
     }
   },
 
-  -- python code debugger
-
-  -- {
-  --   "mfussenegger/nvim-dap-python",
-  --   ft = "python",
-  --   dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
-  --   config = function(_, _)
-  --     local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-  --     require("dap-python").setup(path)
-  --   end,
-  -- },
-
-
-  -- "prisma/vim-prisma",
-
-
-  -- -- rust lsp, rust language support,
-  -- { "simrat39/rust-tools.nvim", ft = "rust" },
-  -- {
-  --   "rust-lang/rust.vim",
-  --   ft = "rust",
-  --   init = function()
-  --     vim.g.rustfmt_autosave = 1
-  --   end,
-  -- },
-
-  -- -- rust crates support, cartes file support. (optional)
-  -- {
-  --   "saecki/crates.nvim",
-  --   ft = { "rust", "toml" },
-  --   event = { "BufRead Cargo.toml" },
-  --   config = function(_, opts)
-  --     local crates = require "crates"
-  --     crates.setup(opts)
-  --     crates.show()
-  --   end,
-  -- },
-
-  -- flutter / dart language support
-  -- {
-  --   "akinsho/flutter-tools.nvim",
-  --   dependencies = {
-  --     "stevearc/dressing.nvim",
-  --     "Neevash/awesome-flutter-snippets",
-  --   },
-  --   config = true,
-  -- },
-
 }
 
--- INFO: ##################################################
--- Initializing lazy and auto installing all plugins
-require("lazy").setup(plugins, {})
+require("lazy").setup(plugins, {
+  change_detection = { notify = false },
+})

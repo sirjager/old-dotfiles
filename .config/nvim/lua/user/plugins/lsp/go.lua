@@ -8,7 +8,7 @@ if not ok2 then
   return
 end
 
-godap.setup({})
+godap.setup {}
 
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -21,8 +21,8 @@ go.setup {
   goimports = "gopls",
   fillstruct = false,
   gofmt = "golines",
-  max_line_len = 94,
-  tag_transform = "snakecase", -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
+  max_line_len = 120,
+  tag_transform = "snakecase",
   tag_options = "json=omitempty", -- sets options sent to gomodifytags, i.e., json=omitempty
   gotests_template = "", -- sets gotests -template parameter (check gotests for details)
   gotests_template_dir = "", -- sets gotests -template_dir parameter (check gotests for details)
@@ -36,8 +36,8 @@ go.setup {
   lsp_on_attach = nil, -- nil: use on_attach function defined in go/lsp.lua,
   --      when lsp_cfg is true
   -- if lsp_on_attach is a function: use this function as on_attach function for gopls
-  lsp_keymaps = false, -- set to false to disable gopls/lsp keymap
-  lsp_codelens = true, -- set to false to disable codelens, true by default, you can use a function
+  lsp_keymaps = false,  -- set to false to disable gopls/lsp keymap
+  lsp_codelens = false, -- set to false to disable codelens, true by default, you can use a function
   -- function(bufnr)
   --    vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", {noremap=true, silent=true})
   -- end

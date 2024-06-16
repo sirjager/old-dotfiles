@@ -17,7 +17,7 @@ end
 
 luasnip.filetype_extend("dart", { "flutter" })
 
-local ts_utils = require "nvim-treesitter.ts_utils"
+-- local ts_utils = require "nvim-treesitter.ts_utils"
 local icons = require "user.icons"
 
 -- load vs-code like snippets from plugins (e.g. friendly-snippets)
@@ -136,15 +136,13 @@ cmp.setup {
     },
   },
 
-  -- sorting = {},
-
   -- sources for autocompletion, priorties from top to bottom order
   -- tutorial: https://www.youtube.com/watch?v=yTk3C3JMKzQ&list=PLOe6AggsTaVuIXZU4gxWJpIQNHMrDknfN&index=40
   sources = cmp.config.sources {
     {
       name = "nvim_lsp", -- completions from lsp
       trigger_characters = { '.' },
-      keyword_length = 2,
+      keyword_length = 0,
       -- entry_filter = function(entry, _)
       --   local kind = entry:get_kind()
       --   local node = ts_utils.get_node_at_cursor():type()
@@ -158,15 +156,14 @@ cmp.setup {
       --   return true
       -- end,
     },
-    { name = "luasnip" },     -- snippets completions
-    { name = "luasnip" },     -- snippets completions
-    { name = "codeium" },     -- completions from codeium
+    { name = "luasnip" },    -- snippets completions
+    { name = "codeium" },    -- completions from codeium
     -- { name = "cmp_tabnine" }, -- completions from tabnine ai
-    { name = "buffer" },      -- completions from opened buffers
-    { name = "path" },        -- filesystem path completions
-    { name = "async_path" },  -- filesystem path completions
+    { name = "buffer" },     -- completions from opened buffers
+    { name = "path" },       -- filesystem path completions
+    { name = "async_path" }, -- filesystem path completions
     {
-      name = "tmux",          -- completions from tmux sessions
+      name = "tmux",         -- completions from tmux sessions
       option = {
         all_panes = true,
         label = "[TMUX]",
@@ -176,18 +173,7 @@ cmp.setup {
         capture_history = false,
       },
     },
-    -- { name = "cmdline" },
-    {
-      name = "look",
-      keyword_length = 3,
-      option = {
-        convert_case = true,
-        loud = true,
-        --dict = '/usr/share/dict/words'
-      },
-    },
     { name = "emoji", option = { trigger_characters = { ":" } } },
-    -- { name = "calc",  option = { trigger_characters = { "=" } } },
   },
 
   confirm_opts = {

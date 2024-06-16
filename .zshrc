@@ -26,11 +26,11 @@ zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::tmux
 zinit snippet OMZP::archlinux
-zinit snippet OMZP::dotenv
+# zinit snippet OMZP::dotenv  ## instead use "direnv"
 zinit snippet OMZP::golang
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
-zinit snippet OMZP::docker
+# zinit snippet OMZP::docker
 zinit snippet OMZP::docker-compose
 zinit snippet OMZP::command-not-found
 
@@ -70,12 +70,10 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'exa -h --long --all --sort=
 
 # shell integrations; ctrl + r
 eval "$(fzf --zsh)"
-
-# starship prompt
 eval "$(starship init zsh)"
-
-# zoxide
 eval "$(zoxide init --cmd cd zsh)"
+eval "$(direnv hook zsh)"
+export ZSH_TMUX_AUTONAME_SESSION="true"
 
 # INFO: ================================[ custom aliases  ]================================
 
@@ -94,10 +92,8 @@ alias ssh-test='ssh -T git@github.com'
 alias net-start-virt='sudo virsh net-start default'
 
 # Tmux
-alias tm="tmux"
-alias tma='tmux attach -t'
-alias tmk='tmux kill-session'
-alias tmka='tmux kill-session -a'
+alias tk='tmux kill-session'
+alias tko='tmux kill-session -a'
 alias tmux-delete-sessions="rm -rf ~/.local/share/tmux/resurrect/*"
 
 alias docker-clean-buildx="docker buildx prune --all"
@@ -114,18 +110,13 @@ alias ls="exa -h --long --sort=name --icons --classify"
 alias ll="exa -h --long --sort=name --icons --classify"
 
 # general aliases
-alias cl='clear && neofetch'
+alias c='clear'
 alias rbf='fc-cache -fv'
 alias slv="sudo -E -s ~/.local/bin/lvim"
 alias k='killall -q'
 alias knode='sudo pkill -f nodejs && sudo pkill -f node'
 
-alias s=". ~/.profile;"
-
-# change directories
-alias cds="cd $mystorage"
-alias cdw="cd $mystorage/workspace"
-alias cdd="cd $mystorage/downloads"
+alias s="source ~/.zshrc;"
 
 # Yay Package Manager / Aur Helper
 alias .i='yay --noconfirm --needed -S' # To install a package (always run pacman -Syu, before installing)
@@ -154,3 +145,4 @@ alias start-docker="sudo systemctl start docker"
 alias audio-relay="pactl load-module module-null-sink sink_name=audiorelay-speakers sink_properties=device.description=AudioRelay-Speakers"
 alias audio-relay-stop="pulseaudio -k"
 
+alias kubectl="minikube kubectl"

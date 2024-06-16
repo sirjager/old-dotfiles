@@ -5,7 +5,7 @@ end
 
 --[[ alpha.setup(require("alpha.themes.theta").config) ]]
 --
-local headers = require "user.plugins.core.alpha.banners"
+local headers = require "user.banners"
 local dashboard = require "alpha.themes.dashboard"
 
 -- Set header

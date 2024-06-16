@@ -8,20 +8,16 @@ vim.treesitter.language.register("markdown", "mdx")
 vim.filetype.add({ extension = { astro = "astro" } })
 
 ts.setup {
-  ensure_installed = {
-    "astro", "bash", "lua", "html",
-    "yaml", "json", "css", "tsx", "markdown", "go",
-    "markdown_inline", "typescript", "javascript"
-  },
-
+  ensure_installed = { "lua", "markdown", "go", "markdown_inline" },
   matchup = {
     enable = true,
     disable = { "c", "ruby" }
   },
+
   sync_install = false,
   auto_install = true,
 
-  playground = { enable = true },
+  playground = { enable = false },
 
   markid = { enable = true },
 
@@ -50,38 +46,13 @@ ts.setup {
       clear_on_cursor_move = true, -- Set to false if you have an `updatetime` of ~101.
     },
 
-    smart_rename = {
-      enable = true,
-      keymaps = {
-        -- smart_rename = "gcr",
-      },
-    },
+    smart_rename = { enable = true },
+    navigation = { enable = true },
 
-    navigation = {
-      enable = true,
-      keymaps = {
-        -- goto_definition = "gnd",
-        -- list_definitions = "gnD",
-        -- list_definitions_toc = "gO",
-        -- goto_next_usage = "<A->",
-        -- goto_previous_usage = "<A-<",
-      },
-    },
-
-    indent = {
-      enable = true,
-      disable = {
-        "yaml",
-        "yml",
-        "python",
-      },
-    },
+    indent = { enable = true, disable = { "yaml", "yml", "python" } },
   },
 
   textobjects = {
-    select = {
-      enable = true,
-      lookahead = true,
-    },
+    select = { enable = true, lookahead = true },
   },
 }

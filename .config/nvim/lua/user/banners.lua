@@ -1,6 +1,5 @@
 local M = {}
 
-
 -- NOTE: GENERATE ASCII ART : https://textkool.com/en/test-ascii-art-generator?text=Neovim
 
 M.jagervim = {

@@ -30,11 +30,8 @@ local keymaps = {
     ["<C-n>"] = { "<Cmd>enew<CR>", "new buffer" },
 
     -- toogle line numbers
-    ["<leader>n"] = { "<cmd> set nu! <CR>", "toggle line number" },
-    ["<leader>rn"] = { "<cmd> set rnu! <CR>", "toggle relative number" },
-
-    -- rust crates
-    ["<leader>rcu"] = { ":lua require'crates'.upgrade_all_crates()<CR>", "rust update crates" },
+    -- ["<leader>n"] = { "<cmd> set nu! <CR>", "toggle line number" },
+    -- ["<leader>rn"] = { "<cmd> set rnu! <CR>", "toggle relative number" },
 
     -- Resize windows with arrows
     ["<C-Up>"] = { ":resize +2<CR>", "increase window height" },
@@ -66,17 +63,12 @@ local keymaps = {
     ["<A-s>l"] = { ":vsplit<CR><C-w>w", "split window right" },
     ["<A-s>j"] = { ":split<CR><C-w>w", "split window down" },
 
-    -- go lang specific
-    ["<leader>gsj"] = { "<CMD> GoTagAdd json <CR>", "go: add json struct tags" },
-    ["<leader>gsy"] = { "<CMD> GoTagAdd yaml <CR>", "go: add yaml struct tags" },
-
-    ["<leader>gg"] = { ":Gen <CR>", "go: add yaml struct tags" },
 
     -- INFO:  =================================================================
     -- All Most Used toggleable options using Alt key
     -- Some keybinds may conflict with tmux, keep cross checking tmux configs
     -- ========================================================================
-    --
+
     -- Toggle Maximize Current Buffer
     ["<A-a>"] = { ":MaximizerToggle<CR>", "maximize / restore window" },
     -- Switch Buffer
@@ -145,8 +137,6 @@ local keymaps = {
     -- keep last copied in clipboard
     ["p"] = { '"_dp', "paste last copied" },
 
-    ["<leader>gg"] = { ":Gen <CR>", "go: add yaml struct tags" },
-
     ["q"] = { "<ESC><ESC> :noh <CR>", "escape visual mode" },
     ["w"] = { "e", "select word to right" },
 
@@ -158,6 +148,9 @@ local keymaps = {
 
     -- Toggle Comment: Also in normal mode
     ["<A-c>"] = { "gcc", "toggle comment" },
+
+    -- replace highlighted in buffer
+    ["<A-r>"] = { "y:%s/<MiddleMouse>//g<Left><Left>", "replace highlighted in buffer" },
   },
 
   -- terminal
@@ -168,19 +161,16 @@ local which_keymaps = {
   -- e = { ":NvimTreeToggle<CR>", "toggle file explorer" },
   e = { ":Neotree toggle<CR>", "toggle file explorer" },
 
-  f = {
-    l = { "<CMD>Telescope flutter commands<CR>", "flutter commands" },
+  o = {
+    name = "obsidian",
+    d = { "<CMD>ObsidianFollowLink<CR>", "follow link" },
+    t = { "<CMD>ObsidianTags<CR>", "list tags" },
+    o = { "<CMD>ObsidianQuickSwitch<CR>", "switch markdown" },
+    l = { "<CMD>ObsidianBackLink<CR>", "backlinks" },
+    s = { "<CMD>ObsidianSearch<CR>", "search markdowns" },
+    b = { ":lua require'obsidian'.util.toggle_checkbox()<CR>", "toggle checkbox" },
+    a = { ":lua require('obsidian').util.smart_action()<CR>", "smart actions" },
   },
-
-  -- w = {
-  --   name = "workspace",
-  --   a = { "<CMD>Telescope nx actions<CR>", "nx action" },
-  --   g = { "<CMD>Telescope nx generators<CR>", "nx generators" },
-  --   f = { "<CMD>Telescope nx affected<CR>", "nx affected" },
-  --   m = { "<CMD>Telescope nx run_many<CR>", "nx run many" },
-  --   e = { "<CMD>Telescope nx external_generators<CR>", "nx external generators" },
-  --   w = { "<CMD>Telescope nx workspace_generators<CR>", "nx workspace generators" },
-  -- },
 
   d = {
     name = "debugging",
@@ -197,6 +187,8 @@ local which_keymaps = {
   g = {
     name = "golang",
     t = { ":GoAddTag<CR>", "add tags" },
+    j = { ":GoAddTag json<CR>", "add json tags" },
+    y = { ":GoAddTag yaml<CR>", "add yaml tags" },
     x = { ":GoRmTag<CR>", "remove tags" },
     e = { ":GoIfErr<CR>", "add error check" },
     f = { ":GoFixPlurals<CR>", "fix func args" }, -- change func foo(b int, a int, r int) -> func foo(b, a, r int)
@@ -282,11 +274,9 @@ local which_keymaps = {
 
 }
 
---
 for mode, mappings in pairs(keymaps) do
   for key, mapping in pairs(mappings) do
     local cmd = mapping[1]
-    --[[ local desc = mapping[2] ]]
     vim.api.nvim_set_keymap(mode, key, cmd, opts)
   end
 end
@@ -294,11 +284,8 @@ end
 -- which key mappings:
 local ok, wk = pcall(require, "which-key")
 if ok then
-  -- default which-key opts: https://github.com/folke/which-key.nvim
   local which_key_opts = {
-    mode = "n", -- NORMAL mode
-    -- prefix: use "<leader>f" for example for mapping everything related to finding files
-    -- the prefix is prepended to every mapping part of `mappings`
+    mode = "n",     -- NORMAL mode
     prefix = "<leader>",
     buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
     silent = true,  -- use `silent` when creating keymaps
