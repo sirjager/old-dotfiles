@@ -11,9 +11,9 @@ require "user.plugins.core.symbols-outline";
 require "user.plugins.core.telescope";
 require "user.plugins.core.todo-comments";
 require "user.plugins.core.ufo";
-require "user.plugins.core.whichkey";
 require "user.plugins.core.comments";
 require "user.plugins.core.bufferline";
+require "user.plugins.core.whichkey";
 
 
 -- lsp plugins 
@@ -35,8 +35,8 @@ require "user.plugins.lsp.go"
 
 -- extras plugins
 require "user.plugins.extras.neoscroll"
-require "user.plugins.extras.codeium";
 require "user.plugins.extras.colorizer";
 require "user.plugins.extras.obsidian"
 -- require "user.plugins.extras.twilight"
 require "user.plugins.extras.markdown-preview"
+require "user.plugins.extras.codeium";

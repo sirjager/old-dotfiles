@@ -33,7 +33,7 @@ if mason_lspconfig_ok then
     ensure_installed = {
       "bashls", -- sh
       "clangd",
-      "cssls",
+      -- "cssls",
       -- "prismals",
       -- "eslint", -- ts,js
       "emmet_ls",
@@ -45,11 +45,11 @@ if mason_lspconfig_ok then
       -- "marksman", -- md
       "tsserver", -- ts
       "tailwindcss",
-      "cssmodules_ls",
+      -- "cssmodules_ls",
       -- "pylsp",
       -- "pyright", -- py
       "yamlls", -- yml
-      "sqlls",
+      -- "sqlls",
       -- "phpactor", -- php
       --[[ "intelephense", -- php ]]
     },
@@ -67,7 +67,7 @@ if mason_null_ls_ok then
       -- "codelldb", -- rust, c,cpp debugger
       -- "debugpy", -- py
       -- "beautysh",
-      "buf",
+      --  "buf",
       -- "terraform-ls",
       "buf-language-server",
       -- "eslint", -- ts,js
@@ -78,13 +78,13 @@ if mason_null_ls_ok then
       -- "yamllint", -- yml
       -- "ruff", -- py
       -- "rustywind",
-      "shellharden", -- sh
-      "shellcheck",
-      "jq",
-      "shfmt",
-      "sqlfmt",
-      "sql-formatter",
-      "fixjson",
+      -- "shellharden", -- sh
+      -- "shellcheck",
+      -- "jq",
+      -- "shfmt",
+      -- "sqlfmt",
+      -- "sql-formatter",
+      -- "fixjson",
       "golangci-lint",
       "gospel",
       "gofumpt",
@@ -92,16 +92,16 @@ if mason_null_ls_ok then
       "golines",                         -- go
       "lua-language-server",             -- lua
       -- "svelte-language-server",          -- lua
-      -- "docker-compose-language-service", -- docker-compose.yaml
+      "docker-compose-language-service", -- docker-compose.yaml
       "dockerfile-language-server",      -- Dockerfile
-      "markdownlint",                    -- md
+      -- "markdownlint",                    -- md
       -- "mdx_analyzer",
-      "prettierd",                       -- ts, js
+      "prettierd",                   -- ts, js
       -- "rust-analyzer", -- rust
-      "stylua",                          -- lua
-      "typescript-languange-server",     -- ts,js
+      "stylua",                      -- lua
+      "typescript-languange-server", -- ts,js
       "protolint",
-      "yamlfix",                         -- yml
+      -- "yamlfix",                     -- yml
       -- "phpcs",
       -- "php-cbf",
       -- "php-cs-fixer",

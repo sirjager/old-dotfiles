@@ -131,15 +131,12 @@ local plugins = {
     },
   },
 
-  {
-    'paopaol/telescope-git-diffs.nvim',
-    dependencies = { "sindrets/diffview.nvim" },
-  },
-
   -- Telescope, quick finder, fuzzy finder
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
+      "sindrets/diffview.nvim",
+      'paopaol/telescope-git-diffs.nvim',
       "nvim-telescope/telescope-project.nvim",
       "nvim-telescope/telescope-media-files.nvim",
       "xiyaowong/telescope-emoji.nvim",
@@ -148,8 +145,8 @@ local plugins = {
   },
 
   -- zen mode, clean ui mode, fullscreen, centered (optional)
-  "folke/zen-mode.nvim",
-  "folke/twilight.nvim",
+  -- "folke/zen-mode.nvim",
+  -- "folke/twilight.nvim",
 
   -- wakatime, time tracker (optional)
   "wakatime/vim-wakatime",
@@ -177,19 +174,19 @@ local plugins = {
   },
 
 
-  -- database client, sql database client with ui (optional)
-  "tpope/vim-dadbod",
-  {
-    "kristijanhusak/vim-dadbod-ui",
-    dependencies = {
-      { "tpope/vim-dadbod", lazy = true },
-      -- { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
-    },
-    cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection", "DBUIFindBuffer" },
-    init = function()
-      vim.g.db_ui_use_nerd_fonts = 1
-    end,
-  },
+  -- -- database client, sql database client with ui (optional)
+  -- "tpope/vim-dadbod",
+  -- {
+  --   "kristijanhusak/vim-dadbod-ui",
+  --   dependencies = {
+  --     { "tpope/vim-dadbod", lazy = true },
+  --     -- { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+  --   },
+  --   cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection", "DBUIFindBuffer" },
+  --   init = function()
+  --     vim.g.db_ui_use_nerd_fonts = 1
+  --   end,
+  -- },
 
 
   -- same word hightlighting under cursor (optional)
@@ -315,11 +312,13 @@ local plugins = {
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
       "nvim-neotest/neotest-go",
-    }
-  },
+    },
+  }
 
 }
 
 require("lazy").setup(plugins, {
   change_detection = { notify = false },
 })
+
+require "user.plugins.configs"

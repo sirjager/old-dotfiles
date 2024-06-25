@@ -176,8 +176,8 @@ pkg.setup {
   picker = {
     name = "telescope.nvim",
     mappings = {
-      new = "<C-x>",
-      insert_link = "<C-l>",
+      -- new = "<C-x>",
+      -- insert_link = "<C-l>",
     },
   },
 

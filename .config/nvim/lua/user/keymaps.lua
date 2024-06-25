@@ -1,5 +1,3 @@
-local opts = { silent = true }
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -124,9 +122,9 @@ local keymaps = {
 
     -- navigate within insert mode
     ["<C-h>"] = { "<Left>", "Move left" },
-    ["<C-l>"] = { "<Right>", "Move right" },
     ["<C-j>"] = { "<Down>", "Move down" },
     ["<C-k>"] = { "<Up>", "Move up" },
+    ["<C-l>"] = { "<Right>", "Move right" },
 
     -- save buffer
     ["<C-s>"] = { "<ESC>:w<CR>i<Right>", "save buffer" },
@@ -160,6 +158,7 @@ local keymaps = {
 local which_keymaps = {
   -- e = { ":NvimTreeToggle<CR>", "toggle file explorer" },
   e = { ":Neotree toggle<CR>", "toggle file explorer" },
+  r = { ":luafile %<CR>", "source current luafile" },
 
   o = {
     name = "obsidian",
@@ -188,6 +187,7 @@ local which_keymaps = {
     name = "golang",
     t = { ":GoAddTag<CR>", "add tags" },
     j = { ":GoAddTag json<CR>", "add json tags" },
+    b = { ":GoAddTag bson<CR>", "add bson tags" },
     y = { ":GoAddTag yaml<CR>", "add yaml tags" },
     x = { ":GoRmTag<CR>", "remove tags" },
     e = { ":GoIfErr<CR>", "add error check" },
@@ -274,12 +274,20 @@ local which_keymaps = {
 
 }
 
+
 for mode, mappings in pairs(keymaps) do
   for key, mapping in pairs(mappings) do
     local cmd = mapping[1]
-    vim.api.nvim_set_keymap(mode, key, cmd, opts)
+    local desc = mapping[2]
+    vim.api.nvim_set_keymap(mode, key, cmd, { silent = true, noremap = true, desc = desc })
   end
 end
+
+
+-- these two were not working with noremap = true
+-- if noremap = true, set then movenment in editing mode dosen't work, specifically right side
+vim.api.nvim_set_keymap("n", "<A-c>", "gcc", { silent = true, noremap = false })
+vim.api.nvim_set_keymap("v", "<A-c>", "gcc", { silent = true, noremap = false })
 
 -- which key mappings:
 local ok, wk = pcall(require, "which-key")

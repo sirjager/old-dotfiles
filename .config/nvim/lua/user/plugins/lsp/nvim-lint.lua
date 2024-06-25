@@ -12,7 +12,7 @@ pkg.linters_by_ft = {
   mdx = { { "vale", "markdownlint" } },
   sql = { "sqlfluff" },
   python = { "pylint" },
-  rust = { "rstlint", "rstcheck" },
+  -- rust = { "rstlint", "rstcheck" },
   lua = { "luacheck" },
   go = { "golangcilint" },
 }

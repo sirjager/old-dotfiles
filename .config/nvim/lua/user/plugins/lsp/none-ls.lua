@@ -12,11 +12,11 @@ null_ls.setup {
 
     null_ls.builtins.formatting.shfmt,      -- sh/bash
 
-    null_ls.builtins.diagnostics.buf,       -- proto
+    -- null_ls.builtins.diagnostics.buf,       -- proto
     null_ls.builtins.formatting.buf,        -- proto
-    null_ls.builtins.diagnostics.protolint, -- proto
+    -- null_ls.builtins.diagnostics.protolint, -- proto
 
-    null_ls.builtins.formatting.sqlfmt,     -- sql
+    -- null_ls.builtins.formatting.sqlfmt,     -- sql
 
 
     null_ls.builtins.formatting.prettierd, -- ts,tsx,js,jsx,html, ...etc.
@@ -27,7 +27,7 @@ null_ls.setup {
     -- null_ls.builtins.diagnostics.yamllint, -- yml/yaml
     null_ls.builtins.formatting.yamlfix,   -- yml/yaml
 
-    null_ls.builtins.formatting.markdownlint, -- mdx/md/markdow
+    -- null_ls.builtins.formatting.markdownlint, -- mdx/md/markdow
 
     -- null_ls.builtins.formatting.dart_format, -- dart
 

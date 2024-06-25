@@ -8,10 +8,10 @@ vim.treesitter.language.register("markdown", "mdx")
 vim.filetype.add({ extension = { astro = "astro" } })
 
 ts.setup {
-  ensure_installed = { "lua", "markdown", "go", "markdown_inline" },
+  ensure_installed = { "lua", "markdown", "markdown_inline" },
   matchup = {
     enable = true,
-    disable = { "c", "ruby" }
+    disable = { "c", "ruby", }
   },
 
   sync_install = false,
