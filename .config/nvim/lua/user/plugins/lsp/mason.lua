@@ -33,7 +33,7 @@ if mason_lspconfig_ok then
     ensure_installed = {
       "bashls", -- sh
       "clangd",
-      -- "cssls",
+      "cssls",
       -- "prismals",
       -- "eslint", -- ts,js
       "emmet_ls",
@@ -45,7 +45,7 @@ if mason_lspconfig_ok then
       -- "marksman", -- md
       "tsserver", -- ts
       "tailwindcss",
-      -- "cssmodules_ls",
+      "cssmodules_ls",
       -- "pylsp",
       -- "pyright", -- py
       "yamlls", -- yml

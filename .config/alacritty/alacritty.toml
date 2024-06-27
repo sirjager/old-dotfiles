@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/themes/tokyonight_moon.toml"]
+import = ["~/.config/alacritty/themes/catppuccin-macchiato.toml"]
 
 live_config_reload = true
 
@@ -40,8 +40,7 @@ multiplier = 3
 save_to_clipboard = true
 
 [shell]
-program = "/usr/bin/bash"
-args = ["--rcfile", "~/.profile"]
+program = "/usr/bin/zsh"
 
 [window]
 decorations = "full"
