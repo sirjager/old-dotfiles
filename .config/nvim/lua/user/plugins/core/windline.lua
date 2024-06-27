@@ -138,9 +138,9 @@ local quickfix = {
       end,
       { "cyan", "black_light" },
     },
-    { " Total : %L ", { "cyan", "black_light" } },
+    { " Total : %L ",                { "cyan", "black_light" } },
     { helper.separators.slant_right, { "black_light", "InactiveBg" } },
-    { " ", { "InactiveFg", "InactiveBg" } },
+    { " ",                           { "InactiveFg", "InactiveBg" } },
     basic.divider,
     { helper.separators.slant_right, { "InactiveBg", "black" } },
     { "🧛 ", { "white", "black" } },
@@ -192,7 +192,7 @@ local default = {
     basic.lsp_name,
     basic.git,
     { git_comps.git_branch(), { "magenta", "black" }, breakpoint_width },
-    { " ", hl_list.Black },
+    { " ",                    hl_list.Black },
     basic.square_mode,
   },
   inactive = {
@@ -200,8 +200,8 @@ local default = {
     basic.file_name_inactive,
     basic.divider,
     basic.divider,
-    { b_components.line_col, hl_list.Inactive },
-    { b_components.progress, hl_list.Inactive },
+    { b_components.line_col,       hl_list.Inactive },
+    { b_components.progress,       hl_list.Inactive },
   },
 }
 
@@ -240,16 +240,14 @@ windline.setup {
   },
   -- this function will run on ColorScheme autocmd
   colors_name = function(colors)
-    colors.white = "#f8f8f2"
-    colors.red = "#ff5555"
-    colors.green = "#50fa7b"
-    colors.blue = "#8be9fd"
+    colors.white = "#CDD6F4"
+    colors.red = "#F38BA8"
+    colors.green = "#A6E3A1"
+    colors.blue = "#87B0F9"
     colors.purple = "#bd93f9"
-    colors.yellow = "#f1fa8c"
-    --[[ colors.black = "#282a36" ]]
-    colors.black = "#44475a"
-    colors.NormalBg = "#44475a"
-    --- add new colors
+    colors.yellow = "#F9E2AF"
+    colors.black = "#1E1E2E"
+    colors.NormalBg = "#1E1E2E"
     return colors
   end,
 }

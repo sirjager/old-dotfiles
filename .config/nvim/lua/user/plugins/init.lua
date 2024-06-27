@@ -82,6 +82,7 @@ local plugins = {
     },
   },
 
+  "j-hui/fidget.nvim",
 
   "Exafunction/codeium.vim",
   "lewis6991/gitsigns.nvim",

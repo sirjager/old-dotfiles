@@ -31,14 +31,5 @@ pkg.setup {
     enforce_regular_tabs = true,
     always_show_bufferline = true,
     diagnostics_update_in_insert = false,
-    diagnostics_indicator = function(count, level, diagnostics_dict, context)
-      local s = " "
-      for e, n in pairs(diagnostics_dict) do
-        local sym = e == "error" and "  "
-            or (e == "warning" and "  " or "  ")
-        s = s .. n .. sym
-      end
-      return s
-    end,
   },
 }

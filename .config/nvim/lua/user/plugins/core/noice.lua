@@ -98,7 +98,7 @@ pkg.setup(
     },
     lsp = {
       progress = {
-        enabled = false,
+        enabled = true,
         format = "lsp_progress",
         format_done = "lsp_progress_done",
         throttle = 1000 / 30, -- frequency to update lsp progress message
@@ -131,7 +131,7 @@ pkg.setup(
       },
       message = {
         -- Messages shown by lsp servers
-        enabled = true,
+        enabled = false,
         view = "notify",
         opts = {},
       },
