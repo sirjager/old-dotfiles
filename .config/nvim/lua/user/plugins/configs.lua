@@ -14,6 +14,7 @@ require "user.plugins.core.ufo";
 require "user.plugins.core.comments";
 require "user.plugins.core.bufferline";
 require "user.plugins.core.whichkey";
+require "user.plugins.core.action-preview";
 
 
 -- lsp plugins 
@@ -32,6 +33,7 @@ require "user.plugins.lsp.tailwindcss-colorizer-cmp"
 require "user.plugins.lsp.nvim-treesitter"
 require "user.plugins.lsp.nvim-treesitter-context"
 require "user.plugins.lsp.go"
+-- require "user.plugins.lsp.typescript-tools"
 
 -- extras plugins
 require "user.plugins.extras.neoscroll"
@@ -40,4 +42,6 @@ require "user.plugins.extras.obsidian"
 -- require "user.plugins.extras.twilight"
 require "user.plugins.extras.markdown-preview"
 require "user.plugins.extras.codeium";
-require "user.plugins.extras.fidget";
+require "user.plugins.extras.markview";
+-- require "user.plugins.extras.zen-mode";
+-- require "user.plugins.extras.lsplines";

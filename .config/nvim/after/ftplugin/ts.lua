@@ -7,6 +7,6 @@ require("cmp").setup.buffer {
   sources = {
     { name = "nvim_lsp" },
     { name = "codeium" },
-    -- { name = "tmux" },
+    { name = "tmux" },
   },
 }

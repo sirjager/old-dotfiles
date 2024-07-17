@@ -21,7 +21,7 @@ go.setup {
   goimports = "gopls",
   fillstruct = false,
   gofmt = "golines",
-  max_line_len = 120,
+  max_line_len = 200,
   tag_transform = "snakecase",
   tag_options = "json=omitempty", -- sets options sent to gomodifytags, i.e., json=omitempty
   gotests_template = "", -- sets gotests -template parameter (check gotests for details)

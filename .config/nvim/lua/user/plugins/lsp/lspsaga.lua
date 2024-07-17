@@ -1,6 +1,6 @@
 local ok, lspsaga = pcall(require, "lspsaga")
 if not ok then
-  return
+  return vim.notify("plugin not installed: lspsaga", vim.log.levels.ERROR)
 end
 
 lspsaga.setup {

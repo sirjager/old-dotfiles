@@ -1,15 +1,15 @@
 local opts = { silent = true }
 local keymaps = {
-  n = {
-    -- Obsidian commands for markdown
-    ["<A-d>"] = { "<CMD>ObsidianFollowLink<CR>", "follow link" },
-    ["<A-t>"] = { "<CMD>ObsidianTags<CR>", "list tags" },
-    ["<A-o>"] = { "<CMD>ObsidianQuickSwitch<CR>", "switch markdown" },
-    ["<A-l>"] = { "<CMD>ObsidianBackLink<CR>", "backlinks" },
-    ["<A-s>"] = { "<CMD>ObsidianSearch<CR>", "search markdowns" },
-    ["<A-b>"] = { ":lua require'obsidian'.util.toggle_checkbox()<CR>", "toggle checkbox" },
-    ["<A-a>"] = { ":lua require('obsidian').util.smart_action()<CR>", "smart actions" },
-  },
+  -- n = {
+  --   -- Obsidian commands for markdown
+  --   ["<A-d>"] = { "<CMD>ObsidianFollowLink<CR>", "follow link" },
+  --   ["<A-t>"] = { "<CMD>ObsidianTags<CR>", "list tags" },
+  --   ["<A-o>"] = { "<CMD>ObsidianQuickSwitch<CR>", "switch markdown" },
+  --   ["<A-l>"] = { "<CMD>ObsidianBackLink<CR>", "backlinks" },
+  --   ["<A-s>"] = { "<CMD>ObsidianSearch<CR>", "search markdowns" },
+  --   ["<A-b>"] = { ":lua require'obsidian'.util.toggle_checkbox()<CR>", "toggle checkbox" },
+  --   ["<A-a>"] = { ":lua require('obsidian').util.smart_action()<CR>", "smart actions" },
+  -- },
 
   -- insert mode
   i = {},

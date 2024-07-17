@@ -134,7 +134,7 @@ alias pn='pnpm'
 alias np='npm run'
 
 alias n="nvim"
-alias nv="nvim"
+alias nv='nvim $(fzf -m --preview="bat --color=always {}")'
 alias snv="sudo -E -s nvim"
 alias nvim-remove-shada="rm -rf ~/.local/state/nvim/shada/"
 

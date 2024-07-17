@@ -59,7 +59,7 @@ pkg.setup(
             { error = true },
             { warning = true },
             { event = "msg_show", kind = { "" } },
-            { event = "lsp",      kind = "message" },
+            -- { event = "lsp",      kind = "message" },
           },
         },
       },
@@ -73,7 +73,7 @@ pkg.setup(
             { error = true },
             { warning = true },
             { event = "msg_show", kind = { "" } },
-            { event = "lsp",      kind = "message" },
+            -- { event = "lsp",      kind = "message" },
           },
         },
         filter_opts = { count = 1 },
@@ -98,8 +98,8 @@ pkg.setup(
     },
     lsp = {
       progress = {
-        enabled = true,
-        format = "lsp_progress",
+        enabled = false,
+        format = "",
         format_done = "lsp_progress_done",
         throttle = 1000 / 30, -- frequency to update lsp progress message
         view = "mini",

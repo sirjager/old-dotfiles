@@ -10,10 +10,10 @@ end
 
 
 
-pkg.load_extension "project"
-pkg.load_extension "media_files"
-pkg.load_extension "emoji"
-pkg.load_extension "ui-select"
+pkg.load_extension("project")
+pkg.load_extension("media_files")
+pkg.load_extension("emoji")
+pkg.load_extension("ui-select")
 pkg.load_extension('git_diffs')
 
 local actions = require "telescope.actions"
@@ -41,17 +41,13 @@ pkg.setup {
 
   path_display = { "truncate" },
   winblend = 0,
-  border = {},
-
   borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
   color_devicons = true,
-
   set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
   file_previewer = require("telescope.previewers").vim_buffer_cat.new,
   grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
   qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
   buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
-
   pickers = {
     oldfiles = {
       prompt_title = "Recent files",
@@ -83,7 +79,6 @@ pkg.setup {
     i = {
       ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
     },
-
     n = {
       ["q"] = actions.close,
       ["<esc>"] = actions.close,
@@ -95,7 +90,7 @@ pkg.setup {
   extensions_list = { "themes", "media_files", "projects", "terms", "fzf" },
 
   extensions = {
-    -- ["ui-select"] = { require("telescope.themes").get_dropdown() },
+    ["ui-select"] = { require("telescope.themes").get_dropdown() },
     emoji = {
       action = function(emoji)
         -- argument emoji is a table.

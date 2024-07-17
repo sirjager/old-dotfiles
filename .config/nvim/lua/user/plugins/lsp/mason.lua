@@ -67,7 +67,7 @@ if mason_null_ls_ok then
       -- "codelldb", -- rust, c,cpp debugger
       -- "debugpy", -- py
       -- "beautysh",
-      --  "buf",
+       "buf",
       -- "terraform-ls",
       "buf-language-server",
       -- "eslint", -- ts,js
@@ -79,17 +79,17 @@ if mason_null_ls_ok then
       -- "ruff", -- py
       -- "rustywind",
       -- "shellharden", -- sh
-      -- "shellcheck",
-      -- "jq",
+      "shellcheck",
+      "jq",
       -- "shfmt",
       -- "sqlfmt",
       -- "sql-formatter",
-      -- "fixjson",
+      "fixjson",
       "golangci-lint",
       "gospel",
       "gofumpt",
       "goimports_reviser",               -- go
-      "golines",                         -- go
+      -- "golines",                         -- go
       "lua-language-server",             -- lua
       -- "svelte-language-server",          -- lua
       "docker-compose-language-service", -- docker-compose.yaml

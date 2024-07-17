@@ -43,6 +43,7 @@ local plugins = {
     end
   },
 
+  -- themes
   {
     "navarasu/onedark.nvim",
     priority = 1000,
@@ -52,16 +53,12 @@ local plugins = {
       vim.cmd "hi LineNr guibg=none guifg=#8294C4"
     end
   },
+  "projekt0n/github-nvim-theme",
 
   "nvim-lua/popup.nvim",
   "nvim-lua/plenary.nvim",
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-    }
-  },
+
+  { "folke/noice.nvim",               event = "VeryLazy" },
 
   {
     "folke/which-key.nvim",
@@ -82,7 +79,7 @@ local plugins = {
     },
   },
 
-  "j-hui/fidget.nvim",
+  -- "j-hui/fidget.nvim",
 
   "Exafunction/codeium.vim",
   "lewis6991/gitsigns.nvim",
@@ -94,6 +91,7 @@ local plugins = {
     dependencies = { { "nvim-lua/plenary.nvim" } },
     lazy = true
   },
+
 
   "karb94/neoscroll.nvim",
   "NvChad/nvim-colorizer.lua",
@@ -121,7 +119,7 @@ local plugins = {
   "akinsho/bufferline.nvim",
 
   -- maximizes and restores current window
-  { "szw/vim-maximizer",              lazy = false },
+  { "szw/vim-maximizer",        lazy = false },
 
   -- headings, code folding
   {
@@ -164,6 +162,10 @@ local plugins = {
   -- json schema support, hinting support in json files (optional)
   "b0o/schemastore.nvim",
 
+  "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+
+
+  "OXY2DEV/markview.nvim",
   -- markdown file live preview
   {
     "iamcco/markdown-preview.nvim",
@@ -215,7 +217,10 @@ local plugins = {
 
 
   -- code linting, linter
-  { "mfussenegger/nvim-lint", event = { "BufReadPre", "BufNewFile" } },
+  { "mfussenegger/nvim-lint",      event = { "BufReadPre", "BufNewFile" } },
+
+  -- code action
+  { "aznhe21/actions-preview.nvim" },
 
   {
     "williamboman/mason.nvim",
@@ -229,10 +234,16 @@ local plugins = {
     },
   },
 
+  -- typescript
   "jose-elias-alvarez/typescript.nvim",
+  -- {
+  --   "pmizio/typescript-tools.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  -- },
+
 
   -- inhanced ui and improved lsp experience
-  { "glepnir/lspsaga.nvim",   branch = "main",                       after = "nvim-treesitter" },
+  { "glepnir/lspsaga.nvim",           branch = "main",       after = "nvim-treesitter" },
   "folke/trouble.nvim",
 
   -- code hightlighting, syntax hightlighting

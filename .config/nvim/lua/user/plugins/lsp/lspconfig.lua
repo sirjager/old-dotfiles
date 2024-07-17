@@ -169,7 +169,9 @@ lspconfig.tsserver.setup {
   cmd = { "typescript-language-server", "--stdio" },
   init_options = {
     perferences = {
-      disableSuggestions = true,
+      -- https://github.com/microsoft/TypeScript/blob/3b45f4db12bbae97d10f62ec0e2d94858252c5ab/src/server/protocol.ts#L3439
+      disableSuggestions = false,
+      quotePreference = "double",
     },
   },
 }
@@ -178,8 +180,8 @@ lspconfig.tsserver.setup {
 lspconfig.tailwindcss.setup {
   capabilities = capabilities,
   on_attach = on_attach,
-  filetypes = { "astro", "astro-markdown", "html", "css", "less", "postcss", "sass",
-    "scss", "stylus", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte", },
+  filetypes = { "astro", "astro-markdown", "html", "css",
+    "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte", },
 }
 
 
@@ -204,4 +206,3 @@ lspconfig.yamlls.setup {
     }),
   },
 }
-

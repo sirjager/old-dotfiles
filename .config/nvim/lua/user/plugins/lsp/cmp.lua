@@ -1,23 +1,23 @@
 ---@diagnostic disable: missing-fields
 local ok1, cmp = pcall(require, "cmp")
 if not ok1 then
-  return
+  return vim.notify("plugin not installed: cmp", vim.log.levels.ERROR)
 end
 
 local ok3, lspkind = pcall(require, "lspkind")
 if not ok3 then
-  return
+  return vim.notify("plugin not installed: lspkind", vim.log.levels.ERROR)
 end
 
 local ok2, luasnip = pcall(require, "luasnip")
 if not ok2 then
-  return
+  return vim.notify("plugin not installed: lspsnip", vim.log.levels.ERROR)
 end
 
 
 luasnip.filetype_extend("dart", { "flutter" })
 
--- local ts_utils = require "nvim-treesitter.ts_utils"
+local ts_utils = require "nvim-treesitter.ts_utils"
 local icons = require "user.icons"
 
 -- load vs-code like snippets from plugins (e.g. friendly-snippets)
@@ -143,18 +143,18 @@ cmp.setup {
       name = "nvim_lsp", -- completions from lsp
       trigger_characters = { '.' },
       keyword_length = 0,
-      -- entry_filter = function(entry, _)
-      --   local kind = entry:get_kind()
-      --   local node = ts_utils.get_node_at_cursor():type()
-      --   if node == "arguments" then
-      --     if kind == 6 then
-      --       return true
-      --     else
-      --       return false
-      --     end
-      --   end
-      --   return true
-      -- end,
+      entry_filter = function(entry, _)
+        local kind = entry:get_kind()
+        local node = ts_utils.get_node_at_cursor():type()
+        if node == "arguments" then
+          if kind == 6 then
+            return true
+          else
+            return false
+          end
+        end
+        return true
+      end,
     },
     { name = "luasnip" },    -- snippets completions
     { name = "codeium" },    -- completions from codeium

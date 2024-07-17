@@ -58,8 +58,8 @@ local keymaps = {
     ["<A-0>"] = { "<Cmd>BufferLineGoToBuffer 10<CR>", "go to 10 buffer" },
 
     -- split windows horizontally and vertically
-    ["<A-s>l"] = { ":vsplit<CR><C-w>w", "split window right" },
-    ["<A-s>j"] = { ":split<CR><C-w>w", "split window down" },
+    ["<A-s>l"] = { ":vsplit<CR>", "split window right" },
+    ["<A-s>j"] = { ":split<CR>", "split window down" },
 
 
     -- INFO:  =================================================================
@@ -92,11 +92,11 @@ local keymaps = {
     -- Toggle Hover Pic
     ["<A-i>"] = { ":Lspsaga hover_doc <CR>", "toggle doc" },
     -- Toggle Peek Definition
-    ["<A-e>"] = { ":Lspsaga peek_definition <CR>", "toggle peek definition" },
+    ["<A-e>"] = { ":Lspsaga peek_definition<CR>", "toggle peek definition" },
     -- Go To Definition
-    ["<A-d>"] = { ":Lspsaga goto_definition <CR>", "goto definition" },
+    ["<A-d>"] = { ":Lspsaga goto_definition<CR>", "goto definition" },
     -- Toggle Quick Fix Window
-    ["<A-f>"] = { ":CodeActionMenu<CR>", "code action" },
+    ["<A-f>"] = { ":lua require('actions-preview').code_actions()<CR>", "code action" },
     -- Toggle Database UI, closing nvimtree first to keep one opened at same time
     ["<A-u>"] = { ":NvimTreeClose<CR> :DBUIToggle<CR>", "toggle database ui" },
     -- Close All But Current Or Pinned Buffers
@@ -160,6 +160,11 @@ local which_keymaps = {
   e = { ":Neotree toggle<CR>", "toggle file explorer" },
   r = { ":luafile %<CR>", "source current luafile" },
 
+  f = {
+    name = "code actions",
+    f = { ":lua require('actions-preview').code_actions()<CR>", "code action" },
+  },
+
   o = {
     name = "obsidian",
     d = { "<CMD>ObsidianFollowLink<CR>", "follow link" },
@@ -189,6 +194,7 @@ local which_keymaps = {
     j = { ":GoAddTag json<CR>", "add json tags" },
     b = { ":GoAddTag bson<CR>", "add bson tags" },
     y = { ":GoAddTag yaml<CR>", "add yaml tags" },
+    d = { ":GoAddTag bindings<CR>", "add bindings tags" },
     x = { ":GoRmTag<CR>", "remove tags" },
     e = { ":GoIfErr<CR>", "add error check" },
     f = { ":GoFixPlurals<CR>", "fix func args" }, -- change func foo(b int, a int, r int) -> func foo(b, a, r int)
@@ -200,6 +206,11 @@ local which_keymaps = {
   },
 
   t = {
+    name = "typescript",
+    o = { ':TSToolsOrganizeImports<CR>', "organize imports" },
+  },
+
+  v = {
     name = "tests",
     n = { ':lua require("neotest").run.run()<CR>', "test nearest" },
     a = { ':lua require("neotest").run.attach()<CR>', "attach nearest" },
