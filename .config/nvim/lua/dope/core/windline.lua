@@ -3,11 +3,7 @@ local M = {
 }
 
 function M.config()
-  local ok, windline = pcall(require, "windline")
-  if not ok then
-    return
-  end
-
+  local windline = require "windline"
   local helper = require "windline.helpers"
   local b_components = require "windline.components.basic"
   local state = _G.WindLine.state
@@ -143,9 +139,9 @@ function M.config()
         end,
         { "cyan", "black_light" },
       },
-      { " Total : %L ",                { "cyan", "black_light" } },
+      { " Total : %L ", { "cyan", "black_light" } },
       { helper.separators.slant_right, { "black_light", "InactiveBg" } },
-      { " ",                           { "InactiveFg", "InactiveBg" } },
+      { " ", { "InactiveFg", "InactiveBg" } },
       basic.divider,
       { helper.separators.slant_right, { "InactiveBg", "black" } },
       { "🧛 ", { "white", "black" } },
@@ -197,7 +193,7 @@ function M.config()
       basic.lsp_name,
       basic.git,
       { git_comps.git_branch(), { "magenta", "black" }, breakpoint_width },
-      { " ",                    hl_list.Black },
+      { " ", hl_list.Black },
       basic.square_mode,
     },
     inactive = {
@@ -205,8 +201,8 @@ function M.config()
       basic.file_name_inactive,
       basic.divider,
       basic.divider,
-      { b_components.line_col,       hl_list.Inactive },
-      { b_components.progress,       hl_list.Inactive },
+      { b_components.line_col, hl_list.Inactive },
+      { b_components.progress, hl_list.Inactive },
     },
   }
 

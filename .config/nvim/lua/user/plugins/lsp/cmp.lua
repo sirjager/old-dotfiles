@@ -14,7 +14,6 @@ if not ok2 then
   return vim.notify("plugin not installed: lspsnip", vim.log.levels.ERROR)
 end
 
-
 luasnip.filetype_extend("dart", { "flutter" })
 
 local ts_utils = require "nvim-treesitter.ts_utils"
@@ -22,7 +21,7 @@ local icons = require "user.icons"
 
 -- load vs-code like snippets from plugins (e.g. friendly-snippets)
 require("luasnip/loaders/from_vscode").lazy_load()
-require("luasnip/loaders/from_vscode").lazy_load({ paths = "~/.local/share/nvim/vim-snippets/snippets" })
+require("luasnip/loaders/from_vscode").lazy_load { paths = "~/.local/share/nvim/vim-snippets/snippets" }
 
 vim.opt.completeopt = "menu,menuone,noselect"
 
@@ -42,8 +41,8 @@ cmp.setup {
     ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
-    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete()), -- autocomple suggestion popupmenu toggle
-    ["<C-y>"] = cmp.config.disable,                      -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    ["<C-Space>"] = cmp.mapping.complete(), -- autocomple suggestion popupmenu toggle
+    ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<CR>"] = cmp.mapping.confirm { select = false },
     ["<C-e>"] = cmp.mapping {
       i = cmp.mapping.abort(),
@@ -82,13 +81,13 @@ cmp.setup {
     fields = { "kind", "abbr", "menu" }, -- rearrange positions if needed
 
     format = lspkind.cmp_format {
-      mode = "symbol_text",  -- show only symbol annotations -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-      maxwidth = 70,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      mode = "symbol_text", -- show only symbol annotations -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+      maxwidth = 70, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
       before = function(entry, vim_item)
         local maxwidth = 70
         local source = entry.source.name --> nvim_lsp, nvim_lua, luasnip, buffer, path
-        local kind = vim_item.kind       --> Class, Method, Variable etc...
+        local kind = vim_item.kind --> Class, Method, Variable etc...
         -- local item = entry:get_completion_item()
         vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
         vim_item.kind = icons.kind[kind] or "?"
@@ -141,7 +140,7 @@ cmp.setup {
   sources = cmp.config.sources {
     {
       name = "nvim_lsp", -- completions from lsp
-      trigger_characters = { '.' },
+      trigger_characters = { "." },
       keyword_length = 0,
       entry_filter = function(entry, _)
         local kind = entry:get_kind()
@@ -156,14 +155,14 @@ cmp.setup {
         return true
       end,
     },
-    { name = "luasnip" },    -- snippets completions
-    { name = "codeium" },    -- completions from codeium
+    { name = "luasnip" }, -- snippets completions
+    { name = "codeium" }, -- completions from codeium
     -- { name = "cmp_tabnine" }, -- completions from tabnine ai
-    { name = "buffer" },     -- completions from opened buffers
-    { name = "path" },       -- filesystem path completions
+    { name = "buffer" }, -- completions from opened buffers
+    { name = "path" }, -- filesystem path completions
     { name = "async_path" }, -- filesystem path completions
     {
-      name = "tmux",         -- completions from tmux sessions
+      name = "tmux", -- completions from tmux sessions
       option = {
         all_panes = true,
         label = "[TMUX]",

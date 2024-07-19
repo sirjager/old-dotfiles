@@ -1,7 +1,6 @@
-local M = {}
-
-
-
+local M = {
+  "folke/zen-mode.nvim",
+}
 
 function M.config()
   require("zen-mode").setup {
@@ -30,12 +29,12 @@ function M.config()
       -- comment the lines to not apply the options
       options = {
         enabled = true,
-        ruler = false,             -- disables the ruler text in the cmd line area
-        showcmd = false,           -- disables the command in the last line of the screen
+        ruler = false, -- disables the ruler text in the cmd line area
+        showcmd = false, -- disables the command in the last line of the screen
       },
       twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
-      gitsigns = { enabled = true }, -- disables git signs
-      tmux = { enabled = true },   -- disables the tmux statusline
+      gitsigns = { enabled = false }, -- disables git signs
+      tmux = { enabled = true }, -- disables the tmux statusline
       -- this will change the font size on kitty when in zen mode
       -- to make this work, you need to set the following kitty options:
       -- - allow_remote_control socket-only
@@ -60,7 +59,7 @@ function M.config()
       },
     },
     -- callback where you can add custom code when the Zen window opens
-    on_open = function(win) end,
+    on_open = function() end,
     -- callback where you can add custom code when the Zen window closes
     on_close = function() end,
   }

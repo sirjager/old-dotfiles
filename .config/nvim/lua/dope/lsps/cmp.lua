@@ -1,20 +1,21 @@
 local M = {
   "hrsh7th/nvim-cmp",
   dependencies = {
-    { "hrsh7th/cmp-path",            event = "InsertEnter" },
-    { "hrsh7th/cmp-buffer",          event = "InsertEnter" },
-    { "FelipeLema/cmp-async-path",   event = "InsertEnter" },
-    { "hrsh7th/cmp-buffer",          event = "InsertEnter" },
-    { "hrsh7th/cmp-nvim-lua",        event = "InsertEnter" },
-    { "hrsh7th/cmp-cmdline",         event = "CmdlineEnter" },
-    { "hrsh7th/cmp-nvim-lsp",        event = "InsertEnter" },
-    { "saadparwaiz1/cmp_luasnip",    event = "InsertEnter" },
-    { "andersevenrud/cmp-tmux",      event = "InsertEnter" },
-    { "hrsh7th/cmp-emoji",           event = "InsertEnter" },
-    { "hrsh7th/vim-vsnip",           event = "InsertEnter" },
-    { "hrsh7th/vim-vsnip-integ",     event = "InsertEnter" },
-    { "L3MON4D3/LuaSnip",            event = "InsertEnter" },
+    { "hrsh7th/cmp-path", event = "InsertEnter" },
+    { "hrsh7th/cmp-buffer", event = "InsertEnter" },
+    { "FelipeLema/cmp-async-path", event = "InsertEnter" },
+    { "hrsh7th/cmp-buffer", event = "InsertEnter" },
+    { "hrsh7th/cmp-nvim-lua", event = "InsertEnter" },
+    { "hrsh7th/cmp-cmdline", event = "CmdlineEnter" },
+    { "hrsh7th/cmp-nvim-lsp", event = "InsertEnter" },
+    { "saadparwaiz1/cmp_luasnip", event = "InsertEnter" },
+    { "andersevenrud/cmp-tmux", event = "InsertEnter" },
+    { "hrsh7th/cmp-emoji", event = "InsertEnter" },
+    { "hrsh7th/vim-vsnip", event = "InsertEnter" },
+    { "hrsh7th/vim-vsnip-integ", event = "InsertEnter" },
+    { "L3MON4D3/LuaSnip", event = "InsertEnter" },
     { "rafamadriz/friendly-snippets" },
+    { "onsails/lspkind-nvim" },
   },
 }
 
@@ -30,7 +31,9 @@ function M.config()
     return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
   end
 
+  vim.filetype.add { extension = { astro = "astro" } }
   luasnip.filetype_extend("dart", { "flutter" })
+
   require("luasnip/loaders/from_vscode").lazy_load()
   require("luasnip/loaders/from_vscode").lazy_load { paths = "~/.local/share/nvim/vim-snippets/snippets" }
   vim.opt.completeopt = "menu,menuone,noselect"
@@ -47,12 +50,9 @@ function M.config()
       ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
       ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
       ["<C-Space>"] = cmp.mapping(cmp.mapping.complete()), -- autocomple suggestion popupmenu toggle
-      ["<C-y>"] = cmp.config.disable,                      -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+      ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
       ["<CR>"] = cmp.mapping.confirm { select = false },
-      ["<C-e>"] = cmp.mapping {
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      },
+      ["<C-e>"] = cmp.mapping { i = cmp.mapping.abort(), c = cmp.mapping.close() },
 
       -- Accept currently selected item. If none selected, `select` first item.
       -- Set `select` to `false` to only confirm explicitly selected items.
@@ -84,15 +84,14 @@ function M.config()
     formatting = {
       expandable_indicator = true,
       fields = { "kind", "abbr", "menu" }, -- rearrange positions if needed
-
       format = lspkind.cmp_format {
-        mode = "symbol_text",  -- show only symbol annotations -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-        maxwidth = 70,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+        mode = "symbol_text", -- show only symbol annotations -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+        maxwidth = 70, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
         ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
         before = function(entry, vim_item)
           local maxwidth = 70
           local source = entry.source.name --> nvim_lsp, nvim_lua, luasnip, buffer, path
-          local kind = vim_item.kind       --> Class, Method, Variable etc...
+          local kind = vim_item.kind --> Class, Method, Variable etc...
           -- local item = entry:get_completion_item()
           vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
           vim_item.kind = icons.kind[kind] or "?"
@@ -144,7 +143,7 @@ function M.config()
     -- tutorial: https://www.youtube.com/watch?v=yTk3C3JMKzQ&list=PLOe6AggsTaVuIXZU4gxWJpIQNHMrDknfN&index=40
     sources = cmp.config.sources {
       {
-        name = "nvim_lsp", -- completions from lsp
+        name = "nvim_lsp",
         trigger_characters = { "." },
         keyword_length = 0,
         entry_filter = function(entry, _)
@@ -160,14 +159,14 @@ function M.config()
           return true
         end,
       },
-      { name = "luasnip" },    -- snippets completions
-      { name = "codeium" },    -- completions from codeium
+      { name = "luasnip" }, -- snippets completions
+      { name = "codeium" }, -- completions from codeium
       -- { name = "cmp_tabnine" }, -- completions from tabnine ai
-      { name = "buffer" },     -- completions from opened buffers
-      { name = "path" },       -- filesystem path completions
+      { name = "buffer" }, -- completions from opened buffers
+      { name = "path" }, -- filesystem path completions
       { name = "async_path" }, -- filesystem path completions
       {
-        name = "tmux",         -- completions from tmux sessions
+        name = "tmux", -- completions from tmux sessions
         option = {
           all_panes = true,
           label = "[TMUX]",
@@ -180,25 +179,21 @@ function M.config()
       { name = "emoji", option = { trigger_characters = { ":" } } },
     },
 
-    confirm_opts = {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = false,
-    },
+    confirm_opts = { behavior = cmp.ConfirmBehavior.Replace, select = true },
 
     window = {
       completion = cmp.config.window.bordered {
         side_padding = 0,
         col_offset = 0,
         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, -- single | double | shadow etc.
-        winhighlight = "Normal:LineNr,FloatBorder:LineNr,CursorLine:CurSearch,Search:None",
+        winhighlight = "Normal:VertSplit,FloatBorder:VertSplit,CursorLine:IncSearch,Search:None",
       },
 
       documentation = cmp.config.window.bordered {
         side_padding = 0,
         col_offset = 0,
-        border = "double",
-        -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, -- single | double | shadow etc.
-        winhighlight = "Normal:LineNr,FloatBorder:LineNr,CursorLine:CurSearch,Search:None",
+        border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, -- single | double | shadow etc.
+        winhighlight = "Normal:VisualNC,FloatBorder:VertSplit,CursorLine:IncSearch,Search:None",
       },
     },
     experimental = {

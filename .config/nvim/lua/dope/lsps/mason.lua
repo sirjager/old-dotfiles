@@ -9,29 +9,25 @@ local M = {
 }
 
 M.servers = {
+  "astro",
   "lua_ls",
   "bashls",
   "clangd",
   "cssls",
-  -- "prismals",
-  -- "eslint", -- ts,js
   "emmet_ls",
   "gopls", -- go
   "golangci_lint_ls",
   "html", -- html
   "jsonls", -- json
-  -- "marksman", -- md
+  "marksman", -- md
   "tsserver", -- ts
   "tailwindcss",
   "cssmodules_ls",
-  -- "pylsp",
-  -- "pyright", -- py
   "yamlls", -- yml
   -- "sqlls",
 }
 
 M.null_ls_servers = {
-  -- @astrojs/language-server@2.6.3 -- working -- latest is broken
   "astro-language-server", -- astro
   -- "black", -- py
   -- "codelldb", -- rust, c,cpp debugger

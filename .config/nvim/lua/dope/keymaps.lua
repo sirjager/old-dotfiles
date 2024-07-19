@@ -38,8 +38,8 @@ M.keymaps = {
 
     ["<S-h>"] = { ":vertical resize -2<CR>", "decrease window width" },
     ["<S-l>"] = { ":vertical resize +2<CR>", "increase window width" },
-    ["<S-j>"] = { ":resize -2<CR>", "decrease window height" },
-    ["<S-k>"] = { ":resize +2<CR>", "increase window height" },
+    ["<S-k>"] = { ":resize -2<CR>", "decrease window height" },
+    ["<S-j>"] = { ":resize +2<CR>", "increase window height" },
 
     -- dont really use it,
     --[[ ["<A-i>"] = { "<Cmd>BufferPick<CR>", "smart buffer picker" }, ]]
@@ -60,7 +60,6 @@ M.keymaps = {
     ["<A-s>l"] = { ":vsplit<CR>", "split window right" },
     ["<A-s>j"] = { ":split<CR>", "split window down" },
 
-
     -- INFO:  =================================================================
     -- All Most Used toggleable options using Alt key
     -- Some keybinds may conflict with tmux, keep cross checking tmux configs
@@ -68,47 +67,25 @@ M.keymaps = {
 
     -- Toggle Maximize Current Buffer
     ["<A-a>"] = { ":MaximizerToggle<CR>", "maximize / restore window" },
-    -- Switch Buffer
-    -- ["<A-b>"] = { ":Telescope buffers <CR>", "opened buffers" },
-    -- Toggle Zen Mode
     ["<A-z>"] = { ":ZenMode<CR>", "toggle zen mode" },
-    -- Toggle Trouble panel
     ["<A-t>"] = { ":TroubleToggle<CR>", "toggle trouble" },
-    -- Rename instance
-    ["<A-r>"] = { ":Lspsaga rename<CR>", "smart rename" },
-    -- Toggle Pin Current Buffer
     ["<A-P>"] = { "<Cmd>BufferLineTogglePin<CR>", "toggle pin current buffer" },
-    -- Toggle Markdown Preview
     ["<A-m>"] = { ":MarkdownPreviewToggle<CR>", "toggle markdown preview" },
-    -- Toggle Comment: Also in visual mode
     ["<A-c>"] = { "gcc", "toggle comment" },
-    -- Toggle Wrap Lines with custom function in function.lua
     ["<A-y>"] = { ":lua Toggle_WrapLines()<CR>", "toggle wrap lines" },
-    -- Toggle Line Numbers with custom function in function.lua
-    ["<A-n>"] = { ":lua Toggle_LineNumbers()<CR>", "toggle line numbers" },
-    -- Toggle Lspsage Outline; using L to increase size
-    ["<A-o>"] = { ":NvimTreeClose<CR>:Lspsaga outline<CR>LLLLLLL", "toggle lsp outline" },
-    -- Toggle Hover Pic
-    ["<A-i>"] = { ":Lspsaga hover_doc <CR>", "toggle doc" },
-    -- Toggle Peek Definition
-    ["<A-e>"] = { ":Lspsaga peek_definition<CR>", "toggle peek definition" },
-    -- Go To Definition
-    ["<A-d>"] = { ":Lspsaga goto_definition<CR>", "goto definition" },
-    -- Toggle Quick Fix Window
-    ["<A-f>"] = { ":lua require('actions-preview').code_actions()<CR>", "code action" },
-    -- Toggle Database UI, closing nvimtree first to keep one opened at same time
+    ["<A-o>"] = { ":Neotree close<CR>:Lspsaga outline<CR>LLLLL", "toggle lsp outline" },
     ["<A-u>"] = { ":NvimTreeClose<CR> :DBUIToggle<CR>", "toggle database ui" },
-    -- Close All But Current Or Pinned Buffers
     ["<A-w>"] = { ":BufferLineCloseOthers<CR>", "close other buffers" },
-    -- Close All But Current Or Pinned Buffers
     ["<A-p>"] = { ":lua vim.lsp.buf.format({timeout_ms = 10000})<CR>", "format without saving" },
-    -- Color picker
     ["<A-x>"] = { ":PickColor<CR>", "color picker" },
-    -- Code fold
     ["<A-v>"] = { ":lua require'ufo'.openAllFolds()<CR>", "open all folds" },
     ["<A-b>"] = { ":lua require'ufo'.closeAllFolds()<CR>", "close all folds" },
-    -- Toggle Terminal - Keeping here for ref. set by toggleterm.lua configs
-    --[[ ["<C-\>"] = { ":ToggleTerm direction=float<CR>", "toggle terminal" }, ]]
+    ["<A-n>"] = { ":Lspsaga term_toggle<CR>", "toggle term" },
+    ["<A-r>"] = { ":Lspsaga rename<CR>", "smart rename" },
+    ["<A-i>"] = { ":Lspsaga hover_doc<CR>", "toggle doc" },
+    ["<A-e>"] = { ":Lspsaga peek_definition<CR>", "toggle peek definition" },
+    ["<A-d>"] = { ":Lspsaga goto_definition<CR>", "goto definition" },
+    ["<A-f>"] = { ":Lspsaga code_action<CR>", "code action" },
 
     -- ========================================================================
   },
@@ -206,7 +183,7 @@ M.which_keymaps = {
 
   t = {
     name = "typescript",
-    o = { ':TSToolsOrganizeImports<CR>', "organize imports" },
+    o = { ":TSToolsOrganizeImports<CR>", "organize imports" },
   },
 
   v = {
@@ -221,7 +198,7 @@ M.which_keymaps = {
       name = "go test",
       n = { ':lua require("dap-go").debug_test()<CR>', "test nearest" },
       l = { ':lua require("dap-go").debug_last()<CR>', "test last" },
-    }
+    },
   },
 
   s = {
@@ -241,12 +218,11 @@ M.which_keymaps = {
     C = { ":Telescope commands <CR>", "list commands" },
   },
 
-
   l = {
     name = "lsp",
     i = { ":LspInfo<CR>", "lsp info" },
     h = { ":Lspsaga hover_doc <CR>", "hover doc" }, -- most used 1
-    a = { ":CodeActionMenu<CR>", "code action" },   -- most used 2
+    a = { ":CodeActionMenu<CR>", "code action" }, -- most used 2
     o = { ":Lspsaga outline <CR>", "outline" },
     r = { ":LspRestart<CR>", "restart lsp" },
 
@@ -281,9 +257,7 @@ M.which_keymaps = {
       o = { ":Lspsaga outgoing_calls <CR>", "outgoing calls" },
     },
   },
-
 }
-
 
 -- nothing to do here, change keymaps above
 -- call setup from where keymaps.lua is being loaded
@@ -305,5 +279,4 @@ M.setup = function()
   vim.api.nvim_set_keymap("v", "<A-c>", "gcc", { silent = true, noremap = false })
 end
 
-
-return M;
+return M

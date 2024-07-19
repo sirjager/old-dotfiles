@@ -2,7 +2,7 @@ local M = {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     "sindrets/diffview.nvim",
-    'paopaol/telescope-git-diffs.nvim',
+    "paopaol/telescope-git-diffs.nvim",
     "nvim-telescope/telescope-project.nvim",
     "nvim-telescope/telescope-media-files.nvim",
     "xiyaowong/telescope-emoji.nvim",
@@ -10,20 +10,18 @@ local M = {
   },
 }
 
-
-
-
-
 function M.config()
-  local telescope = require("telescope")
+  local telescope = require "telescope"
   local ok, _ = pcall(require, "flutter-tools")
-  if ok then telescope.load_extension("flutter") end
+  if ok then
+    telescope.load_extension "flutter"
+  end
 
-  telescope.load_extension("project")
-  telescope.load_extension("media_files")
-  telescope.load_extension("emoji")
-  telescope.load_extension("ui-select")
-  telescope.load_extension('git_diffs')
+  telescope.load_extension "project"
+  telescope.load_extension "media_files"
+  telescope.load_extension "emoji"
+  telescope.load_extension "ui-select"
+  telescope.load_extension "git_diffs"
 
   local actions = require "telescope.actions"
   local project_actions = require "telescope._extensions.project.actions"

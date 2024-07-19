@@ -41,7 +41,7 @@ require "user.plugins.extras.colorizer";
 require "user.plugins.extras.obsidian"
 -- require "user.plugins.extras.twilight"
 require "user.plugins.extras.markdown-preview"
-require "user.plugins.extras.codeium";
+-- require "user.plugins.extras.codeium";
 require "user.plugins.extras.markview";
 -- require "user.plugins.extras.zen-mode";
 -- require "user.plugins.extras.lsplines";

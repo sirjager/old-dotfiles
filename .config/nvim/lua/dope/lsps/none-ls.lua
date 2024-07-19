@@ -11,7 +11,7 @@ function M.config()
 
   local formatting = null_ls.builtins.formatting;
   local diagnostics = null_ls.builtins.diagnostics;
-  local completion = null_ls.builtins.completion;
+  -- local completion = null_ls.builtins.completion;
   local code_actions = null_ls.code_actions;
 
   null_ls.setup {
@@ -22,7 +22,7 @@ function M.config()
       formatting.buf,
       formatting.yamlfix,
 
-      completion.spell,
+      -- completion.spell,
 
       -- diagnostics.eslint_d,
       formatting.prettierd,

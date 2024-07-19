@@ -13,18 +13,16 @@ function M.config()
     code_action = {
       num_shortcut = true,
       show_server_name = true, -- default false
-      extend_gitsigns = true,  -- default false
+      extend_gitsigns = true, -- default false
     },
     ui = {
       title = true,
       devicons = true,
-      border = "single",
+      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, -- single | double | shadow etc.
       code_action = "💡", --  💡                                 
-      lines = { "┗", "┣", "┃", "━", "┏" },
-      colors = {
-        normal_bg = "#022746",
-      },
-      -- kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
+      -- lines = { "┗", "┣", "┃", "━", "┏" },
+      colors = {},
+      kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
     },
   }
 end

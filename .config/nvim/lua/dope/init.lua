@@ -8,6 +8,7 @@ end
 -- require "dope.init"
 require "dope.options"
 require("dope.keymaps").setup()
+spec("dope.core.notify")
 
 spec "dope.colorscheme"
 spec "dope.core.alpha"
@@ -26,9 +27,9 @@ spec "dope.lsps.mason"
 spec "dope.lsps.schemastore"
 spec "dope.lsps.lspconfig"
 spec "dope.lsps.lspsaga"
-spec "dope.lsps.cmp"
 spec "dope.lsps.none-ls"
 spec "dope.lsps.comments"
+spec "dope.lsps.cmp"
 
 spec "dope.core.noice"
 spec "dope.core.gitsigns"
@@ -41,5 +42,8 @@ spec "dope.lsps.autotags"
 spec "dope.core.obsidian"
 
 spec "dope.xtra.codeium"
+spec "dope.xtra.flash"
+-- spec "dope.xtra.zenmode"
+-- spec "dope.xtra.twilight"
 
 require "dope.lazy"
