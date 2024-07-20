@@ -16,6 +16,7 @@ local M = {
     { "L3MON4D3/LuaSnip", event = "InsertEnter" },
     { "rafamadriz/friendly-snippets" },
     { "onsails/lspkind-nvim" },
+    { "roobert/tailwindcss-colorizer-cmp.nvim" },
   },
 }
 
@@ -25,6 +26,9 @@ function M.config()
   local lspkind = require "lspkind"
   local ts_utils = require "nvim-treesitter.ts_utils"
   local icons = require "dope.icons"
+  local defaults = require "cmp.config.default"()
+
+  require("tailwindcss-colorizer-cmp").setup { color_square_width = 2 }
 
   local check_backspace = function()
     local col = vim.fn.col "." - 1
@@ -44,6 +48,7 @@ function M.config()
         luasnip.lsp_expand(args.body)
       end,
     },
+
     mapping = cmp.mapping.preset.insert {
       ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
       ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
@@ -81,6 +86,8 @@ function M.config()
       end, { "i", "s" }),
     },
 
+    preselect = true and cmp.PreselectMode.Item or cmp.PreselectMode.None,
+
     formatting = {
       expandable_indicator = true,
       fields = { "kind", "abbr", "menu" }, -- rearrange positions if needed
@@ -89,7 +96,7 @@ function M.config()
         maxwidth = 70, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
         ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
         before = function(entry, vim_item)
-          local maxwidth = 70
+          local maxwidth = 50
           local source = entry.source.name --> nvim_lsp, nvim_lua, luasnip, buffer, path
           local kind = vim_item.kind --> Class, Method, Variable etc...
           -- local item = entry:get_completion_item()
@@ -101,27 +108,19 @@ function M.config()
             vim_item.dup = 0
           end
 
-          if entry.source.name == "codeium" then
-            vim_item.kind = icons.misc.Wand
-          end
-
-          if entry.source.name == "Codeium" then
-            vim_item.kind = icons.misc.Wand
+          if entry.source.name == "codeium" or entry.source.name == "Codeium" then
+            vim_item.kind = icons.misc.Copilot
+            vim_item.kind_hl_group = "CmpItemKindCopilot"
           end
 
           if entry.source.name == "copilot" then
-            vim_item.kind = icons.git.Octoface
+            vim_item.kind = icons.mics.Copilot
             vim_item.kind_hl_group = "CmpItemKindCopilot"
           end
 
           if source == "cmp_tabnine" then
             vim_item.dup = 0
             vim_item.kind = icons.misc.Robot
-          end
-
-          if entry.source.name == "crates" then
-            vim_item.kind = icons.misc.Package
-            vim_item.kind_hl_group = "CmpItemKindCrate"
           end
 
           if entry.source.name == "lab.quick_data" then
@@ -138,7 +137,6 @@ function M.config()
         end,
       },
     },
-
     -- sources for autocompletion, priorties from top to bottom order
     -- tutorial: https://www.youtube.com/watch?v=yTk3C3JMKzQ&list=PLOe6AggsTaVuIXZU4gxWJpIQNHMrDknfN&index=40
     sources = cmp.config.sources {
@@ -200,6 +198,8 @@ function M.config()
       ghost_text = true,
     },
   }
+
+  require("cmp").config.formatting = { format = require("tailwindcss-colorizer-cmp").formatter }
 end
 
 return M

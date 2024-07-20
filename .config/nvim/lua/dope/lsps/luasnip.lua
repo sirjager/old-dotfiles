@@ -3,7 +3,7 @@ local M = {
 }
 
 function M.config()
-  require("luasnip.loaders.from_lua").load { paths = "~/.config/nvim/snippets/" }
+  require("luasnip.loaders.from_lua").load { paths = { "~/.config/nvim/snippets/" } }
   require("luasnip").config.set_config {
     history = true,
     enable_autosnippets = true,

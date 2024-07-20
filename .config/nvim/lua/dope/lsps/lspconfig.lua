@@ -44,8 +44,11 @@ function M.config()
     "jsonls",
     "bashls",
     "yamlls",
+    "gopls",
     "marksman",
     "tailwindcss",
+    "phpactor",
+    "intelephense",
   }
 
   local default_diagonastic_config = {
@@ -53,9 +56,9 @@ function M.config()
       active = true,
       values = {
         { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-        { name = "DiagnosticSignWarn",  text = icons.diagnostics.Warning },
-        { name = "DiagnosticSignInfo",  text = icons.diagnostics.Information },
-        { name = "DiagnosticSignHint",  text = icons.diagnostics.Hint },
+        { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
+        { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
+        { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
       },
     },
     underline = true,

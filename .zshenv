@@ -86,6 +86,7 @@ export PATH="$PATH":"$BUN_INSTALL/bin"
 export PATH="$PATH":"$HOME/.local/bin"
 export PATH="$PATH":"$FLUTTER_ROOT/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH="$PATH:$WAKATIME_HOME/.wakatime"
 export PATH="$PATH":"$XDG_CONFIG_HOME/emacs/bin"
 export PATH="$PATH":"$XDG_CONFIG_HOME/rofi/scripts"
 export PATH="$PATH":"$XDG_DATA_HOME/nvim/mason/bin"
@@ -97,6 +98,8 @@ export PATH="$PATH":"$mystorage/programs/Postman"
 
 
 export ZSH_TMUX_AUTONAME_SESSION="true"
+alias wakatime="$WAKATIME_HOME/.wakatime/wakatime-cli"
 
-[ -f "$CARGO_HOME/env" ] && source "$CARGO_HOME/env" 
-[ -f "$mystorage/global/alias" ] && source "$mystorage/global/alias"
+[ -f "$CARGO_HOME/env" ] && . "$CARGO_HOME/env" 
+[ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
+[ -f "$mystorage/global/alias" ] && . "$mystorage/global/alias"

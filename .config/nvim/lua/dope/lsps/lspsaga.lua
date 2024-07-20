@@ -20,9 +20,12 @@ function M.config()
       devicons = true,
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, -- single | double | shadow etc.
       code_action = "💡", --  💡                                 
-      -- lines = { "┗", "┣", "┃", "━", "┏" },
+      lines = { "┗", "┣", "┃", "━", "┏" },
       colors = {},
-      kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
+      -- kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
+    },
+    symbol_in_winbar = {
+      enable = false,
     },
   }
 end

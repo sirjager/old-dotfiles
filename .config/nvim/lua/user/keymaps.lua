@@ -282,7 +282,6 @@ local which_keymaps = {
       o = { ":Lspsaga outgoing_calls <CR>", "outgoing calls" },
     },
   },
-
 }
 
 

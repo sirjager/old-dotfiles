@@ -3,6 +3,7 @@ local M = {}
 -- NOTE: GENERATE ASCII ART : https://textkool.com/en/test-ascii-art-generator?text=Neovim
 
 M.jagervim = {
+  "                                                                 ",
   "     ██╗ █████╗  ██████╗ ███████╗██████╗ ██╗   ██╗██╗███╗   ███╗",
   "     ██║██╔══██╗██╔════╝ ██╔════╝██╔══██╗██║   ██║██║████╗ ████║ ",
   "     ██║███████║██║  ███╗█████╗  ██████╔╝██║   ██║██║██╔████╔██║ ",
@@ -12,7 +13,7 @@ M.jagervim = {
 }
 
 M.neovim_filled = {
-  " ",
+  "                                                       ",
   " ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
   " ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
   " ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
@@ -21,7 +22,6 @@ M.neovim_filled = {
   " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
   " ",
 }
-
 
 M.random = function(inputTable)
   local tableToUse = inputTable or M -- Use the provided table, or default to M if none is provided

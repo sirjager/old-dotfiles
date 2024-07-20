@@ -84,6 +84,7 @@ vim.cmd [[ let &t_Ce = "\e[4:0m]" ]]
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 
+vim.g.loaded_netrwPlugin = 0
 vim.o.autoread = true
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
   command = "if mode() != 'c' | checktime | endif",

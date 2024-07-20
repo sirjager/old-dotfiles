@@ -8,7 +8,7 @@ local M = {
   },
 }
 
-M.servers = {
+M.mason_lspconfig_servers = {
   "astro",
   "lua_ls",
   "bashls",
@@ -25,9 +25,15 @@ M.servers = {
   "cssmodules_ls",
   "yamlls", -- yml
   -- "sqlls",
+  -- "pylsp",
+  -- "pyright", -- py
+  -- "prismals",
+  -- "eslint", -- ts,js
+  "phpactor",
+  "intelephense",
 }
 
-M.null_ls_servers = {
+M.mason_null_ls_servers = {
   "astro-language-server", -- astro
   -- "black", -- py
   -- "codelldb", -- rust, c,cpp debugger
@@ -44,12 +50,12 @@ M.null_ls_servers = {
   -- "yamllint", -- yml
   -- "ruff", -- py
   -- "rustywind",
-  -- "shellharden", -- sh
+  "shellharden", -- sh
   "shellcheck",
   "jq",
-  -- "shfmt",
-  -- "sqlfmt",
-  -- "sql-formatter",
+  "shfmt",
+  "sqlfmt",
+  "sql-formatter",
   "fixjson",
   "golangci-lint",
   "gospel",
@@ -68,9 +74,9 @@ M.null_ls_servers = {
   "typescript-languange-server", -- ts,js
   "protolint",
   -- "yamlfix",                     -- yml
-  -- "phpcs",
-  -- "php-cbf",
-  -- "php-cs-fixer",
+  "phpcs",
+  "php-cbf",
+  "php-cs-fixer",
 }
 
 function M.config()
@@ -85,14 +91,20 @@ function M.config()
     },
   }
   require("mason-lspconfig").setup {
-    automatic_installation = false,
-    ensure_installed = M.servers,
+    automatic_installation = true,
+    ensure_installed = M.mason_lspconfig_servers,
   }
 
   require("mason-null-ls").setup {
-    automatic_installation = false,
-    ensure_installed = M.null_ls_servers,
+    automatic_installation = true,
+    ensure_installed = M.mason_null_ls_servers,
   }
 end
 
 return M
+
+-- NOTE: astro-ls stopped working, neovim gets crashed
+-- This is temporary fix, clone the following repo somewhere and install parser
+-- https://github.com/virchau13/tree-sitter-astro
+-- local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+-- parser_config.astro.install_info.url = "~/.local/share/nvim/mason/packages/tree-sitter-astro"

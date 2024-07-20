@@ -3,7 +3,8 @@ local M = {
 }
 
 function M.config()
-  require("codeium").setup({})
+  require("codeium").setup {}
 end
+
 
 return M

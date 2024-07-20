@@ -12,13 +12,13 @@ if [ ! -d "$HOME/.config/tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 fi
 
-
 source "${ZINIT_HOME}/zinit.zsh"
 
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-completions
+zinit light atuinsh/atuin
 
 # Add snippets
 #  # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins
@@ -73,7 +73,11 @@ eval "$(fzf --zsh)"
 eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(direnv hook zsh)"
+eval "$(atuin init zsh)"
+
 export ZSH_TMUX_AUTONAME_SESSION="true"
+
+[ -f "$HOME/.atuin/_atuin" ] && . "$HOME/.atuin/_atuin"
 
 # INFO: ================================[ custom aliases  ]================================
 

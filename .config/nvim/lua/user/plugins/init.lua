@@ -34,13 +34,13 @@ local plugins = {
         },
         level = 2,
         minimum_width = 50,
-        render = "compact",           -- default, minimal, simple, compact
+        render = "compact", -- default, minimal, simple, compact
         stages = "fade_in_slide_out", -- fade_in_slide_out, fade, slide, static
         timeout = 2500,
         top_down = true,
       }
       vim.notify = notify
-    end
+    end,
   },
 
   -- themes
@@ -51,14 +51,14 @@ local plugins = {
       vim.o.background = "dark"
       vim.cmd "colorscheme onedark"
       vim.cmd "hi LineNr guibg=none guifg=#8294C4"
-    end
+    end,
   },
   "projekt0n/github-nvim-theme",
 
   "nvim-lua/popup.nvim",
   "nvim-lua/plenary.nvim",
 
-  { "folke/noice.nvim",               event = "VeryLazy" },
+  { "folke/noice.nvim", event = "VeryLazy" },
 
   {
     "folke/which-key.nvim",
@@ -89,9 +89,8 @@ local plugins = {
     ft = { "markdown" },
     version = "*",
     dependencies = { { "nvim-lua/plenary.nvim" } },
-    lazy = true
+    lazy = true,
   },
-
 
   "karb94/neoscroll.nvim",
   "NvChad/nvim-colorizer.lua",
@@ -119,7 +118,7 @@ local plugins = {
   "akinsho/bufferline.nvim",
 
   -- maximizes and restores current window
-  { "szw/vim-maximizer",        lazy = false },
+  { "szw/vim-maximizer", lazy = false },
 
   -- headings, code folding
   {
@@ -135,7 +134,7 @@ local plugins = {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "sindrets/diffview.nvim",
-      'paopaol/telescope-git-diffs.nvim',
+      "paopaol/telescope-git-diffs.nvim",
       "nvim-telescope/telescope-project.nvim",
       "nvim-telescope/telescope-media-files.nvim",
       "xiyaowong/telescope-emoji.nvim",
@@ -154,16 +153,14 @@ local plugins = {
   {
     "numToStr/Comment.nvim",
     dependencies = {
-      { "JoosepAlviste/nvim-ts-context-commentstring", event = "VeryLazy" }
-    }
+      { "JoosepAlviste/nvim-ts-context-commentstring", event = "VeryLazy" },
+    },
   },
-
 
   -- json schema support, hinting support in json files (optional)
   "b0o/schemastore.nvim",
 
   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-
 
   "OXY2DEV/markview.nvim",
   -- markdown file live preview
@@ -175,7 +172,6 @@ local plugins = {
       vim.fn["mkdp#util#install"]()
     end,
   },
-
 
   -- -- database client, sql database client with ui (optional)
   -- "tpope/vim-dadbod",
@@ -191,7 +187,6 @@ local plugins = {
   --   end,
   -- },
 
-
   -- same word hightlighting under cursor (optional)
   "RRethy/vim-illuminate",
 
@@ -205,19 +200,18 @@ local plugins = {
   { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 
   -- lsp (Language server protocols) related plugins
-  { "folke/neodev.nvim",        lazy = true },
+  { "folke/neodev.nvim", lazy = true },
 
   -- words surround, auto pairs, auto close tags
   "kylechui/nvim-surround",
   "windwp/nvim-autopairs",
   {
     "windwp/nvim-ts-autotag",
-    ft = { "javascript", "markdown", "typescript", "javascriptreact", "typescriptreact" }
+    ft = { "javascript", "markdown", "typescript", "javascriptreact", "typescriptreact" },
   },
 
-
   -- code linting, linter
-  { "mfussenegger/nvim-lint",      event = { "BufReadPre", "BufNewFile" } },
+  { "mfussenegger/nvim-lint", event = { "BufReadPre", "BufNewFile" } },
 
   -- code action
   { "aznhe21/actions-preview.nvim" },
@@ -241,9 +235,8 @@ local plugins = {
   --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   -- },
 
-
   -- inhanced ui and improved lsp experience
-  { "glepnir/lspsaga.nvim",           branch = "main",       after = "nvim-treesitter" },
+  { "glepnir/lspsaga.nvim", branch = "main", after = "nvim-treesitter" },
   "folke/trouble.nvim",
 
   -- code hightlighting, syntax hightlighting
@@ -262,20 +255,19 @@ local plugins = {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "hrsh7th/cmp-path",          -- filesystem paths completions
+      "hrsh7th/cmp-path", -- filesystem paths completions
       "FelipeLema/cmp-async-path", -- same as path with async
-      "hrsh7th/cmp-buffer",        -- completions from opened buffers
-      "hrsh7th/cmp-cmdline",       -- completions in commandline mode
-      "hrsh7th/cmp-nvim-lsp",      -- completions from lsp
-      "hrsh7th/cmp-nvim-lua",      -- completions for lua
+      "hrsh7th/cmp-buffer", -- completions from opened buffers
+      "hrsh7th/cmp-cmdline", -- completions in commandline mode
+      "hrsh7th/cmp-nvim-lsp", -- completions from lsp
+      "hrsh7th/cmp-nvim-lua", -- completions for lua
       "saadparwaiz1/cmp_luasnip",
-      "andersevenrud/cmp-tmux",    -- completions of tmux sessions (optional)
-      "hrsh7th/cmp-emoji",         -- emoji completions (optional)
+      "andersevenrud/cmp-tmux", -- completions of tmux sessions (optional)
+      "hrsh7th/cmp-emoji", -- emoji completions (optional)
       "hrsh7th/vim-vsnip",
-      "hrsh7th/vim-vsnip-integ"
+      "hrsh7th/vim-vsnip-integ",
     },
   },
-
 
   {
     "rcarriga/nvim-dap-ui",
@@ -312,7 +304,7 @@ local plugins = {
   {
     "leoluz/nvim-dap-go",
     ft = "go",
-    dependencies = { "mfussenegger/nvim-dap" }
+    dependencies = { "mfussenegger/nvim-dap" },
   },
 
   -- A framework for interacting with tests within NeoVim.
@@ -325,8 +317,7 @@ local plugins = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-neotest/neotest-go",
     },
-  }
-
+  },
 }
 
 require("lazy").setup(plugins, {

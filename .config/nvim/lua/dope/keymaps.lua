@@ -1,5 +1,23 @@
 local M = {}
 
+-- nothing to do here
+-- call setup from where keymaps.lua is being loaded
+M.setup = function()
+  vim.g.mapleader = " "
+  vim.g.maplocalleader = " "
+  for mode, mappings in pairs(M.keymaps) do
+    for key, mapping in pairs(mappings) do
+      local cmd = mapping[1]
+      local desc = mapping[2]
+      vim.api.nvim_set_keymap(mode, key, cmd, { silent = true, noremap = true, desc = desc })
+    end
+  end
+  -- these two were not working with noremap = true
+  -- if noremap = true, set then movenment in editing mode dosen't work, specifically right side
+  vim.api.nvim_set_keymap("n", "<A-c>", "gcc", { silent = true, noremap = false })
+  vim.api.nvim_set_keymap("v", "<A-c>", "gcc", { silent = true, noremap = false })
+end
+
 M.keymaps = {
   n = {
     -- clear highlights
@@ -136,11 +154,6 @@ M.which_keymaps = {
   e = { ":Neotree toggle<CR>", "toggle file explorer" },
   r = { ":luafile %<CR>", "source current luafile" },
 
-  f = {
-    name = "code actions",
-    f = { ":lua require('actions-preview').code_actions()<CR>", "code action" },
-  },
-
   o = {
     name = "obsidian",
     d = { "<CMD>ObsidianFollowLink<CR>", "follow link" },
@@ -258,25 +271,5 @@ M.which_keymaps = {
     },
   },
 }
-
--- nothing to do here, change keymaps above
--- call setup from where keymaps.lua is being loaded
-M.setup = function()
-  vim.g.mapleader = " "
-  vim.g.maplocalleader = " "
-
-  for mode, mappings in pairs(M.keymaps) do
-    for key, mapping in pairs(mappings) do
-      local cmd = mapping[1]
-      local desc = mapping[2]
-      vim.api.nvim_set_keymap(mode, key, cmd, { silent = true, noremap = true, desc = desc })
-    end
-  end
-
-  -- these two were not working with noremap = true
-  -- if noremap = true, set then movenment in editing mode dosen't work, specifically right side
-  vim.api.nvim_set_keymap("n", "<A-c>", "gcc", { silent = true, noremap = false })
-  vim.api.nvim_set_keymap("v", "<A-c>", "gcc", { silent = true, noremap = false })
-end
 
 return M

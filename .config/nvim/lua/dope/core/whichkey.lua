@@ -1,5 +1,7 @@
 local M = {
   "folke/which-key.nvim",
+  branch ="main",
+  commit = "0539da0",
   init = function()
     vim.o.timeout = true
     vim.o.timeoutlen = 300
@@ -98,7 +100,7 @@ M.opts = {
 
 function M.config()
   local wk = require("which-key")
-  local km = require("dope.keymaps").which_keymaps
+  local keymaps = require("dope.keymaps").which_keymaps
   wk.setup(M.opts)
   local opts = {
     mode = "n",     -- NORMAL mode
@@ -109,7 +111,7 @@ function M.config()
     nowait = false, -- use `nowait` when creating keymaps
     expr = false,   -- use `expr` when creating keymaps
   }
-  wk.register(km, opts)
+  wk.register(keymaps, opts)
 end
 
 return M

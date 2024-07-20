@@ -3,39 +3,34 @@ local M = {
   dependencies = {
     "nvimtools/none-ls-extras.nvim",
     "gbprod/none-ls-shellcheck.nvim",
-  }
+  },
 }
 
 function M.config()
-  local null_ls = require("null-ls")
-
-  local formatting = null_ls.builtins.formatting;
-  local diagnostics = null_ls.builtins.diagnostics;
-  -- local completion = null_ls.builtins.completion;
-  local code_actions = null_ls.code_actions;
-
+  local null_ls = require "null-ls"
   null_ls.setup {
     debug = true,
     sources = {
-      formatting.stylua,
-      formatting.shfmt,
-      formatting.buf,
-      formatting.yamlfix,
+      null_ls.builtins.formatting.stylua, -- lua
+      null_ls.builtins.formatting.shfmt, -- sh/bash
 
-      -- completion.spell,
+      null_ls.builtins.diagnostics.buf, -- proto
+      null_ls.builtins.formatting.buf, -- proto
 
-      -- diagnostics.eslint_d,
-      formatting.prettierd,
-      -- formatting.eslint_d,
-      -- code_actions.eslint_d,
+      null_ls.builtins.formatting.yamlfix,
+      null_ls.builtins.formatting.sqlfmt,
 
-      formatting.gofumpt,           -- go
-      diagnostics.golangci_lint,    -- go
-      formatting.goimports_reviser, -- go imports
-      formatting.golines,           -- go
+      null_ls.builtins.formatting.prettierd,
+      require "none-ls.diagnostics.eslint_d",
+      require "none-ls.formatting.eslint_d",
+      require "none-ls.code_actions.eslint_d",
 
-    }
+      null_ls.builtins.formatting.gofumpt, -- go
+      null_ls.builtins.diagnostics.golangci_lint, -- go
+      null_ls.builtins.formatting.goimports_reviser, -- go imports
+      null_ls.builtins.formatting.golines, -- go
+    },
   }
 end
 
-return M;
+return M
